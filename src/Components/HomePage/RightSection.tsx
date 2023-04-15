@@ -1,15 +1,25 @@
-import React from 'react'
-import { RightSectionContainer, UserContainer, UserOptionsWrapper} from '../../StyledComponents/HomePageStyles'
-import {FaUserTie, FaHandHoldingHeart, FaHandshake} from 'react-icons/fa'
-import {useNavigate} from 'react-router-dom'
+import React from 'react';
+import { RightSectionContainer, UserContainer, UserOptionsWrapper} from '../../StyledComponents/HomePageStyles';
+import {FaUserTie, FaHandHoldingHeart, FaHandshake} from 'react-icons/fa';
+import {useNavigate} from 'react-router-dom';
+import Loading from '../Shared_util/Loading/Loading';
+
 
 
 function RightSection() {
 
     const navigate = useNavigate();
+    const [showLoading, setLoading] = React.useState(false);
     
     const navigateTo = (path: string) => {
-        navigate(`/${path}`)
+        
+        setTimeout(()=>{
+            navigate(`/${path}`);
+        }, 2500)
+        
+        setLoading(true)
+
+        
     }
 
     return (
@@ -29,6 +39,7 @@ function RightSection() {
                     <span>Charity Foundation</span>
                 </UserContainer>
             </UserOptionsWrapper>
+            {showLoading && <Loading />}
         </RightSectionContainer>
     )
 }

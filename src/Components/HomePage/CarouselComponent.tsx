@@ -27,7 +27,7 @@ function CarouselComponent () {
                 className="d-block w-100"
                 src={img2}
                 height={'600px'}
-                alt="First slide"
+                alt="Second slide"
             />
             <Carousel.Caption>
             <h3>Care To Share</h3>
@@ -39,7 +39,7 @@ function CarouselComponent () {
             className="d-block w-100"
             src={img3}
             height={'600px'}
-            alt="First slide"
+            alt="Third slide"
             />
             <Carousel.Caption>
             <h3>"St. Francis of Assisi"</h3>

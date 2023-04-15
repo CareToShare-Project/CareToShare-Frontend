@@ -17,10 +17,10 @@ export const RightSideContainer = styled.div`
     text-align: center;
     width: 40%;
     height: 100vh;
-    border-left: 10px inset rgba(0,0,0,0.7);
+    border-left: 10px inset ${({theme})=> theme.border.primary};
     padding-top: 10%;
-    color: white;
-    background-color: #5BB4F0;
+    color: ${({theme})=> theme.color.primary};
+    background-color: ${({theme}) => theme.background.primary};
 `
 
 export const RightSectionContainer = styled.div`
@@ -33,6 +33,11 @@ export const RightSectionContainer = styled.div`
         font-decoration: bolder;
         font-size: 22px;
         letter-spacing: 2px;
+        line-height: 30px;
+    }
+    .spinner{
+        margin: 40px auto;
+        color: black;
     }
 `
 export const UserOptionsWrapper = styled.div`
@@ -51,12 +56,9 @@ export const UserContainer = styled.div`
     gap: 10px;
     font-family: Poppins;
     cursor: pointer;
-    
-    .user-icon{
-        transition: all 400ms ease-in-out;
-        &:hover{ 
-            color: rgba(0,0,0,0.4);   
-        }
+    transition: all 400ms ease-in-out;
+    &:hover{ 
+        color: ${({theme})=> theme.color.hoverprimary};   
     }
-
+    
 `
