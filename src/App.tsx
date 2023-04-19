@@ -3,24 +3,26 @@ import './App.css';
 import HomePage from './Components/HomePage/HomePage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AdminLoginPage from './Components/AdminPage/AdminLoginPage';
-import DonorMainPage from './Components/DonorPage/DonorMainPage';
-import CharityMainPage from './Components/CharityPage/CharityMainPage';
+import DonorLoginPage from './Components/DonorPage/DonorLoginPage';
+import CharityLoginPage from './Components/CharityPage/CharityLoginPage';
 import { ThemeProvider } from 'styled-components';
 
 
 const theme = {
   background: {
-    primary: '#5BB4F0',
-    secondary: '#01DEFC'
+    primary: '#282c34',
+    secondary: '#8c9fc4'
   },
   color: {
     primary: 'white',
-    secondary: '#035578',
-    hoverprimary: 'rgba(0,0,0,0.4)',
+    secondary: '#131d20',
+    hover: '#01DEFC',
+    hoverprimary: 'rgba(0,0,0,0.8)',
     hoversecondary: 'white'
   },
   border: {
-    primary: '#F7FBFF'
+    primary: '#F7FBFF',
+    secondary: '#01DEFC'
   }
 }
 
@@ -33,8 +35,8 @@ function App() {
         <Routes>
           <Route index element={<HomePage />}/>
           <Route path='admin' element= {<AdminLoginPage />} />
-          <Route path= 'donor' element = {<DonorMainPage />} />
-          <Route path= 'charity' element = {<CharityMainPage />} />
+          <Route path= 'donor' element = {<DonorLoginPage />} />
+          <Route path= 'charity' element = {<CharityLoginPage />} />
         </Routes>
 
       </BrowserRouter>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { MainContainer, LeftSideContainer, RightSideContainer } from '../../StyledComponents/HomePageStyles'
+import { MainContainer, LeftSideContainer, RightSideContainer } from './HomePageStyles'
 import RightSection from './RightSection'
 import LeftSection from './LeftSection'
 import 'bootstrap/dist/css/bootstrap.min.css'

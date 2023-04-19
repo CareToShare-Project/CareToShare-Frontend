@@ -20,7 +20,7 @@ export const RightSideContainer = styled.div`
     border-left: 10px inset ${({theme})=> theme.border.primary};
     padding-top: 10%;
     color: ${({theme})=> theme.color.primary};
-    background-color: ${({theme}) => theme.background.primary};
+    background-color: ${({theme}) => theme.background.secondary};
 `
 
 export const RightSectionContainer = styled.div`

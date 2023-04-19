@@ -1,25 +1,29 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import Login from '../Shared_util/Login/Login'
+
 
 
 
 function AdminLoginPage () {
 
-    const [username, setUsername] = React.useState('');
-    const [password, setUserPassword] = React.useState('');
-    const userType = 'Admin'
+    const [adminName, setAdminName] = useState('');
+    const [adminPassword, setAdminPassword] = useState('');
 
     useEffect(()=>{
-       console.log(password,username)
-    }, [password, username])
+        if(adminName==='andy') {
+            console.log(adminName,adminPassword)
+        }
+      
+
+    }, [adminName, adminPassword])
 
 
     return(
         <>
             <Login  
-                setPassword={setUsername} 
-                setUsername={setUserPassword}
-                user = {userType}
+                setPassword={setAdminPassword} 
+                setUsername={setAdminName}
+                userType='admin'
             />
         </>
     )

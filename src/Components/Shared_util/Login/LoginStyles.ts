@@ -2,10 +2,16 @@ import styled from "styled-components";
 
 export const Heading = styled.h4`
     font-family: Poppins;
+    font-weight: 600;
+    letter-spacing: 2px;
     color: white;
     span{
         color:${({theme})=> theme.color.secondary};  
     }
+`
+
+export const LoginContainer = styled.div`
+    
 `
 export const FormWrapper = styled.form`
     border: 1px solid black;
@@ -14,7 +20,7 @@ export const FormWrapper = styled.form`
     align-items: center;
     gap: 30px;
     width: 400px;
-    height: 500px;
+    height: 450px;
     border-radius: 10px;
     border: 0;
     padding: 80px;
@@ -50,12 +56,27 @@ export const InputField = styled.input`
 `
 
 export const SubmitButton = styled.button`
-    width: 100px;
-    background: ${({theme})=> theme.background.secondary};
+    width: 100%;
+    background: ${({theme})=> theme.color.primary};
     outline: transparent;
-    border: 0;
-    font-weight: 600;
-    color:${({theme})=> theme.color.secondary};
+    border: 3px solid white;
     border-radius: 10px;
+    font-weight: 700;
+    color:${({theme})=> theme.color.secondary};
     font-family: Poppins;
+    transition: 0.8s;
+    &:hover{
+        border: 3px solid ${({theme})=> theme.border.secondary};
+    }
+`
+
+export const RegisterStyles = styled.div`
+    color: ${({theme})=> theme.color.primary};
+    span{
+    &:hover{
+        text-decoration: underline;
+        cursor: pointer;
+        color: ${({theme})=> theme.color.hover};
+    }
+    }
 `

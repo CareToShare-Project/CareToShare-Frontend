@@ -1,5 +1,5 @@
 import React from 'react';
-import { RightSectionContainer, UserContainer, UserOptionsWrapper} from '../../StyledComponents/HomePageStyles';
+import { RightSectionContainer, UserContainer, UserOptionsWrapper} from './HomePageStyles';
 import {FaUserTie, FaHandHoldingHeart, FaHandshake} from 'react-icons/fa';
 import {useNavigate} from 'react-router-dom';
 import Loading from '../Shared_util/Loading/Loading';
