@@ -22,11 +22,10 @@ export const FormWrapper = styled.form`
     width: 400px;
     height: 450px;
     border-radius: 10px;
-    border: 0;
+    border: 1px solid ${({theme})=> theme.border.primary};
     padding: 80px;
-    margin: 50px auto;
-    background: ${({theme})=> theme.background.primary};
-    box-shadow: 0px 2px 10px rgba(0,0,0,0.4);
+    background: ${({theme})=> theme.background.primaryTransparent};
+    box-shadow: 0px 2px 10px rgba(255,255,255,0.4);
     outline: transparent;
 `
 export const FormContainer = styled.div`
@@ -42,6 +41,10 @@ export const FormField = styled.div`
     display: flex;
     align-items: center;
     border-bottom: 2px solid white;
+    &:hover{
+        border-bottom: 2px solid ${({theme})=> theme.border.secondary};
+
+    }
 `
 export const InputField = styled.input`
     width: 300px;
@@ -67,6 +70,7 @@ export const SubmitButton = styled.button`
     transition: 0.8s;
     &:hover{
         border: 3px solid ${({theme})=> theme.border.secondary};
+        background: ${({theme})=> theme.border.secondary};
     }
 `
 

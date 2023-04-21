@@ -9,7 +9,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-y: hidden;
-  background: #282c34;
+  background: rgb(40, 44, 52);
 }
 
 code {

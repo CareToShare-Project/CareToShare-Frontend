@@ -1,19 +1,28 @@
-import React, {useState} from 'react';
+import React, {useRef} from 'react';
 import {FormWrapper, FormField,InputField, RegisterStyles,
         SubmitButton, FormContainer, Heading, LoginContainer} from './LoginStyles'
 import {FaUser, FaLock} from 'react-icons/fa'
 import { LoginProps } from '../Types';
+import { useNavigate } from 'react-router-dom';
 
 const Login: React.FC<LoginProps> = ({setPassword, setUsername, userType}) => {
+    
+    const nameRef: any = useRef();
+    const passwordRef : any = useRef()
+    const navigate = useNavigate()
+    const route:string = userType === 'charity' ? 'charityRegister' : 'donorRegister'
 
-    const [password, setPass] = useState('')
-    const [username, setUser] = useState('')
     
     const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setPassword(password);
-        setUsername(username)
+        if(nameRef && passwordRef){
+            setUsername(nameRef.current.value);
+            setPassword(passwordRef.current.value)
+        }
+        
     }
+
+  
 
     return (
         <LoginContainer>
@@ -27,7 +36,7 @@ const Login: React.FC<LoginProps> = ({setPassword, setUsername, userType}) => {
                             <InputField 
                                 type='text' 
                                 placeholder='Username'
-                                onChange={(e)=> setUser(e.target.value)}
+                                ref={nameRef}
                             />
                         </FormField>
                         <FormField>
@@ -35,15 +44,17 @@ const Login: React.FC<LoginProps> = ({setPassword, setUsername, userType}) => {
                             <InputField 
                                 type='password' 
                                 placeholder='Password'
-                                onChange={(e)=> setPass(e.target.value)}
+                                ref={passwordRef}
                             />
                         </FormField>
                         <SubmitButton>Login</SubmitButton>
                     </FormContainer>
                             {
-                            userType !=='admin' && <RegisterStyles>
-                                                        Don't have an Account?{' '}<span>Register</span>
-                                                    </RegisterStyles>
+                            userType !=='admin' && 
+                            <RegisterStyles>
+                                Don't have an Account?{' '}
+                                    <span onClick={()=>navigate(route)}>Register</span>
+                                </RegisterStyles>
                             }     
                 </FormWrapper>
             </LoginContainer>

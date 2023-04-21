@@ -58,7 +58,7 @@ export const UserContainer = styled.div`
     cursor: pointer;
     transition: all 400ms ease-in-out;
     &:hover{ 
-        color: ${({theme})=> theme.color.hoverprimary};   
+        color: ${({theme})=> theme.color.hover};   
     }
     
 `

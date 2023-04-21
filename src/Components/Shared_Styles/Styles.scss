@@ -1,0 +1,11 @@
+.body-container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../HomePage/images/image3.jpg');
+    background-position: center;
+    background-size: cover;
+    background-blend-mode: lighten;
+}
