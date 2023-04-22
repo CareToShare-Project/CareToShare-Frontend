@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import Login from '../Shared_util/Login/Login'
-import '../Shared_Styles/Styles.css'
+import '../Shared_Styles/General/Styles.css'
 import { useNavigate } from 'react-router-dom';
 
 
@@ -12,11 +12,11 @@ function AdminLoginPage () {
     const [adminPassword, setAdminPassword] = useState('');
     const navigate = useNavigate();
 
-    useEffect(()=>{
-        if(adminName === 'andy'){
-            navigate('adminDashboard')
+    useEffect(()=> {
+        if(adminName  && adminPassword){
+            navigate(`adminDashboard/${adminName}`)
+            console.log(adminName,adminPassword)
         }
-        console.log(adminName,adminPassword)
         
     }, [adminName, adminPassword, navigate])
 

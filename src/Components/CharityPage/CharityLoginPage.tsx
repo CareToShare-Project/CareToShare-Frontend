@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import Login from '../Shared_util/Login/Login';
-import '../Shared_Styles/Styles.css'
+import '../Shared_Styles/General/Styles.css'
 import { useNavigate } from 'react-router-dom';
 
 
@@ -10,10 +10,10 @@ function CharityLoginPage () {
     const navigate = useNavigate();
 
     useEffect(()=>{
-        if(charityName === 'bosaata'){
-            navigate('charityDashboard')
+        if(charityName && charityPassword){
+            navigate(`charityDashboard/${charityName}`)
+            console.log(charityName, charityPassword)
         }
-        console.log(charityName, charityPassword)
 
     }, [charityName, charityPassword, navigate])
 
