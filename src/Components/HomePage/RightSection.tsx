@@ -25,6 +25,7 @@ function RightSection() {
     return (
         <RightSectionContainer>
             <h3>Welcome to CareToShare Donation Platform</h3>
+            <hr className='horizontal-line'></hr>
             <UserOptionsWrapper>
                 <UserContainer onClick={()=>navigateTo('admin')} >
                     <FaUserTie size={40} className='user-icon'/>

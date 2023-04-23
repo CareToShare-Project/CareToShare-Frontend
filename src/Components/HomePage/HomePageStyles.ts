@@ -1,5 +1,31 @@
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
 
+//animations
+const iconAnimate = keyframes`
+    0% {
+     transform: rotate(30deg);
+   }
+   50% {
+        transform: rotate(-30deg);
+   }
+   100%{
+        transform: rotate(0deg);
+   }
+`
+
+const horizontalLineAnimate = keyframes`
+    0%{
+        transform: scale(1);
+        background: white;
+    }
+   50%{
+    transform: scale(0);
+   }
+    100%{
+        background: #01DEFC;
+        transform: scale(1);
+    }
+`
 export const MainContainer = styled.div`
     width: 100vw;
     display: flex;
@@ -17,7 +43,7 @@ export const RightSideContainer = styled.div`
     text-align: center;
     width: 40%;
     height: 100vh;
-    border-left: 10px inset ${({theme})=> theme.border.primary};
+    border-left: 10px inset ${({theme})=> theme.color.border};
     padding-top: 10%;
     color: ${({theme})=> theme.color.primary};
     background-color: ${({theme}) => theme.background.secondary};
@@ -26,14 +52,19 @@ export const RightSideContainer = styled.div`
 export const RightSectionContainer = styled.div`
     display: flex;
     flex-direction: column;
-    margin-top: 60px;   
+    margin-top: 40px;   
     h3{
         font-family: Poppins;
-        font-weight: 600;
-        font-decoration: bolder;
-        font-size: 22px;
-        letter-spacing: 2px;
+        font-weight: 800;
+        font-size: ${({theme})=> theme.fontSizes.medium};
+        letter-spacing: 5px;
         line-height: 30px;
+    }
+    .horizontal-line{
+        height: 8px;
+        width: 400px;
+        margin: 0px auto;
+        animation: ${horizontalLineAnimate} 2s ease-in-out infinite;
     }
     .spinner{
         margin: 40px auto;
@@ -49,16 +80,25 @@ export const UserOptionsWrapper = styled.div`
 
 `
 
+
 export const UserContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
     font-family: Poppins;
+    font-size: ${({theme})=> theme.fontSizes.small};
     cursor: pointer;
     transition: all 400ms ease-in-out;
     &:hover{ 
-        color: ${({theme})=> theme.color.hover};   
+        color: ${({theme})=> theme.color.hover};
+        transform: scale(1.05);   
+    }
+
+    .user-icon{
+        &:hover{
+            animation: ${iconAnimate} 1s ease-in-out infinite;
+        }
     }
     
 `

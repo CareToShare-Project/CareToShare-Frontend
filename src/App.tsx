@@ -11,26 +11,9 @@ import DonorRegistrationPage from './Components/DonorPage/DonorRegistrationPage'
 import CharityPage from './Components/CharityPage/CharityPage';
 import DonorPage from './Components/DonorPage/DonorPage';
 import AdminPage from './Components/AdminPage/AdminPage';
+import {theme} from './Components/Shared_util/Theme'
 
 
-const theme = {
-  background: {
-    primary: '#282c34',
-    secondary: '#3a4e77',
-    primaryTransparent: 'rgb(40, 44, 52, 0.7)'
-  },
-  color: {
-    primary: 'white',
-    secondary: '#131d20',
-    hover: '#01DEFC',
-    hoverprimary: 'rgba(0,0,0,0.8)',
-    hoversecondary: 'white'
-  },
-  border: {
-    primary: '#F7FBFF',
-    secondary: '#01DEFC'
-  }
-}
 
 
 function App() {

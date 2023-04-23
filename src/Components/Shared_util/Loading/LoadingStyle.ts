@@ -6,7 +6,7 @@ export const LoadingContainer = styled.div`
     right: 18%;
     bottom: 0;
     .spinner{
-        color: ${({theme})=> theme.background.primary};
+        color: ${({theme})=> theme.color.hover};
         margin-left: 3px;
     }
 `

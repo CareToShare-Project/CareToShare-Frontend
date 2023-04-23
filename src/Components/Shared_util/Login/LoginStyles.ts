@@ -1,7 +1,8 @@
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
 
 export const Heading = styled.h4`
     font-family: Poppins;
+    font-size: ${({theme})=> theme.fontSizes.large};
     font-weight: 600;
     letter-spacing: 2px;
     color: white;
@@ -13,6 +14,14 @@ export const Heading = styled.h4`
 export const LoginContainer = styled.div`
     
 `
+const pulseAnimation = keyframes`
+   0% {
+     transform: scale(0);
+   }
+   100% {
+        transform: scale(1);
+  }
+ `
 export const FormWrapper = styled.form`
     border: 1px solid black;
     display: flex;
@@ -22,11 +31,12 @@ export const FormWrapper = styled.form`
     width: 400px;
     height: 450px;
     border-radius: 10px;
-    border: 1px solid ${({theme})=> theme.border.primary};
+    border: 4px solid ${({theme}) => theme.background.secondary};
     padding: 80px;
-    background: ${({theme})=> theme.background.primaryTransparent};
-    box-shadow: 0px 2px 10px rgba(255,255,255,0.4);
+    background: ${({theme})=> theme.background.main};
+    box-shadow: 0px 2px 10px ${({theme})=> theme.background.primary};
     outline: transparent;
+    animation: ${pulseAnimation} 1s ease-in-out;
 `
 export const FormContainer = styled.div`
     display: flex;
@@ -42,7 +52,7 @@ export const FormField = styled.div`
     align-items: center;
     border-bottom: 2px solid white;
     &:hover{
-        border-bottom: 2px solid ${({theme})=> theme.border.secondary};
+        border-bottom: 2px solid ${({theme})=> theme.color.hover};
 
     }
 `
@@ -69,8 +79,8 @@ export const SubmitButton = styled.button`
     font-family: Poppins;
     transition: 0.8s;
     &:hover{
-        border: 3px solid ${({theme})=> theme.border.secondary};
-        background: ${({theme})=> theme.border.secondary};
+        border: 3px solid ${({theme})=> theme.color.hover};
+        background: ${({theme})=> theme.color.hover};
     }
 `
 
