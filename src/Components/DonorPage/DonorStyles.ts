@@ -99,3 +99,10 @@ export const ConfirmButton = styled.button`
         width: 96%;
     }
 `
+
+export const MainPageContainer = styled.div`
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    background: ${({theme})=> theme.background.secondary};
+`

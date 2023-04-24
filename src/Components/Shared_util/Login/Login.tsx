@@ -2,7 +2,7 @@ import React, {useRef} from 'react';
 import {FormWrapper, FormField,InputField, RegisterStyles,
         SubmitButton, FormContainer, Heading, LoginContainer} from './LoginStyles'
 import {FaUser, FaLock} from 'react-icons/fa'
-import { LoginProps } from '../Types';
+import { LoginProps } from '../Constants/Types';
 import { useNavigate } from 'react-router-dom';
 
 const Login: React.FC<LoginProps> = ({setPassword, setUsername, userType}) => {

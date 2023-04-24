@@ -1,14 +1,17 @@
 import React from 'react'
 import { useParams } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
+import { charityFeatures } from '../Shared_util/Constants/SideBarFeatures';
+import SideBar from '../Shared_util/SideBar/SideBar';
+import { MainPageContainer } from '../DonorPage/DonorStyles';
 
 function CharityPage(){
     const {username} = useParams();
     return (
-        <>
-            <h1>Charity Page : {username}</h1>
+        <MainPageContainer>
+            <SideBar username={username} features={charityFeatures}/>
             <Outlet />
-        </>
+        </MainPageContainer>
     )
 }
 

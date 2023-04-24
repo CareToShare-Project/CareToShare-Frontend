@@ -3,13 +3,16 @@ import styled, {keyframes} from "styled-components";
 //animations
 const iconAnimate = keyframes`
     0% {
-     transform: rotate(30deg);
+     transform: translateX(0%);
    }
    50% {
-        transform: rotate(-30deg);
+        transform: translateX(10%);
+   }
+   70% {
+        transform: translateX(0%);
    }
    100%{
-        transform: rotate(0deg);
+        transform: translateX(-10%);
    }
 `
 
@@ -97,7 +100,7 @@ export const UserContainer = styled.div`
 
     .user-icon{
         &:hover{
-            animation: ${iconAnimate} 1s ease-in-out infinite;
+            animation: ${iconAnimate} 2s ease-in-out infinite;
         }
     }
     
