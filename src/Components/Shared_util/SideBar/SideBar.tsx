@@ -1,14 +1,20 @@
 import React, {useState} from "react";
-import { ProfileContainer, ProfileImage, SideBarWrapper, FeaturesWrapper, EditProfileButton } from "./SideBarStyles";
+import { ProfileContainer, ProfileImage, SideBarWrapper, 
+        FeaturesWrapper, EditProfileButton, LogoutWrapper ,
+        MenuBar, SideBarContainer} from "./SideBarStyles";
 import { SideBarProps } from "../Constants/Types";
-import { FaUserCircle } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { FaUserCircle, FaTimes} from "react-icons/fa";
+import {GiExitDoor} from "react-icons/gi"
+import {MdOutlineMenu} from "react-icons/md"
+import { Link, useNavigate } from "react-router-dom";
 
 
 
-const SideBar: React.FC<SideBarProps> = ({username, features}) => {
+const SideBar: React.FC<SideBarProps> = ({username, features, logoutRoute}) => {
     const [currentPage, setCurrentPage] = useState<string>('')
+    const [hideSideBar, setHideSideBar] = useState<boolean>(true)
     const navigate = useNavigate();
+    
 
     const handlePageNavigation = (path: string) => {
         setCurrentPage(path)
@@ -16,35 +22,52 @@ const SideBar: React.FC<SideBarProps> = ({username, features}) => {
         
     }
 
+    const handleShowSideBar = () => {
+        setHideSideBar(prev=> !prev)
+    }
+
     return (
-        <SideBarWrapper>
-            <ProfileContainer>
-                <ProfileImage> 
-                    <FaUserCircle size={90} />
-                </ProfileImage>
-                <div>Welcome, <span>{username}</span></div>
-                <EditProfileButton onClick={()=> handlePageNavigation('editProfile')}>
-                    Edit Profile
-                </EditProfileButton>
-            </ProfileContainer>
+        <SideBarContainer>
+            <MenuBar className={hideSideBar?'menu-bar': ''} onClick={()=>handleShowSideBar()}>
+                    {hideSideBar ? <MdOutlineMenu /> : <FaTimes />}
+            </MenuBar>
+            <SideBarWrapper className={hideSideBar?'hide': 'show'}>
+                <ProfileContainer>
+                    <ProfileImage> 
+                        <FaUserCircle size={90} />
+                    </ProfileImage>
+                    <div>Welcome, <span>{username}</span></div>
+                    <EditProfileButton onClick={()=> handlePageNavigation('editProfile')}>
+                        Edit Profile
+                    </EditProfileButton>
+                </ProfileContainer>
 
-            <hr style={{color: 'white', height: '3px', background: 'white'}}></hr>
+                <hr style={{color: 'white', height: '3px', background: 'white'}}></hr>
 
-            <FeaturesWrapper>
-                    {features.map((feature, key)=>{
-                        return (
-                            <li key={key} 
-                                className="feature" 
-                                id={currentPage === feature.link ? 'active' : ''}
-                                onClick={()=>handlePageNavigation(`${feature.link}`)}
-                            >
-                                    <feature.icon className="icon" size={22}/>
-                                    <span className="title">{feature.title}</span>
-                            </li>
-                        )
-                    })}
-            </FeaturesWrapper>
-        </SideBarWrapper>
+                <FeaturesWrapper>
+                        {features.map((feature, key)=>{
+                            return (
+                                <li key={key} 
+                                    className="feature" 
+                                    id={currentPage === feature.link ? 'active' : ''}
+                                    onClick={()=>handlePageNavigation(`${feature.link}`)}
+                                >
+                                        <feature.icon 
+                                            className="icon" 
+                                            id={feature.title.includes('Progress')? 'rotate' : ''} size={22}/>
+                                        <span className="title">{feature.title}</span>
+                                </li>
+                            )
+                        })}
+                </FeaturesWrapper>
+                <Link to={logoutRoute} style={{'textDecoration': 'none'}}>
+                    <LogoutWrapper>
+                        <GiExitDoor />
+                        Logout
+                    </LogoutWrapper>
+                </Link>
+            </SideBarWrapper>
+        </SideBarContainer>
     )
 }
 

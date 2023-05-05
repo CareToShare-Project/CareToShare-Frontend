@@ -2,8 +2,13 @@ import { IconType } from "react-icons";
 
 export interface LoginProps {
     userType: string,
-    setUsername: React.Dispatch<React.SetStateAction<string>>,
-    setPassword: React.Dispatch<React.SetStateAction<string>>,
+    navigateTo : string,
+    fetchFrom : string 
+}
+
+export interface UserLoginProps {
+    username : string,
+    password : string
 }
 
 export interface Feature {
@@ -17,6 +22,23 @@ export interface SideBarFeaturesProp {
 }
 
 export interface SideBarProps {
-    username: string,
-    features : Feature[]
+    username: string | undefined,
+    features : Feature[],
+    logoutRoute: string
+}
+
+
+export interface LoginToastProps {
+    setShowToast: React.Dispatch<React.SetStateAction<boolean>>,
+    showToast : boolean,
+    toastMessage : string
+}
+
+export interface AlertProps {
+    message: string,
+    variant: string
+}
+
+export interface PasswordResetProps{
+    navigateTo : string
 }

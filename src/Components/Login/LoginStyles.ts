@@ -2,9 +2,9 @@ import styled, {keyframes} from "styled-components";
 
 export const Heading = styled.h4`
     font-family: Poppins;
-    font-size: ${({theme})=> theme.fontSizes.large};
+    font-size: 22px;
     font-weight: 600;
-    letter-spacing: 2px;
+    letter-spacing: 0.5px;
     color: white;
     span{
         color:${({theme})=> theme.color.secondary};  
@@ -31,14 +31,15 @@ export const FormWrapper = styled.form`
     width: 400px;
     height: 450px;
     border-radius: 10px;
-    border: 4px solid ${({theme}) => theme.background.secondary};
     padding: 80px;
+    border: none;
     background: ${({theme})=> theme.background.main};
-    box-shadow: 0px 2px 10px ${({theme})=> theme.background.primary};
+    box-shadow: 0px 2px 10px ${({theme})=> theme.background.main};
     outline: transparent;
     animation: ${pulseAnimation} 1s ease-in-out;
 `
 export const FormContainer = styled.div`
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -46,15 +47,25 @@ export const FormContainer = styled.div`
     justify-content: center;
     gap: 30px;
     padding: 20px;
+
+    .forgot-password {
+        color: white; 
+        position: absolute;
+        bottom: -15px;
+        right: 20px;
+        text-decoration: none;
+
+        &:hover{
+        text-decoration: underline;
+        cursor: pointer;
+        color: ${({theme})=> theme.color.hover2};
+    }
+    }
 `
 export const FormField = styled.div`
     display: flex;
     align-items: center;
-    border-bottom: 2px solid white;
-    &:hover{
-        border-bottom: 2px solid ${({theme})=> theme.color.hover};
-
-    }
+    
 `
 export const InputField = styled.input`
     width: 300px;
@@ -65,6 +76,11 @@ export const InputField = styled.input`
     outline: transparent;
     background: transparent;
     border: 0px;
+    border-bottom: 2px solid white;
+    &:focus{
+        border-bottom: 2px solid ${({theme})=> theme.color.hover2};
+
+    }
     
 `
 
@@ -81,6 +97,7 @@ export const SubmitButton = styled.button`
     &:hover{
         border: 3px solid ${({theme})=> theme.color.hover};
         background: ${({theme})=> theme.color.hover};
+        color: white;
     }
 `
 
@@ -90,7 +107,7 @@ export const RegisterStyles = styled.div`
     &:hover{
         text-decoration: underline;
         cursor: pointer;
-        color: ${({theme})=> theme.color.hover};
+        color: ${({theme})=> theme.color.hover2};
     }
     }
 `

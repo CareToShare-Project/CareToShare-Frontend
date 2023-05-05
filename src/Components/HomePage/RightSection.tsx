@@ -1,7 +1,7 @@
 import React from 'react';
-import { RightSectionContainer, UserContainer, UserOptionsWrapper} from './HomePageStyles';
-import {FaUserTie, FaHandHoldingHeart, FaHandshake} from 'react-icons/fa';
+import { GetStartedButton, RightSectionContainer} from './HomePageStyles';
 import {useNavigate} from 'react-router-dom';
+import {MdStart} from "react-icons/md"
 import Loading from '../Shared_util/Loading/Loading';
 
 
@@ -24,22 +24,14 @@ function RightSection() {
 
     return (
         <RightSectionContainer>
-            <h3>Welcome to CareToShare Donation Platform</h3>
-            <hr className='horizontal-line'></hr>
-            <UserOptionsWrapper>
-                <UserContainer onClick={()=>navigateTo('admin')} >
-                    <FaUserTie size={40} className='user-icon'/>
-                    <span>Administrator</span>
-                </UserContainer>
-                <UserContainer onClick={()=>navigateTo('donor')}>
-                    <FaHandHoldingHeart size={40} className='user-icon' />
-                    <span>Donor</span>
-                </UserContainer>
-                <UserContainer onClick={()=>navigateTo('charity')}>
-                    <FaHandshake size={40} className='user-icon'/>
-                    <span>Charity Foundation</span>
-                </UserContainer>
-            </UserOptionsWrapper>
+            <div>
+                <h3>Welcome to CareToShare Donation Platform</h3>
+                <hr className='horizontal-line'></hr>
+            </div>
+            <GetStartedButton onClick={()=>navigate('login')}> 
+                Get Started {<MdStart size={22} />} 
+            </GetStartedButton>
+
             {showLoading && <Loading />}
         </RightSectionContainer>
     )

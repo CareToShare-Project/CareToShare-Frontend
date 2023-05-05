@@ -1,12 +1,82 @@
-import styled from 'styled-components'
+import styled , {keyframes} from 'styled-components'
 import { ConfirmButton } from '../../DonorPage/DonorStyles'
 
+const rotateAnimation = keyframes`
+    from {
+        transform: rotate(0deg);
+        color: #4E31AA;
+    }
+    to{
+        transform: rotate(360deg)
+    }
+`
+const slideIn = keyframes`
+    from{
+        transform: translateX(-100%)
+    }
+    to{
+        transform: translateX(0%)
+    }
+`
+
+export const SideBarContainer = styled.div`
+    width: auto;
+    height: 100vh;
+
+    .show{
+        @media (max-width: 650px){
+            display: block;
+            position: fixed;
+            z-index: 2;
+            left: 0px;
+            animation: ${slideIn} 600ms ease-in-out;
+        }
+    }
+
+    .menu-bar{
+        background:${({theme})=> theme.background.primary}     
+    }
+
+`
 export const SideBarWrapper = styled.div`
     width: 20%;
+    min-width: 265px;
+    position: relative;
+    z-index: 1;
     height: 100vh;
     background: ${({theme})=> theme.background.primary};
     box-shadow: 0px 5px 10px black;
+
+    @media (max-width: 650px){
+        display: none;
+    }
     
+`
+
+export const MenuBar = styled.div`
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: none;
+    z-index: 2;
+    margin-right: 30px;
+    font-size: 27px;
+    cursor: pointer;
+    color: white;
+    background:${({theme})=> theme.background.primary} ;
+    height: 100vh;
+    width: 40px;
+    text-align: center;
+    margin-right: 40px;
+
+    @media (max-width: 650px){
+        display: block;
+        margin-right: 60px;
+        background: transparent;
+        z-index: 5;
+    }
+    
+
 `
 
 export const ProfileContainer = styled.div`
@@ -19,19 +89,35 @@ export const ProfileContainer = styled.div`
     div{
         color: white;
         font-size: ${({theme})=> theme.fontSizes.small};
+        font-family: Inter;
         span{
-            font-family: Poppins;
+            font-family: Roboto;
             margin-left: 5px;
-            color: ${({theme})=> theme.color.hover};
+            color: ${({theme})=> theme.background.secondary};
         }
     }
 `
 
 export const EditProfileButton = styled(ConfirmButton)`
     width: 150px;
+    transition: all 500ms ease-in-out;
 
     &:hover{
         width: 150px;
+        color: white;
+    }
+`
+
+export const LogoutWrapper = styled(EditProfileButton)`
+    width: 100px;
+    height: 30px;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover{
+        width: 100px;
+        color: red;
     }
 `
 
@@ -49,14 +135,14 @@ export const ProfileImage = styled.div`
 export const FeaturesWrapper = styled.ul`
     width: 100%;
     color: white;
-    gap: 10px;
+    gap: 5px;
     display: grid;
     margin-top: 30px;
 
 
     #active{
         background: ${({theme})=> theme.color.hover};
-        color: ${({theme})=> theme.background.primary};
+        color: ${({theme})=> theme.color.primary};
         font-weight: 500;
         border-top-right-radius: 10px;
     }
@@ -73,6 +159,9 @@ export const FeaturesWrapper = styled.ul`
         cursor: pointer;
         transition: all 500ms ease-in-out;
 
+        #rotate{
+            animation: ${rotateAnimation} 3s ease-in-out infinite;
+        }
         .icon{
             flex: 30%;
             display: grid;
@@ -86,7 +175,7 @@ export const FeaturesWrapper = styled.ul`
         }
         &:hover{
             background: ${({theme})=> theme.color.hover};
-            color: ${({theme})=> theme.background.primary};
+            color: ${({theme})=> theme.color.primary};
             border-top-right-radius: 10px;
         }
 

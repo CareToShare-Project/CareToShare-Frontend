@@ -1,20 +1,7 @@
 import styled, {keyframes} from "styled-components";
 
 //animations
-const iconAnimate = keyframes`
-    0% {
-     transform: translateX(0%);
-   }
-   50% {
-        transform: translateX(10%);
-   }
-   70% {
-        transform: translateX(0%);
-   }
-   100%{
-        transform: translateX(-10%);
-   }
-`
+
 
 const horizontalLineAnimate = keyframes`
     0%{
@@ -49,12 +36,13 @@ export const RightSideContainer = styled.div`
     border-left: 10px inset ${({theme})=> theme.color.border};
     padding-top: 10%;
     color: ${({theme})=> theme.color.primary};
-    background-color: ${({theme}) => theme.background.secondary};
+    background-color: ${({theme}) => theme.background.primary};
 `
 
 export const RightSectionContainer = styled.div`
     display: flex;
     flex-direction: column;
+    gap: 100px;
     margin-top: 40px;   
     h3{
         font-family: Poppins;
@@ -71,37 +59,25 @@ export const RightSectionContainer = styled.div`
     }
     .spinner{
         margin: 40px auto;
-        color: black;
     }
 `
-export const UserOptionsWrapper = styled.div`
+
+
+export const GetStartedButton = styled.button`
+    font-family: Poppins;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 70px;
-    margin-top: 70px;
-
-`
-
-
-export const UserContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     gap: 10px;
-    font-family: Poppins;
-    font-size: ${({theme})=> theme.fontSizes.small};
-    cursor: pointer;
-    transition: all 400ms ease-in-out;
-    &:hover{ 
-        color: ${({theme})=> theme.color.hover};
-        transform: scale(1.05);   
-    }
+    width: 300px;
+    height: 40px;
+    border-radius: 20px;
+    margin: 0px auto;
+    background: ${({theme})=> theme.color.primary};
 
-    .user-icon{
-        &:hover{
-            animation: ${iconAnimate} 2s ease-in-out infinite;
-        }
+    &:hover{
+        border: 2px solid white;
+        background: ${({theme})=> theme.color.hover};
+        color: white;
     }
-    
 `

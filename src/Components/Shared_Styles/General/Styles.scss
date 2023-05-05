@@ -9,3 +9,18 @@
     background-size: cover;
     background-blend-mode: lighten;
 }
+
+::-webkit-scrollbar {
+    width: 2px;
+    height: 5px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 10px;
+    opacity: 0.3;
+  }
+  
+::-webkit-scrollbar-track {
+    background-color: transparent;
+  }

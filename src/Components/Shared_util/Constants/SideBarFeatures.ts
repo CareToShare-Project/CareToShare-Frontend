@@ -1,9 +1,14 @@
 import {AiFillHome, AiFillEye} from 'react-icons/ai'
-import {FaPeopleCarry, FaStarHalfAlt, FaPrayingHands} from 'react-icons/fa'
+import {FaPeopleCarry, FaStarHalfAlt, FaPrayingHands, FaHandHoldingHeart} from 'react-icons/fa'
 import {BiLoaderCircle, BiDonateHeart} from 'react-icons/bi'
-import {BsChatText} from 'react-icons/bs'
+import {BsChatText, BsHandThumbsUp} from 'react-icons/bs'
+import {MdVerified} from 'react-icons/md'
+import {RiUserSettingsLine} from 'react-icons/ri'
 import { SideBarFeaturesProp } from './Types'
 
+export const adminLogoutRoute = '/admin'
+export const donorLogoutRoute = '/donor'
+export const charityLogoutRoute = '/charity'
 export const donorFeatures: SideBarFeaturesProp['features'] = [
     {
         title: 'Home',
@@ -21,7 +26,7 @@ export const donorFeatures: SideBarFeaturesProp['features'] = [
         link: 'viewRequests'
     },
     {
-        title:'Donation Progess',
+        title:'Donation Progress',
         icon: BiLoaderCircle,
         link: 'donationProgress'
     },
@@ -35,7 +40,31 @@ export const donorFeatures: SideBarFeaturesProp['features'] = [
 
 
 export const adminFeatures = [
-
+    {
+        title: 'Home',
+        icon : AiFillHome,
+        link : ''
+    },
+    {
+        title: 'Approve Donations',
+        icon : FaHandHoldingHeart,
+        link : 'approveDonations'
+    },
+    {
+        title: 'Approve Request',
+        icon : BsHandThumbsUp,
+        link : 'approveRequests'
+    },
+    {
+        title: 'Verify Registration',
+        icon : MdVerified,
+        link : 'verifyRegistration'
+    },
+    {
+        title: 'Manage Accounts',
+        icon : RiUserSettingsLine,
+        link : 'manageAccounts'
+    },
 
 ]
 
@@ -56,7 +85,7 @@ export const charityFeatures = [
         link: 'makeRequest'
     },
     {
-        title:'Request Progess',
+        title:'Request Progress',
         icon: BiLoaderCircle,
         link: 'requestProgress'
     },

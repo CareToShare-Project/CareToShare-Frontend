@@ -2,16 +2,17 @@ import React from 'react';
 import './App.css';
 import HomePage from './Components/HomePage/HomePage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import AdminLoginPage from './Components/AdminPage/AdminLoginPage';
-import DonorLoginPage from './Components/DonorPage/DonorLoginPage';
-import CharityLoginPage from './Components/CharityPage/CharityLoginPage';
 import { ThemeProvider } from 'styled-components';
 import CharityRegistrationPage from './Components/CharityPage/CharityRegistrationPage';
 import DonorRegistrationPage from './Components/DonorPage/DonorRegistrationPage';
-import CharityPage from './Components/CharityPage/CharityPage';
-import DonorPage from './Components/DonorPage/DonorPage';
-import AdminPage from './Components/AdminPage/AdminPage';
+//import CharityPage from './Components/CharityPage/CharityPage';
+//import DonorPage from './Components/DonorPage/DonorPage';
+//import AdminPage from './Components/AdminPage/AdminPage';
 import {theme} from './Components/Shared_util/Constants/Theme'
+import ResetPassword from './Components/PasswordReset/ResetPassword';
+import Login from './Components/Login/Login';
+import CreateAccount from './Components/CreateAccount/CreateAccount';
+import ForgotPassword from './Components/PasswordReset/ForgotPassword';
 
 
 
@@ -23,8 +24,15 @@ function App() {
         
         <Routes>
             <Route index element={<HomePage />}/>
-            <Route path='admin' element= {<AdminLoginPage />} />
-            <Route path='admin/adminDashboard/:username' element = {<AdminPage />}>
+            <Route path='login' element= {<Login />} />
+            <Route path='login/forgotPassword' element = {<ForgotPassword /> } />
+            <Route path='login/forgotPassword/resetPassword' element = {<ResetPassword />} />
+            <Route path='login/createAccount' element= {<CreateAccount />} />
+            <Route path='login/createAccount/organization/:email' element = {<CharityRegistrationPage />} />
+            <Route path='login/createAccount/donor/:email' element = {<DonorRegistrationPage />} />
+            
+            {/* <Route path='admin/adminDashboard/:username' element = {<AdminPage />}>
+              <Route path='' element={<h2>Home Page</h2>}/> 
               <Route path='editProfile' element={<h2>Edit userProfile</h2>}/>      
               <Route path='approveDonations' element = {<h2>Donation Approval</h2>}/>
               <Route path='approveRequests' element = {<h2>Request Approval</h2>} />
@@ -45,6 +53,8 @@ function App() {
             
             <Route path= 'donor' element = {<DonorLoginPage />} />
             <Route path= 'donor/donorRegister' element = {<DonorRegistrationPage />} />
+            <Route path= 'donor/forgotPassword' element= {<DonorForgotPassword />} />
+            <Route path= 'donor/forgotPassword/passwordReset' element= {<ResetPassword navigateTo='donors' />} />
             <Route path='donor/donorDashboard/:username' element = {<DonorPage/>}>
               <Route path='' element={<h2>Home page</h2>}/>
               <Route path='viewCharities' element={<h2>View Charities</h2>}/>
@@ -55,7 +65,7 @@ function App() {
               <Route path='editProfile' element = {<h2>Edit UserProfile</h2>} />
             </Route>
             
-            <Route path='*' element={<h1>Page not found</h1>} />
+            <Route path='*' element={<h1>Page not found</h1>} /> */} 
         </Routes>
 
       </BrowserRouter>

@@ -18,26 +18,24 @@ const pulseAnimation = keyframes`
  `
 export const RegistrationContainer = styled.div`
     height: 550px;
-    width: 500px;
+    width: 450px;
     background: ${({theme}) => theme.background.main};
-    border: 4px solid ${({theme}) => theme.background.secondary};
     box-shadow: 0px 5px 10px black;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     overflow-y: scroll;
     overflow-x: hidden;
-    gap: 10px;
+    gap: 15px;
     animation: ${pulseAnimation} 1s ease-in-out;
 `
-export const RowContainer = styled.div`
-    display: flex;
-`
+
 export const RegistrationHeader = styled.header`
     color: black;
-    font-size: ${({theme})=> theme.fontSizes.large};
+    font-size: ${({theme})=> theme.fontSizes.medium};
     font-family: Roboto;
-    font-weight: 700;
+    font-weight: 900;
     letter-spacing: 2px;
     text-align: center;
     margin-bottom: 30px;
@@ -51,9 +49,10 @@ export const RegistrationHeader = styled.header`
 export const FieldWrapper = styled.div`
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    width: 90%;
     gap: 5px;
-    width: 100%;
-    padding: 8px;
+    padding: 10px;
 `
 
 export const InputLabel = styled.label`
@@ -68,13 +67,14 @@ export const InputField = styled.input`
     font-family: Poppins;
     font-weight: 400;
     text-indent: 10px;
+    width: 100%;
     padding: 5px;
     background: transparent;
     color: ${({theme}) => theme.color.primary};
     border: 2px solid white;
 
     &:focus{
-        border: 2px solid ${({theme})=> theme.color.hover};
+        border: 2px solid ${({theme}) => theme.color.hover2};
         outline: none;
     }
     
@@ -90,13 +90,13 @@ export const ConfirmButton = styled.button`
     font-weight: 700;
     font-family: Poppins;
     margin: 10px auto;
-    width: 96%;
+    width: 90%;
     font-family: Poppins;
     transition: all 500ms ease-in-out;
     &:hover{
         border: 3px solid ${({theme})=> theme.color.hover};
         background: ${({theme})=> theme.color.hover};
-        width: 96%;
+        color: white;
     }
 `
 
@@ -104,5 +104,17 @@ export const MainPageContainer = styled.div`
     width: 100vw;
     height: 100vh;
     display: flex;
+    gap: 60px;
     background: ${({theme})=> theme.background.secondary};
+
+
+`
+
+export const RightSideContent = styled.div`
+    z-index: 1;
+    @media (max-width: 650px){
+        margin-left: 30px;
+
+    }
+    
 `
