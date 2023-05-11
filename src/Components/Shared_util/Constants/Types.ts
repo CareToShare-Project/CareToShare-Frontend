@@ -41,3 +41,13 @@ export interface AlertProps {
 export interface PasswordResetProps{
     navigateTo : string
 }
+
+export interface organisationCardProp {
+    details: {
+        organisationName : string,
+        location : string,
+        email : string,
+        contact : string,
+        mission : string
+    }
+}

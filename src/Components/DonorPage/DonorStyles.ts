@@ -125,20 +125,22 @@ export const RightSideContentWrapper = styled.div`
     display: flex;
     flex-direction: column;
     gap: 30px;
+    margin-bottom: 20px;
 `
 export const ViewFoundationContainer = styled.div`
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    column-gap: 10px;
+    column-gap: 18px;
     row-gap: 30px;
 
 `
 export const CardContainer = styled.div`
     display: flex;
     flex-direction: column;
+    gap: 20px;
     width: 320px;
-    height: 310px;
+    height: 350px;
     border-radius: 10px;
     background: white;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
@@ -210,6 +212,7 @@ export const Column = styled.div`
     align-items: center;
     gap: 2px;
     margin-top: 2px;
+    font-family: Poppins;
 
     header{
         font-size: 18px;
@@ -224,4 +227,5 @@ export const Column = styled.div`
 export const DonateButton = styled(ConfirmButton)`
     background: ${({theme})=> theme.background.primary};
     color: white;
+    width: 78%;
 `

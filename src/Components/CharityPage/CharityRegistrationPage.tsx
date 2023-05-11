@@ -8,8 +8,6 @@ import { convertToBase64 } from '../Shared_util/Constants/Functions';
 
 
 
-
-
 function CharityRegistrationPage() {
     const [fileUpload, setFileUpload] = useState({})
     const email = useParams()

@@ -16,7 +16,7 @@ function DonorRegistrationPage(){
    const locationRef : any = useRef();
    const photoRef : any = useRef();
 
-   const [uploadedFile, setFileUpload] = useState<unknown>()
+   const [uploadedFile, setFileUpload] = useState<string>('')
 
    const username = useParams().username;
    console.log(username)
@@ -29,7 +29,6 @@ function DonorRegistrationPage(){
     if(file){
         console.log(file[0])
         const base64 = await convertToBase64(file[0])
-        console.log(base64)
         setFileUpload(JSON.stringify(base64))
     }
     
@@ -62,10 +61,11 @@ function DonorRegistrationPage(){
 
             })
 
-            const data = await response.json()
-            const updatedDonor = data.data.user;
-            if(data){
+            const results = await response.json()
+            const updatedDonor = results.data.user;
+            if(results){
                 console.log(updatedDonor)
+                navigate('/login')
             }
                 
         }

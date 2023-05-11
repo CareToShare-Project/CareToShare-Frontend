@@ -3,32 +3,36 @@ import { CardContainer, DetailsWrapper, ImageWrapper} from './DonorStyles';
 import image1 from '../HomePage/images/image1.jpg'
 import {MdLocationOn, MdEmail, MdCall} from 'react-icons/md'
 import {GiOnTarget} from "react-icons/gi"
+import { organisationCardProp } from '../Shared_util/Constants/Types';
 
 
 
-const CharityCard = () => {
+const CharityCard: React.FC<organisationCardProp> = ({details}) => {
+
+    const {organisationName, location , email, contact, mission} = details
+
     return (
         <CardContainer>
             <ImageWrapper src={image1} alt='profile'/>
             <DetailsWrapper>
                 <span className='organizationName'>
-                    Ghana Aid Foundation
+                    {organisationName}
                 </span>
                 <span className='sub-details'>
                     <MdLocationOn color='#3A1078' className='icon' /> 
-                     Accra, Ghana
+                     {location}
                 </span>
                 <span className='sub-details'>
                     <MdEmail color='#3A1078' className='icon'/> 
-                    yeboahandy408@gmail.com
+                    {email}
                 </span>
                 <span className='sub-details'>
                     <MdCall color='#3A1078' className='icon'/> 
-                    +233247668944
+                    {contact}
                 </span>
                 <span className='sub-details'>
                     <GiOnTarget color='#3A1078' className='icon'/>
-                    Promoting girl child education
+                    {mission}
                 </span>
             </DetailsWrapper>
         </CardContainer>

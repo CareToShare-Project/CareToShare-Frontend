@@ -11,22 +11,41 @@ export const SearchBarContainer = styled.div`
     background: ${({theme})=> theme.background.secondary};
     z-index: 200; 
 
-    .search-btn{
+    
+`
+
+export const SearchBox = styled.div`
+    display: flex;
+    width: 300px;
+    align-items: center;
+    margin-right: 32px;
+    border: 2px solid ${({theme})=> theme.background.primary};
+    border-radius: 10px;
+    outline: 0px;
+    padding-right: 20px;
+
+    &:focus{
+            border: 2px solid ${({theme})=> theme.color.hover2};;
+        }
+
+        .search-btn{
         width: 300px;
         height: 35px;
         border-radius: 10px;
-        margin-right: 32px;
         outline: 0px;
-        border: 2px solid ${({theme})=> theme.background.primary};
-        text-indent: 8px;
+        background: none;
+        border: 0px;
+        text-indent: 20px;
         font-family: Poppins;
         color: ${({theme})=> theme.background.primary};
         font-size: 20px;
         letter-spacing: 2px;
+    }    
 
-
-        &:focus{
-            border: 2px solid ${({theme})=> theme.color.hover2};;
+        .search-icon{
+            position: absolute;
+            font-size: 22px;
+            opacity: 0.7;
+            
         }
-    }
 `

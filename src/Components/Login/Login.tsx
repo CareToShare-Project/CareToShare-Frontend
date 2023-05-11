@@ -40,11 +40,11 @@ const Login: React.FC = () => {
                 headers : {'content-type':'application/json'},
                 body : JSON.stringify(userDetails)
             })
-            const data = await response.json()
-            const role = data.data.user.role
-            const username = data.data.user.username
-            console.log(data)
-            if(data.status === "success"){
+            const results = await response.json()
+            const role = results.data.user.role
+            const username = results.data.user.username
+            console.log(results)
+            if(results.status === "success" ){
                 setToastMessage('Successfully Logged In')
                 setShowToast(true)
                 navigate(`${role}/${username}`)

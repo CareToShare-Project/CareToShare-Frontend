@@ -1,5 +1,5 @@
 import React from 'react'
-import { CardContainer, ImageWrapper, ImageContainer, DetailsWrapper, Column, ConfirmButton, DonateButton} from './DonorStyles'
+import { CardContainer, ImageWrapper, ImageContainer, DetailsWrapper, Column, DonateButton} from './DonorStyles'
 import image1 from '../HomePage/images/image2.jpg'
 
 

@@ -4,7 +4,6 @@ import { Outlet } from 'react-router-dom';
 import SideBar from '../Shared_util/SideBar/SideBar';
 import { MainPageContainer, RightSideContent } from './DonorStyles';
 import { donorFeatures} from '../Shared_util/Constants/SideBarFeatures';
-import SearchBar from '../Shared_util/SearchBar/SearchBar';
 
 function DonorPage(){
     const {username} = useParams();
