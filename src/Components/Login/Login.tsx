@@ -35,25 +35,28 @@ const Login: React.FC = () => {
                 password: passwordRef.current.value
             }  
 
-            const response = await fetch(`${BASE_URL}/donors/signIn`,{
+            const response = await fetch(`${BASE_URL}/signIn`,{
                 method : 'POST',
                 headers : {'content-type':'application/json'},
                 body : JSON.stringify(userDetails)
             })
             const data = await response.json()
-            if(data.token){
+            const role = data.data.user.role
+            const username = data.data.user.username
+            console.log(data)
+            if(data.status === "success"){
                 setToastMessage('Successfully Logged In')
                 setShowToast(true)
-            }else{
-                setToastMessage('Invalid Credentials!')
-                setShowToast(true)   
-                setTimeout(()=>{
-                    setShowLoading(false)
-                }, 1000)
+                navigate(`${role}/${username}`)
             }
     
     }catch(err){
-        //console.log(err)
+        console.log(err)
+        setToastMessage('Invalid Credentials!')
+        setShowToast(true)   
+        setTimeout(()=>{
+            setShowLoading(false)
+        }, 1000)
     }
 }
 

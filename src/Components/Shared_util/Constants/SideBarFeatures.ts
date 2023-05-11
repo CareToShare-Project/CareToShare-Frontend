@@ -6,9 +6,8 @@ import {MdVerified} from 'react-icons/md'
 import {RiUserSettingsLine} from 'react-icons/ri'
 import { SideBarFeaturesProp } from './Types'
 
-export const adminLogoutRoute = '/admin'
-export const donorLogoutRoute = '/donor'
-export const charityLogoutRoute = '/charity'
+
+
 export const donorFeatures: SideBarFeaturesProp['features'] = [
     {
         title: 'Home',
@@ -21,7 +20,7 @@ export const donorFeatures: SideBarFeaturesProp['features'] = [
         link: 'viewCharities'
     },
     {
-        title: 'View Requests',
+        title: 'Campaigns/Requests',
         icon: AiFillEye,
         link: 'viewRequests'
     },
@@ -41,7 +40,7 @@ export const donorFeatures: SideBarFeaturesProp['features'] = [
 
 export const adminFeatures = [
     {
-        title: 'Home',
+        title: 'Overview',
         icon : AiFillHome,
         link : ''
     },

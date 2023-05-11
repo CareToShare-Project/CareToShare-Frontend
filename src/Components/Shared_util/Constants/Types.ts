@@ -24,7 +24,6 @@ export interface SideBarFeaturesProp {
 export interface SideBarProps {
     username: string | undefined,
     features : Feature[],
-    logoutRoute: string
 }
 
 

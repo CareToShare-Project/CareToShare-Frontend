@@ -3,7 +3,8 @@ import { useParams } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import SideBar from '../Shared_util/SideBar/SideBar';
 import { MainPageContainer, RightSideContent } from './DonorStyles';
-import { donorFeatures, donorLogoutRoute } from '../Shared_util/Constants/SideBarFeatures';
+import { donorFeatures} from '../Shared_util/Constants/SideBarFeatures';
+import SearchBar from '../Shared_util/SearchBar/SearchBar';
 
 function DonorPage(){
     const {username} = useParams();
@@ -13,7 +14,7 @@ function DonorPage(){
             <SideBar 
                 username={username} 
                 features={donorFeatures} 
-                logoutRoute={donorLogoutRoute}/>
+                />
             <RightSideContent>
                 <Outlet />
             </RightSideContent>        

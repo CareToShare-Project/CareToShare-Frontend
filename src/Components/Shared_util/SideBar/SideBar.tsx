@@ -10,7 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 
 
-const SideBar: React.FC<SideBarProps> = ({username, features, logoutRoute}) => {
+const SideBar: React.FC<SideBarProps> = ({username, features}) => {
     const [currentPage, setCurrentPage] = useState<string>('')
     const [hideSideBar, setHideSideBar] = useState<boolean>(true)
     const navigate = useNavigate();
@@ -18,6 +18,7 @@ const SideBar: React.FC<SideBarProps> = ({username, features, logoutRoute}) => {
 
     const handlePageNavigation = (path: string) => {
         setCurrentPage(path)
+        setHideSideBar(true)
         navigate(`${path}`)
         
     }
@@ -60,7 +61,7 @@ const SideBar: React.FC<SideBarProps> = ({username, features, logoutRoute}) => {
                             )
                         })}
                 </FeaturesWrapper>
-                <Link to={logoutRoute} style={{'textDecoration': 'none'}}>
+                <Link to={'/login'} style={{'textDecoration': 'none'}}>
                     <LogoutWrapper>
                         <GiExitDoor />
                         Logout

@@ -5,14 +5,16 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import CharityRegistrationPage from './Components/CharityPage/CharityRegistrationPage';
 import DonorRegistrationPage from './Components/DonorPage/DonorRegistrationPage';
-//import CharityPage from './Components/CharityPage/CharityPage';
-//import DonorPage from './Components/DonorPage/DonorPage';
-//import AdminPage from './Components/AdminPage/AdminPage';
+import CharityPage from './Components/CharityPage/CharityPage';
+import DonorPage from './Components/DonorPage/DonorPage';
+import AdminPage from './Components/AdminPage/AdminPage';
 import {theme} from './Components/Shared_util/Constants/Theme'
 import ResetPassword from './Components/PasswordReset/ResetPassword';
 import Login from './Components/Login/Login';
 import CreateAccount from './Components/CreateAccount/CreateAccount';
 import ForgotPassword from './Components/PasswordReset/ForgotPassword';
+import ViewFoundations from './Components/DonorPage/ViewFoundations';
+import ViewRequests from './Components/DonorPage/ViewRequests';
 
 
 
@@ -28,21 +30,22 @@ function App() {
             <Route path='login/forgotPassword' element = {<ForgotPassword /> } />
             <Route path='login/forgotPassword/resetPassword' element = {<ResetPassword />} />
             <Route path='login/createAccount' element= {<CreateAccount />} />
-            <Route path='login/createAccount/organization/:email' element = {<CharityRegistrationPage />} />
-            <Route path='login/createAccount/donor/:email' element = {<DonorRegistrationPage />} />
-            
-            {/* <Route path='admin/adminDashboard/:username' element = {<AdminPage />}>
-              <Route path='' element={<h2>Home Page</h2>}/> 
-              <Route path='editProfile' element={<h2>Edit userProfile</h2>}/>      
+            <Route path='login/createAccount/Organization/:username' element = {<CharityRegistrationPage />} />
+            <Route path='login/createAccount/Donor/:username' element = {<DonorRegistrationPage />} />
+
+            {/* admin routes */}
+            <Route path='login/admin/:username' element = {<AdminPage/>} >
+              <Route path='' element={<h2>Home Page</h2>}/>
+              <Route path='editProfile' element={<h2>Edit userProfile</h2>}/>
               <Route path='approveDonations' element = {<h2>Donation Approval</h2>}/>
               <Route path='approveRequests' element = {<h2>Request Approval</h2>} />
               <Route path='manageAccounts' element = {<h2>Manage Accounts</h2>} />
               <Route path='verifyRegistration' element = {<h2>Verify Registration</h2>}/>
             </Route>
-
-            <Route path= 'charity' element = {<CharityLoginPage />} />
-            <Route path= 'charity/charityRegister' element = {<CharityRegistrationPage />} />
-            <Route path='charity/charityDashboard/:username' element = {<CharityPage />}>
+            
+            
+            {/* organization routes */}
+            <Route path='login/Organisation/:username' element = {<CharityPage />}>
               <Route path='' element={<h2>Home page</h2>}/>
               <Route path='editProfile' element={<h2>Edit userProfile</h2>}/>      
               <Route path='requestProgress' element = {<h2>Check progress</h2>}/>
@@ -51,21 +54,18 @@ function App() {
               <Route path='makeRequest' element = {<h2>Make Requests</h2>}/>
             </Route>
             
-            <Route path= 'donor' element = {<DonorLoginPage />} />
-            <Route path= 'donor/donorRegister' element = {<DonorRegistrationPage />} />
-            <Route path= 'donor/forgotPassword' element= {<DonorForgotPassword />} />
-            <Route path= 'donor/forgotPassword/passwordReset' element= {<ResetPassword navigateTo='donors' />} />
-            <Route path='donor/donorDashboard/:username' element = {<DonorPage/>}>
+            {/* donor routes */}
+            <Route path='login/Donor/:username' element = {<DonorPage/>}>
               <Route path='' element={<h2>Home page</h2>}/>
-              <Route path='viewCharities' element={<h2>View Charities</h2>}/>
-              <Route path='viewRequests' element = {<h2>View Requests</h2>}/>
+              <Route path='viewCharities' element={<ViewFoundations />}/>
+              <Route path='viewRequests' element = {<ViewRequests />}/>
               <Route path='donate' element = {<h2>Make donation</h2>} />
               <Route path='donationProgress' element = {<h2>Check progress</h2>}/>
               <Route path='reviewCharities' element = {<h2>Review Charities</h2>} />
               <Route path='editProfile' element = {<h2>Edit UserProfile</h2>} />
             </Route>
             
-            <Route path='*' element={<h1>Page not found</h1>} /> */} 
+            <Route path='*' element={<h1>Page not found</h1>} />  
         </Routes>
 
       </BrowserRouter>

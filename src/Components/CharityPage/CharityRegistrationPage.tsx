@@ -4,6 +4,7 @@ import { RegistrationWrapper, RegistrationContainer, FieldWrapper,
         InputLabel, InputField, RegistrationHeader, ConfirmButton } from '../DonorPage/DonorStyles';
 import { TextWrapper } from './CharityStyles';
 import { useParams } from 'react-router-dom';
+import { convertToBase64 } from '../Shared_util/Constants/Functions';
 
 
 
@@ -14,19 +15,7 @@ function CharityRegistrationPage() {
     const email = useParams()
     console.log(email)
 
-    function convertToBase64(file: Blob){
-        return new Promise((resolve, reject)=>{
-            const fileReader = new FileReader();
-            fileReader.readAsDataURL(file);
-            fileReader.onload = () => {
-                resolve(fileReader.result)
-            };
-            fileReader.onerror = (error) => {
-                reject(error)
-            }
-        })
-    }
-
+  
     const handleFileUpload = async (e : React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files
         if(file){
@@ -70,7 +59,6 @@ function CharityRegistrationPage() {
                                 type='file' 
                                 id='file' 
                                 accept='.pdf'
-                                onChange={handleFileUpload}
                                 required/>
                         </FieldWrapper>
                         <FieldWrapper>

@@ -1,5 +1,4 @@
 import styled, {keyframes} from 'styled-components'
-import { FormWrapper } from '../Login/LoginStyles'
 import { ConfirmButton, InputField, RegistrationContainer } from '../DonorPage/DonorStyles'
 
 const pulseAnimation = keyframes`
@@ -13,26 +12,29 @@ const pulseAnimation = keyframes`
 
 
 export const CreateAccountWrapper = styled(RegistrationContainer)`
-    gap: 20px;
-    overflow-y: scroll;
+    gap: 10px;
+    overflow-y: hidden;
     overflow-x: hidden;
     height: 550px;
-    width: 450px;
-    animation: ${pulseAnimation} s ease-in-out;
+    width: 400px;
+    animation: ${pulseAnimation} 1s ease-in-out;
 `
 
 export const CreateAccountInputField = styled(InputField)`
-    width: 100%;
+    width: 350px;
+    height: 30px;
 `
 export const CreateAccountFieldWrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 100%;
+    gap: 5px;
     padding: 8px;
+
 `
 export const RoleContainer = styled.select`
-    width: 400px;
+    width: 100%;
     padding: 5px;
     border: none;
     border-radius: 10px;
@@ -40,11 +42,5 @@ export const RoleContainer = styled.select`
 export const CreateButton = styled(ConfirmButton)`
     width: 96%;
 `
-export const AboutUs = styled.span`
-    color: white;
-    cursor: pointer;
-    &:hover{
-        color: ${({theme})=> theme.color.hover2};
-    }
-`
+
 export {}
