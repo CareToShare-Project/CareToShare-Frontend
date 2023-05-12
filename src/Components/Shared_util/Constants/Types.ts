@@ -51,3 +51,8 @@ export interface organisationCardProp {
         mission : string
     }
 }
+
+export interface queryProp {
+    query : string,
+    setQuery : React.Dispatch<React.SetStateAction<string>>
+}

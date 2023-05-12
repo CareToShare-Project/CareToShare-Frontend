@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useMemo, useState} from 'react'
 import CharityCard from './CharityCard'
 import { ViewFoundationContainer, RightSideContentWrapper} from './DonorStyles'
 import SearchBar from '../Shared_util/SearchBar/SearchBar'
@@ -7,7 +7,7 @@ import { organisationCardProp } from '../Shared_util/Constants/Types'
 
 function ViewFoundations(){
     const [organisations, setOrganisations] = useState<any>()
-    console.log(organisations)
+    const [query, setQuery] = useState("")
 
     const getAllOrganisations = async() => {
         try{
@@ -32,12 +32,17 @@ function ViewFoundations(){
 
     return(
         <RightSideContentWrapper>
-            <SearchBar />
+            <SearchBar query={query} setQuery={setQuery}/>
             {organisations && <ViewFoundationContainer>
-                {organisations.map((org : organisationCardProp['details'])=> {
-                    return (
-                        <CharityCard details={org} key={org.email} />
-                    )
+                {organisations
+                    .filter((item: { organisationName : string ; location : string})=> {
+                       return item.organisationName.toLowerCase().includes(query.toLowerCase()) || 
+                              item.location.toLowerCase().includes(query.toLowerCase())
+                    })
+                    .map((org : organisationCardProp['details'])=> {
+                        return (
+                            <CharityCard details={org} key={org.email} />
+                        )
                 })}
             </ViewFoundationContainer>}
         </RightSideContentWrapper>
