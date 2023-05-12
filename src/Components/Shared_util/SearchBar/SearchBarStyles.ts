@@ -18,11 +18,11 @@ export const SearchBox = styled.div`
     display: flex;
     width: 300px;
     align-items: center;
-    margin-right: 32px;
+    margin-right: 22px;
     border: 2px solid ${({theme})=> theme.background.primary};
     border-radius: 10px;
     outline: 0px;
-    padding-right: 20px;
+    padding-right: 10px;
 
     &:focus{
             border: 2px solid ${({theme})=> theme.color.hover2};;

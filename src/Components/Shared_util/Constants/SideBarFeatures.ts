@@ -25,6 +25,11 @@ export const donorFeatures: SideBarFeaturesProp['features'] = [
         link: 'viewRequests'
     },
     {
+        title: 'Make Donations',
+        icon: BiDonateHeart,
+        link: 'makeDonations'
+    },
+    {
         title:'Donation Progress',
         icon: BiLoaderCircle,
         link: 'donationProgress'

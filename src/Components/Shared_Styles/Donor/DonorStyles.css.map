@@ -1,9 +1,1 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,mBAAmB,CAAC;EAChB,KAAK,EAAE,GAAG;EACV,MAAM,EAAE,GAAG;CACZ;;AAED,AAAA,yBAAyB,CAAC;EACxB,gBAAgB,EAAE,OAAkB;EACpC,aAAa,EAAE,IAAI;EACnB,MAAM,EAAE,KAAK;CACd;;AAEH,AAAA,yBAAyB,CAAC;EACtB,gBAAgB,EAAE,WAAW;CAC9B",
-    "sources": [
-        "DonorStyles.scss"
-    ],
-    "names": [],
-    "file": "DonorStyles.css"
-}
+{"version":3,"sources":["DonorStyles.scss","DonorStyles.css"],"names":[],"mappings":"AAAA;EACI,UAAA;EACA,WAAA;ACCJ;;ADEE;EACE,oCAAA;EACA,mBAAA;EACA,aAAA;ACCJ;;ADEA;EACI,6BAAA;ACCJ","file":"DonorStyles.css"}

@@ -131,7 +131,7 @@ export const ViewFoundationContainer = styled.div`
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    column-gap: 18px;
+    column-gap: 5px;
     row-gap: 30px;
 
 `

@@ -20,7 +20,7 @@ const slideIn = keyframes`
 `
 
 export const SideBarContainer = styled.div`
-    width: auto;
+    width: 25%;
     height: 100vh;
 
     .show{
@@ -46,6 +46,7 @@ export const SideBarWrapper = styled.div`
     height: 100vh;
     background: ${({theme})=> theme.background.primary};
     box-shadow: 0px 5px 10px black;
+    overflow-y: scroll;
 
     @media (max-width: 650px){
         display: none;
