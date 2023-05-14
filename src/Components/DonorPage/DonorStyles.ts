@@ -104,8 +104,8 @@ export const MainPageContainer = styled.div`
     width: 100vw;
     height: 100vh;
     display: flex;
-    gap: 30px;
     background: ${({theme})=> theme.background.secondary};
+    
 
 
 `
@@ -114,10 +114,17 @@ export const RightSideContent = styled.div`
     z-index: 1;
     width: 100%;
     overflow-y: scroll;
-    @media (max-width: 650px){
-        margin-left: 30px;
-
+    padding-left: 30px;
+    @media (max-width: 647px){
+        flex: 6;
+        margin-left: -40px;
     }
+
+    @media (max-width: 413px){
+        margin-left: -35px;
+    }
+    
+  
     
 `
 export const RightSideContentWrapper = styled.div`
@@ -126,12 +133,18 @@ export const RightSideContentWrapper = styled.div`
     flex-direction: column;
     gap: 30px;
     margin-bottom: 20px;
+    @media (max-width: 647px){
+        align-items: center;
+        overflow-x: hidden;
+
+    }
 `
 export const ViewFoundationContainer = styled.div`
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    column-gap: 5px;
+    align-items: center;
+    column-gap: 10px;
     row-gap: 30px;
 
 `
@@ -139,24 +152,42 @@ export const CardContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: 320px;
+    width: 300px;
     height: 350px;
     border-radius: 10px;
     background: white;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
     cursor: pointer;
     transition: all 400ms ease-in-out;
-    
+    @media (max-width: 647px){
+        width: 418px;
+    }
+
+    @media (max-width: 415px){
+        width: 300px;
+    }
+  
+   
     &:hover{
         transform : scale(1.01);
     }
 `
 export const ImageWrapper = styled.img`
-    width: 100%;
+    width: 300px;
     height: 150px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     border-bottom: 5px solid ${({theme})=> theme.background.primary};
+    @media (max-width: 647px){
+        width: 418px;
+    }
+    @media (max-width: 415px){
+        width: 300px;
+    }
+
+   
+   
+   
 `
 
 export const DetailsWrapper = styled.div`

@@ -34,7 +34,7 @@ function App() {
             <Route path='login/createAccount/Donor/:username' element = {<DonorRegistrationPage />} />
 
             {/* admin routes */}
-            <Route path='login/admin/:username' element = {<AdminPage/>} >
+            <Route path='login/Admin/:username' element = {<AdminPage/>} >
               <Route path='' element={<h2>Home Page</h2>}/>
               <Route path='editProfile' element={<h2>Edit userProfile</h2>}/>
               <Route path='approveDonations' element = {<h2>Donation Approval</h2>}/>

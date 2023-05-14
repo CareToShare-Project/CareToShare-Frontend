@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import CharityCard from './CharityCard'
 import { ViewFoundationContainer, RightSideContentWrapper} from './DonorStyles'
 import SearchBar from '../Shared_util/SearchBar/SearchBar'

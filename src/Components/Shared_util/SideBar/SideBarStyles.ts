@@ -20,7 +20,7 @@ const slideIn = keyframes`
 `
 
 export const SideBarContainer = styled.div`
-    width: 25%;
+    flex: 1;
     height: 100vh;
 
     .show{
@@ -34,7 +34,10 @@ export const SideBarContainer = styled.div`
     }
 
     .menu-bar{
-        background:${({theme})=> theme.background.primary}     
+        background:${({theme})=> theme.background.primary};
+        @media (max-width: 413px){
+        
+        }
     }
 
 `
@@ -68,7 +71,6 @@ export const MenuBar = styled.div`
     height: 100vh;
     width: 40px;
     text-align: center;
-    margin-right: 40px;
 
     @media (max-width: 650px){
         display: block;

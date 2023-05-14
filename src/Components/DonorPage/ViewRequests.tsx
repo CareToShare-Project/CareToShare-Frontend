@@ -17,8 +17,7 @@ function ViewRequests (){
                 <RequestCard />
                 <RequestCard />
                 <RequestCard />
-            </ViewFoundationContainer>
-            
+            </ViewFoundationContainer>   
         </RightSideContentWrapper>
     )
 }

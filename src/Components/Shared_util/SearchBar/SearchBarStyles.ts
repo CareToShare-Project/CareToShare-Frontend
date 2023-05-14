@@ -5,12 +5,11 @@ export const SearchBarContainer = styled.div`
     display: flex;
     justify-content: flex-end;
     margin-right: 30px;
-    padding: 10px;
-    position: sticky;
-    top: 0px;  
-    background: ${({theme})=> theme.background.secondary};
-    z-index: 200; 
-
+    padding: 15px;
+    @media (max-width: 376px){
+        margin-left: 20px;
+    }
+    
     
 `
 
@@ -18,11 +17,16 @@ export const SearchBox = styled.div`
     display: flex;
     width: 300px;
     align-items: center;
-    margin-right: 22px;
     border: 2px solid ${({theme})=> theme.background.primary};
     border-radius: 10px;
     outline: 0px;
     padding-right: 10px;
+    @media (max-width: 450px){
+        margin-right: 0px;
+    }
+    @media (max-width: 376px){
+        width: 300px;
+    }
 
     &:focus{
             border: 2px solid ${({theme})=> theme.color.hover2};;
@@ -43,7 +47,6 @@ export const SearchBox = styled.div`
     }    
 
         .search-icon{
-            position: absolute;
             font-size: 22px;
             opacity: 0.7;
             
