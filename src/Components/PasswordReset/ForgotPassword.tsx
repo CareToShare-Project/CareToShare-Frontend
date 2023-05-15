@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { BASE_URL } from '../Shared_util/Constants/Base_URL';
 import AlertComponent from '../Shared_util/Alerts/Alert';
 import Spinner  from 'react-bootstrap/Spinner';
-import { PasswordResetProps } from '../Shared_util/Constants/Types';
+
 
 
 
@@ -27,7 +27,7 @@ const ForgotPassword  = () => {
             setShowLoading(true)
             if(emailRef.current.value){
                 const email = emailRef.current.value
-                const response = await fetch(`${BASE_URL}/donors/forgotPassword`, {
+                const response = await fetch(`${BASE_URL}/forgotPassword`, {
                     method: 'POST',
                     headers : {'content-type' : 'application/json'},
                     body : JSON.stringify({email})
@@ -50,8 +50,6 @@ const ForgotPassword  = () => {
                         setAlert(false)
                     }, 4000)
                 }
-                
-
                 console.log(data)
             }
         }catch(err){

@@ -15,6 +15,7 @@ import CreateAccount from './Components/CreateAccount/CreateAccount';
 import ForgotPassword from './Components/PasswordReset/ForgotPassword';
 import ViewFoundations from './Components/DonorPage/ViewFoundations';
 import ViewRequests from './Components/DonorPage/ViewRequests';
+import MakeDonation from './Components/DonorPage/MakeDonation';
 
 
 
@@ -59,7 +60,7 @@ function App() {
               <Route path='' element={<h2>Home page</h2>}/>
               <Route path='viewCharities' element={<ViewFoundations />}/>
               <Route path='viewRequests' element = {<ViewRequests />}/>
-              <Route path='makeDonations' element = {<h2>Make donation</h2>} />
+              <Route path='makeDonations' element = {<MakeDonation />} />
               <Route path='donationProgress' element = {<h2>Check progress</h2>}/>
               <Route path='reviewCharities' element = {<h2>Review Charities</h2>} />
               <Route path='editProfile' element = {<h2>Edit UserProfile</h2>} />

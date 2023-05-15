@@ -1,6 +1,6 @@
 import styled, {keyframes} from 'styled-components'
 
-
+// Registration styles
 export const RegistrationWrapper = styled.div`
     height: 100vh;
     width: 100vw;
@@ -99,7 +99,7 @@ export const ConfirmButton = styled.button`
         color: white;
     }
 `
-
+// main page styles
 export const MainPageContainer = styled.div`
     width: 100vw;
     height: 100vh;
@@ -139,6 +139,8 @@ export const RightSideContentWrapper = styled.div`
 
     }
 `
+
+// view foundation and view requests styles
 export const ViewFoundationContainer = styled.div`
     width: 100%;
     display: flex;
@@ -146,6 +148,9 @@ export const ViewFoundationContainer = styled.div`
     align-items: center;
     column-gap: 10px;
     row-gap: 30px;
+    @media (max-width: 415px){
+        flex-direction: column;
+    }
 
 `
 export const CardContainer = styled.div`
@@ -260,3 +265,38 @@ export const DonateButton = styled(ConfirmButton)`
     color: white;
     width: 78%;
 `
+
+// make donation styles
+
+export const DonationFormContainer = styled.div`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+`
+
+export const DonationForms = styled.form`
+    width: 400px;
+    height: 500px;
+    box-shadow: 0px  5px 10px rgba(0,0,0,0.5);
+    border-radius: 10px;
+    background: white;
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    gap: 2px;
+    
+`
+
+export const DonationInputLabel = styled(InputLabel)`
+    color: black;
+`
+export const DonationInputField = styled(InputField)`
+    color: ${({theme}) => theme.background.primary};
+    border: 2px solid ${({theme}) => theme.background.primary};
+    width: 100%;
+`
+
+
