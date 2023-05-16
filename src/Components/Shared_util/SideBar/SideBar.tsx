@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { ProfileContainer, ProfileImage, SideBarWrapper, 
         FeaturesWrapper, EditProfileButton, LogoutWrapper ,
         MenuBar, SideBarContainer} from "./SideBarStyles";
@@ -19,6 +19,7 @@ const SideBar: React.FC<SideBarProps> = ({username, features}) => {
     const handlePageNavigation = (path: string) => {
         setCurrentPage(path)
         setHideSideBar(true)
+        sessionStorage.setItem('page', JSON.stringify(path))
         navigate(`${path}`)
         
     }
@@ -26,6 +27,15 @@ const SideBar: React.FC<SideBarProps> = ({username, features}) => {
     const handleShowSideBar = () => {
         setHideSideBar(prev=> !prev)
     }
+
+    useEffect(()=>{
+        const jsonData = sessionStorage.getItem('page')
+        if(jsonData !== null) {
+            const page = JSON.parse(jsonData);
+            setCurrentPage(page)
+        }
+    
+    }, [])
 
     return (
         <SideBarContainer>

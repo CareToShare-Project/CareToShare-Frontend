@@ -287,6 +287,23 @@ export const DonationForms = styled.form`
     align-items: center;
     padding: 10px;
     gap: 2px;
+
+    div{
+        .field{
+            width: 100%;
+            
+            .text-field{
+                height: 100px;
+                border: 2px solid #3A1078;
+                width: 100%;
+                color: #3A1078;
+            }
+        }
+        .donate-btn{
+            width: 100%;
+            height: 35px;
+        }
+    }
     
 `
 
