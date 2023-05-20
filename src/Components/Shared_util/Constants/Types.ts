@@ -48,7 +48,8 @@ export interface organisationCardProp {
         location : string,
         email : string,
         contact : string,
-        mission : string
+        mission : string,
+        isVerified : boolean
     }
 }
 

@@ -42,7 +42,7 @@ export const SideBarContainer = styled.div`
 
 `
 export const SideBarWrapper = styled.div`
-    width: 20%;
+    width: 280px;
     min-width: 265px;
     position: relative;
     z-index: 1;
@@ -50,6 +50,7 @@ export const SideBarWrapper = styled.div`
     background: ${({theme})=> theme.background.primary};
     box-shadow: 0px 5px 10px black;
     overflow-y: scroll;
+    overflow-x: hidden;
 
     @media (max-width: 650px){
         display: none;

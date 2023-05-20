@@ -210,6 +210,14 @@ export const DetailsWrapper = styled.div`
     .organizationName{
         font-size: 20px;
         font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        .verified{
+            font-size : 20px;
+            color: green;
+        }
     }
 
     .sub-details{
@@ -279,6 +287,7 @@ export const DonationFormContainer = styled.div`
 export const DonationForms = styled.form`
     width: 400px;
     height: 500px;
+    overflow-y: scroll;
     box-shadow: 0px  5px 10px rgba(0,0,0,0.5);
     border-radius: 10px;
     background: white;
@@ -291,13 +300,20 @@ export const DonationForms = styled.form`
     div{
         .field{
             width: 100%;
-            
             .text-field{
                 height: 100px;
                 border: 2px solid #3A1078;
                 width: 100%;
                 color: #3A1078;
+
+                &:focus{
+                    border: 2px solid ${({theme})=> theme.color.hover2};
+                }
             }
+        }
+
+        .disabled {
+            display: none;
         }
         .donate-btn{
             width: 100%;
