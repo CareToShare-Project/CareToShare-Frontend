@@ -9,8 +9,6 @@ import { TextWrapper } from "../CharityPage/CharityStyles"
 
 function MakeDonation() {
     const organisationRef: any = useRef('');
-    const dateRef : any = useRef('');
-    const timeRef : any = useRef('');
     const locationRef : any = useRef('');
     const descriptionRef : any = useRef('')
     const [type, setType] = useState('Generic');
@@ -50,15 +48,6 @@ function MakeDonation() {
                             ref={organisationRef}
                             />
                     </FieldWrapper >
-
-                    <FieldWrapper className="field">
-                        <DonationInputLabel>Pickup Date</DonationInputLabel>
-                        <DonationInputField type="date" ref={dateRef}/>
-                    </FieldWrapper>
-                    <FieldWrapper className="field">
-                        <DonationInputLabel>Time</DonationInputLabel>
-                        <DonationInputField type="time" ref={timeRef}/>
-                    </FieldWrapper>
                     <FieldWrapper className="field">
                         <DonationInputLabel>Location</DonationInputLabel>
                         <DonationInputField type="text" ref={locationRef}/>

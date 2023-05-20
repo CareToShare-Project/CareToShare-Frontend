@@ -300,6 +300,7 @@ export const DonationForms = styled.form`
     div{
         .field{
             width: 100%;
+            
             .text-field{
                 height: 100px;
                 border: 2px solid #3A1078;
