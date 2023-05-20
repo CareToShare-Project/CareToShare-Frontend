@@ -13,7 +13,7 @@ function CreateAccount() {
     const usernameRef : any = useRef();
     const passwordRef : any = useRef();
     const passwordConfirmRef : any = useRef();
-    const selectRef : any = useRef();
+    const roleRef : any = useRef();
 
     const navigate = useNavigate();
     
@@ -21,13 +21,13 @@ function CreateAccount() {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-        if(emailRef && usernameRef && passwordRef && passwordConfirmRef && selectRef) {
+        if(emailRef && usernameRef && passwordRef && passwordConfirmRef && roleRef) {
                 const userDetails = {
                         email : emailRef.current.value,
                         username : usernameRef.current.value,
                         password : passwordRef.current.value,
                         passwordConfirm : passwordConfirmRef.current.value,
-                        role : selectRef.current.value
+                        role : roleRef.current.value
                     }
                 
                 //console.log(userDetails)
@@ -38,8 +38,8 @@ function CreateAccount() {
 
             })
 
-            const data = await response.json()
-            const user = data.data.user
+            const result = await response.json()
+            const user = result.data.user
             if(user){
                 console.log(user)
                 navigate(`${user.role}/${user.username}`)
@@ -102,7 +102,7 @@ function CreateAccount() {
         
                             <CreateAccountFieldWrapper>
                             <InputLabel htmlFor='options'>Select role</InputLabel>
-                                <RoleContainer id="options" ref={selectRef}>
+                                <RoleContainer id="options" ref={roleRef}>
                                     <option value="" selected disabled>Select your role</option>
                                     <option value="Donor">Donor</option>
                                     <option value="Organisation">Organisation</option>

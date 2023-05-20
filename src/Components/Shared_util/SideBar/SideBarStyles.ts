@@ -42,8 +42,8 @@ export const SideBarContainer = styled.div`
 
 `
 export const SideBarWrapper = styled.div`
-    width: 280px;
-    min-width: 265px;
+    width: 270px;
+    min-width: 270px;
     position: relative;
     z-index: 1;
     height: 100vh;

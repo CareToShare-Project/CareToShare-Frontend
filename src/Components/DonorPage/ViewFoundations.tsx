@@ -20,6 +20,7 @@ function ViewFoundations(){
         const org = results.data
         if(results.status === "success"){
             setOrganisations(org)
+            sessionStorage.setItem('organisations', JSON.stringify(org))
         }}catch(error){
             console.log(error)
         }
@@ -27,7 +28,14 @@ function ViewFoundations(){
 
     // gets all organisations on page load
     useEffect(()=>{
-        getAllOrganisations();
+        const results = sessionStorage.getItem('organisations')
+        if(results !== null) {
+            const availableOrganisations = JSON.parse(results);
+            setOrganisations(availableOrganisations)
+        }else{
+            getAllOrganisations();
+        }
+        
     }, [])
 
     return(
