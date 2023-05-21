@@ -7,6 +7,9 @@ import { donorFeatures} from '../Shared_util/Constants/SideBarFeatures';
 
 function DonorPage(){
     const {username} = useParams();
+    sessionStorage.setItem('currentUser', JSON.stringify(username))
+
+   
 
     return (
         <MainPageContainer>

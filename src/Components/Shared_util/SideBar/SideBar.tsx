@@ -6,7 +6,7 @@ import { SideBarProps } from "../Constants/Types";
 import { FaUserCircle, FaTimes} from "react-icons/fa";
 import {GiExitDoor} from "react-icons/gi"
 import {MdOutlineMenu} from "react-icons/md"
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -22,6 +22,12 @@ const SideBar: React.FC<SideBarProps> = ({username, features}) => {
         sessionStorage.setItem('page', JSON.stringify(path))
         navigate(`${path}`)
         
+    }
+
+    const handleLogout = () => {
+        setCurrentPage('')
+        sessionStorage.setItem('page', JSON.stringify(''))
+        navigate('/login')
     }
 
     const handleShowSideBar = () => {
@@ -71,12 +77,12 @@ const SideBar: React.FC<SideBarProps> = ({username, features}) => {
                             )
                         })}
                 </FeaturesWrapper>
-                <Link to={'/login'} style={{'textDecoration': 'none'}}>
-                    <LogoutWrapper>
-                        <GiExitDoor />
-                        Logout
-                    </LogoutWrapper>
-                </Link>
+                
+                <LogoutWrapper onClick={handleLogout}>
+                    <GiExitDoor />
+                    Logout
+                </LogoutWrapper>
+                
             </SideBarWrapper>
         </SideBarContainer>
     )

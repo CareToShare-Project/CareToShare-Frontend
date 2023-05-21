@@ -41,9 +41,16 @@ const Login: React.FC = () => {
                 body : JSON.stringify(userDetails)
             })
             const results = await response.json()
+
+            // gets username and role from the results
             const role = results.data.user.role
             const username = results.data.user.username
-            console.log(results)
+
+            // gets token and store in local storage on login
+            const token = results.token
+            localStorage.setItem('accesstoken', JSON.stringify(token))
+            console.log(token)
+            
             if(results.status === "success" ){
                 setToastMessage('Successfully Logged In')
                 setShowToast(true)
