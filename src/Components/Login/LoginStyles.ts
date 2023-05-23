@@ -36,7 +36,7 @@ export const FormWrapper = styled.form`
     background: ${({theme})=> theme.background.main};
     box-shadow: 0px 2px 10px ${({theme})=> theme.background.main};
     outline: transparent;
-    animation: ${pulseAnimation} 1s ease-in-out;
+    animation: ${pulseAnimation} 0.5s ease-in-out;
 `
 export const FormContainer = styled.div`
     position: relative;

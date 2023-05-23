@@ -40,7 +40,6 @@ export const SearchBox = styled.div`
         background: none;
         border: 0px;
         text-indent: 20px;
-        font-family: Poppins;
         color: ${({theme})=> theme.background.primary};
         font-size: 20px;
         letter-spacing: 2px;

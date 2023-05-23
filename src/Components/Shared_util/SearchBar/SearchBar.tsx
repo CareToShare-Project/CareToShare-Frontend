@@ -11,7 +11,7 @@ const SearchBar: React.FC<queryProp> = ({query, setQuery}) => {
                     type="search" 
                     value={query}
                     onChange={e=>setQuery(e.target.value)}
-                    placeholder="search" 
+                    placeholder="Search" 
                     className="search-btn"/>
                 <MdSearch className="search-icon"/>
             </SearchBox>

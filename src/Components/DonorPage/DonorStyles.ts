@@ -1,4 +1,5 @@
 import styled, {keyframes} from 'styled-components'
+import { TextWrapper } from '../CharityPage/CharityStyles'
 
 // Registration styles
 export const RegistrationWrapper = styled.div`
@@ -138,6 +139,7 @@ export const RightSideContentWrapper = styled.div`
         overflow-x: hidden;
 
     }
+
 `
 
 // view foundation and view requests styles
@@ -282,6 +284,7 @@ export const DonationFormContainer = styled.div`
     align-items: center;
     justify-content: center;
     height: 100vh;
+
 `
 
 export const DonationForms = styled.form`
@@ -331,6 +334,64 @@ export const DonationInputField = styled(InputField)`
     color: ${({theme}) => theme.background.primary};
     border: 2px solid ${({theme}) => theme.background.primary};
     width: 100%;
+`
+
+// check donation progress styles
+export const TableWrapper = styled.div`
+    .table{
+        .table-heading{
+            font-family: Poppins;
+            font-weight: 800;
+        }
+    }
+  
+`
+
+export const EditButton = styled.button`
+    width: 27px;
+    height: 27px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    background: white;
+    color: green;
+`
+
+export const DeleteButton = styled(EditButton)`
+    color: red;
+`
+
+export const UpdateDonationField = styled.input`
+    width: 100%;
+    border-radius: 5px;
+    font-family: Poppins;
+    font-weight: 400;
+    text-indent: 10px;
+    height: 35px;
+    padding: 5px;
+    background: transparent;
+    color: black;
+    border: 2px solid;
+
+    &:focus{
+        border: 2px solid ${({theme}) => theme.color.hover2};
+        outline: none;
+    }
+    
+`
+export const UpdateDonationTextWrapper = styled(TextWrapper)`
+    color: black;
+    border: 2px solid black;
+    height: 100px;
+`
+
+export const UpdateDonationConfirmButton = styled(DonateButton)`
+    width: 100%;
+    height: 35px;
+`
+
+export const UpdateDonationInputLabel = styled(InputLabel)`
+    color: black;
 `
 
 

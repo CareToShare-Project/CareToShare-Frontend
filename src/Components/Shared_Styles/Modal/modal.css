@@ -1,0 +1,23 @@
+.modal-content {
+  width: 400px;
+  margin: 0 auto;
+}
+.modal-content .modal-title {
+  color: #3A1078;
+}
+.modal-content .btn-close {
+  color: #3A1078;
+  border: 1px solid;
+}
+.modal-content .modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+.modal-content .modal-body div {
+  width: 100%;
+}
+.modal-content .modal-body .file-field {
+  height: 40px;
+}/*# sourceMappingURL=modal.css.map */
