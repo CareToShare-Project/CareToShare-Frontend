@@ -11,7 +11,11 @@ import "../Shared_Styles/Modal/modal.css"
 
 const DonationProgress = () => {
     const [query, setQuery] = useState('')
-    const [show, setShow] = useState(true)
+    const [show, setShow] = useState(false)
+
+    const showUpdateModal = () => {
+        setShow(true)
+    }
 
     return(
         <RightSideContentWrapper>
@@ -38,23 +42,7 @@ const DonationProgress = () => {
                             <td>Accra, Ghana</td>
                             <td>In progress</td>
                             <td style={{'display' : 'flex', 'gap':'5px'}}>
-                                <EditButton>
-                                    <MdEdit />
-                                </EditButton>
-                                <DeleteButton>
-                                    <MdDelete />
-                                </DeleteButton>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Specific</td>
-                            <td>jhkdl12335kjdf</td>
-                            <td>Boosaataa Foundation</td>
-                            <td>22-05-23</td>
-                            <td>Kumasi, Ghana</td>
-                            <td>Completed</td>
-                            <td style={{'display' : 'flex', 'gap':'5px'}}>
-                                <EditButton>
+                                <EditButton onClick={showUpdateModal}>
                                     <MdEdit />
                                 </EditButton>
                                 <DeleteButton>
