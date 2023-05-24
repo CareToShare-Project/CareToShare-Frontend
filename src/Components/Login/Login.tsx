@@ -8,12 +8,16 @@ import { BASE_URL } from '../Shared_util/Constants/Base_URL';
 import LoginToast from '../Shared_util/Toast/LoginToast';
 import Spinner  from 'react-bootstrap/Spinner';
 import '../Shared_Styles/General/Styles.css'
+import { AiFillEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 
 const Login: React.FC = () => {
     
     const nameRef: any = useRef();
     const passwordRef : any = useRef()
     const navigate = useNavigate()
+
+    // state for setting password visibility
+    const [showpassword, setShowPassword] = useState(false)
 
 
     // state to show or hide toast
@@ -93,12 +97,25 @@ const Login: React.FC = () => {
                             <FormField>
                                 <FaLock size={20} color='white' />
                                 <InputField 
-                                    type='password' 
+                                    type={showpassword ? 'text' : 'password'} 
                                     placeholder='Password'
                                     ref={passwordRef}
                                     required
                                 />
-                            </FormField>
+                               {showpassword ? 
+                                <AiOutlineEyeInvisible 
+                                    color='white' 
+                                    style={{'position' : 'absolute', 'right' : '20px'}}
+                                    onClick={()=>setShowPassword(prev=> !prev)}
+                                    /> :
+                                <AiFillEye
+                                    color='white' 
+                                    style={{'position' : 'absolute', 'right' : '20px'}}
+                                    onClick={()=>setShowPassword(prev=> !prev)}
+                                    /> 
+                               }
+                                
+                            </FormField>    
                             <SubmitButton>
                                 {showLoading && <Spinner animation='border' size='sm' className='spinner'/>}
                                 Login

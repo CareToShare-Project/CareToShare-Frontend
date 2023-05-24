@@ -1,4 +1,4 @@
-import React, {useRef} from 'react'
+import React, {useRef, useState} from 'react'
 import { Heading, FormContainer, } from '../Login/LoginStyles';
 import { InputLabel } from '../DonorPage/DonorStyles';
 import { CreateAccountWrapper, RoleContainer, CreateAccountInputField,
@@ -6,6 +6,7 @@ import { CreateAccountWrapper, RoleContainer, CreateAccountInputField,
 import { BASE_URL } from '../Shared_util/Constants/Base_URL';
 import '../Shared_Styles/General/Styles.css'
 import { useNavigate } from 'react-router-dom';
+import { AiFillEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 
 
 function CreateAccount() {
@@ -14,6 +15,9 @@ function CreateAccount() {
     const passwordRef : any = useRef();
     const passwordConfirmRef : any = useRef();
     const roleRef : any = useRef();
+
+    // a state to control password visibility
+    const [showPassword, setShowPassword] = useState(false)
 
     const navigate = useNavigate();
     
@@ -69,7 +73,7 @@ function CreateAccount() {
                                     />
                             </CreateAccountFieldWrapper>
 
-                            <CreateAccountFieldWrapper>
+                            <CreateAccountFieldWrapper >
                                 <InputLabel htmlFor='username'>Username</InputLabel>
                                 <CreateAccountInputField 
                                     type='text' 
@@ -77,26 +81,55 @@ function CreateAccount() {
                                     id='username'
                                     ref={usernameRef}
                                     />
+                                
                             </CreateAccountFieldWrapper>
 
-                            <CreateAccountFieldWrapper>
+                            <CreateAccountFieldWrapper style={{'position' : 'relative'}}>
                                 <InputLabel htmlFor='password'>Password</InputLabel>
                                 <CreateAccountInputField 
-                                    type='password'
+                                    type={showPassword ? 'text' : 'password'}
                                     required
                                     id='password'
                                     ref={passwordRef}
                                     />
+                            
+                            {showPassword ? 
+                                    <AiOutlineEyeInvisible
+                                        color='white' 
+                                        style={{'position' : 'absolute', 'right' : '20px' , 
+                                                'bottom' : '15px', 'cursor' : 'pointer'}} 
+                                        onClick={()=> setShowPassword(prev=> !prev)}
+                                    />: 
+                                    <AiFillEye 
+                                        color='white' 
+                                        style={{'position' : 'absolute', 'right' : '20px' , 
+                                                'bottom' : '15px', 'cursor' : 'pointer'}} 
+                                        onClick={()=> setShowPassword(prev=> !prev)}
+                                    /> }
                             </CreateAccountFieldWrapper>
 
-                            <CreateAccountFieldWrapper>
+                            <CreateAccountFieldWrapper style={{'position' : 'relative'}}>
                                 <InputLabel htmlFor='passwordConfirm'>Confirm Password</InputLabel>
                                 <CreateAccountInputField 
-                                    type='password' 
+                                    type={showPassword ? 'text' : 'password'} 
                                     required
                                     id='passwordConfirm'
                                     ref={passwordConfirmRef}
                                     />
+
+                            {showPassword ? 
+                                    <AiOutlineEyeInvisible
+                                        color='white' 
+                                        style={{'position' : 'absolute', 'right' : '20px' , 
+                                                'bottom' : '15px', 'cursor' : 'pointer'}} 
+                                        onClick={()=> setShowPassword(prev=> !prev)}
+                                    />: 
+                                    <AiFillEye 
+                                        color='white' 
+                                        style={{'position' : 'absolute', 'right' : '20px' , 
+                                                'bottom' : '15px', 'cursor' : 'pointer'}} 
+                                        onClick={()=> setShowPassword(prev=> !prev)}
+                                    /> }
                             </CreateAccountFieldWrapper>
 
         
