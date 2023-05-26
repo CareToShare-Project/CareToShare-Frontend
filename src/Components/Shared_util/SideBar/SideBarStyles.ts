@@ -48,7 +48,6 @@ export const SideBarWrapper = styled.div`
     z-index: 1;
     height: 100vh;
     background: ${({theme})=> theme.background.primary};
-    box-shadow: 0px 5px 10px black;
     overflow-y: scroll;
     overflow-x: hidden;
 
