@@ -17,6 +17,7 @@ import ViewFoundations from './Components/DonorPage/ViewFoundations';
 import ViewRequests from './Components/DonorPage/ViewRequests';
 import MakeDonation from './Components/DonorPage/MakeDonation';
 import DonationProgress from './Components/DonorPage/DonationProgress';
+import PageNotFound from './Components/PageNotFound/PageNotFound';
 
 
 
@@ -67,7 +68,7 @@ function App() {
               <Route path='editProfile' element = {<h2>Edit UserProfile</h2>} />
             </Route>
             
-            <Route path='*' element={<h1>Page not found</h1>} />  
+            <Route path='*' element={<PageNotFound />} />  
         </Routes>
 
       </BrowserRouter>

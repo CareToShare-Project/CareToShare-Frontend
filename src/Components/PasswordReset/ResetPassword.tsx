@@ -4,6 +4,7 @@ import { BASE_URL } from '../Shared_util/Constants/Base_URL';
 import Spinner from 'react-bootstrap/Spinner'
 import { useNavigate } from 'react-router-dom';
 import AlertComponent from '../Shared_util/Alerts/Alert';
+import BackgroundSVG from '../Shared_util/SVG/Background';
 
 const ResetPassword : React.FC =()=>{
 
@@ -65,6 +66,7 @@ const ResetPassword : React.FC =()=>{
                     <div className='alert'>
                         <AlertComponent variant={variant} message={message} />
                     </div>}
+            <BackgroundSVG />
             <ResetWrapper className='reset-wrapper' onSubmit={handlePasswordReset}>
                 <Header>Check your email for the token</Header>
                 <div>

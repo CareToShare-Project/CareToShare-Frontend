@@ -6,8 +6,10 @@ export const ResetContainer = styled.div`
     height: 100vh;
     display: flex;
     align-items: center;
+    overflow-x: hidden;
+    overflow-y: hidden;
     justify-content: center;
-    background: ${({theme})=> theme.background.primary};
+    position: relative;
 
     .reset-wrapper{
         width: 500px;
@@ -33,9 +35,11 @@ export const ResetWrapper = styled.form`
     justify-content: center;
     border-radius: 20px;
     gap: 50px;
-    background: ${({theme})=> theme.background.main};
+    background: white;
     box-shadow: 0px 5px 20px rgba(0,0,0,0.3);
     border: 3px solid white;
+    z-index: 100;
+    
 
     div{
         display: flex;
@@ -53,7 +57,7 @@ export const ResetWrapper = styled.form`
 export const Header = styled.header`
     font-size: 20px;
     font-weight: 700;
-    color: ${({theme})=> theme.color.primary};
+    color: ${({theme})=> theme.background.primary};
 
 `
 
@@ -68,8 +72,8 @@ export const InputContainer = styled.input`
     width: 100%;
     padding: 5px;
     background: transparent;
-    color: ${({theme}) => theme.color.primary};
-    border: 2px solid white;
+    color: ${({theme}) => theme.color.hover};
+    border: 2px solid ${({theme}) => theme.color.hover};
 
     &:focus{
         border: 2px solid ${({theme}) => theme.color.hover2};
@@ -85,6 +89,9 @@ export const SubmitEmailContainer = styled(SubmitButton)`
     justify-content: center;
     flex-direction: row-reverse;
     gap: 10px;
+    background:${({theme})=> theme.background.primary};
+    color: white;
+    height: 35px;
 `
 
 export {}
