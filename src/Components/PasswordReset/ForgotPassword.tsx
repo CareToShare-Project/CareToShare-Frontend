@@ -5,6 +5,7 @@ import { BASE_URL } from '../Shared_util/Constants/Base_URL';
 import AlertComponent from '../Shared_util/Alerts/Alert';
 import Spinner  from 'react-bootstrap/Spinner';
 import BackgroundSVG from '../Shared_util/SVG/Background';
+import {motion} from "framer-motion"
 
 
 
@@ -65,7 +66,11 @@ const ForgotPassword  = () => {
 
     return (
         
-        <>
+        <motion.div
+            initial= {{opacity: 0}}
+            animate= {{opacity: 1}}
+            exit = {{opacity: 0, transition: {duration: 0.3}}}
+        >
             
             <ResetContainer>
                 {alert && 
@@ -83,7 +88,7 @@ const ForgotPassword  = () => {
                     </div>   
                 </ResetWrapper>
             </ResetContainer>
-        </>
+        </motion.div>
         
     )
 }

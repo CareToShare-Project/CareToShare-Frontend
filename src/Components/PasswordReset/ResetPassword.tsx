@@ -5,6 +5,7 @@ import Spinner from 'react-bootstrap/Spinner'
 import { useNavigate } from 'react-router-dom';
 import AlertComponent from '../Shared_util/Alerts/Alert';
 import BackgroundSVG from '../Shared_util/SVG/Background';
+import {motion} from "framer-motion"
 
 const ResetPassword : React.FC =()=>{
 
@@ -61,43 +62,49 @@ const ResetPassword : React.FC =()=>{
     }
 
     return (
-        <ResetContainer>
-            {alert && 
-                    <div className='alert'>
-                        <AlertComponent variant={variant} message={message} />
-                    </div>}
-            <BackgroundSVG />
-            <ResetWrapper className='reset-wrapper' onSubmit={handlePasswordReset}>
-                <Header>Check your email for the token</Header>
-                <div>
-                    <InputContainer 
-                        type='text' 
-                        placeholder='Copy and Paste Token here' 
-                        required
-                        ref={tokenRef}
-                        
-                        />
-                    <InputContainer 
-                        type='password' 
-                        placeholder='New Password (min: 8)' 
-                        required
-                        ref={passwordRef}
-                        min={8}
-                        />
-                    <InputContainer 
-                        type='password' 
-                        placeholder='Confirm Password (min: 8)' 
-                        required 
-                        ref= {passwordConfirmRef}
-                        min={8}
-                        />
-                    <SubmitEmailContainer>
-                    {showLoading && <Spinner animation='border' size='sm' className='spinner'/>}
-                                            <span>verify and reset password</span>
-                    </SubmitEmailContainer>
-                </div>
-            </ResetWrapper>
-        </ResetContainer>
+        <motion.div
+            initial= {{opacity: 0}}
+            animate= {{opacity: 1}}
+            exit = {{opacity: 0, transition: {duration: 0.3}}}
+        >
+            <ResetContainer>
+                {alert && 
+                        <div className='alert'>
+                            <AlertComponent variant={variant} message={message} />
+                        </div>}
+                <BackgroundSVG />
+                <ResetWrapper className='reset-wrapper' onSubmit={handlePasswordReset}>
+                    <Header>Check your email for the token</Header>
+                    <div>
+                        <InputContainer 
+                            type='text' 
+                            placeholder='Copy and Paste Token here' 
+                            required
+                            ref={tokenRef}
+                            
+                            />
+                        <InputContainer 
+                            type='password' 
+                            placeholder='New Password (min: 8)' 
+                            required
+                            ref={passwordRef}
+                            min={8}
+                            />
+                        <InputContainer 
+                            type='password' 
+                            placeholder='Confirm Password (min: 8)' 
+                            required 
+                            ref= {passwordConfirmRef}
+                            min={8}
+                            />
+                        <SubmitEmailContainer>
+                        {showLoading && <Spinner animation='border' size='sm' className='spinner'/>}
+                                                <span>verify and reset password</span>
+                        </SubmitEmailContainer>
+                    </div>
+                </ResetWrapper>
+            </ResetContainer>
+        </motion.div>
     )
 }
 

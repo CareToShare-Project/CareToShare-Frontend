@@ -8,6 +8,7 @@ import { BASE_URL } from '../Shared_util/Constants/Base_URL';
 import LoginToast from '../Shared_util/Toast/LoginToast';
 import Spinner  from 'react-bootstrap/Spinner';
 import '../Shared_Styles/General/Styles.css'
+import {motion} from "framer-motion"
 import { AiFillEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 
 const Login: React.FC = () => {
@@ -78,7 +79,10 @@ const Login: React.FC = () => {
   
 
     return (
-        <div className='body-container'>
+        <motion.div 
+            className='body-container'
+            exit = {{x: window.innerWidth, transition: {duration: 0.3}}}
+            >
             <LoginContainer>
                     <FormWrapper onSubmit={handleLogin}>
                         <Heading>
@@ -137,7 +141,7 @@ const Login: React.FC = () => {
 
                     
                 </LoginContainer>
-            </div>
+            </motion.div>
     )
 }
 

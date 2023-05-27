@@ -5,18 +5,21 @@ import LeftSection from './LeftSection'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 
+
 function HomePage () {
     return (
-        <MainContainer>
-            <LeftSideContainer>
-                <LeftSection />
-            </LeftSideContainer>
+        
+            <MainContainer>
+                <LeftSideContainer>
+                    <LeftSection />
+                </LeftSideContainer>
 
-            <RightSideContainer>
-                <RightSection />
-            </RightSideContainer>
+                <RightSideContainer>
+                    <RightSection />
+                </RightSideContainer>
 
-        </MainContainer>
+            </MainContainer>
+        
     )
 }
 
