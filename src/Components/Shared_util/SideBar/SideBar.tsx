@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 const SideBar: React.FC<SideBarProps> = ({username, features}) => {
     const [currentPage, setCurrentPage] = useState<string>('')
     const [hideSideBar, setHideSideBar] = useState<boolean>(true)
+    const [profilePhoto, setProfilePhoto] = useState('')
     const navigate = useNavigate();
     
 
@@ -42,6 +43,46 @@ const SideBar: React.FC<SideBarProps> = ({username, features}) => {
         }
     
     }, [])
+
+    useEffect(()=>{
+        // async function fetchData() {
+        //     setShowLoadingToast(true);
+        //     let groups_session;
+        //     try {
+        //       const response = await fetch(`${URL}/fetchlecturergroups`, {
+        //         method: 'POST',
+        //         headers: { 'content-type': 'application/json' },
+        //         body: JSON.stringify({ courseCode: sessionStorage.getItem('courseCode') })
+        //       });
+      
+        //       const data = await response.json();
+        //       setShowLoadingToast(false);
+      
+        //       groups_session = data?.info;
+        //       // save the fetched data in session
+        //       sessionStorage.setItem('groups', JSON.stringify(data?.info));
+        //     }
+        //     catch (error) {
+        //       console.log(error.message)
+        //     }
+        //     // make sure the active page on  the floating nav is the Attendance page
+        //     localStorage.setItem('currentPage', 'G');
+      
+        //     // display no groups page if there are no groups created for this course
+        //     if (groups_session?.groups?.length === 0) {
+        //       setNoCreatedGroups(true);
+        //     }
+        //     else {
+        //       setNoCreatedGroups(false);
+        //     }
+      
+        //     setCourseName(groups_session?.courseName)
+        //     setCourseCode(groups_session?.courseCode)
+      
+        //   }
+      
+        //   fetchData();
+    })
 
     return (
         <SideBarContainer>
