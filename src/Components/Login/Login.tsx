@@ -48,13 +48,16 @@ const Login: React.FC = () => {
             const results = await response.json()
 
             // gets username and role from the results
-            const role = results.data.user.role
-            const username = results.data.user.username
+            const {role, username, photo} = results.data.user
 
+            // gets photo and store in local storage on login
+            sessionStorage.setItem('profilePhoto', JSON.stringify(photo))
+            
+            //stores the homepage url/link in local storage on login
+            sessionStorage.setItem('page', JSON.stringify(''))
             // gets token and store in local storage on login
             const token = results.token
-            localStorage.setItem('accesstoken', JSON.stringify(token))
-            console.log(token)
+            sessionStorage.setItem('accesstoken', JSON.stringify(token))
             
             if(results.status === "success" ){
                 setToastMessage('Successfully Logged In')

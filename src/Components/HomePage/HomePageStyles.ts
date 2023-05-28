@@ -3,17 +3,16 @@ import styled, {keyframes} from "styled-components";
 //animations
 
 
-const horizontalLineAnimate = keyframes`
+const itemsAnimate = keyframes`
     0%{
-        transform: scale(1);
-        background: white;
+        transform: translateX(0px);
+        
     }
    50%{
-    transform: scale(0);
+        transform: translateX(5px);
    }
     100%{
-        background: #01DEFC;
-        transform: scale(1);
+        transform: translateX(0px);
     }
 `
 export const MainContainer = styled.div`
@@ -22,19 +21,17 @@ export const MainContainer = styled.div`
 `
 
 export const LeftSideContainer = styled.div`
-    width: 60%;
+    width: 55%;
     height: 100vh;
 
 `
 
 export const RightSideContainer = styled.div`
     display: flex;
-    justify-content: center;
     text-align: center;
-    width: 40%;
+    width: 45%;
     height: 100vh;
     border-left: 10px inset ${({theme})=> theme.color.border};
-    padding-top: 10%;
     color: ${({theme})=> theme.color.primary};
     background-color: ${({theme}) => theme.background.primary};
 `
@@ -42,26 +39,87 @@ export const RightSideContainer = styled.div`
 export const RightSectionContainer = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 100px;
-    margin-top: 40px;   
-    h3{
-        font-family: Poppins;
-        font-weight: 800;
-        font-size: ${({theme})=> theme.fontSizes.medium};
-        letter-spacing: 5px;
-        line-height: 30px;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    margin: 10px 0;  
+    padding: 10px 5px;
+   
+`
+export const AppTitleWrapper = styled.header`
+    font-family: Poppins;
+    font-weight: 800;
+    font-size: ${({theme})=> theme.fontSizes.large};
+    letter-spacing: 5px;
+    width: 80%;
+    line-height: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    .about{
+        font-size : 14px;
+        font-weight: 600;
+        color: ${({theme})=> theme.color.primary};
     }
-    .horizontal-line{
-        height: 8px;
-        width: 400px;
-        margin: 0px auto;
-        animation: ${horizontalLineAnimate} 2s ease-in-out infinite;
-    }
-    .spinner{
-        margin: 40px auto;
+`
+export const ItemWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    opacity: 0.6;
+    font-family: Poppins;
+    animation: ${itemsAnimate} 3s ease-in-out infinite;
+    
+    &:hover{
+        opacity: 1;
+        cursor: pointer;
     }
 `
 
+export const CircularContainer = styled.div`
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+
+    .item-1{
+        top: -5%;
+        left: 30%;
+    }
+
+    .item-2{
+        top: 40%;
+        right: -25%;
+    }
+
+    .item-3{
+        top: 40%;
+        left: -70px;
+    }
+    .item-4{
+        bottom: -5%;
+        left: 30%;
+    }
+`
+
+
+
+export const FooterWrapper = styled.div`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+`
+
+export const ReadMoreWrapper = styled.div`
+    display: flex;
+    gap: 5px;
+
+`
 
 export const GetStartedButton = styled.button`
     font-family: Poppins;
@@ -69,15 +127,14 @@ export const GetStartedButton = styled.button`
     align-items: center;
     justify-content: center;
     gap: 10px;
-    width: 300px;
+    width: 50%;
     height: 40px;
-    border-radius: 20px;
+    border-radius: 10px;
     margin: 0px auto;
     background: ${({theme})=> theme.color.primary};
+    transition: all 400ms ease-in-out;
 
     &:hover{
-        border: 2px solid white;
-        background: ${({theme})=> theme.color.hover};
-        color: white;
+        width: 51%;
     }
 `

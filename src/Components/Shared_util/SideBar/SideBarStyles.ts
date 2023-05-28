@@ -134,6 +134,11 @@ export const ProfileImage = styled.div`
     width: 90px;
     border-radius: 50%;
 `
+export const Pic = styled.img`
+    height: 90px;
+    width: 90px;
+    border-radius: 50%;
+`
 //color: #b1bcd3;
 export const FeaturesWrapper = styled.ul`
     width: 100%;

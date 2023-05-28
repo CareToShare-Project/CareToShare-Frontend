@@ -23,7 +23,7 @@ function MakeDonation() {
         e.preventDefault();
         try{
             const user = sessionStorage.getItem('currentUser') 
-            const accesstoken = localStorage.getItem('accesstoken')
+            const accesstoken = sessionStorage.getItem('accesstoken')
 
             if(user && accesstoken){
                 const response = await fetch(`${BASE_URL}/donors/${JSON.parse(user)}`,{
