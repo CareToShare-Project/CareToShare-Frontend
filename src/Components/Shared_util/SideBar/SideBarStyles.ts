@@ -130,13 +130,13 @@ export const ProfileImage = styled.div`
     align-items: center;
     justify-content: center;
     border: 2px solid ${({theme})=> theme.color.hover};
-    height: 90px;
-    width: 90px;
+    height: 100px;
+    width: 100px;
     border-radius: 50%;
 `
 export const Pic = styled.img`
-    height: 90px;
-    width: 90px;
+    height: 100px;
+    width: 100px;
     border-radius: 50%;
 `
 //color: #b1bcd3;

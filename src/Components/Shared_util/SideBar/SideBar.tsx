@@ -46,9 +46,12 @@ const SideBar: React.FC<SideBarProps> = ({username, features}) => {
             }else{
                 setCurrentPage(page)
             }
-        
-        setProfilePhoto(photo)
-        
+            if(!photo){
+                setProfilePhoto('')
+            }
+            else{
+                setProfilePhoto(photo)
+            }  
     
     }, [])
 
@@ -62,9 +65,9 @@ const SideBar: React.FC<SideBarProps> = ({username, features}) => {
             <SideBarWrapper className={hideSideBar?'hide': 'show'}>
                 <ProfileContainer>
                     <ProfileImage> 
-                        {profilePhoto ? <Pic src={profilePhoto} alt="view"/> :<FaUserCircle size={90} />}
+                        {profilePhoto ? <Pic src={profilePhoto} alt="view"/> : <FaUserCircle size={90} />}
                     </ProfileImage>
-                    <div>Welcome, <span>{username}</span></div>
+                    <div>Welcome <span>{username}</span></div>
                     <EditProfileButton onClick={()=> handlePageNavigation('editProfile')}>
                         Edit Profile
                     </EditProfileButton>

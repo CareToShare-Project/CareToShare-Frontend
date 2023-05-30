@@ -158,9 +158,10 @@ export const ViewFoundationContainer = styled.div`
 export const CardContainer = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    width: 300px;
-    height: 350px;
+    gap: 10px;
+    width: 30%;
+    height: 300px;
+    overflow: scroll;
     border-radius: 10px;
     background: white;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
@@ -180,7 +181,7 @@ export const CardContainer = styled.div`
     }
 `
 export const ImageWrapper = styled.img`
-    width: 300px;
+    width: 100%;
     height: 150px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -202,6 +203,7 @@ export const DetailsWrapper = styled.div`
     display: flex;
     flex-direction: column;
     padding-left: 15px;
+    text-align: center;
 
     span{
         display: flex;
@@ -239,7 +241,7 @@ export const DetailsWrapper = styled.div`
 export const ImageContainer = styled.div`
     position: relative;
     z-index: 10;
-    width: 320px;
+    width: 100%;
 
     span{
         z-index: 20;
@@ -259,9 +261,11 @@ export const Column = styled.div`
     gap: 2px;
     margin-top: 2px;
     font-family: Poppins;
+    font-size: 14px;
+
 
     header{
-        font-size: 18px;
+        
         font-weight: 700;
     }
 
@@ -274,6 +278,7 @@ export const DonateButton = styled(ConfirmButton)`
     background: ${({theme})=> theme.background.primary};
     color: white;
     width: 78%;
+    font-size: 14px;
 `
 
 // make donation styles

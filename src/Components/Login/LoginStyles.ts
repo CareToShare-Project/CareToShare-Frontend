@@ -32,7 +32,7 @@ export const FormWrapper = styled.form`
     height: 450px;
     border-radius: 10px;
     padding: 80px;
-    border: none;
+    border: 1px solid white;
     background: ${({theme})=> theme.background.main};
     box-shadow: 0px 2px 10px ${({theme})=> theme.background.main};
     outline: transparent;
@@ -77,6 +77,10 @@ export const InputField = styled.input`
     background: transparent;
     border: 0px;
     border-bottom: 2px solid white;
+
+    &::placeholder{
+        color: rgba(255,255,255, 0.5);
+    }
     &:focus{
         border-bottom: 2px solid ${({theme})=> theme.color.hover2};
 
@@ -104,10 +108,11 @@ export const SubmitButton = styled.button`
 export const RegisterStyles = styled.div`
     color: ${({theme})=> theme.color.primary};
     span{
+        color: ${({theme})=> theme.color.hover2};
     &:hover{
         text-decoration: underline;
         cursor: pointer;
-        color: ${({theme})=> theme.color.hover2};
+        
     }
     }
 `
