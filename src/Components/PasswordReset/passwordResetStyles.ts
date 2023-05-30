@@ -11,9 +11,6 @@ export const ResetContainer = styled.div`
     justify-content: center;
     position: relative;
 
-    .reset-wrapper{
-        width: 500px;
-    }
 
     .alert{
         position: absolute;
@@ -27,14 +24,15 @@ export const ResetContainer = styled.div`
 
 `
 export const ResetWrapper = styled.form`
-    width: 500px;
-    height: 350px;
+    width: 400px;
+    height: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
     border-radius: 20px;
-    gap: 50px;
+    gap: 20px;
     background: white;
     box-shadow: 0px 5px 20px rgba(0,0,0,0.3);
     border: 3px solid white;
@@ -45,7 +43,7 @@ export const ResetWrapper = styled.form`
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        gap: 15px;
+        gap: 20px;
         width: 90%;
 
         .spinner{
@@ -58,6 +56,7 @@ export const Header = styled.header`
     font-size: 20px;
     font-weight: 700;
     color: ${({theme})=> theme.background.primary};
+    width: 90%;
 
 `
 

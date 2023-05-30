@@ -73,7 +73,7 @@ const ResetPassword : React.FC =()=>{
                             <AlertComponent variant={variant} message={message} />
                         </div>}
                 <BackgroundSVG />
-                <ResetWrapper className='reset-wrapper' onSubmit={handlePasswordReset}>
+                <ResetWrapper onSubmit={handlePasswordReset}>
                     <Header>Check your email for the token</Header>
                     <div>
                         <InputContainer 
