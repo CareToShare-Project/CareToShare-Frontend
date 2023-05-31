@@ -115,15 +115,8 @@ export const RightSideContent = styled.div`
     z-index: 1;
     width: 100%;
     overflow-y: scroll;
-    padding-left: 30px;
-    @media (max-width: 647px){
-        flex: 6;
-        margin-left: -40px;
-    }
-
-    @media (max-width: 413px){
-        margin-left: -35px;
-    }
+    padding-left: 10px;
+    
     
   
     
@@ -158,22 +151,16 @@ export const ViewFoundationContainer = styled.div`
 export const CardContainer = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
     width: 30%;
+    min-width: 230px;
     height: 300px;
-    overflow: scroll;
     border-radius: 10px;
     background: white;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
     cursor: pointer;
     transition: all 400ms ease-in-out;
-    @media (max-width: 647px){
-        width: 418px;
-    }
-
-    @media (max-width: 415px){
-        width: 300px;
-    }
+   
   
    
     &:hover{
@@ -186,12 +173,7 @@ export const ImageWrapper = styled.img`
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     border-bottom: 5px solid ${({theme})=> theme.background.primary};
-    @media (max-width: 647px){
-        width: 418px;
-    }
-    @media (max-width: 415px){
-        width: 300px;
-    }
+    
 
    
    
@@ -212,11 +194,12 @@ export const DetailsWrapper = styled.div`
     }
 
     .organizationName{
-        font-size: 20px;
+        font-size: 16px;
         font-weight: 700;
         display: flex;
         align-items: center;
         gap: 10px;
+        width: 90%;
 
         .verified{
             font-size : 20px;
@@ -228,7 +211,8 @@ export const DetailsWrapper = styled.div`
         color: black;
         margin-top: 5px;
         font-family: Poppins;
-        font-size: 15px;
+        font-size: 13px;
+        width: 90%;
 
         .icon{
             font-size: 17px;

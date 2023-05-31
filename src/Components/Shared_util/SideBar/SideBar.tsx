@@ -41,6 +41,7 @@ const SideBar: React.FC<SideBarProps> = ({username, features}) => {
         const photoData = sessionStorage.getItem('profilePhoto')
         const page = pageData && JSON.parse(pageData);
         const photo = photoData && JSON.parse(photoData);
+        console.log(photo)
             if(!page){
                 setCurrentPage('')
             }else{
@@ -65,7 +66,7 @@ const SideBar: React.FC<SideBarProps> = ({username, features}) => {
             <SideBarWrapper className={hideSideBar?'hide': 'show'}>
                 <ProfileContainer>
                     <ProfileImage> 
-                        {profilePhoto ? <Pic src={profilePhoto} alt="view"/> : <FaUserCircle size={90} />}
+                        {profilePhoto ? <Pic src={profilePhoto} /> : <FaUserCircle size={90} />}
                     </ProfileImage>
                     <div>Welcome <span>{username}</span></div>
                     <EditProfileButton onClick={()=> handlePageNavigation('editProfile')}>
