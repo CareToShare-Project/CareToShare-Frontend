@@ -32,7 +32,7 @@ function DonorRegistrationPage(){
         if(e.target.files === null) return
         setImageUpload(e.target.files[0] )
     }
-
+    
     // uploads file to the firebase storage
     const uploadFileToStorageBucket = () => {
         if(imageUpload === null) return;
@@ -45,8 +45,6 @@ function DonorRegistrationPage(){
 
         return "successfully uploaded";
     
-
-
     }
 
 
