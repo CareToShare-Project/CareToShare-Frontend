@@ -5,9 +5,7 @@ import { useParams, useNavigate} from "react-router-dom";
 import '../Shared_Styles/Donor/DonorStyles.css'
 import '../Shared_Styles/General/Styles.css'
 import { BASE_URL } from "../Shared_util/Constants/Base_URL";
-import { storage } from "../Shared_util/Constants/FireBase";
-import {ref, uploadBytes, getDownloadURL} from "firebase/storage"
-import {v4} from "uuid"
+import { uploadImage, uploadFileToStorageBucket } from "../Shared_util/Constants/Functions";
 
 
 function DonorRegistrationPage(){
@@ -23,36 +21,15 @@ function DonorRegistrationPage(){
    const username = useParams().username;
    console.log(username)
 
-   // navigation
+   
    const navigate = useNavigate();
-
-
-    // handles file upload 
-    const uploadImage = (e : React.ChangeEvent<HTMLInputElement>) => {
-        if(e.target.files === null) return
-        setImageUpload(e.target.files[0] )
-    }
-    
-    // uploads file to the firebase storage
-    const uploadFileToStorageBucket = () => {
-        if(imageUpload === null) return;
-        const imageRef = ref(storage, `profile-photos/${imageUpload.name + v4() }`)
-        uploadBytes(imageRef, imageUpload).then((snapshot) => {
-            getDownloadURL(snapshot.ref).then((url)=> {
-                setImageUrl(url)
-            })
-        })
-
-        return "successfully uploaded";
-    
-    }
 
 
    //handle user update
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            const message = uploadFileToStorageBucket()
+            const message = uploadFileToStorageBucket(imageUpload, setImageUrl, "profile-photos")
             console.log(message)
             if(firstNameRef && lastNameRef && contactRef && locationRef && imageUrl) {
                     const userDetails = {
@@ -91,7 +68,8 @@ function DonorRegistrationPage(){
     useEffect(()=> {
         console.log("Page is rendered")
         console.log(imageUpload) 
-    }, [imageUpload])
+        console.log(imageUrl)
+    }, [imageUpload, imageUrl])
 
 
    
@@ -122,7 +100,7 @@ function DonorRegistrationPage(){
                             <InputField 
                                 type="file" 
                                 id="photo"  
-                                onChange={uploadImage}
+                                onChange={(e) => uploadImage(e, setImageUpload)}
                                 accept=".jpeg .png .jpg" />
                     </FieldWrapper>
                     <ConfirmButton>

@@ -1,34 +1,38 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../Shared_Styles/General/Styles.css'
 import { RegistrationWrapper, RegistrationContainer, FieldWrapper,
         InputLabel, InputField, RegistrationHeader, ConfirmButton } from '../DonorPage/DonorStyles';
 import { TextWrapper } from './CharityStyles';
 import { useParams } from 'react-router-dom';
-import { convertToBase64 } from '../Shared_util/Constants/Functions';
+import { uploadImage as fileUpload, uploadFileToStorageBucket } from '../Shared_util/Constants/Functions';
+
 
 
 
 function CharityRegistrationPage() {
-    const [fileUpload, setFileUpload] = useState({})
-    const email = useParams()
-    console.log(email)
+    const { username } = useParams()
+    console.log(username)
 
-  
-    const handleFileUpload = async (e : React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files
-        if(file){
-            console.log(file[0])
-            const base64  = await convertToBase64(file[0])
-            console.log(base64)
-            setFileUpload({...fileUpload, myFile : base64})
-        }
-        
-    }
+    // tracks organisation certificate states
+    const [cert, setCert] = useState<any>()
+    const [certUrl, setCertUrl] = useState("")
+
+    //tracks organisation profile photo states
+    const [imageUpload, setImageUpload] = useState<any>()
+    const [imageUrl, setImageUrl] = useState("")
+
 
     const handleSubmit = async (e :React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        const uploadCertificate = uploadFileToStorageBucket(cert, setCertUrl, "certificates")
+        const uploadPhoto = uploadFileToStorageBucket(imageUpload, setImageUrl, "profile-photos")
+        console.log(uploadCertificate, uploadPhoto)
      
-}
+    }
+
+    useEffect(()=>{
+        console.log("files uploaded to firebase successfully")
+    }, [certUrl, imageUrl])
 
 
     return (
@@ -57,6 +61,7 @@ function CharityRegistrationPage() {
                                 type='file' 
                                 id='file' 
                                 accept='.pdf'
+                                onChange={((e)=>fileUpload(e, setCert))}
                                 required/>
                         </FieldWrapper>
                         <FieldWrapper>
@@ -65,7 +70,7 @@ function CharityRegistrationPage() {
                                 type='file' 
                                 id='photo' 
                                 accept='.jpeg .png .jpg'
-                                onChange={handleFileUpload}
+                                onChange={((e)=>fileUpload(e, setImageUpload))}
                                 required/>
                         </FieldWrapper>
                         <FieldWrapper>
