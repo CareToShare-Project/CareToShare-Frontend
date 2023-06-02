@@ -153,6 +153,7 @@ export const CardContainer = styled.div`
     flex-direction: column;
     gap: 5px;
     width: 30%;
+    max-width: 240px;
     min-width: 230px;
     height: 300px;
     border-radius: 10px;

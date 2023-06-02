@@ -69,16 +69,17 @@ const Login: React.FC = () => {
             if(results.status === "success" ){
                 setToastMessage('Successfully Logged In')
                 setShowToast(true)
-                navigate(`${role}/${username}`)
+                setTimeout(()=> {
+                    navigate(`${role}/${username}`)
+                }, 1000)
             }
-    
+                
     }catch(err){
         console.log(err)
         setToastMessage('Invalid Credentials!')
         setShowToast(true)   
-        setTimeout(()=>{
-            setShowLoading(false)
-        }, 1000)
+        setShowLoading(false)
+        
     }
 }
 

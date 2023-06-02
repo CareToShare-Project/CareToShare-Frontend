@@ -11,11 +11,11 @@ const LoginToast: React.FC<LoginToastProps> = ({showToast, setShowToast, toastMe
             <Toast 
                 onClose= {() => setShowToast(false)}
                 show={showToast}
-                delay={4000}
+                delay={10000}
                 bg='neutral'
                 autohide
                 className="toast">
-                    <Toast.Body>
+                    <Toast.Body className="toast-body">
                         {toastMessage}
                     </Toast.Body>
             </Toast>

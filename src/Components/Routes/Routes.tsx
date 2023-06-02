@@ -27,7 +27,7 @@ const PagesRoute = () => {
                 <Route index element={<HomePage />}/>
                 <Route path='login' element= {<Login />} />
                 <Route path='login/forgotPassword' element = {<ForgotPassword /> } />
-                <Route path='login/forgotPassword/resetPassword' element = {<ResetPassword />} />
+                <Route path='login/forgotPassword/resetPassword/:token' element = {<ResetPassword />} />
                 <Route path='login/createAccount' element= {<CreateAccount />} />
                 <Route path='login/createAccount/Organisation/:username' element = {<CharityRegistrationPage />} />
                 <Route path='login/createAccount/Donor/:username' element = {<DonorRegistrationPage />} />

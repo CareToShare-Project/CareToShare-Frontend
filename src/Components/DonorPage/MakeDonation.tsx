@@ -9,35 +9,36 @@ import { TextWrapper } from "../CharityPage/CharityStyles"
 import { BASE_URL } from "../Shared_util/Constants/Base_URL"
 import {v4} from "uuid"
 import { uploadImage, uploadFileToStorageBucket } from "../Shared_util/Constants/Functions";
+import { useParams } from "react-router-dom"
 
 function MakeDonation() {
     const organisationRef: any = useRef('');
     const locationRef : any = useRef('');
     const descriptionRef : any = useRef('')
-    const [type, setType] = useState('Generic');
+    const [donationType, setDonationType] = useState('Generic');
     const [imageUpload, setImageUpload] = useState<any>()
     const [imageUrl, setImageUrl] = useState("")
 
+    const {username} = useParams()
+    console.log(username)
 
     const handleDonationType = (e : React.ChangeEvent<HTMLSelectElement>) => {
-        setType(e.target.value);
+        setDonationType(e.target.value);
     }
 
     const handleDonation = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try{
             const message = uploadFileToStorageBucket(imageUpload, setImageUrl , "donationImages")
-            console.log(message)
-            const user = sessionStorage.getItem('currentUser')     
-            const donatedBy = user && JSON.parse(user)
+            console.log(message)    
             const donationId = v4();
-            if(type === 'Generic'){
+            if(donationType === 'Generic'){
                 organisationRef.current.value = "all organisations"
             }
             const donation = {
-                    donatedBy : donatedBy,
+                    donatedBy : username,
                     donationId : donationId,
-                    donationType : type,
+                    donationType : donationType,
                     description : descriptionRef.current.value,
                     location : locationRef.current.value,
                     itemPhoto : imageUrl,
@@ -63,8 +64,8 @@ function MakeDonation() {
     }
 
     useEffect(()=>{
-        console.log(imageUpload)
-    },[imageUpload])
+        console.log("make donation page rendered")
+    },[])
     
 
     return (
@@ -87,7 +88,7 @@ function MakeDonation() {
                         </RoleContainer>
                     </FieldWrapper>
 
-                    <FieldWrapper className={`field ${type==="Generic" ? 'disabled' : ''}`}>
+                    <FieldWrapper className={`field ${donationType==="Generic" ? 'disabled' : ''}`}>
                         <DonationInputLabel>Donate To</DonationInputLabel>
                         <DonationInputField 
                             type="text" 

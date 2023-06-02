@@ -1,22 +1,24 @@
 import styled from 'styled-components'
 
 export const LoginToastWrapper = styled.div`
-    position: absolute;  
-    display: flex;
-    top: 0;
-    margin: 0 auto;
-    
 
     .toast{
-        width: 100%;
-        height: 40px;
-        text-align: center;
+        position: fixed;
+        width: 50%;
+        height: 30px;
+        background: rgba(255, 255, 255, 0.6);
+        left: 25%;
+        height: max-content;    
+        top: 0;
         font-family: Poppins;
-        color: ${({theme})=> theme.background.primary};;
+        color: ${({theme})=> theme.background.primary};
         font-weight: 600; 
-        font-size: 18px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        font-size: 16px;
+
+        .toast-body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     }
 `
