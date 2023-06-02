@@ -92,5 +92,63 @@ export const SubmitEmailContainer = styled(SubmitButton)`
     color: white;
     height: 35px;
 `
+export const NotificationContainer = styled(ResetContainer)`
+    background: ${({theme})=> theme.background.secondary};
+    justify-content: space-between;
+    padding: 10px 120px;
+    @media (max-width: 906px){
+        flex-direction: column-reverse;
+        justify-content: flex-end;
+        align-items: center;
+        overflow-y: scroll;
+        padding: 10px 5px;
+        text-align: center;
+
+    }
+
+
+`
+export const EmailNotificationLeftSection = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    h1{
+        font-family: Poppins;
+        font-weight: 700;
+    }
+
+    h4{
+        color: ${({theme})=> theme.background.primary};
+        font-family: Poppins;
+        
+    }
+
+    .bottom{
+        display: flex;
+        flex-direction: column;
+        
+        .link{
+            color:  ${({theme})=> theme.color.hover};
+            font-weight: 500;
+            cursor: pointer;
+            
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+    }
+`
+
+export const EmailNotificationRightSection = styled.div`
+    span{
+        font-size: 350px;
+        color: ${({theme})=> theme.background.primary};
+
+        @media (max-width: 906px){
+            font-size: 200px;
+        }
+    }
+`
 
 export {}

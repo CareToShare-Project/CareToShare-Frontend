@@ -5,6 +5,7 @@ import Spinner  from 'react-bootstrap/Spinner';
 import BackgroundSVG from '../Shared_util/SVG/Background';
 import {motion} from "framer-motion"
 import LoginToast from '../Shared_util/Toast/LoginToast';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -17,9 +18,11 @@ const ForgotPassword  = () => {
     const emailRef: any = useRef()
     const [showLoading, setShowLoading] = useState(false)
      // state to show or hide toast
-     const [showToast, setShowToast] = useState(true)
+    const [showToast, setShowToast] = useState(false)
       // state to set toast message 
     const [toastMessage, setToastMessage] = useState('')
+
+    const navigate = useNavigate()
 
 
     const handleResetToken = async (e : React.FormEvent<HTMLFormElement>) => {
@@ -36,11 +39,7 @@ const ForgotPassword  = () => {
 
                 const data = await response.json();
                 if(data.status === 'success'){
-                    setToastMessage('Check your email to reset your password.')
-                    setShowToast(true)
-                    setTimeout(()=> {
-                        setShowLoading(false)
-                    }, 2000)   
+                    navigate(`notification/${email}`) 
                 }else{
                     setToastMessage('The email does not belong to any user')
                     setShowToast(true)

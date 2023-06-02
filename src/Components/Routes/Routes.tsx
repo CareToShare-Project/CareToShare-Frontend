@@ -10,6 +10,7 @@ import ResetPassword from '../PasswordReset/ResetPassword';
 import Login from '../Login/Login';
 import CreateAccount from '../CreateAccount/CreateAccount';
 import ForgotPassword from '../PasswordReset/ForgotPassword';
+import EmailNotification from '../PasswordReset/EmailNotification';
 import ViewFoundations from '../DonorPage/ViewFoundations';
 import ViewRequests from '../DonorPage/ViewRequests';
 import MakeDonation from '../DonorPage/MakeDonation';
@@ -27,6 +28,7 @@ const PagesRoute = () => {
                 <Route index element={<HomePage />}/>
                 <Route path='login' element= {<Login />} />
                 <Route path='login/forgotPassword' element = {<ForgotPassword /> } />
+                <Route path='login/forgotPassword/notification/:email' element = {<EmailNotification /> } />
                 <Route path='login/forgotPassword/resetPassword/:token' element = {<ResetPassword />} />
                 <Route path='login/createAccount' element= {<CreateAccount />} />
                 <Route path='login/createAccount/Organisation/:username' element = {<CharityRegistrationPage />} />
