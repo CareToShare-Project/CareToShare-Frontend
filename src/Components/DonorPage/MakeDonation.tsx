@@ -90,10 +90,17 @@ function MakeDonation() {
 
                     <FieldWrapper className={`field ${donationType==="Generic" ? 'disabled' : ''}`}>
                         <DonationInputLabel>Donate To</DonationInputLabel>
-                        <DonationInputField 
+                        <select className="ui search dropdown" ref={organisationRef}>
+                            <option value="">Organisation</option>
+                            <option value="AL">Ghana Aid Foundation</option>
+                            <option value="AK">Bosaata</option>
+                            <option value="AZ">Zuba group of companies</option>
+                            <option value="AR">Zabrogaski</option>
+                        </select>
+                        {/* <DonationInputField 
                             type="text" 
                             ref={organisationRef}
-                            />
+                            /> */}
                     </FieldWrapper >
                     <FieldWrapper className="field">
                         <DonationInputLabel>Location</DonationInputLabel>

@@ -6,7 +6,7 @@ export const LoginToastWrapper = styled.div`
         position: fixed;
         width: 50%;
         height: 30px;
-        background: rgba(255, 255, 255, 0.6);
+        background: rgb(255, 255, 255);
         left: 25%;
         height: max-content;    
         top: 0;

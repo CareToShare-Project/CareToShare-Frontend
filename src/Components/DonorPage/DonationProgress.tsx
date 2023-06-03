@@ -25,7 +25,6 @@ const DonationProgress = () => {
                     <thead className='table-heading'>
                         <tr>
                             <th>Type</th>
-                            <th>Donation Id</th>
                             <th>Organisation</th>
                             <th>Date</th>
                             <th>location</th>
@@ -36,7 +35,6 @@ const DonationProgress = () => {
                     <tbody>
                         <tr>
                             <td>Generic</td>
-                            <td>jhkdl12335kjdf</td>
                             <td>-</td>
                             <td>22-05-23</td>
                             <td>Accra, Ghana</td>

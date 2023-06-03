@@ -35,9 +35,11 @@ export const CreateAccountFieldWrapper = styled.div`
 `
 export const RoleContainer = styled.select`
     width: 100%;
-    padding: 5px;
+    padding: 0px;
     border: none;
     border-radius: 10px;
+    height: 35px;
+    
 `
 export const CreateButton = styled(ConfirmButton)`
     width: 96%;

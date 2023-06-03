@@ -1,5 +1,6 @@
 import styled, {keyframes} from 'styled-components'
 import { TextWrapper } from '../CharityPage/CharityStyles'
+import { SubmitButton } from '../Login/LoginStyles'
 
 // Registration styles
 export const RegistrationWrapper = styled.div`
@@ -53,6 +54,20 @@ export const FieldWrapper = styled.div`
     width: 90%;
     gap: 5px;
     padding: 10px;
+
+    select{
+        height: 30px;
+        border-radius: 4px;
+        border: 2px solid ${({theme}) => theme.background.primary};
+        
+        &:hover{
+            cursor: pointer;
+        }
+        &:focus{
+            border: 2px solid ${({theme}) => theme.color.hover2};
+            outline: 0;
+        } 
+    }
 `
 
 export const InputLabel = styled.label`
@@ -383,5 +398,97 @@ export const UpdateDonationConfirmButton = styled(DonateButton)`
 export const UpdateDonationInputLabel = styled(InputLabel)`
     color: black;
 `
+// Send reviews styles
+
+export const ReviewContainer = styled.div`
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-start;
+    gap: 100px;
+    padding: 20px 20px;
+
+`
+
+export const MessageWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    gap: 10px;
+
+    h4{
+        text-align: center;
+        color: ${({theme}) => theme.background.primary};
+        font-weight: 700;
+    }
+    p{
+        font-weight: 600;
+        font-size: 15px;
+    }
+`
+
+export const ReviewFormWrapper = styled.form`
+    width: 450px;
+    height: 100%;
+    background:: ${({theme}) => theme.color.hover};
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.5);
+    gap: 15px;
+
+   
+
+    
+`
+
+export const ReviewFieldsWrapper = styled(FieldWrapper)`
+
+    textarea{
+        height: 300px;
+        border: 2px solid ${({theme}) => theme.background.primary};
+        outline: 0;
+        text-indent: 20px;
+        border-radius: 5px;
+
+        &:focus{
+            border: 2px solid ${({theme}) => theme.color.hover2};
+            outline: 0;
+        }
+    }
+
+    select {
+        height: 30px;
+        border-radius: 4px;
+        
+        &:hover{
+            cursor: pointer;
+        }
+        &:focus{
+            border: 2px solid ${({theme}) => theme.color.hover2};
+            outline: 0;
+        }
+    }
+
+    label{
+        font-family: Poppins;
+        font-weight: 600;
+        color: ${({theme}) => theme.background.primary};
+    }
+    
+`
+
+export const ReviewButton = styled(SubmitButton)`
+    width: 50%;
+    border: 2px solid ${({theme}) => theme.background.primary};
+    background: ${({theme}) => theme.color.border};
+    color: white;
+
+`
+
+
+
 
 

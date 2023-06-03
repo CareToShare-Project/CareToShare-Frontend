@@ -17,6 +17,7 @@ import MakeDonation from '../DonorPage/MakeDonation';
 import DonationProgress from '../DonorPage/DonationProgress';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import {AnimatePresence} from 'framer-motion'
+import ReviewCharities from '../DonorPage/ReviewCharities';
 
 const PagesRoute = () => {
 
@@ -62,7 +63,7 @@ const PagesRoute = () => {
                     <Route path='viewRequests' element = {<ViewRequests />}/>
                     <Route path='makeDonations' element = {<MakeDonation />} />
                     <Route path='donationProgress' element = {<DonationProgress />}/>
-                    <Route path='reviewCharities' element = {<h2>Review Charities</h2>} />
+                    <Route path='reviewCharities' element = {<ReviewCharities />} />
                     <Route path='editProfile' element = {<h2>Edit UserProfile</h2>} />
                 </Route>
                 
