@@ -1,17 +1,19 @@
 import React, { useState } from 'react'
-import {DeleteButton, EditButton, RightSideContentWrapper, TableWrapper, 
+import {DeleteButton, EditButton, RefreshWrapper, RightSideContentWrapper, TableWrapper, 
     UpdateDonationConfirmButton, UpdateDonationField, UpdateDonationInputLabel, 
     UpdateDonationTextWrapper } from './DonorStyles';
-import { MdDelete, MdEdit } from 'react-icons/md';
+import { MdDelete, MdEdit, MdRefresh } from 'react-icons/md';
 import SearchBar from '../Shared_util/SearchBar/SearchBar';
 import Table from 'react-bootstrap/Table';
 import Modal from 'react-bootstrap/Modal';
 import "../Shared_Styles/Modal/modal.css"
+import { NoOrganisationContainer as NoDonationContainer } from './DonorStyles';
 
 
 const DonationProgress = () => {
     const [query, setQuery] = useState('')
     const [show, setShow] = useState(false)
+    const [donations, setDonations] = useState<any>()
 
     const showUpdateModal = () => {
         setShow(true)
@@ -20,7 +22,12 @@ const DonationProgress = () => {
     return(
         <RightSideContentWrapper>
             <SearchBar query={query} setQuery={setQuery}/>
-            <TableWrapper>
+            <RefreshWrapper>
+                <span>Refresh</span>
+                <MdRefresh size={25}/>
+            </RefreshWrapper>
+            <hr></hr>
+            {donations && <TableWrapper>
                 <Table responsive className='table' striped hover >
                     <thead className='table-heading'>
                         <tr>
@@ -74,7 +81,10 @@ const DonationProgress = () => {
                     </Modal.Body>
                 </Modal>
 
-        </TableWrapper>
+        </TableWrapper>}
+        {!donations && <NoDonationContainer>
+                            <h4>No Donation found</h4>
+                        </NoDonationContainer>}
         </RightSideContentWrapper>
     )
 };

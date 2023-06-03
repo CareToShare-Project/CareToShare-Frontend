@@ -10,7 +10,7 @@ import { SideBarFeaturesProp } from './Types'
 
 export const donorFeatures: SideBarFeaturesProp['features'] = [
     {
-        title: 'Home',
+        title: 'Feed',
         icon : AiFillHome,
         link : ''
     },
@@ -74,7 +74,7 @@ export const adminFeatures = [
 
 export const charityFeatures = [
     {
-        title: 'Home',
+        title: 'Feed',
         icon : AiFillHome,
         link : ''
     },

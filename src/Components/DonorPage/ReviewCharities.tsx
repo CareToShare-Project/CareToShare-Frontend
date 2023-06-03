@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, {useRef, useState} from "react"
 import { MessageWrapper, ReviewButton, ReviewContainer, ReviewFieldsWrapper, ReviewFormWrapper } from "./DonorStyles"
 import LoginToast from "../Shared_util/Toast/LoginToast"
 //import 'semantic-ui-css/semantic.min.css';
@@ -13,8 +13,14 @@ function ReviewCharities() {
     // state to set toast message 
     const [toastMessage, setToastMessage] = useState('')
 
+    const reviewRef = useRef<any>()
+    const organisationRef = useRef<any>()
+
     const submitReview = (e : React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        if(reviewRef.current && organisationRef.current){
+            console.log(reviewRef.current.value, organisationRef.current.value)
+        }
         setToastMessage("Thank you for being an essential part of our donation app community!")
         setShowToast(true)
     }
@@ -41,8 +47,8 @@ function ReviewCharities() {
             </MessageWrapper>
             <ReviewFormWrapper onSubmit={submitReview}>
                 <ReviewFieldsWrapper>
-                    <label>Choose an organisation</label>
-                    <select className="ui search dropdown">
+                    <label htmlFor="organisations">Choose an organisation</label>
+                    <select className="ui search dropdown" id="organisations" ref={organisationRef}>
                         <option value="">Organisation</option>
                         <option value="AL">Ghana Aid Foundation</option>
                         <option value="AK">Bosaata</option>
@@ -51,8 +57,8 @@ function ReviewCharities() {
                     </select>
                 </ReviewFieldsWrapper>
                 <ReviewFieldsWrapper>
-                    <label>Your review</label>
-                    <textarea></textarea>
+                    <label htmlFor="review">Your review</label>
+                    <textarea ref={reviewRef} id="review"></textarea>
                 </ReviewFieldsWrapper>
                 <ReviewButton>Submit</ReviewButton>
                 <LoginToast  

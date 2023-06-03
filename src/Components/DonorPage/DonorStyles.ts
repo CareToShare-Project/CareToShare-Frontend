@@ -140,7 +140,7 @@ export const RightSideContentWrapper = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 10px;
     margin-bottom: 20px;
     @media (max-width: 647px){
         align-items: center;
@@ -281,6 +281,47 @@ export const DonateButton = styled(ConfirmButton)`
     font-size: 14px;
 `
 
+export const NoOrganisationContainer = styled.div`
+    width: 100%;
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Poppins;
+    
+    h4{
+        font-weight: 700;
+        letter-spacing: 2px;
+    }
+`
+
+export const RefreshWrapper = styled.div`
+    position: fixed;
+    right: 100px;
+    top: 20px;
+    display: flex;
+    align-items: center;
+    color: ${({theme})=> theme.background.primary};
+    cursor: pointer;
+    @media (max-width: 1025px){
+             right: 15px;
+        }
+    @media (max-width: 930px){
+             right: 25px;
+        }
+
+    &:hover{
+        color: ${({theme})=> theme.color.hover2};
+    }
+
+    span{
+        font-size: 20px;
+        @media (max-width: 930px){
+             display: none;
+        }
+    }
+`
+
 // make donation styles
 
 export const DonationFormContainer = styled.div`
@@ -304,6 +345,11 @@ export const DonationForms = styled.form`
     align-items: center;
     padding: 10px;
     gap: 2px;
+
+    @media (max-width: 930px){
+             width: 85%;
+             margin-left: 30px;
+        }
 
     div{
         .field{
@@ -402,18 +448,19 @@ export const UpdateDonationInputLabel = styled(InputLabel)`
 
 export const ReviewContainer = styled.div`
     width: 100%;
-    height: 100vh;
     display: flex;
-    justify-content: flex-start;
-    gap: 100px;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
     padding: 20px 20px;
+    margin-bottom: 20px;
 
 `
 
 export const MessageWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    width: 400px;
+    width: 80%;
     gap: 10px;
 
     h4{
@@ -428,16 +475,20 @@ export const MessageWrapper = styled.div`
 `
 
 export const ReviewFormWrapper = styled.form`
-    width: 450px;
+    width: 50%;
     height: 100%;
-    background:: ${({theme}) => theme.color.hover};
+    background: white;
     display: flex;
     flex-direction:column;
+    padding: 15px;
     align-items: center;
     justify-content: center;
     border-radius: 5px;
     box-shadow: 0px 0px 15px rgba(0,0,0,0.5);
     gap: 15px;
+    @media (max-width: 930px){
+        width: 80%;
+    }
 
    
 
@@ -460,7 +511,7 @@ export const ReviewFieldsWrapper = styled(FieldWrapper)`
     }
 
     select {
-        height: 30px;
+        height: 45px;
         border-radius: 4px;
         
         &:hover{
@@ -481,10 +532,8 @@ export const ReviewFieldsWrapper = styled(FieldWrapper)`
 `
 
 export const ReviewButton = styled(SubmitButton)`
-    width: 50%;
+    width: 80%;
     border: 2px solid ${({theme}) => theme.background.primary};
-    background: ${({theme}) => theme.color.border};
-    color: white;
 
 `
 
