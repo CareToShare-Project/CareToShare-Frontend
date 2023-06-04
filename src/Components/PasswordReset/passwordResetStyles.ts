@@ -71,8 +71,8 @@ export const InputContainer = styled.input`
     width: 100%;
     padding: 5px;
     background: transparent;
-    color: ${({theme}) => theme.color.hover};
-    border: 2px solid ${({theme}) => theme.color.hover};
+    color: ${({theme}) => theme.color.primary};
+    border: 2px solid ${({theme}) => theme.color.primary};
 
     &:focus{
         border: 2px solid ${({theme}) => theme.color.hover2};
@@ -88,9 +88,14 @@ export const SubmitEmailContainer = styled(SubmitButton)`
     justify-content: center;
     flex-direction: row-reverse;
     gap: 10px;
-    background:${({theme})=> theme.background.primary};
+    background:${({theme})=> theme.color.primary};
     color: white;
     height: 35px;
+    &:hover{
+        border: 1px solid ${({theme})=> theme.color.primary};
+        background: ${({theme})=> theme.background.primary};
+        color: ${({theme})=> theme.color.secondary};
+    }
 `
 export const NotificationContainer = styled(ResetContainer)`
     background: ${({theme})=> theme.background.secondary};

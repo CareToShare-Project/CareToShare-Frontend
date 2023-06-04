@@ -46,7 +46,7 @@ function RightSection() {
                 </GetStartedButton>
                 <ReadMoreWrapper>
                     <span>Want to know more about us?</span>
-                    <span>Click here</span>
+                    <span className='link'>Click here</span>
                 </ReadMoreWrapper>
             </FooterWrapper>
             

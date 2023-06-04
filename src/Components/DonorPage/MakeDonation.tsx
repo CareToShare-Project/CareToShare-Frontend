@@ -97,10 +97,6 @@ function MakeDonation() {
                             <option value="AZ">Zuba group of companies</option>
                             <option value="AR">Zabrogaski</option>
                         </select>
-                        {/* <DonationInputField 
-                            type="text" 
-                            ref={organisationRef}
-                            /> */}
                     </FieldWrapper >
                     <FieldWrapper className="field">
                         <DonationInputLabel>Location</DonationInputLabel>

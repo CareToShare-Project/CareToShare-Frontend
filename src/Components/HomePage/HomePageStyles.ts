@@ -50,6 +50,7 @@ export const AppTitleWrapper = styled.header`
     font-family: Poppins;
     font-weight: 800;
     font-size: ${({theme})=> theme.fontSizes.large};
+    color: ${({theme})=> theme.color.secondary};
     letter-spacing: 5px;
     width: 80%;
     line-height: 30px;
@@ -60,7 +61,7 @@ export const AppTitleWrapper = styled.header`
     .about{
         font-size : 14px;
         font-weight: 600;
-        color: ${({theme})=> theme.color.primary};
+        color: ${({theme})=> theme.color.secondary};
     }
 `
 export const ItemWrapper = styled.div`
@@ -85,6 +86,7 @@ export const CircularContainer = styled.div`
     border-radius: 50%;
     border: 2px solid rgba(255, 255, 255, 0.1);
     position: relative;
+    color: ${({theme})=> theme.color.secondary};
 
     .item-1{
         top: -5%;
@@ -118,6 +120,15 @@ export const FooterWrapper = styled.div`
 export const ReadMoreWrapper = styled.div`
     display: flex;
     gap: 5px;
+    color: ${({theme})=> theme.color.primary};
+
+    .link{
+        color: ${({theme})=> theme.color.secondary};
+        cursor: pointer;
+        &:hover{
+            text-decoration: underline;
+        }
+    }
 
 `
 
@@ -129,12 +140,16 @@ export const GetStartedButton = styled.button`
     gap: 10px;
     width: 50%;
     height: 40px;
+    color: ${({theme})=> theme.color.primary};
     border-radius: 10px;
     margin: 0px auto;
-    background: ${({theme})=> theme.color.primary};
+    background: ${({theme})=> theme.color.hover};
     transition: all 400ms ease-in-out;
 
     &:hover{
-        width: 51%;
+        background: ${({theme})=> theme.background.primary};
+        border: 1px solid ${({theme})=> theme.color.primary};
+        color: ${({theme})=> theme.color.secondary};
+        font-weight: 700;
     }
 `

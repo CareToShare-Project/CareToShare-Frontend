@@ -3,7 +3,7 @@ import {FaPeopleCarry, FaStarHalfAlt, FaPrayingHands, FaHandHoldingHeart} from '
 import {BiLoaderCircle, BiDonateHeart} from 'react-icons/bi'
 import {BsChatText, BsHandThumbsUp} from 'react-icons/bs'
 import {MdVerified} from 'react-icons/md'
-import {RiUserSettingsLine} from 'react-icons/ri'
+import {RiUserSettingsFill, RiUserSettingsLine} from 'react-icons/ri'
 import { SideBarFeaturesProp } from './Types'
 
 
@@ -38,6 +38,11 @@ export const donorFeatures: SideBarFeaturesProp['features'] = [
         title: 'Review Charities',
         icon: FaStarHalfAlt,
         link: 'reviewCharities'
+    },
+    {
+        title : 'Profile',
+        icon : RiUserSettingsFill,
+        link : 'editProfile'
     }
 
 ]

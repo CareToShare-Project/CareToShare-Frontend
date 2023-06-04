@@ -69,7 +69,7 @@ const ForgotPassword  = () => {
                 
                 <BackgroundSVG />
                 <ResetWrapper onSubmit={handleResetToken}>
-                    <Header>Enter your email to reset your password</Header>
+                    <Header>Enter your email address</Header>
                     <div>
                         <InputContainer ref={emailRef} type='email' placeholder='email address' required/>
                         <SubmitEmailContainer>{showLoading && <Spinner animation='border' size='sm' className='spinner'/>}

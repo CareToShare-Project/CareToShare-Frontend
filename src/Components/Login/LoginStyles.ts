@@ -32,7 +32,7 @@ export const FormWrapper = styled.form`
     height: 450px;
     border-radius: 10px;
     padding: 80px;
-    border: 1px solid white;
+    border: 1px solid ${({theme})=> theme.background.primary};
     background: ${({theme})=> theme.background.main};
     box-shadow: 0px 2px 10px ${({theme})=> theme.background.main};
     outline: transparent;
@@ -71,7 +71,7 @@ export const InputField = styled.input`
     width: 300px;
     text-indent: 5px;
     font-family: Poppins;
-    color:${({theme})=> theme.color.primary};
+    color:${({theme})=> theme.color.secondary};
     padding: 5px;
     outline: transparent;
     background: transparent;
@@ -79,7 +79,7 @@ export const InputField = styled.input`
     border-bottom: 2px solid white;
 
     &::placeholder{
-        color: rgba(255,255,255, 0.5);
+        color: rgba(255, 255,255, 0.7);
     }
     &:focus{
         border-bottom: 2px solid ${({theme})=> theme.color.hover2};
@@ -92,21 +92,21 @@ export const SubmitButton = styled.button`
     width: 100%;
     background: ${({theme})=> theme.color.primary};
     outline: transparent;
-    border: 3px solid white;
+    border: 1px solid white;
     border-radius: 10px;
-    font-weight: 700;
+    font-weight: 600;
     color:${({theme})=> theme.color.secondary};
     font-family: Poppins;
     transition: 0.8s;
     &:hover{
-        border: 3px solid ${({theme})=> theme.color.hover};
-        background: ${({theme})=> theme.color.hover};
-        color: white;
+        border: 1px solid ${({theme})=> theme.color.primary};
+        background: ${({theme})=> theme.background.primary};
+        color: ${({theme})=> theme.color.secondary};
     }
 `
 
 export const RegisterStyles = styled.div`
-    color: ${({theme})=> theme.color.primary};
+    color: ${({theme})=> theme.color.secondary};
     span{
         color: ${({theme})=> theme.color.hover2};
     &:hover{

@@ -5,7 +5,7 @@ export const SearchBarContainer = styled.div`
     display: flex;
     align-items: flex-end;
     gap: 2px;
-    justify-content: flex-end;
+    justify-content: center;
     padding: 0px 50px;
     
        
@@ -14,7 +14,8 @@ export const SearchBarContainer = styled.div`
 
 export const SearchBox = styled.div`
     display: flex;
-    width: 300px;
+    width: 400px;
+    height: 30px;
     align-items: center;
     justify-content: space-between;
     border: 2px solid ${({theme})=> theme.background.primary};
@@ -36,7 +37,7 @@ export const SearchBox = styled.div`
             outline: 0px;
             background: none;
             border: 0px;
-            text-indent: 25px;
+            text-indent: 32px;
             color: ${({theme})=> theme.background.primary};
             font-size: 16px;
             letter-spacing: 2px;
@@ -44,7 +45,7 @@ export const SearchBox = styled.div`
 
         .search-icon{
             font-size: 25px;
-            opacity: 0.7;
+            opacity: 0.5;
             position: absolute;
             left: 2px;
             

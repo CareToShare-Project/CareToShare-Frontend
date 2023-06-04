@@ -23,7 +23,7 @@ export const SideBarContainer = styled.div`
     flex: 1;
     height: 100vh;
     z-index: 100;
-    border-right: 1px solid white;
+    /* border-right: 1px solid white; */
 
     .show{
         @media (max-width: 650px){
@@ -37,8 +37,9 @@ export const SideBarContainer = styled.div`
 
     .menu-bar{
         font-size: 30px;
-        @media (max-width: 413px){
-        
+        @media (max-width: 930px){
+            left: 20px;
+            top: 15px;
         }
     }
 
@@ -97,8 +98,8 @@ export const ProfileContainer = styled.div`
     .notification{
         cursor: pointer;
     }
-    span{
-        gap: 2px;
+    div{
+        gap: 10px;
         .profile{
             cursor: pointer;    
         }
@@ -116,12 +117,12 @@ export const Title = styled.header`
     color: white;
     font-family: Poppins;
     text-align: center;
-    font-size: 22px;    
+    font-size: 18px;    
     font-weight: 600;
     letter-spacing: 4px;
     position: absolute;
     top: 25px;
-    left: 8px;  
+    left: 15%;  
 `
 
 export const EditProfileButton = styled(ConfirmButton)`
@@ -142,6 +143,7 @@ export const LogoutWrapper = styled(EditProfileButton)`
     align-items: center;
     justify-content: center;
     position: absolute;
+    color: ${({theme})=> theme.color.secondary};
     bottom: 20px;  
     left: 25%;
     &:hover{
@@ -169,8 +171,9 @@ export const FeaturesWrapper = styled.ul`
     #active{
         background: ${({theme})=> theme.color.hover};
         color: ${({theme})=> theme.color.primary};
-        font-weight: 500;
+        font-weight: 700;
         border-top-right-radius: 10px;
+        color: ${({theme})=> theme.color.primary}
     }
     .feature{
         list-style-type: none;
@@ -193,12 +196,20 @@ export const FeaturesWrapper = styled.ul`
             flex: 30%;
             display: grid;
             place-items: center;
+            font-size: 15px;
+            &:hover{
+                color: #4f646f;
+            }
         }
 
         .title{
             flex: 70%;
             font-size: 14px;
-            font-weight: 500;
+            font-weight: 700;
+            &:hover{
+                color: ${({theme})=> theme.color.primary};;
+            }
+
         }
         &:hover{
             background: ${({theme})=> theme.color.hover};

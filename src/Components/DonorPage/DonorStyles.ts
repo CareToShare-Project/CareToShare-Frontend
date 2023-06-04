@@ -21,7 +21,9 @@ export const pulseAnimation = keyframes`
 export const RegistrationContainer = styled.div`
     height: 550px;
     width: 400px;
+    padding: 15px 0px;
     background: ${({theme}) => theme.background.main};
+    border: 1px solid ${({theme}) => theme.background.primary};
     box-shadow: 0px 5px 10px black;
     border-radius: 10px;
     display: flex;
@@ -74,19 +76,19 @@ export const InputLabel = styled.label`
     font-size: 15px;
     font-weight: bolder;
     font-family: Poppins;
-    color: ${({theme}) => theme.color.primary};
+    color: ${({theme}) => theme.color.secondary};
 `
 
 export const InputField = styled.input`
     border-radius: 5px;
     font-family: Poppins;
     font-weight: 400;
-    text-indent: 10px;
+    text-indent: 5px;
     width: 100%;
     height: 35px;
     padding: 5px;
     background: transparent;
-    color: ${({theme}) => theme.color.primary};
+    color: ${({theme}) => theme.color.secondary};
     border: 2px solid white;
 
     &:focus{
@@ -98,22 +100,20 @@ export const InputField = styled.input`
 `
 
 export const ConfirmButton = styled.button`
-    background: white;
-    color: ${({theme})=> theme.color.secondary};
+    width: 85%;
+    background: ${({theme})=> theme.color.primary};
     outline: transparent;
-    border: 3px solid white;
+    border: 1px solid white;
     border-radius: 10px;
-    font-weight: 700;
+    font-weight: 600;
+    color:${({theme})=> theme.color.secondary};
     font-family: Poppins;
-    margin: 10px auto;
-    width: 86%;
-    font-family: Poppins;
-    transition: all 500ms ease-in-out;
-    &:hover{
-        border: 3px solid ${({theme})=> theme.color.hover};
-        background: ${({theme})=> theme.color.hover};
-        color: white;
-    }
+    transition: 0.8s;
+        &:hover{
+            border: 1px solid ${({theme})=> theme.color.primary};
+            background: ${({theme})=> theme.background.primary};
+            color: ${({theme})=> theme.color.secondary};
+        }
 `
 // main page styles
 export const DonorPageContainer = styled.div`
@@ -124,52 +124,57 @@ export const DonorPageContainer = styled.div`
 
 export const NavBarWrapper = styled.div`
     position: relative;
-    height: 70px;
-    width: 100% ;
+    height: 50px;
+    width: 97%;
+    border-radius: 10px;
     background: ${({theme})=> theme.background.primary};
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-    z-index: 10;
     color: white;
     display: flex;
     align-items: center;
-    padding: 0px 40px;
+    padding: 30px 40px;
     justify-content: space-between;
 
     span{
         font-size: 20px;
     }
+    
     @media (max-width: 930px){
-        display: 100vw;
+        display: 100%;
     }
 
     
 `
 export const MainPageContainer = styled.div`
+    padding: 10px;
     width: 100vw;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    gap: 15px;
     background: ${({theme})=> theme.background.secondary};
 `
 
 export const RightSideContent = styled.div`
     z-index: 1;
-    width: 100%;
     overflow-y: scroll;
     padding-left: 10px;
-    
-    
-  
+    width: 97%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @media (max-width: 930px){
+        width : 100%;
+    }
     
 `
 export const RightSideContentWrapper = styled.div`
-    width: 100%;
+    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-bottom: 20px;
-    @media (max-width: 647px){
-        align-items: center;
-        overflow-x: hidden;
+    align-items: center;
+    gap: 20px;
+    @media (max-width: 930px){
+        width: 100%;
 
     }
 
@@ -300,10 +305,15 @@ export const Column = styled.div`
 `
 
 export const DonateButton = styled(ConfirmButton)`
-    background: ${({theme})=> theme.background.primary};
+    background: ${({theme})=> theme.color.primary};
     color: white;
-    width: 78%;
+    width: 90%;
     font-size: 14px;
+    &:hover{
+        border: 1px solid ${({theme})=> theme.color.primary};
+        background: ${({theme})=> theme.background.primary};
+        color: ${({theme})=> theme.color.secondary};
+    }
 `
 
 export const NoOrganisationContainer = styled.div`
@@ -400,7 +410,7 @@ export const DonationInputLabel = styled(InputLabel)`
 `
 export const DonationInputField = styled(InputField)`
     color: ${({theme}) => theme.background.primary};
-    border: 2px solid ${({theme}) => theme.background.primary};
+    border: 2px solid ${({theme}) => theme.color.primary};
     width: 100%;
 `
 
@@ -556,6 +566,46 @@ export const ReviewButton = styled(SubmitButton)`
     width: 80%;
     border: 2px solid ${({theme}) => theme.background.primary};
 
+`
+
+
+// edit profile styles
+export const EditProfileWrapper = styled.div`
+    width: 100%;
+    height: 700px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: hidden;
+
+    .heading{
+        position: absolute;
+        top: 10%;
+        left: 10%;
+        color: ${({theme}) => theme.color.secondary};
+        font-family: Poppins;
+        font-weight: 600;
+    }
+`
+export const BackgroundImage = styled.img`
+    width: 100%;
+    overflow-y: hidden;
+    overflow-x: hidden;
+
+`
+
+export const FormsWrapper = styled.div`
+    width: 80%;
+    height: 350px;
+    background: white;
+    position: absolute;
+    top: 20%;
+    border-radius: 5px;
+    padding: 10px;
+`
+export const Wrapper = styled(RightSideContentWrapper)`
+    overflow-y : hidden;
 `
 
 

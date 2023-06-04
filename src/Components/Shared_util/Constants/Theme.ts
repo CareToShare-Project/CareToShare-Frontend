@@ -1,14 +1,14 @@
 export const theme = {
     background: {
-      primary: '#3A1078',
+      primary: '#56C0C8',
       secondary: '#DAF5FF',
-      main: 'rgb(40, 44, 52, 0.7)'
+      main: '#4f646f'
     },
     color: {
-      primary: 'white',
-      secondary: '#131d20',
-      hover: '#4E31AA',
-      hover2 : '#16e6fd',
+      primary: '#4f646f',
+      secondary: 'white',
+      hover: '#DAF5FF',
+      hover2 : '#46bbc3',
       border: 'rgb(40, 44, 52, 0.7)'
     },
     fontSizes : {

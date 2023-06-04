@@ -26,13 +26,13 @@ const NavBar: React.FC<NavBarProp> = ({username, userType}) =>{
 
     return (
         <NavBarWrapper>
-            <span>Donor</span>
+            <span>{userType}</span>
             <ProfileContainer>
-                <span style={{'display' : 'flex' , 'alignItems' : 'center'}}>
-                    <FaUserCircle size={40} className='profile'/>
+                <div style={{'display' : 'flex' , 'alignItems' : 'center'}}>
+                    <FaUserCircle size={25} className='profile'/>
                     <span>{username}</span>
-                </span>
-                <MdNotificationsNone size={25} className='notification'/>
+                </div>
+                <MdNotificationsNone size={20} className='notification'/>
             </ProfileContainer>
         </NavBarWrapper>
     )

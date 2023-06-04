@@ -64,7 +64,7 @@ const SideBar: React.FC<SideBarProps> = ({features}) => {
                                 >
                                         <feature.icon 
                                             className="icon" 
-                                            id={feature.title.includes('Progress')? 'rotate' : ''} size={22}/>
+                                            id={feature.title.includes('Progress')? 'rotate' : ''} size={16}/>
                                         <span className="title">{feature.title}</span>
                                 </li>
                             )

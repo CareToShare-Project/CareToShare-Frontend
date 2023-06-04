@@ -23,6 +23,7 @@ export const CreateAccountWrapper = styled(RegistrationContainer)`
 export const CreateAccountInputField = styled(InputField)`
     width: 350px;
     height: 30px;
+    color: white;
 `
 export const CreateAccountFieldWrapper = styled.div`
     display: flex;
