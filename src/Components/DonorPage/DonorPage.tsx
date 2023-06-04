@@ -2,25 +2,25 @@ import React from 'react'
 import { useParams } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import SideBar from '../Shared_util/SideBar/SideBar';
-import { MainPageContainer, RightSideContent } from './DonorStyles';
+import { DonorPageContainer, MainPageContainer, RightSideContent } from './DonorStyles';
 import { donorFeatures} from '../Shared_util/Constants/SideBarFeatures';
+import NavBar from '../Shared_util/NavBar';
 
 function DonorPage(){
     const {username} = useParams();
     
-
-   
-
     return (
-        <MainPageContainer>
-            <SideBar 
-                username={username} 
+        <DonorPageContainer>  
+            <SideBar  
                 features={donorFeatures} 
                 />
-            <RightSideContent>
-                <Outlet />
-            </RightSideContent>        
-        </MainPageContainer>
+            <MainPageContainer>
+                    <NavBar userType='Donor' username={username}/>
+                    <RightSideContent>
+                        <Outlet />
+                    </RightSideContent>        
+            </MainPageContainer>
+        </DonorPageContainer>
     )
 }
 

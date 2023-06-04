@@ -1,21 +1,17 @@
 import React, { useState } from 'react'
 import RequestCard from './RequestCard';
-import { RefreshWrapper, RightSideContentWrapper, ViewFoundationContainer } from './DonorStyles';
+import { RightSideContentWrapper, ViewFoundationContainer } from './DonorStyles';
 import SearchBar from '../Shared_util/SearchBar/SearchBar';
 import { NoOrganisationContainer as NoRequestContainer } from './DonorStyles';
-import { MdRefresh } from 'react-icons/md';
+
 
 function ViewRequests (){
     const [query, setQuery] = useState("")
-    const [requests, setRequests] = useState<any>()
+    const [requests, setRequests] = useState<any>("sdfg")
+    const [refresh, setRefresh] = useState<string>("")
     return (
         <RightSideContentWrapper>
-            <SearchBar query={query} setQuery={setQuery}/>
-            <RefreshWrapper>
-                <span>Refresh</span>
-                <MdRefresh size={25}/>
-            </RefreshWrapper>
-            <hr></hr>
+            <SearchBar query={query} setQuery={setQuery} setRefresh={setRefresh}/>
             {requests && <ViewFoundationContainer>
                             <RequestCard />
                             <RequestCard />

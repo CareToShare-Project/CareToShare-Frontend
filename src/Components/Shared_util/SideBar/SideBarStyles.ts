@@ -22,6 +22,8 @@ const slideIn = keyframes`
 export const SideBarContainer = styled.div`
     flex: 1;
     height: 100vh;
+    z-index: 100;
+    border-right: 1px solid white;
 
     .show{
         @media (max-width: 650px){
@@ -34,7 +36,7 @@ export const SideBarContainer = styled.div`
     }
 
     .menu-bar{
-        background:${({theme})=> theme.background.primary};
+        font-size: 30px;
         @media (max-width: 413px){
         
         }
@@ -42,14 +44,20 @@ export const SideBarContainer = styled.div`
 
 `
 export const SideBarWrapper = styled.div`
-    width: 270px;
-    min-width: 270px;
+    width: 230px;
+    min-width: 230px;
     position: relative;
     z-index: 1;
     height: 100vh;
+    padding: 15px 0px;
     background: ${({theme})=> theme.background.primary};
     overflow-y: scroll;
     overflow-x: hidden;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
 
     @media (max-width: 650px){
         display: none;
@@ -60,22 +68,20 @@ export const SideBarWrapper = styled.div`
 export const MenuBar = styled.div`
     position: fixed;
     left: 0;
-    top: 0;
+    top: 10px;
     display: none;
     z-index: 2;
     margin-right: 30px;
+    background: transparent;
     font-size: 27px;
     cursor: pointer;
     color: white;
-    background:${({theme})=> theme.background.primary} ;
-    height: 100vh;
     width: 40px;
     text-align: center;
 
     @media (max-width: 650px){
         display: block;
         margin-right: 60px;
-        background: transparent;
         z-index: 5;
     }
     
@@ -83,22 +89,39 @@ export const MenuBar = styled.div`
 `
 
 export const ProfileContainer = styled.div`
-    width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
+
+    .notification{
+        cursor: pointer;
+    }
+    span{
+        gap: 2px;
+        .profile{
+            cursor: pointer;    
+        }
+    }
+  
 
     div{
         color: white;
         font-size: ${({theme})=> theme.fontSizes.small};
         font-family: Inter;
-        span{
-            font-family: Roboto;
-            margin-left: 5px;
-            color: ${({theme})=> theme.background.secondary};
-        }
     }
+`
+
+export const Title = styled.header`
+    color: white;
+    font-family: Poppins;
+    text-align: center;
+    font-size: 22px;    
+    font-weight: 600;
+    letter-spacing: 4px;
+    position: absolute;
+    top: 25px;
+    left: 8px;  
 `
 
 export const EditProfileButton = styled(ConfirmButton)`
@@ -114,26 +137,20 @@ export const EditProfileButton = styled(ConfirmButton)`
 export const LogoutWrapper = styled(EditProfileButton)`
     width: 100px;
     height: 30px;
-    font-size: 15px;
+    font-size: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: absolute;
+    bottom: 20px;  
+    left: 25%;
     &:hover{
         width: 100px;
-        color: red;
+        color: white;
     }
 `
 
-export const ProfileImage = styled.div`
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid ${({theme})=> theme.color.hover};
-    height: 100px;
-    width: 100px;
-    border-radius: 50%;
-`
+
 export const Pic = styled.img`
     height: 100px;
     width: 100px;
@@ -143,9 +160,10 @@ export const Pic = styled.img`
 export const FeaturesWrapper = styled.ul`
     width: 100%;
     color: white;
-    gap: 5px;
+    gap: 2px;
     display: grid;
-    margin-top: 30px;
+    position: absolute;
+    top: 20%;   
 
 
     #active{
@@ -156,14 +174,15 @@ export const FeaturesWrapper = styled.ul`
     }
     .feature{
         list-style-type: none;
-        width: 262px;
+        width: 235px;
         height: 50px;
         display: flex;
-        margin-left: -30px;
+        margin-left: -40px;
         flex-direction: row;
         align-items: center;
         justify-content: center;
         font-family: Poppins;
+        font-size: 12px;
         cursor: pointer;
         transition: all 500ms ease-in-out;
 
@@ -178,7 +197,7 @@ export const FeaturesWrapper = styled.ul`
 
         .title{
             flex: 70%;
-            font-size: 17px;
+            font-size: 14px;
             font-weight: 500;
         }
         &:hover{

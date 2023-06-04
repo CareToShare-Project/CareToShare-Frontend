@@ -22,7 +22,6 @@ export interface SideBarFeaturesProp {
 }
 
 export interface SideBarProps {
-    username: string | undefined,
     features : Feature[],
 }
 
@@ -55,5 +54,11 @@ export interface organisationCardProp {
 
 export interface queryProp {
     query : string,
-    setQuery : React.Dispatch<React.SetStateAction<string>>
+    setQuery : React.Dispatch<React.SetStateAction<string>>,
+    setRefresh : React.Dispatch<React.SetStateAction<string>>
+}
+
+export interface NavBarProp {
+    username : string| undefined,
+    userType : string
 }

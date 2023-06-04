@@ -3,14 +3,14 @@ import {useParams} from 'react-router-dom'
 import { Outlet } from 'react-router-dom'
 import SideBar from '../Shared_util/SideBar/SideBar'
 import { adminFeatures} from '../Shared_util/Constants/SideBarFeatures'
-import { MainPageContainer, RightSideContent } from '../DonorPage/DonorStyles'
+import { MainPageContainer, RightSideContent, DonorPageContainer as CharityPageContainer} from '../DonorPage/DonorStyles'
 
 function AdminPage(){
     const {username} = useParams()
     return (
-        <MainPageContainer>
-            <SideBar 
-                username={username} 
+        <CharityPageContainer>
+            <MainPageContainer>
+            <SideBar  
                 features={adminFeatures} 
             />
             <RightSideContent>
@@ -18,6 +18,8 @@ function AdminPage(){
             </RightSideContent>
             
         </MainPageContainer>
+        </CharityPageContainer>
+        
     )
 }
 

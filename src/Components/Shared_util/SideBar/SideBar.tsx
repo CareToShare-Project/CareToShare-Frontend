@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
-import { ProfileContainer, ProfileImage, SideBarWrapper, 
-        FeaturesWrapper, EditProfileButton, LogoutWrapper ,
-        MenuBar, SideBarContainer, Pic} from "./SideBarStyles";
+import {  SideBarWrapper, 
+        FeaturesWrapper,  LogoutWrapper ,
+        MenuBar, SideBarContainer, Title} from "./SideBarStyles";
 import { SideBarProps } from "../Constants/Types";
 import { FaUserCircle, FaTimes} from "react-icons/fa";
 import {GiExitDoor} from "react-icons/gi"
@@ -10,11 +10,10 @@ import { useNavigate } from "react-router-dom";
 
 
 
-const SideBar: React.FC<SideBarProps> = ({username, features}) => {
+const SideBar: React.FC<SideBarProps> = ({features}) => {
     
     const [currentPage, setCurrentPage] = useState<string>()
     const [hideSideBar, setHideSideBar] = useState<boolean>(true)
-    const [profilePhoto, setProfilePhoto] = useState('')
     const navigate = useNavigate();
     
 
@@ -38,22 +37,12 @@ const SideBar: React.FC<SideBarProps> = ({username, features}) => {
 
     useEffect(()=>{
         const pageData = sessionStorage.getItem('page')
-        const photoData = sessionStorage.getItem('profilePhoto')
         const page = pageData && JSON.parse(pageData);
-        const photo = photoData && JSON.parse(photoData);
-        console.log(photo)
             if(!page){
                 setCurrentPage('')
             }else{
                 setCurrentPage(page)
             }
-            if(!photo){
-                setProfilePhoto('')
-            }
-            else{
-                setProfilePhoto(photo)
-            }  
-    
     }, [])
 
  
@@ -61,21 +50,10 @@ const SideBar: React.FC<SideBarProps> = ({username, features}) => {
     return (
         <SideBarContainer>
             <MenuBar className={hideSideBar?'menu-bar': ''} onClick={()=>handleShowSideBar()}>
-                    {hideSideBar ? <MdOutlineMenu /> : <FaTimes />}
+                    {hideSideBar ? <MdOutlineMenu /> : ''}
             </MenuBar>
             <SideBarWrapper className={hideSideBar?'hide': 'show'}>
-                <ProfileContainer>
-                    <ProfileImage> 
-                        {profilePhoto ? <Pic src={profilePhoto} /> : <FaUserCircle size={90} />}
-                    </ProfileImage>
-                    <div>Welcome <span>{username}</span></div>
-                    <EditProfileButton onClick={()=> handlePageNavigation('editProfile')}>
-                        Edit Profile
-                    </EditProfileButton>
-                </ProfileContainer>
-
-                <hr style={{color: 'white', height: '3px', background: 'white'}}></hr>
-
+                <Title>CareToShare</Title>
                 <FeaturesWrapper>
                         {features.map((feature, key)=>{
                             return (

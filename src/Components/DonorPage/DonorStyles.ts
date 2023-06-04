@@ -116,14 +116,39 @@ export const ConfirmButton = styled.button`
     }
 `
 // main page styles
-export const MainPageContainer = styled.div`
+export const DonorPageContainer = styled.div`
     width: 100vw;
     height: 100vh;
     display: flex;
-    background: ${({theme})=> theme.background.secondary};
+`
+
+export const NavBarWrapper = styled.div`
+    position: relative;
+    height: 70px;
+    width: 100% ;
+    background: ${({theme})=> theme.background.primary};
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    z-index: 10;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 0px 40px;
+    justify-content: space-between;
+
+    span{
+        font-size: 20px;
+    }
+    @media (max-width: 930px){
+        display: 100vw;
+    }
+
     
-
-
+`
+export const MainPageContainer = styled.div`
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    background: ${({theme})=> theme.background.secondary};
 `
 
 export const RightSideContent = styled.div`
@@ -296,22 +321,14 @@ export const NoOrganisationContainer = styled.div`
 `
 
 export const RefreshWrapper = styled.div`
-    position: fixed;
-    right: 100px;
-    top: 20px;
-    display: flex;
-    align-items: center;
     color: ${({theme})=> theme.background.primary};
     cursor: pointer;
-    @media (max-width: 1025px){
-             right: 15px;
-        }
     @media (max-width: 930px){
-             right: 25px;
+            
         }
 
     &:hover{
-        color: ${({theme})=> theme.color.hover2};
+        color: rgba(0,0,0,0.6)
     }
 
     span{
@@ -329,13 +346,13 @@ export const DonationFormContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    padding: 30px 0px;
 
 `
 
 export const DonationForms = styled.form`
     width: 400px;
-    height: 500px;
+    height: 450px;
     overflow-y: scroll;
     box-shadow: 0px  5px 10px rgba(0,0,0,0.5);
     border-radius: 10px;
@@ -447,13 +464,13 @@ export const UpdateDonationInputLabel = styled(InputLabel)`
 // Send reviews styles
 
 export const ReviewContainer = styled.div`
-    width: 100%;
+    width: 80%;
     display: flex;
+    /* height: 90vh; */
     flex-direction: column;
     align-items: center;
-    gap: 20px;
-    padding: 20px 20px;
-    margin-bottom: 20px;
+    padding-bottom: 30px;
+
 
 `
 
@@ -461,7 +478,8 @@ export const MessageWrapper = styled.div`
     display: flex;
     flex-direction: column;
     width: 80%;
-    gap: 10px;
+    gap: 5px;
+
 
     h4{
         text-align: center;
@@ -472,11 +490,14 @@ export const MessageWrapper = styled.div`
         font-weight: 600;
         font-size: 15px;
     }
+    @media (max-width: 930px){
+        width: 100%;
+    }
 `
 
 export const ReviewFormWrapper = styled.form`
-    width: 50%;
-    height: 100%;
+    width: 80%;
+    height: 70%;
     background: white;
     display: flex;
     flex-direction:column;
@@ -484,10 +505,10 @@ export const ReviewFormWrapper = styled.form`
     align-items: center;
     justify-content: center;
     border-radius: 5px;
-    box-shadow: 0px 0px 15px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.5);
     gap: 15px;
     @media (max-width: 930px){
-        width: 80%;
+        width: 100%;
     }
 
    
@@ -498,7 +519,7 @@ export const ReviewFormWrapper = styled.form`
 export const ReviewFieldsWrapper = styled(FieldWrapper)`
 
     textarea{
-        height: 300px;
+        height: 150px;
         border: 2px solid ${({theme}) => theme.background.primary};
         outline: 0;
         text-indent: 20px;

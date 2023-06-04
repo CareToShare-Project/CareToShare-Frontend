@@ -1,9 +1,12 @@
 import React from "react"
 import { SearchBarContainer, SearchBox } from "./SearchBarStyles"
-import {MdSearch} from "react-icons/md"
+import {MdRefresh, MdSearch} from "react-icons/md"
 import { queryProp } from "../Constants/Types"
+import { RefreshWrapper } from "../../DonorPage/DonorStyles"
+import {v4} from "uuid"
 
-const SearchBar: React.FC<queryProp> = ({query, setQuery}) => {
+const SearchBar: React.FC<queryProp> = ({query, setQuery, setRefresh}) => {
+
     return(
         <SearchBarContainer>
             <SearchBox>
@@ -15,6 +18,9 @@ const SearchBar: React.FC<queryProp> = ({query, setQuery}) => {
                     className="search-btn"/>
                 <MdSearch className="search-icon"/>
             </SearchBox>
+            <RefreshWrapper onClick={()=>setRefresh(v4())}>
+                <MdRefresh size={30}/>
+            </RefreshWrapper>
         </SearchBarContainer>
     )
 }

@@ -10,7 +10,6 @@ function CharityPage(){
     return (
         <MainPageContainer>
             <SideBar 
-                username={username} 
                 features={charityFeatures} 
             />
             <RightSideContent>

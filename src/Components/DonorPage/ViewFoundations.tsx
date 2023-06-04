@@ -1,21 +1,17 @@
 import React, {useEffect, useState} from 'react'
 import CharityCard from './CharityCard'
-import { ViewFoundationContainer, RightSideContentWrapper, NoOrganisationContainer, RefreshWrapper} from './DonorStyles'
+import { ViewFoundationContainer, RightSideContentWrapper, NoOrganisationContainer} from './DonorStyles'
 import SearchBar from '../Shared_util/SearchBar/SearchBar'
-import {MdRefresh} from "react-icons/md"
 import { BASE_URL } from '../Shared_util/Constants/Base_URL'
 import { organisationCardProp } from '../Shared_util/Constants/Types'
-import {v4} from "uuid"
+
 
 function ViewFoundations(){
     const [organisations, setOrganisations] = useState<any>()
     const [refresh, setRefresh] = useState("")
     const [query, setQuery] = useState("")
 
-    // handles page refresh and fetches data from the backend on every refresh
-    const refreshPage = () =>{
-        setRefresh(v4())
-    }
+    
 
     // a function to fetch all available organisations from the backend
     const getAllOrganisations = async() => {
@@ -55,12 +51,7 @@ function ViewFoundations(){
 
     return(
         <RightSideContentWrapper>
-            <SearchBar query={query} setQuery={setQuery}/>
-            <RefreshWrapper onClick={refreshPage}>
-                <span>Refresh</span>
-                <MdRefresh size={25}/>
-            </RefreshWrapper>
-            <hr></hr>
+            <SearchBar query={query} setQuery={setQuery} setRefresh={setRefresh}/>
             {organisations && <ViewFoundationContainer>
                                     {organisations
                                         .filter((item: { organisationName : string ; location : string})=> {
