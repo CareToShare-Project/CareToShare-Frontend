@@ -60,8 +60,8 @@ export const AppTitleWrapper = styled.header`
 
     .about{
         font-size : 14px;
-        font-weight: 600;
-        color: ${({theme})=> theme.color.secondary};
+        font-weight: 800;
+        color: ${({theme})=> theme.color.primary};
     }
 `
 export const ItemWrapper = styled.div`

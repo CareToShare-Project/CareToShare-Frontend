@@ -667,6 +667,7 @@ export const UpdateBtn = styled(ConfirmButton)`
     padding: 5px;
     border-radius: 5px;
     margin-left: 12px;
+
 `
 
 

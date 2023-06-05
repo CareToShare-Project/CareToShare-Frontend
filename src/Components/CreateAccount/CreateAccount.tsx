@@ -25,16 +25,15 @@ function CreateAccount() {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-        if(emailRef && usernameRef && passwordRef && passwordConfirmRef && roleRef) {
-                const userDetails = {
-                        email : emailRef.current.value,
-                        username : usernameRef.current.value,
-                        password : passwordRef.current.value,
-                        passwordConfirm : passwordConfirmRef.current.value,
-                        role : roleRef.current.value
-                    }
-                
-                //console.log(userDetails)
+            const userDetails = {
+                email : emailRef.current.value,
+                username : usernameRef.current.value,
+                password : passwordRef.current.value,
+                passwordConfirm : passwordConfirmRef.current.value,
+                role : roleRef.current.value
+            }
+       
+            //console.log(userDetails)
             const response = await fetch(`${BASE_URL}/signUp`,{
                 method : 'POST',
                 headers : {'content-type':'application/json'},
@@ -49,7 +48,6 @@ function CreateAccount() {
                 navigate(`${user.role}/${user.username}`)
             }
                 
-        }
         }catch(err){
             console.log(err)
         }          

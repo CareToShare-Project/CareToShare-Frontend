@@ -44,7 +44,7 @@ function CharityRegistrationPage() {
                             Set up profile
                         </RegistrationHeader>
                         <FieldWrapper>
-                            <InputLabel htmlFor='organization'>Name of Organization</InputLabel>
+                            <InputLabel htmlFor='organization'>Name of Organisation</InputLabel>
                             <InputField type='text' id='organization'  required/>
                         </FieldWrapper>
                         <FieldWrapper>

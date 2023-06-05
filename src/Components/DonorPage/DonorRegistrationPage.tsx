@@ -31,14 +31,16 @@ function DonorRegistrationPage(){
         try {
             const message = uploadFileToStorageBucket(imageUpload, setImageUrl, "profile-photos")
             console.log(message)
-            if(firstNameRef && lastNameRef && contactRef && locationRef && imageUrl) {
-                    const userDetails = {
-                        firstName : firstNameRef.current.value,
-                        lastName : lastNameRef.current.value,
-                        contact : contactRef.current.value,
-                        location : locationRef.current.value,
-                        photo : imageUrl
-                        }
+
+            const userDetails = {
+                firstName : firstNameRef.current.value,
+                lastName : lastNameRef.current.value,
+                contact : contactRef.current.value,
+                location : locationRef.current.value,
+                photo : imageUrl
+                }
+            
+                   
  
             //console.log(userDetails)
             const response = await fetch(`${BASE_URL}/donors/${username}`,{
@@ -58,8 +60,7 @@ function DonorRegistrationPage(){
             }else{
                 console.log('an error occured')
             }
-                
-        }
+            
         }catch(err){
             console.log(err)
         }          

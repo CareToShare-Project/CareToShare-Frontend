@@ -20,7 +20,7 @@ export const PageNotFoundContainer = styled.div`
         position: absolute;
         bottom: 30px;
         cursor: pointer;
-        color: ${({theme})=> theme.color.hover};
+        color: ${({theme})=> theme.color.primary};
         font-weight: 500;
 
         &:hover{
