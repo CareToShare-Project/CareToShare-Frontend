@@ -149,6 +149,7 @@ export const LogoutWrapper = styled(EditProfileButton)`
     &:hover{
         width: 100px;
         color: white;
+        border: 1px solid white;
     }
 `
 

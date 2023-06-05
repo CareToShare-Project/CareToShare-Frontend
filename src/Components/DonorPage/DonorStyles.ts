@@ -35,7 +35,6 @@ export const RegistrationContainer = styled.div`
 `
 
 export const RegistrationHeader = styled.header`
-    color: black;
     font-size: ${({theme})=> theme.fontSizes.medium};
     font-family: Roboto;
     font-weight: 900;
@@ -600,12 +599,74 @@ export const FormsWrapper = styled.div`
     height: 350px;
     background: white;
     position: absolute;
+    display: flex;
     top: 20%;
     border-radius: 5px;
-    padding: 10px;
 `
 export const Wrapper = styled(RightSideContentWrapper)`
     overflow-y : hidden;
+`
+
+export const RightPanel = styled.form`
+    width: 70%;
+    height: 100%;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+`
+
+export const LeftPanel = styled.div`
+    width: 30%;
+    height: 100%;
+    border: 2px solid white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    background: ${({theme}) => theme.color.hover};
+
+    span{
+        color : ${({theme}) => theme.color.primary};
+        font-size : 18px;
+    }
+`
+
+export const EditProfileHeading = styled(RegistrationHeader)`
+    color: ${({theme}) => theme.background.primary};
+    text-align: left;
+    padding: 0px;
+    margin-bottom: -10px;
+    font-size : 20px;
+`
+
+export const Row = styled.div`
+    width: 100%;
+    display: flex;
+    gap: 2px;
+`
+
+export const FieldContainer = styled(FieldWrapper)`
+    width: 50%;
+`
+
+export const Label = styled(InputLabel)`
+    color: ${({theme}) => theme.color.primary}
+`
+
+export const Field = styled(InputField)`
+    color: ${({theme}) => theme.color.primary};
+    border: 2px solid ${({theme}) => theme.color.primary};
+    height: 28px;
+`
+
+export const UpdateBtn = styled(ConfirmButton)`
+    width: 20%;
+    font-size: 13px;
+    padding: 5px;
+    border-radius: 5px;
+    margin-left: 12px;
 `
 
 

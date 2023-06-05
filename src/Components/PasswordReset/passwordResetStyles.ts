@@ -134,7 +134,7 @@ export const EmailNotificationLeftSection = styled.div`
         flex-direction: column;
         
         .link{
-            color:  ${({theme})=> theme.color.hover};
+            color:  ${({theme})=> theme.color.primary};
             font-weight: 500;
             cursor: pointer;
             
