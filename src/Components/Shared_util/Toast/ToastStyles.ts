@@ -11,9 +11,10 @@ export const LoginToastWrapper = styled.div`
         height: max-content;    
         top: 0;
         font-family: Poppins;
-        color: ${({theme})=> theme.background.primary};
-        font-weight: 600; 
-        font-size: 16px;
+        color: ${({theme})=> theme.color.primary};
+        font-weight: 800; 
+        font-size: 18px;
+        letter-spacing: 1.2px;
 
         .toast-body{
             display: flex;

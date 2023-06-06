@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react'
 import CharityCard from './CharityCard'
 import { ViewFoundationContainer, RightSideContentWrapper, NoOrganisationContainer} from './DonorStyles'
 import SearchBar from '../Shared_util/SearchBar/SearchBar'
-import { BASE_URL } from '../Shared_util/Constants/Base_URL'
 import { organisationCardProp } from '../Shared_util/Constants/Types'
+import { getAllOrganisations } from '../Shared_util/Constants/Functions'
 
 
 function ViewFoundations(){
@@ -11,27 +11,8 @@ function ViewFoundations(){
     const [refresh, setRefresh] = useState("")
     const [query, setQuery] = useState("")
 
+
     
-
-    // fetches all available organisations from the backend
-    const getAllOrganisations = async() => {
-        try{
-            const response = await fetch(`${BASE_URL}/organisations`,{
-                method : 'GET',
-                headers : {'content-type':'application/json'},
-            })
-
-            const results = await response.json();
-            const organisation = results.data
-                if(results.status === "success"){
-                    setOrganisations(organisation)
-                    sessionStorage.setItem('organisations', JSON.stringify(organisation))
-                }
-            }catch(error){
-            console.log(error)
-        }
-    }
-
     // gets all organisations on page load
     useEffect(()=>{
         const results = sessionStorage.getItem('organisations')
@@ -39,13 +20,14 @@ function ViewFoundations(){
             const availableOrganisations = JSON.parse(results);
             setOrganisations(availableOrganisations)
         }else{
-            getAllOrganisations();
+            getAllOrganisations(setOrganisations);
         }
         
     }, [])
 
+    // fetch organisations on refresh
     useEffect(()=>{
-        getAllOrganisations()
+        getAllOrganisations(setOrganisations)
     }, [refresh])
 
     return(

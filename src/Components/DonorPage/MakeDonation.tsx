@@ -10,6 +10,7 @@ import { BASE_URL } from "../Shared_util/Constants/Base_URL"
 import {v4} from "uuid"
 import { uploadImage, uploadFileToStorageBucket } from "../Shared_util/Constants/Functions";
 import { useParams } from "react-router-dom"
+import { getAllOrganisations } from "../Shared_util/Constants/Functions"
 
 function MakeDonation() {
     const organisationRef: any = useRef('');
@@ -20,11 +21,14 @@ function MakeDonation() {
     const [imageUrl, setImageUrl] = useState("")
 
     const {username} = useParams()
-    console.log(username)
+    
+    const [organisations, setOrganisations] = useState<any>([])
 
     const handleDonationType = (e : React.ChangeEvent<HTMLSelectElement>) => {
         setDonationType(e.target.value);
     }
+
+
 
     const handleDonation = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -63,8 +67,15 @@ function MakeDonation() {
 
     }
 
+    // gets all organisations on page load
     useEffect(()=>{
-        console.log("make donation page rendered")
+        const results = sessionStorage.getItem('organisations')
+        if(results !== null) {
+            const availableOrganisations = JSON.parse(results);
+            setOrganisations(availableOrganisations)
+        }else{
+            getAllOrganisations(setOrganisations);
+        }
     },[])
     
 
@@ -92,10 +103,11 @@ function MakeDonation() {
                         <DonationInputLabel>Donate To</DonationInputLabel>
                         <select className="ui search dropdown" ref={organisationRef}>
                             <option value="">Organisation</option>
-                            <option value="AL">Ghana Aid Foundation</option>
-                            <option value="AK">Bosaata</option>
-                            <option value="AZ">Zuba group of companies</option>
-                            <option value="AR">Zabrogaski</option>
+                            {organisations.map((organisation: any) => {
+                                return <option value={organisation.organisationName}>
+                                            {organisation.organisationName}
+                                        </option>
+                            })}
                         </select>
                     </FieldWrapper >
                     <FieldWrapper className="field">

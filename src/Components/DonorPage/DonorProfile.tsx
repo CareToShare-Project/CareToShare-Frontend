@@ -6,11 +6,18 @@ import bg from "../HomePage/images/backgroundImage.jpg"
 import { FaUserCircle } from "react-icons/fa"
 import { useParams } from "react-router-dom"
 import { BASE_URL } from "../Shared_util/Constants/Base_URL"
+import LoginToast from "../Shared_util/Toast/LoginToast"
 
 
 function DonorProfile(){
     const {username} = useParams();
     const [imageUrl, setImageUrl] = useState("")
+
+    // state to show or hide toast
+    const [showToast, setShowToast] = useState(false)
+
+    // state to set toast message 
+    const [toastMessage, setToastMessage] = useState('')
 
     const firstNameRef = useRef<any>()
     const lastNameRef = useRef<any>()
@@ -46,9 +53,36 @@ function DonorProfile(){
         }
     }
 
+    const UpdateUserProfile = async(e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        try{
+            const user = {
+                firstName : firstNameRef.current.value,
+                lastName : lastNameRef.current.value,
+                email : emailRef.current.value,
+                location: locationRef.current.value,
+                contact : phoneRef.current.value
+            }
+            const response = await fetch(`${BASE_URL}/donors/${username}`,{
+                method : 'PATCH',
+                headers : {'content-type':'application/json'},
+                body : JSON.stringify(user)
+            })
+
+            const results = await response.json()
+            if(results.status === "success"){
+                setToastMessage("You have successfully updated your profile")
+                setShowToast(true)
+            }
+
+        }catch(error){
+            console.log(error)
+        }
+    }
+
     useEffect(()=>{
         fetchUserDetails()
-    },[])
+    })
     
 
     return(
@@ -61,7 +95,7 @@ function DonorProfile(){
                         {imageUrl ? <ProfilePhotoWrapper /> : <FaUserCircle size={100} /> }
                         <span>{username}</span>
                     </LeftPanel>
-                    <RightPanel>
+                    <RightPanel onSubmit={UpdateUserProfile}>
                         <EditProfileHeading>Account Settings</EditProfileHeading>
                         <Row>
                            <FieldContainer>
@@ -88,13 +122,14 @@ function DonorProfile(){
                                 <Label htmlFor="location">Location</Label>
                                 <Field type="text" id="location" ref={locationRef}/>
                            </FieldContainer>
-                           <FieldContainer>
-                                <Label htmlFor="profile">Change Profile Photo</Label>
-                                <ImageField type="file" id="profile" ref={locationRef}/>
-                           </FieldContainer> 
                         </Row>
                         <UpdateBtn>Update</UpdateBtn>
                     </RightPanel>
+                    <LoginToast  
+                            showToast={showToast} 
+                            setShowToast={setShowToast} 
+                            toastMessage={toastMessage}
+                        />   
                 </FormsWrapper>
             </EditProfileWrapper>
         </Wrapper>

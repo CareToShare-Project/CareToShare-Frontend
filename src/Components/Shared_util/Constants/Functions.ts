@@ -1,6 +1,7 @@
 import { storage } from "./FireBase";
 import {ref, uploadBytes, getDownloadURL} from "firebase/storage"
 import {v4} from "uuid"
+import { BASE_URL } from "./Base_URL";
 
 // handles file upload 
 export const uploadImage = (e : React.ChangeEvent<HTMLInputElement>, setImageUpload : React.Dispatch<any>) => {
@@ -25,6 +26,25 @@ export const uploadFileToStorageBucket = (imageUpload : any, setImageUrl : React
     }
 
 
+}
+
+ // fetch all available organisations
+ export const getAllOrganisations = async(setOrganisations : React.Dispatch<any>) => {
+    try{
+        const response = await fetch(`${BASE_URL}/organisations`,{
+            method : 'GET',
+            headers : {'content-type':'application/json'},
+        })
+
+        const results = await response.json();
+        const organisation = results.data
+            if(results.status === "success"){
+                setOrganisations(organisation)
+                sessionStorage.setItem('organisations', JSON.stringify(organisation))
+            }
+        }catch(error){
+        console.log(error)
+    }
 }
 
 export {}

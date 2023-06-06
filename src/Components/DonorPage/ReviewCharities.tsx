@@ -1,7 +1,8 @@
-import React, {useRef, useState} from "react"
+import React, {useEffect, useRef, useState} from "react"
 import { MessageWrapper, ReviewButton, ReviewContainer, ReviewFieldsWrapper, ReviewFormWrapper } from "./DonorStyles"
 import LoginToast from "../Shared_util/Toast/LoginToast"
 import { DonationFormContainer as ReviewWrapper } from "./DonorStyles"
+import { getAllOrganisations } from "../Shared_util/Constants/Functions"
 //import 'semantic-ui-css/semantic.min.css';
 
 
@@ -14,8 +15,13 @@ function ReviewCharities() {
     // state to set toast message 
     const [toastMessage, setToastMessage] = useState('')
 
+    const [organisations, setOrganisations] = useState<any>([])
+
     const reviewRef = useRef<any>()
     const organisationRef = useRef<any>()
+
+    
+    
 
     const submitReview = (e : React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -25,6 +31,17 @@ function ReviewCharities() {
         setToastMessage("Thank you for being an essential part of our donation app community!")
         setShowToast(true)
     }
+
+    // gets all organisations on page load
+    useEffect(()=>{
+        const results = sessionStorage.getItem('organisations')
+        if(results !== null) {
+            const availableOrganisations = JSON.parse(results);
+            setOrganisations(availableOrganisations)
+        }else{
+            getAllOrganisations(setOrganisations);
+        }
+    },[])
 
     return(
         <ReviewWrapper>
@@ -52,10 +69,11 @@ function ReviewCharities() {
                         <label htmlFor="organisations">Choose an organisation</label>
                         <select className="ui search dropdown" id="organisations" ref={organisationRef}>
                             <option value="">Organisation</option>
-                            <option value="AL">Ghana Aid Foundation</option>
-                            <option value="AK">Bosaata</option>
-                            <option value="AZ">Zuba group of companies</option>
-                            <option value="AR">Zabrogaski</option>
+                            {organisations.map((organisation: any) => {
+                                return <option value={organisation.organisationName}>
+                                            {organisation.organisationName}
+                                        </option>
+                            })}
                         </select>
                     </ReviewFieldsWrapper>
                     <ReviewFieldsWrapper>
