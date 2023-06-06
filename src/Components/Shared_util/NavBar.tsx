@@ -14,7 +14,6 @@ const NavBar: React.FC<NavBarProp> = ({username, userType}) =>{
         const photoData = sessionStorage.getItem('profilePhoto')
         const page = pageData && JSON.parse(pageData);
         const photo = photoData && JSON.parse(photoData);
-        console.log(photo)
             if(!photo){
                 setProfilePhoto('')
             }

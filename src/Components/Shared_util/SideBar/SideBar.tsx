@@ -3,7 +3,6 @@ import {  SideBarWrapper,
         FeaturesWrapper,  LogoutWrapper ,
         MenuBar, SideBarContainer, Title} from "./SideBarStyles";
 import { SideBarProps } from "../Constants/Types";
-import { FaUserCircle, FaTimes} from "react-icons/fa";
 import {GiExitDoor} from "react-icons/gi"
 import {MdOutlineMenu} from "react-icons/md"
 import { useNavigate } from "react-router-dom";

@@ -634,10 +634,12 @@ export const LeftPanel = styled.div`
     justify-content: center;
     padding: 15px;
     background: ${({theme}) => theme.color.hover};
+    position: relative;
 
     span{
         color : ${({theme}) => theme.color.primary};
         font-size : 18px;
+        font-weight: 700;
     }
 `
 
@@ -669,6 +671,12 @@ export const Field = styled(InputField)`
     height: 28px;
 `
 
+export const ProfilePhotoWrapper = styled.img`
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+`
+
 export const UpdateBtn = styled(ConfirmButton)`
     width: 20%;
     font-size: 13px;
@@ -676,6 +684,10 @@ export const UpdateBtn = styled(ConfirmButton)`
     border-radius: 5px;
     margin-left: 12px;
 
+`
+
+export const ImageField = styled(Field)`
+    height: 35px;
 `
 
 
