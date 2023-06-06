@@ -59,7 +59,7 @@ const PagesRoute = () => {
                 
                 {/* donor routes */}
                 <Route path='login/Donor/:username' element = {<DonorPage/>}>
-                    <Route path='' element={<h2>Home page</h2>}/>
+                    <Route path='' element={<h2>No Post Available</h2>}/>
                     <Route path='viewCharities' element={<ViewFoundations />}/>
                     <Route path='viewRequests' element = {<ViewRequests />}/>
                     <Route path='makeDonations' element = {<MakeDonation />} />

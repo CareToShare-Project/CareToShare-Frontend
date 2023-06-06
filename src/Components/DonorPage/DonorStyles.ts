@@ -172,7 +172,20 @@ export const RightSideContentWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 20px;
+    gap: 40px;
+
+    .requests{
+        background: white;
+        padding: 20px 30px;
+        width: 95%;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-bottom: 10px;
+        height: 420px;
+        box-shadow: 0px 0px  3px rgba(0,0,0,0.4);
+    }
 
     div{
         h5{
@@ -423,10 +436,16 @@ export const DonationInputField = styled(InputField)`
 
 // check donation progress styles
 export const TableWrapper = styled.div`
+    width: 100%;
     .table{
         .table-heading{
             font-family: Poppins;
             font-weight: 800;
+        }
+
+        .table-body{
+            font-size: 13px;
+            font-weight: 600;
         }
     }
   

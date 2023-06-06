@@ -5,7 +5,7 @@ export const SearchBarContainer = styled.div`
     display: flex;
     align-items: flex-end;
     gap: 2px;
-    justify-content: center;
+    justify-content: flex-end;
     padding: 0px 50px;
     
        
@@ -14,10 +14,9 @@ export const SearchBarContainer = styled.div`
 
 export const SearchBox = styled.div`
     display: flex;
-    width: 400px;
+    width: 300px;
     height: 30px;
     align-items: center;
-    justify-content: space-between;
     border: 2px solid ${({theme})=> theme.background.primary};
     border-radius: 10px;
     outline: 0px;

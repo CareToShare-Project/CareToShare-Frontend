@@ -5,6 +5,7 @@ import SearchBar from '../Shared_util/SearchBar/SearchBar';
 import { NoOrganisationContainer as NoRequestContainer } from './DonorStyles';
 import { BASE_URL } from '../Shared_util/Constants/Base_URL';
 import { RequestCardProp } from '../Shared_util/Constants/Types';
+import { useParams } from 'react-router-dom';
 
 
 function ViewRequests (){
@@ -12,6 +13,8 @@ function ViewRequests (){
     const [campaigns, setCampaigns] = useState<any>([])
     const [specificRequests, setSpecificRequest] = useState<any>([])
     const [refresh, setRefresh] = useState<string>("")
+
+    const {username} = useParams()
 
     // fetches all requests from the backend
     const getAllRequests = async() => {
@@ -23,7 +26,7 @@ function ViewRequests (){
 
             const results = await response.json();
             const campaignData = results.data.filter((item: { requestType: string; })=> item.requestType === "Campaign");
-            const specificRequestData = results.data.filter((item: { requestType: string; })=> item.requestType !== "Campaign");
+            const specificRequestData = results.data.filter((item: { requestTo: string; })=> item.requestTo === username);
             console.log(campaignData)
             console.log(specificRequestData)
                 if(results.status === "success"){
@@ -60,7 +63,7 @@ function ViewRequests (){
         <RightSideContentWrapper>
             <SearchBar query={query} setQuery={setQuery} setRefresh={setRefresh}/>
             {campaigns && 
-                <div>
+                <div className='requests'>
                     <h5>Campaigns</h5>
                     <ViewFoundationContainer>
                             {campaigns
@@ -75,7 +78,7 @@ function ViewRequests (){
                </div>
             }
             {specificRequests && 
-                <div>
+                <div className='requests'>
                     <h5>Your Donations</h5>
                     <ViewFoundationContainer>
                             {specificRequests
@@ -93,7 +96,7 @@ function ViewRequests (){
         
 
             {
-                !campaigns && <NoRequestContainer>
+                !campaigns && !specificRequests && <NoRequestContainer>
                                 <h4>No Request found</h4>
                             </NoRequestContainer>
             }

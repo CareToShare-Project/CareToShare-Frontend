@@ -47,4 +47,25 @@ export const uploadFileToStorageBucket = (imageUpload : any, setImageUrl : React
     }
 }
 
+// gets all donations from a user
+export const getUserDonations = async(setDonations : React.Dispatch<any>, donor : string | null |undefined) => {
+    try{
+        const response = await fetch(`${BASE_URL}/donations/${donor}/UserDonation`,{
+            method : 'GET',
+            headers : {'content-type':'application/json'},
+        })
+
+        const results = await response.json();
+        const donation = results.data
+        console.log(donation)
+            if(results.status === "success"){
+                setDonations(donation)
+                sessionStorage.setItem('userDonations', JSON.stringify(donation))
+            }
+        }catch(error){
+            console.log(error)
+        }
+}
+
+
 export {}
