@@ -40,9 +40,6 @@ function DonorRegistrationPage(){
                 photo : imageUrl
                 }
             
-                   
- 
-            //console.log(userDetails)
             const response = await fetch(`${BASE_URL}/donors/${username}`,{
                 method : 'PATCH',
                 headers : {

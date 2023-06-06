@@ -13,7 +13,7 @@ function ViewFoundations(){
 
     
 
-    // a function to fetch all available organisations from the backend
+    // fetches all available organisations from the backend
     const getAllOrganisations = async() => {
         try{
             const response = await fetch(`${BASE_URL}/organisations`,{
@@ -46,7 +46,6 @@ function ViewFoundations(){
 
     useEffect(()=>{
         getAllOrganisations()
-        console.log(refresh)
     }, [refresh])
 
     return(

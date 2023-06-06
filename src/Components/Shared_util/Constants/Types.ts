@@ -52,6 +52,15 @@ export interface organisationCardProp {
     }
 }
 
+export interface RequestCardProp {
+    details : {
+        requestType : string,
+        requestedBy : string,
+        description? : string,
+        requestId : string,
+    }
+}
+
 export interface queryProp {
     query : string,
     setQuery : React.Dispatch<React.SetStateAction<string>>,

@@ -168,10 +168,17 @@ export const RightSideContent = styled.div`
 `
 export const RightSideContentWrapper = styled.div`
     margin-bottom: 20px;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: 20px;
+
+    div{
+        h5{
+            color: ${({theme})=> theme.color.primary};
+        }
+    }
     @media (max-width: 930px){
         width: 100%;
 
@@ -184,7 +191,7 @@ export const ViewFoundationContainer = styled.div`
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-start;
     column-gap: 10px;
     row-gap: 30px;
     @media (max-width: 415px){
@@ -308,6 +315,7 @@ export const DonateButton = styled(ConfirmButton)`
     color: white;
     width: 90%;
     font-size: 14px;
+    margin: 0 auto;
     &:hover{
         border: 1px solid ${({theme})=> theme.color.primary};
         background: ${({theme})=> theme.background.primary};
