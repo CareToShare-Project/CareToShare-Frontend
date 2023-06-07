@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState} from 'react'
 import RequestCard from './RequestCard';
 import { RightSideContentWrapper, ViewFoundationContainer } from './DonorStyles';
 import SearchBar from '../Shared_util/SearchBar/SearchBar';
@@ -6,6 +6,7 @@ import { NoOrganisationContainer as NoRequestContainer } from './DonorStyles';
 import { BASE_URL } from '../Shared_util/Constants/Base_URL';
 import { RequestCardProp } from '../Shared_util/Constants/Types';
 import { useParams } from 'react-router-dom';
+import { getAllRequests } from '../Shared_util/Constants/Functions';
 
 
 function ViewRequests (){
@@ -16,29 +17,7 @@ function ViewRequests (){
 
     const {username} = useParams()
 
-    // fetches all requests from the backend
-    const getAllRequests = async() => {
-        try{
-            const response = await fetch(`${BASE_URL}/requests`,{
-                method : 'GET',
-                headers : {'content-type':'application/json'},
-            })
-
-            const results = await response.json();
-            const campaignData = results.data.filter((item: { requestType: string; })=> item.requestType === "Campaign");
-            const specificRequestData = results.data.filter((item: { requestTo: string; })=> item.requestTo === username);
-            console.log(campaignData)
-            console.log(specificRequestData)
-                if(results.status === "success"){
-                    setCampaigns(campaignData)
-                    setSpecificRequest(specificRequestData)
-                    sessionStorage.setItem('campaigns', JSON.stringify(campaignData))
-                    sessionStorage.setItem('specificRequests', JSON.stringify(specificRequestData))
-                }
-            }catch(error){
-            console.log(error)
-        }
-    }
+    
 
     // gets all organisations on page load
     useEffect(()=>{
@@ -50,19 +29,20 @@ function ViewRequests (){
             setCampaigns(availableCampaigns)
             setSpecificRequest(availableRequests)
         }else{
-            getAllRequests();
+            getAllRequests(setCampaigns, setSpecificRequest, username);
         }
         
-    }, [])
+    },[username])
 
+    // updates request on refresh
     useEffect(()=>{
-        getAllRequests()
-    }, [refresh])
+        getAllRequests(setCampaigns, setSpecificRequest, username)
+    }, [refresh, username])
 
     return (
         <RightSideContentWrapper>
             <SearchBar query={query} setQuery={setQuery} setRefresh={setRefresh}/>
-            {campaigns && 
+            {campaigns &&
                 <div className='requests'>
                     <h5>Campaigns</h5>
                     <ViewFoundationContainer>
@@ -75,8 +55,7 @@ function ViewRequests (){
                                     )
                             })}
                     </ViewFoundationContainer>
-               </div>
-            }
+               </div>} 
             {specificRequests && 
                 <div className='requests'>
                     <h5>Your Donations</h5>
@@ -94,12 +73,13 @@ function ViewRequests (){
             
             }
         
-
+{/* 
             {
-                !campaigns && !specificRequests && <NoRequestContainer>
+                !campaigns && !specificRequests && 
+                            <NoRequestContainer>
                                 <h4>No Request found</h4>
                             </NoRequestContainer>
-            }
+            } */}
         </RightSideContentWrapper>
     )
 }

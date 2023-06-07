@@ -67,5 +67,31 @@ export const getUserDonations = async(setDonations : React.Dispatch<any>, donor 
         }
 }
 
+// fetches all requests from the backend
+export const getAllRequests =  async (setCampaigns: React.Dispatch<any>, setSpecificRequest : React.Dispatch<any>, username : string | null |undefined ) => {
+    try{
+        const response = await fetch(`${BASE_URL}/requests`,{
+            method : 'GET',
+            headers : {'content-type':'application/json'},
+        })
+
+        const results = await response.json();
+        const campaignData = results.data.filter((item: { requestType: string; })=> item.requestType === "Campaign");
+        const specificRequestData = results.data.filter((item: { requestTo: string; })=> item.requestTo === username);
+        console.log(campaignData)
+        console.log(specificRequestData)
+            if(results.status === "success"){
+                setCampaigns(campaignData)
+                setSpecificRequest(specificRequestData)
+                sessionStorage.setItem('campaigns', JSON.stringify(campaignData))
+                sessionStorage.setItem('specificRequests', JSON.stringify(specificRequestData))
+            }
+    }
+      catch(error){
+        console.log(error)
+        }
+}
+
+
 
 export {}

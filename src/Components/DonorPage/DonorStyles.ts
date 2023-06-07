@@ -175,7 +175,8 @@ export const RightSideContentWrapper = styled.div`
     gap: 40px;
 
     .requests{
-        background: white;
+        background: ${({theme})=> theme.background.secondary};
+        border: 2px solid white;
         padding: 20px 30px;
         width: 95%;
         border-radius: 10px;
