@@ -34,7 +34,8 @@ function MakeDonation() {
     const handleDonation = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try{
-            uploadFileToStorageBucket(imageUpload, setImageUrl , "donationImages")  
+            const image = uploadFileToStorageBucket(imageUpload, setImageUrl , "donationImages")
+            console.log(image)
             const donationId = v4();
             if(donationType === 'Generic'){
                 organisationRef.current.value = ""

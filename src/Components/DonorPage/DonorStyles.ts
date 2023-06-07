@@ -447,6 +447,16 @@ export const TableWrapper = styled.div`
         .table-body{
             font-size: 13px;
             font-weight: 600;
+
+            tr{
+                td{
+                    span{
+                        color: ${({theme}) => theme.color.primary};
+                        font-weight: 700;
+                        margin-left: 8px;
+                    }
+                }
+            }
         }
     }
   

@@ -20,7 +20,7 @@ export const uploadFileToStorageBucket = (imageUpload : any, setImageUrl : React
                 setImageUrl(url)
             })
         })
-        return "successfully uploaded";
+        
     }catch(error){
         console.log("an error occured")
     }
@@ -57,12 +57,59 @@ export const getUserDonations = async(setDonations : React.Dispatch<any>, donor 
 
         const results = await response.json();
         const donation = results.data
-        console.log(donation)
-            if(results.status === "success"){
-                setDonations(donation)
-                sessionStorage.setItem('userDonations', JSON.stringify(donation))
-            }
+        
+        if(results.status === "success"){
+            setDonations(donation)
+            sessionStorage.setItem('userDonations', JSON.stringify(donation))
+        }
         }catch(error){
+            console.log(error)
+        }
+}
+
+// gets all donations from a user
+export const getAllDonations = async(setDonations : React.Dispatch<any>) => {
+    try{
+        const response = await fetch(`${BASE_URL}/donations`,{
+            method : 'GET',
+            headers : {'content-type':'application/json'},
+        })
+
+        const results = await response.json();
+        const donation = results.data
+        console.log(donation)
+        
+        if(results.status === "success"){
+            setDonations(donation)
+            sessionStorage.setItem('donations', JSON.stringify(donation))
+        }
+        }catch(error){
+            console.log(error)
+        }
+}
+
+// approve donation by admin
+export const approveDonation = async(status : string, 
+                                    donationId : string , 
+                                    setShowLoading : React.Dispatch<React.SetStateAction<boolean>>,
+                                    setToastMessage: React.Dispatch<React.SetStateAction<string>>,
+                                    setShowToast : React.Dispatch<React.SetStateAction<boolean>>) => {
+    setShowLoading(true)
+    try{
+        const response = await fetch(`${BASE_URL}/donations/${donationId}/updateStatus`,{
+            method : 'PATCH',
+            headers : {'content-type':'application/json'},
+            body : JSON.stringify({
+                donationStatus : status
+            })
+        })
+
+        const results = await response.json();
+        if(results.status === "success"){
+            setShowLoading(false)
+            setToastMessage("Donation approved Successfully, Refresh page!")
+            setShowToast(true)
+        }}catch(error){
             console.log(error)
         }
 }
@@ -78,8 +125,6 @@ export const getAllRequests =  async (setCampaigns: React.Dispatch<any>, setSpec
         const results = await response.json();
         const campaignData = results.data.filter((item: { requestType: string; })=> item.requestType === "Campaign");
         const specificRequestData = results.data.filter((item: { requestTo: string; })=> item.requestTo === username);
-        console.log(campaignData)
-        console.log(specificRequestData)
             if(results.status === "success"){
                 setCampaigns(campaignData)
                 setSpecificRequest(specificRequestData)

@@ -20,6 +20,7 @@ import {AnimatePresence} from 'framer-motion'
 import ReviewCharities from '../DonorPage/ReviewCharities';
 import DonorProfile from '../DonorPage/DonorProfile';
 import Feed from '../Shared_util/Feed/Feed';
+import ApproveDonation from '../AdminPage/ApproveDonation';
 
 const PagesRoute = () => {
 
@@ -41,7 +42,7 @@ const PagesRoute = () => {
                 <Route path='login/Admin/:username' element = {<AdminPage/>} >
                     <Route path='' element={<h2>Home Page</h2>}/>
                     <Route path='editProfile' element={<h2>Edit userProfile</h2>}/>
-                    <Route path='approveDonations' element = {<h2>Donation Approval</h2>}/>
+                    <Route path='approveDonations' element = {<ApproveDonation/>}/>
                     <Route path='approveRequests' element = {<h2>Request Approval</h2>} />
                     <Route path='manageAccounts' element = {<h2>Manage Accounts</h2>} />
                     <Route path='verifyRegistration' element = {<h2>Verify Registration</h2>}/>

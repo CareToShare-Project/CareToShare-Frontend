@@ -11,9 +11,7 @@ function DonorPage(){
     
     return (
         <DonorPageContainer>  
-            <SideBar  
-                features={donorFeatures} 
-                />
+            <SideBar  features={donorFeatures} />
             <MainPageContainer>
                     <NavBar userType='Donor' username={username}/>
                     <RightSideContent>

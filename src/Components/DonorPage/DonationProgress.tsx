@@ -19,6 +19,7 @@ const DonationProgress = () => {
     const [show, setShow] = useState(false)
     const [donations, setDonations] = useState<any>([])
     const [refresh, setRefresh] = useState<string>("")
+    let dontFetch = true;
 
     const showUpdateModal = () => {
         setShow(true)
@@ -36,14 +37,17 @@ const DonationProgress = () => {
 
     // fetches user donation on refresh
     useEffect(()=>{
+        if (dontFetch) return
+        console.log("this function is called")
         getUserDonations(setDonations, username)
-    }, [username, refresh])
+    }, [username, refresh, dontFetch])
 
     return(
         <RightSideContentWrapper>
             <SearchBar query={query} setQuery={setQuery} setRefresh={setRefresh}/>
 
-            {donations && <TableWrapper>
+            {donations && 
+            <TableWrapper>
                 <Table responsive className='table' striped hover >
                     <thead className='table-heading'>
                         <tr>
