@@ -440,7 +440,7 @@ export const TableWrapper = styled.div`
     width: 100%;
     .table{
         .table-heading{
-            font-family: Poppins;
+            font-family: Roboto;
             font-weight: 800;
             color : ${({theme}) => theme.background.primary};
         }
@@ -448,6 +448,7 @@ export const TableWrapper = styled.div`
         .table-body{
             font-size: 13px;
             font-weight: 600;
+            font-family: Poppins;
 
             tr{
                 .mission{

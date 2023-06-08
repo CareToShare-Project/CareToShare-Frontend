@@ -47,7 +47,7 @@ export const RightSectionContainer = styled.div`
    
 `
 export const AppTitleWrapper = styled.header`
-    font-family: Poppins;
+    font-family: Noto Sans, sans-serif;
     font-weight: 800;
     font-size: ${({theme})=> theme.fontSizes.large};
     color: ${({theme})=> theme.color.secondary};
@@ -61,6 +61,7 @@ export const AppTitleWrapper = styled.header`
     .about{
         font-size : 14px;
         font-weight: 800;
+        font-family: Poppins;
         color: ${({theme})=> theme.color.primary};
     }
 `

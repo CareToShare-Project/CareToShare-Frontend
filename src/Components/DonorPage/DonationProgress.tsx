@@ -68,7 +68,7 @@ const DonationProgress = () => {
                                         <td>
                                             {donation.donationType === "Specific" ? donation.donatedTo : "-"}
                                         </td>
-                                        <td>{donation.updatedAt}</td>
+                                        <td>{donation.updatedAt.slice(0,10)}</td>
                                         <td>{donation.location}</td>
                                         <td>{donation.donationStatus}</td>
                                         <td style={{'display' : 'flex', 'gap':'5px'}}>

@@ -48,6 +48,7 @@ export const FeedWrapper = styled.div`
     display: flex;
     flex-direction: column;
     gap: 30px;
+    padding: 10px;
 
     
     

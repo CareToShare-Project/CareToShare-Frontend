@@ -6,6 +6,27 @@ export const OverViewWrapper = styled.div`
     display: flex; 
     flex-direction: column;
     padding: 20px 0px;
+    gap: 80px;
+
+`
+export const DonationChartWrapper = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    h4{
+        color: ${({theme})=> theme.color.primary};
+    }
+`
+
+export const SummaryWrapper = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    h4{
+        color: ${({theme})=> theme.color.primary};
+    }
 `
 export const BoxWrapper = styled.div`
     width: 100%;

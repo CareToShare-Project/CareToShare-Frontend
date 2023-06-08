@@ -114,12 +114,12 @@ export const ProfileContainer = styled.div`
 `
 
 export const Title = styled.header`
-    color: white;
-    font-family: Poppins;
+    color: ${({theme})=> theme.color.secondary};
+    font-family: sans-serif;
     text-align: center;
     font-size: 18px;    
-    font-weight: 600;
-    letter-spacing: 4px;
+    font-weight: 800;
+    letter-spacing: 2px;
     position: absolute;
     top: 25px;
     left: 15%;  
