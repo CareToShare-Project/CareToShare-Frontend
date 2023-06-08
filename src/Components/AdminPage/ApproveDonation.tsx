@@ -18,11 +18,6 @@ const ApproveDonation = () => {
     // state to set toast message 
     const [toastMessage, setToastMessage] = useState('')
 
-
-    useEffect(()=>{
-        getAllDonations(setDonation)
-    }, [])
-
     useEffect(()=> {
         getAllDonations(setDonation)
     }, [refresh])

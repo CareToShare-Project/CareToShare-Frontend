@@ -13,7 +13,7 @@ export const LoginToastWrapper = styled.div`
         font-family: Poppins;
         color: ${({theme})=> theme.color.primary};
         font-weight: 800; 
-        font-size: 18px;
+        font-size: 16px;
         letter-spacing: 1.2px;
 
         .toast-body{

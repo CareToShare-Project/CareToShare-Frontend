@@ -442,6 +442,7 @@ export const TableWrapper = styled.div`
         .table-heading{
             font-family: Poppins;
             font-weight: 800;
+            color : ${({theme}) => theme.background.primary};
         }
 
         .table-body{

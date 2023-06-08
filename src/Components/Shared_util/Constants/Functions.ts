@@ -102,8 +102,6 @@ export const getAllDonations = async(setDonations : React.Dispatch<any>) => {
 
         const results = await response.json();
         const donation = results.data
-        console.log(donation)
-        
         if(results.status === "success"){
             setDonations(donation)
             sessionStorage.setItem('donations', JSON.stringify(donation))
@@ -162,6 +160,50 @@ export const getAllRequests =  async (setCampaigns: React.Dispatch<any>, setSpec
         }
 }
 
+// fetches all requests and display to admin for approval
+export const fetchRequests =  async (setRequests: React.Dispatch<any> ) => {
+    try{
+        const response = await fetch(`${BASE_URL}/requests`,{
+            method : 'GET',
+            headers : {'content-type':'application/json'},
+        })
+
+        const results = await response.json();
+        const requests = results.data
+        if(results.status === "success"){
+            setRequests(requests)
+            sessionStorage.setItem('requests', JSON.stringify(requests))
+         }
+    }
+      catch(error){
+        console.log(error)
+        }
+}
+
+// approve requests from organisations
+export const approveRequest = async(status : string, requestId : string , setShowLoading : React.Dispatch<React.SetStateAction<boolean>>,
+                                    setToastMessage: React.Dispatch<React.SetStateAction<string>>,
+                                    setShowToast : React.Dispatch<React.SetStateAction<boolean>>
+                                    ) => {
+        setShowLoading(true)
+        try{
+            const response = await fetch(`${BASE_URL}/requests/${requestId}/updateStatus`,{
+                method : 'PATCH',
+                headers : {'content-type':'application/json'},
+                body : JSON.stringify({
+                donationStatus : status
+            })
+            })
+
+            const results = await response.json();
+            if(results.status === "success"){
+                setShowLoading(false)
+                setToastMessage("Request approved Successfully, Refresh page!")
+                setShowToast(true)
+    }}catch(error){
+        console.log(error)
+    }
+    }
 
 
 export {}
