@@ -21,6 +21,7 @@ import ReviewCharities from '../DonorPage/ReviewCharities';
 import DonorProfile from '../DonorPage/DonorProfile';
 import Feed from '../Shared_util/Feed/Feed';
 import ApproveDonation from '../AdminPage/ApproveDonation';
+import ApproveRegistration from '../AdminPage/ApproveRegistration';
 
 const PagesRoute = () => {
 
@@ -45,7 +46,7 @@ const PagesRoute = () => {
                     <Route path='approveDonations' element = {<ApproveDonation/>}/>
                     <Route path='approveRequests' element = {<h2>Request Approval</h2>} />
                     <Route path='manageAccounts' element = {<h2>Manage Accounts</h2>} />
-                    <Route path='verifyRegistration' element = {<h2>Verify Registration</h2>}/>
+                    <Route path='verifyRegistration' element = {<ApproveRegistration />}/>
                 </Route>
                 
                 

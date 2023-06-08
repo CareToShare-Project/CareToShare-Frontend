@@ -449,7 +449,11 @@ export const TableWrapper = styled.div`
             font-weight: 600;
 
             tr{
+                .mission{
+                    width: 200px;
+                }
                 td{
+                    height: 50px;
                     span{
                         color: ${({theme}) => theme.color.primary};
                         font-weight: 700;
@@ -464,7 +468,7 @@ export const TableWrapper = styled.div`
 
 export const EditButton = styled.button`
     width: 27px;
-    height: 27px;
+    height: 40px;
     display: flex;
     align-items: center;
     border-radius: 5px;

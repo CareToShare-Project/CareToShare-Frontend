@@ -47,6 +47,31 @@ export const uploadFileToStorageBucket = (imageUpload : any, setImageUrl : React
     }
 }
 
+// approve organisation registration 
+export const approveOrganisationRegistration = async(username : string, 
+                                                    setShowLoading : React.Dispatch<React.SetStateAction<boolean>>,
+                                                    setToastMessage: React.Dispatch<React.SetStateAction<string>>,
+                                                    setShowToast : React.Dispatch<React.SetStateAction<boolean>>) => 
+{
+    setShowLoading(true)
+    try{
+        const response = await fetch(`${BASE_URL}/organisations/${username}/approve-registration`,{
+            method : 'PATCH',
+            headers : {'content-type':'application/json'},
+        })
+
+        const results = await response.json();
+            if(results.status === "success"){
+                setShowLoading(false)
+                setToastMessage("Registration has been approved successfully, Refresh page!")
+                setShowToast(true)
+            }
+        }catch(error){
+        console.log(error)
+    }
+}
+
+
 // gets all donations from a user
 export const getUserDonations = async(setDonations : React.Dispatch<any>, donor : string | null |undefined) => {
     try{
