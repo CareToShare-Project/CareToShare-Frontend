@@ -1,5 +1,6 @@
 import React from 'react';
 import HomePage from '../HomePage/HomePage';
+import LandingPage from '../HomePage/LandingPage';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import CharityRegistrationPage from '../CharityPage/CharityRegistrationPage';
 import DonorRegistrationPage from '../DonorPage/DonorRegistrationPage';
@@ -32,7 +33,7 @@ const PagesRoute = () => {
     return (
         <AnimatePresence>
             <Routes location={location} key={location.pathname}>
-                <Route index element={<HomePage />}/>
+                <Route index element={<LandingPage />}/>
                 <Route path='login' element= {<Login />} />
                 <Route path='login/forgotPassword' element = {<ForgotPassword /> } />
                 <Route path='login/forgotPassword/notification/:email' element = {<EmailNotification /> } />

@@ -154,3 +154,163 @@ export const GetStartedButton = styled.button`
         font-weight: 700;
     }
 `
+
+// landing page styles
+
+const fadeFromRight = keyframes`
+    to{
+        transform: translateX(0px);
+        opacity: 1;  
+    }
+`
+const fadeFromLeft = keyframes`
+    to{
+        transform: translateX(0px);
+        opacity: 1;  
+    }
+`
+const fadeFromBottom = keyframes`
+    to{
+        transform: translateY(0px);
+        opacity: 1;  
+    }
+`
+export const Container = styled.div`
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    
+    
+`
+export const PageWrapper = styled.div`
+    width: fit-screen;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;  
+    height: 100vh;
+   
+`
+
+export const NavigationContainer = styled.div`
+    width: 100%;
+    margin: 0px auto;
+    padding: 10px 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h3{
+        letter-spacing: 1.3px;  
+        color: white;
+    }
+
+    div{
+        display: flex;
+        align-items: center;
+        gap: 30px;
+
+        span{
+            font-family: Poppins;
+            font-weight: 600;
+            font-size: 14px;
+            color: white;
+            cursor: pointer;
+            transition: color 0.3s;
+
+            &:hover{
+                color : ${({theme})=> theme.background.primary};
+                
+            }
+        }
+    }
+`
+export const BodyContainer = styled.div`
+    width: 100%;
+    padding: 10px 100px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    
+     h1{
+        transform: translateX(70px);
+        letter-spacing: 2px;
+        color: white;
+        opacity: 0;
+        font-weight: 800;
+        font-family: Work Sans, sans-serif;
+        animation: ${fadeFromRight} 1s ease-in-out forwards;
+    }
+
+    p{
+        color: ${({theme})=> theme.color.secondary}; 
+        font-weight: 700px;
+        font-family: Yeseva One, cursive;
+        transform : translateX(-200%);
+        opacity: 0;
+        letter-spacing: 1.5px;
+        animation: ${fadeFromLeft} 1s ease-in-out forwards;
+
+    }
+
+    button{
+        width: 300px;
+        padding: 10px 0px;
+        border-radius: 5px;
+        font-weight: 700;
+        color: white;
+        font-family: Poppins;
+        background: ${({theme})=> theme.background.primary};
+        outline: 0;
+        border: 0;
+
+        &:hover{
+            box-shadow: 0px 0px 4px rgba(0,0,0,0.6);
+        }
+    }
+    
+`
+
+export const FooterContainer = styled.div`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    transform: translateY(32px);
+    opacity: 0;
+    gap: 2px;
+    padding: 0px 0px;
+    margin-top: 20px;
+    animation: ${fadeFromBottom} 1s ease-in-out forwards;
+
+
+    div{
+        width: 360px;
+        height: 200px;
+        background: rgba(0,0,0,0.4);
+        padding: 10px;
+        padding-top: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        color: white;
+        border-radius: 2px;
+
+        span{
+            font-weight: 700;
+            font-family: Poppins;
+            margin-top: 5px;
+            font-size: 16px;
+            color: ${({theme})=> theme.background.primary}; 
+        }
+        p{
+            opacity: 0.6;
+            font-size: 13px;
+        }
+    }
+`
