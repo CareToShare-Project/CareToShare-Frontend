@@ -27,7 +27,7 @@ const ApproveRequest = () => {
           <ApproveDonationContainer>
                 <SearchBar query={query} setQuery={setQuery} setRefresh={setRefresh}/>
                 <TableWrapper>
-                    <Table responsive className='table' striped hover >
+                    <Table responsive className='table' striped hover bordered >
                         <thead className='table-heading'>
                             <tr>
                                 <th>Request Type</th>

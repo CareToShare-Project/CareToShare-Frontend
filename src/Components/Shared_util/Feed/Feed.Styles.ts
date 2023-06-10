@@ -22,12 +22,12 @@ export const RightNavBar = styled.div`
     justify-content: center;
 
     ul{
-        font-size: 16px;
+        font-size: 14px;
         letter-spacing: 1.3px;
         color: ${({theme})=> theme.color.primary};
         display: flex;
         flex-direction: column;
-        font-family: Roboto;
+        font-family: Poppins;
         gap: 5px;
 
         li{
@@ -79,17 +79,19 @@ export const FeedWrapper = styled.div`
                     color: ${({theme})=> theme.background.primary};
                 }
                 span{
-                    font-size: 16px;
-                    font-family: cursive;
+                    font-size: 14px;
+                    font-family: Roboto;
                 }
             }
         }
 
         p{
-            color: ${({theme})=> theme.color.primary};
-            font-size: 15px;
+            color: black;
+            font-size: 14px;
             font-family: Roboto;
-            font-weight: 700;
+            font-weight: 550;
+            padding: 5px;
+        
         }
 
         .header{
@@ -106,7 +108,7 @@ export const FeedWrapper = styled.div`
             .org{
                 color: ${({theme})=> theme.background.primary};
                 font-weight: 800;
-                font-family: Poppins;
+                font-family: Noto Sans, sans-sarif;
                 }
             .post{
                 font-size: 14px;

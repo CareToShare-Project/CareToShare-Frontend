@@ -3,8 +3,7 @@ import { ProfileModalProps } from '../Shared_util/Constants/Types';
 import { Modal} from 'react-bootstrap';
 import '../Shared_Styles/General/Styles.css'
 import { DetailsWrapper, ReviewWrapper } from './DonorStyles';
-import { MdCall, MdEmail, MdLocationOn, MdVerified } from 'react-icons/md';
-import { GiTargetArrows } from 'react-icons/gi';
+import { MdCall,MdLocationOn, MdVerified } from 'react-icons/md';
 import img from "../HomePage/images/image2.jpg"
 
 
@@ -37,7 +36,7 @@ const ProfileModal:React.FC<ProfileModalProps> = ({show, setShow, details}) => {
                         </DetailsWrapper>
                     </div>
                     <div>
-                        <h5 style={{color: "#56C0C8"}}>Mission</h5>
+                        <h5 style={{color: "#56C0C8", fontSize: '16px', fontFamily: 'Poppins'}}>Mission</h5>
                         <span style={{color: "#4f646f", fontSize: '15px', paddingLeft: "5px"}}>{details?.mission}</span>
                     </div>
                     <ReviewWrapper>

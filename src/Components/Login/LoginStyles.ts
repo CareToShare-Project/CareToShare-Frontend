@@ -2,7 +2,7 @@ import styled, {keyframes} from "styled-components";
 
 export const Heading = styled.h4`
     font-family: Noto Sans;
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 600;
     letter-spacing: 0.5px;
     color: ${({theme})=> theme.color.primary};

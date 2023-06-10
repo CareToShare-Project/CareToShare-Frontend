@@ -66,7 +66,7 @@ const Feed = () => {
                             <AiFillDislike size={20}/> 
                             <span>3</span>
                         </span>
-                        <span>show comments</span>
+                        <span>comments</span>
                     </div>
                 </div>    
             </FeedWrapper>

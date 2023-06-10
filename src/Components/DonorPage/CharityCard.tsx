@@ -37,7 +37,7 @@ const CharityCard: React.FC<organisationCardProp> = ({details, setShow, setDetai
                 </span>
                 <span>
                     <ConfirmButton onClick={handleModal} style={{width:'50%', padding: '0px',marginTop: "10px",
-                                        fontSize :'14px', borderRadius : "0"}}>
+                                        fontSize :'14px', borderRadius : "8px"}}>
                         View Profile
                     </ConfirmButton>
                 </span>

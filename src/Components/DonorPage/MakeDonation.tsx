@@ -83,7 +83,7 @@ function MakeDonation() {
     return (
         <DonationFormContainer>
             <DonationForms onSubmit={handleDonation}>
-                <Heading style={{'color' : '#3A1078'}}>
+                <Heading>
                     Donate now <BiDonateHeart />
                 </Heading>
                 <div>

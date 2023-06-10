@@ -292,6 +292,8 @@ export const DetailsWrapper = styled.div`
 export const ReviewWrapper = styled.div`
     h5{
         color: ${({theme})=> theme.background.primary};
+        font-family: Poppins;
+        font-size: 16px;
     }
     
     div{
@@ -354,7 +356,7 @@ export const Column = styled.div`
 export const DonateButton = styled(ConfirmButton)`
     background: ${({theme})=> theme.color.primary};
     color: white;
-    width: 90%;
+    width: 80%;
     font-size: 14px;
     margin: 0 auto;
     &:hover{
@@ -410,15 +412,16 @@ export const DonationFormContainer = styled.div`
 
 export const DonationForms = styled.form`
     width: 400px;
-    height: 450px;
+    height: 470px;
     overflow-y: scroll;
     box-shadow: 0px  5px 10px rgba(0,0,0,0.5);
     border-radius: 10px;
     background: white;
     display : flex;
+    margin-top: -30px;
     flex-direction: column;
     align-items: center;
-    padding: 10px;
+    padding: 30px 5px;
     gap: 2px;
 
     @media (max-width: 930px){
@@ -571,7 +574,9 @@ export const MessageWrapper = styled.div`
     h4{
         text-align: center;
         color: ${({theme}) => theme.background.primary};
-        font-weight: 700;
+        font-weight: 600;
+        letter-spacing: 1.3px;
+        font-family: Noto sans;
     }
     p{
         font-weight: 600;
@@ -607,7 +612,7 @@ export const ReviewFieldsWrapper = styled(FieldWrapper)`
 
     textarea{
         height: 150px;
-        border: 2px solid ${({theme}) => theme.background.primary};
+        border: 2px solid ${({theme}) => theme.color.primary};
         outline: 0;
         text-indent: 20px;
         border-radius: 5px;
@@ -634,14 +639,14 @@ export const ReviewFieldsWrapper = styled(FieldWrapper)`
     label{
         font-family: Poppins;
         font-weight: 600;
-        color: ${({theme}) => theme.background.primary};
+        color: ${({theme}) => theme.color.primary};
     }
     
 `
 
 export const ReviewButton = styled(SubmitButton)`
     width: 80%;
-    border: 2px solid ${({theme}) => theme.background.primary};
+   
 
 `
 
