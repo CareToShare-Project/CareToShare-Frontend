@@ -25,6 +25,7 @@ import ApproveDonation from '../AdminPage/ApproveDonation';
 import ApproveRegistration from '../AdminPage/ApproveRegistration';
 import ApproveRequest from '../AdminPage/ApproveRequest';
 import Overview from '../AdminPage/Overview';
+import DonorAccount from '../AdminPage/DonorAccount';
 
 const PagesRoute = () => {
 
@@ -48,7 +49,8 @@ const PagesRoute = () => {
                     <Route path='editProfile' element={<h2>Edit userProfile</h2>}/>
                     <Route path='approveDonations' element = {<ApproveDonation/>}/>
                     <Route path='approveRequests' element = {<ApproveRequest/>} />
-                    <Route path='manageAccounts' element = {<h2>Manage Accounts</h2>} />
+                    <Route path='manageDonorsAccount' element = {<DonorAccount />} />
+                    <Route path='verify' element = {<h2>Verify Organisation</h2>} />
                     <Route path='verifyRegistration' element = {<ApproveRegistration />}/>
                 </Route>
                 

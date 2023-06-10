@@ -1,13 +1,13 @@
 import styled, {keyframes} from "styled-components";
 
 export const Heading = styled.h4`
-    font-family: Poppins;
-    font-size: 22px;
+    font-family: Noto Sans;
+    font-size: 25px;
     font-weight: 600;
     letter-spacing: 0.5px;
-    color: white;
+    color: ${({theme})=> theme.color.primary};
     span{
-        color:${({theme})=> theme.color.secondary};  
+        color:${({theme})=> theme.color.primary};  
     }
 `
 
@@ -32,10 +32,12 @@ export const FormWrapper = styled.form`
     height: 450px;
     border-radius: 10px;
     padding: 80px;
-    border: 1px solid ${({theme})=> theme.background.primary};
-    background: ${({theme})=> theme.background.main};
-    box-shadow: 0px 2px 10px ${({theme})=> theme.background.main};
+    background: white;
+    box-shadow: 0px 5px 20px rgba(0,0,0,0.3);
+    border: 3px solid white;
     outline: transparent;
+    border: 0;
+    z-index: 200;
     animation: ${pulseAnimation} 0.5s ease-in-out;
 `
 export const FormContainer = styled.div`
@@ -45,41 +47,43 @@ export const FormContainer = styled.div`
     align-items: center;
     margin-top: 10px;
     justify-content: center;
-    gap: 30px;
+    gap: 10px;
     padding: 20px;
+    color : ${({theme})=> theme.color.primary};
 
     .forgot-password {
-        color: white; 
+        color: ${({theme})=> theme.color.hover2}; 
         position: absolute;
         bottom: -15px;
         right: 20px;
         text-decoration: none;
+        cursor: pointer;
 
         &:hover{
-        text-decoration: underline;
-        cursor: pointer;
-        color: ${({theme})=> theme.color.hover2};
-    }
+            text-decoration: underline;
+            
+        }
     }
 `
 export const FormField = styled.div`
     display: flex;
     align-items: center;
+    margin-bottom: 15px;
     
 `
 export const InputField = styled.input`
     width: 300px;
     text-indent: 5px;
     font-family: Poppins;
-    color:${({theme})=> theme.color.secondary};
+    color:${({theme})=> theme.color.primary};
     padding: 5px;
     outline: transparent;
     background: transparent;
     border: 0px;
-    border-bottom: 2px solid white;
+    border-bottom: 2px solid ${({theme})=> theme.color.primary};;
 
     &::placeholder{
-        color: rgba(255, 255,255, 0.7);
+        color: rgba(0,0,0, 0.4);
     }
     &:focus{
         border-bottom: 2px solid ${({theme})=> theme.color.hover2};
@@ -89,24 +93,25 @@ export const InputField = styled.input`
 `
 
 export const SubmitButton = styled.button`
-    width: 100%;
+    width: 95%;
     background: ${({theme})=> theme.color.primary};
     outline: transparent;
     border: 1px solid white;
+    margin-top: 10px;
+    padding: 5px 0px;
     border-radius: 10px;
     font-weight: 600;
     color:${({theme})=> theme.color.secondary};
     font-family: Poppins;
     transition: 0.8s;
     &:hover{
-        border: 1px solid ${({theme})=> theme.color.primary};
         background: ${({theme})=> theme.background.primary};
         color: ${({theme})=> theme.color.secondary};
     }
 `
 
 export const RegisterStyles = styled.div`
-    color: ${({theme})=> theme.color.secondary};
+    color: ${({theme})=> theme.color.primary};
     span{
         color: ${({theme})=> theme.color.hover2};
     &:hover{

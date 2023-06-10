@@ -6,6 +6,7 @@ import '../Shared_Styles/Donor/DonorStyles.css'
 import '../Shared_Styles/General/Styles.css'
 import { BASE_URL } from "../Shared_util/Constants/Base_URL";
 import { uploadImage, uploadFileToStorageBucket } from "../Shared_util/Constants/Functions";
+import BackgroundSVG from "../Shared_util/SVG/Background";
 
 
 function DonorRegistrationPage(){
@@ -73,7 +74,8 @@ function DonorRegistrationPage(){
    
     return (
         
-        <RegistrationWrapper className="body-container">
+        <RegistrationWrapper className="centered">
+            <BackgroundSVG />
             <form onSubmit={handleSubmit}>
                 <RegistrationContainer>
                     <RegistrationHeader>Set up your profile</RegistrationHeader>
@@ -106,8 +108,6 @@ function DonorRegistrationPage(){
                     </ConfirmButton>
                 </RegistrationContainer>
             </form>
-            {imageUrl && 
-                <img src={imageUrl} alt="hello" width='200px' height="200px" style={{'borderRadius' : '50%'}}/>}
         </RegistrationWrapper>
     )
 }

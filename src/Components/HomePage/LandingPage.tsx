@@ -3,22 +3,28 @@ import {BodyContainer,FooterContainer, NavigationContainer, PageWrapper } from '
 import '../Shared_Styles/General/Styles.css'
 import { MdOutlineDeliveryDining, MdVerifiedUser } from 'react-icons/md';
 import { BiDonateHeart } from 'react-icons/bi';
+import { useNavigate } from 'react-router-dom';
 
 const LandingPage = () => {
+    const navigate = useNavigate()
+
     return(
             <PageWrapper className='body-container'>
                 <NavigationContainer>
                     <h3>Logo</h3>
                     <div>
                         <span>About</span>
-                        <span>Sign In</span>
-                        <span>Sign Up</span>
+                        <span onClick={()=> navigate('login')}>Sign In</span>
+                        <span onClick={()=>navigate('login/createAccount')}>Sign Up</span>
                     </div>
                 </NavigationContainer>
                 <BodyContainer>
                     <h1>CareToShare</h1>
-                    <p>A crowdsourcing donation platform for Charity foundation</p>
-                    <button>Get Started</button>
+                    <p>Welcome to Care to Share, a platform dedicated to bringing positive change 
+                        through the power of giving. Care to Share is your gateway to making a meaningful 
+                        impact in the lives of those in need and contributing to causes you care about
+                    </p>
+                    <button onClick={()=> navigate("login")}>Get Started</button>
                 </BodyContainer>
                 <FooterContainer>
                     <div>

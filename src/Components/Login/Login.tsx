@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {FormWrapper, FormField,InputField, RegisterStyles,
-        SubmitButton, FormContainer, Heading, LoginContainer} from './LoginStyles'
+        SubmitButton, FormContainer, Heading} from './LoginStyles'
 import {FaUser, FaLock} from 'react-icons/fa'
 import {UserLoginProps } from '../Shared_util/Constants/Types';
 import { Link, useNavigate } from 'react-router-dom';
@@ -10,6 +10,7 @@ import Spinner  from 'react-bootstrap/Spinner';
 import '../Shared_Styles/General/Styles.css'
 import {motion} from "framer-motion"
 import { AiFillEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import BackgroundSVG from '../Shared_util/SVG/Background';
 
 const Login: React.FC = () => {
     
@@ -91,17 +92,17 @@ const Login: React.FC = () => {
 
     return (
         <motion.div 
-            className='body-container'
+            className='centered'
             exit = {{x: window.innerWidth, transition: {duration: 0.3}}}
-            >
-            <LoginContainer>
-                    <FormWrapper onSubmit={handleLogin}>
+            >   
+                <BackgroundSVG />
+                <FormWrapper onSubmit={handleLogin}>
                         <Heading>
                             Login
                         </Heading>
                         <FormContainer>
                             <FormField>
-                                <FaUser size={20} color='white' />
+                                <FaUser size={20} color='#56C0C8' />
                                 <InputField 
                                     type='text' 
                                     placeholder='Username'
@@ -110,7 +111,7 @@ const Login: React.FC = () => {
                                 />
                             </FormField>
                             <FormField>
-                                <FaLock size={20} color='white' />
+                                <FaLock size={20} color='#56C0C8' />
                                 <InputField 
                                     type={showpassword ? 'text' : 'password'} 
                                     placeholder='Password'
@@ -120,12 +121,14 @@ const Login: React.FC = () => {
                                {showpassword ? 
                                 <AiOutlineEyeInvisible 
                                     color='white' 
-                                    style={{'position' : 'absolute', 'right' : '20px'}}
+                                    style={{'position' : 'absolute', 'right' : '20px' , 
+                                            color : "#56C0C8" , cursor : "pointer"}}
                                     onClick={()=>setShowPassword(prev=> !prev)}
                                     /> :
                                 <AiFillEye
                                     color='white' 
-                                    style={{'position' : 'absolute', 'right' : '20px'}}
+                                    style={{'position' : 'absolute', 'right' : '20px', 
+                                            color : "#56C0C8" , cursor : 'pointer'}}
                                     onClick={()=>setShowPassword(prev=> !prev)}
                                     /> 
                                }
@@ -149,9 +152,6 @@ const Login: React.FC = () => {
                         toastMessage={toastMessage}
                         />   
                     </FormWrapper>
-
-                    
-                </LoginContainer>
             </motion.div>
     )
 }

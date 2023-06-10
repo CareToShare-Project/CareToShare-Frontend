@@ -1,12 +1,21 @@
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 import { DonateButton } from "../DonorPage/DonorStyles"
 
+const fadeFromRight = keyframes`
+    to{
+        transform: translateX(0px);
+        opacity: 1;  
+    }
+`
 export const OverViewWrapper = styled.div`
     width: 100%;
     display: flex; 
     flex-direction: column;
+    transform: translateX(100px);
+    opacity: 0;
     padding: 20px 0px;
     gap: 80px;
+    animation: ${fadeFromRight} 1s ease-in-out forwards;
 
 `
 export const DonationChartWrapper = styled.div`

@@ -5,6 +5,7 @@ import { RegistrationWrapper, RegistrationContainer, FieldWrapper,
 import { TextWrapper } from './CharityStyles';
 import { useParams } from 'react-router-dom';
 import { uploadImage as fileUpload, uploadFileToStorageBucket } from '../Shared_util/Constants/Functions';
+import BackgroundSVG from '../Shared_util/SVG/Background';
 
 
 
@@ -37,7 +38,8 @@ function CharityRegistrationPage() {
 
     return (
         <>
-            <RegistrationWrapper className='body-container'>
+            <RegistrationWrapper className='centered'>
+                <BackgroundSVG />
                 <form onSubmit={handleSubmit}>
                     <RegistrationContainer>
                         <RegistrationHeader>

@@ -1,12 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
 const DonationChart = () => {
+  const [donationData, setDonationData] = useState({
+                                                      pending: [],
+                                                      inProgress : [],
+                                                      completed : []
+          })
+
   const data = [
-    { status: 'Pending', count: 90 },
-    { status: 'In Progress', count: 50 },
-    { status: 'Completed', count: 20 },
+    { status: 'Pending', count: donationData.pending.length },
+    { status: 'In Progress', count: donationData.inProgress.length },
+    { status: 'Completed', count: donationData.completed.length},
   ];
+
+  useEffect(()=>{
+   const results = sessionStorage.getItem('donations')
+   if(results !== null) {
+      const donations = JSON.parse(results)
+      const pending = donations.filter((item: { donationStatus: string; })=> item.donationStatus === "Pending");
+      const inProgress = donations.filter((item: { donationStatus: string; })=> item.donationStatus === "In Progress");
+      const completed = donations.filter((item: { donationStatus: string; })=> item.donationStatus === "Completed");
+      setDonationData({pending, inProgress, completed})
+   }
+  }, [])
 
   return (
     <BarChart width={900} height={300} data={data}>

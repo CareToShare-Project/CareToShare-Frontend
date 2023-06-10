@@ -47,6 +47,47 @@ export const uploadFileToStorageBucket = (imageUpload : any, setImageUrl : React
     }
 }
 
+// deactivate donor account
+export const deactivateOrganisation= async(username : string ,setShowLoading : React.Dispatch<React.SetStateAction<boolean>>,
+                                    setToastMessage: React.Dispatch<React.SetStateAction<string>>,
+                                    setShowToast : React.Dispatch<React.SetStateAction<boolean>>) => {
+            setShowLoading(true)
+            try{
+                const response = await fetch(`${BASE_URL}/organisations/${username}/deactivateOrganisation`, {
+                method : 'PATCH',
+                headers : {'content-type':'application/json'},
+                    })
+
+    if(response.ok){
+            setShowLoading(false)
+            setToastMessage("User account is deactivated, Refresh page!")
+            setShowToast(true)
+
+    }}catch(err){
+        console.log(err)
+    }
+}
+
+// activate organisation account
+export const activateOrganisation= async(username : string ,setShowLoading : React.Dispatch<React.SetStateAction<boolean>>,
+                                            setToastMessage: React.Dispatch<React.SetStateAction<string>>,
+                                            setShowToast : React.Dispatch<React.SetStateAction<boolean>>) => {
+                    setShowLoading(true)
+                    try{
+                        const response = await fetch(`${BASE_URL}/organisations/${username}/activateOrganisation`, {
+                                method : 'PATCH',
+                                headers : {'content-type':'application/json'},
+                                    })
+
+                    if(response.ok){
+                        setShowLoading(false)
+                        setToastMessage("User account is deactivated, Refresh page!")
+                        setShowToast(true)
+
+                    }}catch(err){
+                        console.log(err)
+                }
+    }
 // approve organisation registration 
 export const approveOrganisationRegistration = async(username : string, 
                                                     setShowLoading : React.Dispatch<React.SetStateAction<boolean>>,
@@ -71,6 +112,72 @@ export const approveOrganisationRegistration = async(username : string,
     }
 }
 
+// fetches all donors
+export const getAllDonors = async(setDonors : React.Dispatch<any>) => {
+    try{
+        const response = await fetch(`${BASE_URL}/donors`,{
+            method : 'GET',
+            headers : {'content-type':'application/json'},
+        })
+
+        const results = await response.json();
+        const donors = results.data.donors
+            if(results.status === "success"){
+                setDonors(donors)
+                sessionStorage.setItem('donors', JSON.stringify(donors))
+            }
+        }catch(error){
+        console.log(error)
+    }
+}
+
+// deactivate donor account
+export const deactivateDonor = async(username : string ,setShowLoading : React.Dispatch<React.SetStateAction<boolean>>,
+                                    setToastMessage: React.Dispatch<React.SetStateAction<string>>,
+                                    setShowToast : React.Dispatch<React.SetStateAction<boolean>>) => {
+    setShowLoading(true)
+    try{
+        const response = await fetch(`${BASE_URL}/donors/${username}/deactivateDonor`, {
+            method : 'PATCH',
+            headers : {'content-type':'application/json'},
+        })
+        
+        if(response.ok){
+            setShowLoading(false)
+            setToastMessage("User account is deactivated, Refresh page!")
+            setShowToast(true)
+
+        }
+       
+        
+    }catch(err){
+        console.log(err)
+    }
+}
+
+
+// activate donor account
+export const activateDonor = async(username : string ,setShowLoading : React.Dispatch<React.SetStateAction<boolean>>,
+                                    setToastMessage: React.Dispatch<React.SetStateAction<string>>,
+                                    setShowToast : React.Dispatch<React.SetStateAction<boolean>>) => {
+    setShowLoading(true)
+    try{
+        const response = await fetch(`${BASE_URL}/donors/${username}/activateDonor`, {
+            method : 'PATCH',
+            headers : {'content-type':'application/json'},
+        })
+        
+        if(response.ok){
+            setShowLoading(false)
+            setToastMessage("User account is activated, Refresh page!")
+            setShowToast(true)
+
+        }
+        
+    }catch(err){
+        console.log(err)
+    }
+}
 
 // gets all donations from a user
 export const getUserDonations = async(setDonations : React.Dispatch<any>, donor : string | null |undefined) => {
@@ -151,6 +258,7 @@ export const getAllRequests =  async (setCampaigns: React.Dispatch<any>, setSpec
             if(results.status === "success"){
                 setCampaigns(campaignData)
                 setSpecificRequest(specificRequestData)
+                sessionStorage.setItem('requests', JSON.stringify(results.data))
                 sessionStorage.setItem('campaigns', JSON.stringify(campaignData))
                 sessionStorage.setItem('specificRequests', JSON.stringify(specificRequestData))
             }

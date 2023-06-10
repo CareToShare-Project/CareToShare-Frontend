@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { ApproveDonationContainer , ApproveButton} from './Admin.Styles';
 import { Spinner, Table } from 'react-bootstrap';
 import { TableWrapper } from '../DonorPage/DonorStyles';
-import { getAllOrganisations , approveOrganisationRegistration} from '../Shared_util/Constants/Functions';
+import { getAllOrganisations , approveOrganisationRegistration, 
+         deactivateOrganisation,
+         activateOrganisation} from '../Shared_util/Constants/Functions';
 import SearchBar from "../Shared_util/SearchBar/SearchBar"
 import LoginToast from '../Shared_util/Toast/LoginToast';
 
@@ -31,11 +33,13 @@ const ApproveRegistration = () => {
                         <thead className='table-heading'>
                             <tr>
                                 <th>Organisation Name</th>
+                                <th>Status</th>
                                 <th>Date</th>
                                 <th>Location</th>
                                 <th>Mission</th>
                                 <th>View Certificates</th>
                                 <th>Approve</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody className='table-body'> 
@@ -43,6 +47,7 @@ const ApproveRegistration = () => {
                                 return (
                                     <tr>
                                         <td>{org.organisationName}</td>
+                                        <td>{org.isActive ? "Active" : "Inactive"}</td>
                                         <td>{org.createdAt.slice(0,10)}</td>
                                         <td>{org.location}</td>
                                         <td className='mission'>{org.mission}</td>
@@ -62,6 +67,18 @@ const ApproveRegistration = () => {
                                                         Approve
                                                     </ApproveButton> 
                                             }
+                                        </td>
+                                        <td>
+                                        { org.isActive ?
+                                            <ApproveButton onClick={()=> deactivateOrganisation(org.username, setShowLoading, 
+                                                                    setToastMessage, setShowToast)} >
+                                                Deactivate
+                                            </ApproveButton> : 
+                                            <ApproveButton onClick={()=>activateOrganisation(org.username, setShowLoading, 
+                                                                                    setToastMessage, setShowToast)}>
+                                                Activate
+                                            </ApproveButton>
+                                    }
                                         </td>
                                     </tr>
                                 )

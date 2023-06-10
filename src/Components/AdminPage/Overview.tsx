@@ -1,15 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, BoxWrapper, DonationChartWrapper, Left, OverViewWrapper, Right, SummaryWrapper } from './Admin.Styles';
 import {FaUsers, FaHandsHelping} from 'react-icons/fa'
 import {BiDonateHeart} from "react-icons/bi"
 import DonationChart from './DonationChart';
 import DonationRequestChart from './DonationRequestChart';
 import RequestChart from './RequestChart';
+import { getAllDonations, fetchRequests, getAllOrganisations, getAllDonors} from '../Shared_util/Constants/Functions';
 
 
 
 const Overview = () => {
+    const [donations, setDonations] = useState<any>([])
+    const [requests, setRequests] = useState<any>([])
+    const [organisations, setOrganisations] = useState<any>([])
+    const [donors, setDonors] = useState<any>([])
 
+    useEffect(()=>{
+        getAllDonations(setDonations)
+        fetchRequests(setRequests)
+        getAllOrganisations(setOrganisations)
+        getAllDonors(setDonors)
+    }, [])
+    
     return(
         <OverViewWrapper>
             <SummaryWrapper>
@@ -17,7 +29,7 @@ const Overview = () => {
                 <BoxWrapper>
                     <Box>
                         <Left>
-                            <h4>25</h4>
+                            <h4>{donors.length ? donors.length : 0}</h4>
                             <span>Donors</span>
                         </Left>
                         <Right>
@@ -26,7 +38,7 @@ const Overview = () => {
                     </Box>
                     <Box>
                         <Left>
-                            <h4>200</h4>
+                            <h4>{organisations.length ? organisations.length : 0}</h4>
                             <span>Organisations</span>
                         </Left>
                         <Right>
@@ -35,7 +47,7 @@ const Overview = () => {
                     </Box>
                     <Box>
                         <Left>
-                            <h4>15</h4>
+                            <h4>{donations.length ? donations.length : 0}</h4>
                             <span>Donations</span>
                         </Left>
                         <Right>
@@ -44,7 +56,7 @@ const Overview = () => {
                     </Box>
                     <Box>
                         <Left>
-                            <h4>10</h4>
+                            <h4>{requests.length ? requests.length : 0}</h4>
                             <span>Request</span>
                         </Left>
                         <Right>

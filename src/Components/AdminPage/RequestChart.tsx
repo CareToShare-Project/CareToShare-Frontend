@@ -1,12 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
+
 const RequestChart = () => {
+  const [requestData, setRequestData] = useState({
+                                                  pending : [],
+                                                  inProgress : [],
+                                                  completed : []
+                                                  })
   const data = [
-    { status: 'Pending', count: 500 },
-    { status: 'In Progress', count: 200 },
-    { status: 'Completed', count: 100},
+    { status: 'Pending', count: requestData.pending.length },
+    { status: 'In Progress', count: requestData.inProgress.length },
+    { status: 'Completed', count: requestData.completed.length},
   ];
+
+  useEffect(()=>{
+      const results = sessionStorage.getItem('requests')
+      if(results !== null){
+        const requests = JSON.parse(results)
+        const pending = requests.filter((item: { requestStatus: string; })=> item.requestStatus === "Pending");
+        const inProgress = requests.filter((item: { requestStatus: string; })=> item.requestStatus === "In Progress");
+        const completed = requests.filter((item: { requestStatus: string; })=> item.requestStatus === "Completed");
+        setRequestData({pending, inProgress, completed})
+      }
+  }, [])
 
   return (
     <BarChart width={900} height={300} data={data}>

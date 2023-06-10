@@ -55,7 +55,7 @@ export const ResetWrapper = styled.form`
 export const Header = styled.header`
     font-size: 20px;
     font-weight: 700;
-    color: ${({theme})=> theme.background.primary};
+    color: ${({theme})=> theme.color.primary};
     width: 90%;
 
 `

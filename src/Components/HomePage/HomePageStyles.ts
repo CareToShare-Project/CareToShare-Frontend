@@ -197,7 +197,7 @@ export const PageWrapper = styled.div`
 export const NavigationContainer = styled.div`
     width: 100%;
     margin: 0px auto;
-    padding: 10px 100px;
+    padding: 20px 100px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -210,7 +210,7 @@ export const NavigationContainer = styled.div`
     div{
         display: flex;
         align-items: center;
-        gap: 30px;
+        gap: 40px;
 
         span{
             font-family: Poppins;
@@ -221,7 +221,7 @@ export const NavigationContainer = styled.div`
             transition: color 0.3s;
 
             &:hover{
-                color : ${({theme})=> theme.background.primary};
+                color :${({theme})=> theme.background.primary};
                 
             }
         }
@@ -231,8 +231,8 @@ export const BodyContainer = styled.div`
     width: 100%;
     padding: 10px 100px;
     height: 300px;
+    margin-top: 20px;
     display: flex;
-    align-items: center;
     flex-direction: column;
     justify-content: center;
     gap: 5px;
@@ -249,28 +249,30 @@ export const BodyContainer = styled.div`
 
     p{
         color: ${({theme})=> theme.color.secondary}; 
-        font-weight: 700px;
-        font-family: Yeseva One, cursive;
-        transform : translateX(-200%);
+        font-weight: 800px;
+        font-family: Roboto;
+        transform : translateX(32px);
         opacity: 0;
-        letter-spacing: 1.5px;
+        width: 50%;
         animation: ${fadeFromLeft} 1s ease-in-out forwards;
 
     }
 
     button{
-        width: 300px;
+        width: 200px;
         padding: 10px 0px;
         border-radius: 5px;
         font-weight: 700;
         color: white;
         font-family: Poppins;
-        background: ${({theme})=> theme.background.primary};
+        background: ${({theme})=> theme.color.primary};
         outline: 0;
         border: 0;
+        transition: all 0.9s ease-in-out;
 
         &:hover{
             box-shadow: 0px 0px 4px rgba(0,0,0,0.6);
+            background: ${({theme})=> theme.background.primary};
         }
     }
     
@@ -284,13 +286,13 @@ export const FooterContainer = styled.div`
     opacity: 0;
     gap: 2px;
     padding: 0px 0px;
-    margin-top: 20px;
+    margin-top: 60px;
     animation: ${fadeFromBottom} 1s ease-in-out forwards;
 
 
     div{
         width: 360px;
-        height: 200px;
+        height: 150px;
         background: rgba(0,0,0,0.4);
         padding: 10px;
         padding-top: 30px;

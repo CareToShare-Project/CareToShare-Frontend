@@ -9,7 +9,7 @@ export const TextWrapper = styled.textarea`
     background: transparent;
     width: 100%;
     color: ${({theme}) => theme.color.primary};
-    border: 2px solid white;
+    border: 2px solid ${({theme}) => theme.color.primary};;
     cursor: pointer;
 
     &:focus{

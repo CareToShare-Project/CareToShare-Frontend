@@ -1,5 +1,6 @@
 import {AiFillHome, AiFillEye} from 'react-icons/ai'
-import {FaPeopleCarry, FaStarHalfAlt, FaPrayingHands, FaHandHoldingHeart} from 'react-icons/fa'
+import {FaPeopleCarry, FaStarHalfAlt, FaPrayingHands, FaHandHoldingHeart, FaUsers} from 'react-icons/fa'
+import {GoVerified} from "react-icons/go"
 import {BiLoaderCircle, BiDonateHeart} from 'react-icons/bi'
 import {BsChatText, BsHandThumbsUp} from 'react-icons/bs'
 import {MdVerified} from 'react-icons/md'
@@ -65,15 +66,21 @@ export const adminFeatures = [
         link : 'approveRequests'
     },
     {
-        title: 'Verify Registration',
-        icon : MdVerified,
+        title: 'Manage Organisations',
+        icon : FaUsers,
         link : 'verifyRegistration'
     },
     {
-        title: 'Manage Accounts',
-        icon : RiUserSettingsLine,
-        link : 'manageAccounts'
+        title: 'Verify Organisations',
+        icon : GoVerified,
+        link : 'verify'
     },
+    {
+        title: 'Manage Donors',
+        icon : RiUserSettingsLine,
+        link : 'manageDonorsAccount'
+    },
+   
 
 ]
 

@@ -10,9 +10,22 @@
   background-blend-mode: lighten;
 }
 
+.centered {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #DAF5FF;
+  overflow-x: hidden;
+}
+.centered form {
+  z-index: 200;
+}
+
 ::-webkit-scrollbar {
   width: 0px;
-  height: 5px;
+  height: 2px;
 }
 
 ::-webkit-scrollbar-thumb {

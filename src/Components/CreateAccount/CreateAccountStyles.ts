@@ -15,15 +15,18 @@ export const CreateAccountWrapper = styled(RegistrationContainer)`
     gap: 10px;
     overflow-y: hidden;
     overflow-x: hidden;
+    background: white;
     height: 550px;
     width: 400px;
+    box-shadow: 0px 5px 20px rgba(0,0,0,0.3);
+    border: 3px solid white;
     animation: ${pulseAnimation} 1s ease-in-out;
 `
 
 export const CreateAccountInputField = styled(InputField)`
     width: 350px;
     height: 30px;
-    color: white;
+    color: ${({theme}) => theme.color.primary};
 `
 export const CreateAccountFieldWrapper = styled.div`
     display: flex;
@@ -40,10 +43,12 @@ export const RoleContainer = styled.select`
     border: none;
     border-radius: 10px;
     height: 35px;
+    border: 2px solid ${({theme}) => theme.color.primary};
     
 `
 export const CreateButton = styled(ConfirmButton)`
-    width: 96%;
+    width: 95%;
+    padding: 5px 0px;
 `
 
 export {}

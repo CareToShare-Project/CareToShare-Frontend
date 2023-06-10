@@ -21,10 +21,10 @@ export const pulseAnimation = keyframes`
 export const RegistrationContainer = styled.div`
     height: 550px;
     width: 400px;
-    padding: 15px 0px;
-    background: ${({theme}) => theme.background.main};
-    border: 1px solid ${({theme}) => theme.background.primary};
-    box-shadow: 0px 5px 10px black;
+    padding: 10px 0px;
+    background: ${({theme}) => theme.color.secondary};
+    box-shadow: 0px 5px 20px rgba(0,0,0,0.3);
+    border: 3px solid white;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -36,15 +36,15 @@ export const RegistrationContainer = styled.div`
 
 export const RegistrationHeader = styled.header`
     font-size: ${({theme})=> theme.fontSizes.medium};
-    font-family: Roboto;
-    font-weight: 900;
-    letter-spacing: 2px;
+    font-family: Noto Sans, Poppins;
+    font-weight: 700;
+    letter-spacing: 1.2px;
     text-align: center;
     margin-bottom: 10px;
     width: 500px;
     height: 60px;
     padding: 10px;
-    color: white;
+    color: ${({theme})=> theme.color.primary};
     border: none;
 
 `
@@ -75,7 +75,7 @@ export const InputLabel = styled.label`
     font-size: 15px;
     font-weight: bolder;
     font-family: Poppins;
-    color: ${({theme}) => theme.color.secondary};
+    color: ${({theme}) => theme.color.primary};
 `
 
 export const InputField = styled.input`
@@ -87,8 +87,8 @@ export const InputField = styled.input`
     height: 35px;
     padding: 5px;
     background: transparent;
-    color: ${({theme}) => theme.color.secondary};
-    border: 2px solid white;
+    color: ${({theme}) => theme.color.primary};
+    border: 2px solid ${({theme}) => theme.color.primary};
 
     &:focus{
         border: 2px solid ${({theme}) => theme.color.hover2};
@@ -105,11 +105,11 @@ export const ConfirmButton = styled.button`
     border: 1px solid white;
     border-radius: 10px;
     font-weight: 600;
+    padding: 5px 0px;
     color:${({theme})=> theme.color.secondary};
     font-family: Poppins;
     transition: 0.8s;
         &:hover{
-            border: 1px solid ${({theme})=> theme.color.primary};
             background: ${({theme})=> theme.background.primary};
             color: ${({theme})=> theme.color.secondary};
         }
@@ -454,6 +454,9 @@ export const TableWrapper = styled.div`
                 .mission{
                     width: 200px;
                 }
+                .email{
+                    width: 250px;
+                }
                 td{
                     height: 50px;
                     span{
@@ -461,6 +464,10 @@ export const TableWrapper = styled.div`
                         font-weight: 700;
                         margin-left: 8px;
                     }
+                }
+
+                &:hover{
+                    cursor: pointer;
                 }
             }
         }

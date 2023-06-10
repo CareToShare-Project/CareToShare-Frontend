@@ -7,6 +7,7 @@ import { BASE_URL } from '../Shared_util/Constants/Base_URL';
 import '../Shared_Styles/General/Styles.css'
 import { useNavigate } from 'react-router-dom';
 import { AiFillEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import BackgroundSVG from '../Shared_util/SVG/Background';
 
 
 function CreateAccount() {
@@ -54,10 +55,11 @@ function CreateAccount() {
     }
 
     return (
-        <div className='body-container'>
+        <div className='centered'>
+            <BackgroundSVG />
             <form onSubmit={handleSubmit}>
                 <CreateAccountWrapper>
-                    <Heading style={{"marginTop" : "20px"}}>
+                    <Heading style={{"marginTop" : "5px"}}>
                         Create an account
                     </Heading>
                     <FormContainer style={{"gap" : "10px", "marginTop" : "-10px"}}>
@@ -93,13 +95,13 @@ function CreateAccount() {
                             
                             {showPassword ? 
                                     <AiOutlineEyeInvisible
-                                        color='white' 
+                                        color='#56C0C8' 
                                         style={{'position' : 'absolute', 'right' : '20px' , 
                                                 'bottom' : '15px', 'cursor' : 'pointer'}} 
                                         onClick={()=> setShowPassword(prev=> !prev)}
                                     />: 
                                     <AiFillEye 
-                                        color='white' 
+                                        color='#56C0C8' 
                                         style={{'position' : 'absolute', 'right' : '20px' , 
                                                 'bottom' : '15px', 'cursor' : 'pointer'}} 
                                         onClick={()=> setShowPassword(prev=> !prev)}
@@ -117,13 +119,13 @@ function CreateAccount() {
 
                             {showPassword ? 
                                     <AiOutlineEyeInvisible
-                                        color='white' 
+                                        color='#56C0C8' 
                                         style={{'position' : 'absolute', 'right' : '20px' , 
                                                 'bottom' : '15px', 'cursor' : 'pointer'}} 
                                         onClick={()=> setShowPassword(prev=> !prev)}
                                     />: 
                                     <AiFillEye 
-                                        color='white' 
+                                        color='#56C0C8' 
                                         style={{'position' : 'absolute', 'right' : '20px' , 
                                                 'bottom' : '15px', 'cursor' : 'pointer'}} 
                                         onClick={()=> setShowPassword(prev=> !prev)}
