@@ -43,7 +43,7 @@ function ViewRequests (){
         <RightSideContentWrapper>
             <SearchBar query={query} setQuery={setQuery} setRefresh={setRefresh}/>
             {campaigns &&
-                <div className='requests'>
+                <div className='request'>
                     <h5>Campaigns</h5>
                     <ViewFoundationContainer>
                             {campaigns
@@ -57,7 +57,7 @@ function ViewRequests (){
                     </ViewFoundationContainer>
                </div>} 
             {specificRequests && 
-                <div className='requests'>
+                <div className='request'>
                     <h5>Your Donations</h5>
                     <ViewFoundationContainer>
                             {specificRequests

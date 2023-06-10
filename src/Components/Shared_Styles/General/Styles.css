@@ -23,6 +23,9 @@
   z-index: 200;
 }
 
+.modal-container .modal-dialog {
+  border-radius: 20px;
+}
 ::-webkit-scrollbar {
   width: 0px;
   height: 2px;

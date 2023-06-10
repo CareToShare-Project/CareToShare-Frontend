@@ -5,10 +5,11 @@ import { TableWrapper } from '../DonorPage/DonorStyles';
 import { fetchRequests, approveRequest } from '../Shared_util/Constants/Functions';
 import SearchBar from "../Shared_util/SearchBar/SearchBar"
 import LoginToast from '../Shared_util/Toast/LoginToast';
+import { requestProps } from '../Shared_util/Constants/Types';
 
 
 const ApproveRequest = () => {
-    const [requests, setRequests] = useState<any>([])
+    const [requests, setRequests] = useState<requestProps[]>([])
     const [showLoading, setShowLoading] = useState(false)
     const [refresh, setRefresh] = useState("")
     const [query, setQuery] = useState("")
@@ -38,9 +39,9 @@ const ApproveRequest = () => {
                             </tr>
                         </thead>
                         <tbody className='table-body'> 
-                            {requests.map((req: any) => {
+                            {requests.map((req: requestProps) => {
                                 return (
-                                    <tr>
+                                    <tr key={req.requestId}>
                                         <td>{req.requestType}</td>
                                         <td>{req.requestedBy}</td>
                                         <td>{req.requestType === "Specific" ? req.requestTo : "Generic"}</td>

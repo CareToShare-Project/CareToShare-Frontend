@@ -1,15 +1,19 @@
 import React from 'react';
-import { CardContainer, DetailsWrapper, ImageWrapper} from './DonorStyles';
+import { CardContainer, ConfirmButton, DetailsWrapper, ImageWrapper} from './DonorStyles';
 import image1 from '../HomePage/images/image1.jpg'
 import {MdLocationOn, MdEmail, MdCall, MdVerified } from 'react-icons/md'
-import {GiOnTarget } from "react-icons/gi"
-import { organisationCardProp } from '../Shared_util/Constants/Types';
+import {  organisationCardProp } from '../Shared_util/Constants/Types';
 
 
 
-const CharityCard: React.FC<organisationCardProp> = ({details}) => {
+const CharityCard: React.FC<organisationCardProp> = ({details, setShow, setDetails}) => {
 
-    const {organisationName, location , email, contact, mission, isVerified} = details
+    const {organisationName, location , email, contact, isVerified} = details
+
+    const handleModal = () => {
+        setShow(true)
+        setDetails(details)
+    }
 
     return (
         <CardContainer>
@@ -20,20 +24,22 @@ const CharityCard: React.FC<organisationCardProp> = ({details}) => {
                     <span className='verified'>{isVerified ? <MdVerified /> : ''}</span>
                 </span>
                 <span className='sub-details'>
-                    <MdLocationOn color='#3A1078' className='icon' /> 
+                    <MdLocationOn color='#56C0C8' className='icon' /> 
                      {location}
                 </span>
                 <span className='sub-details'>
-                    <MdEmail color='#3A1078' className='icon'/> 
+                    <MdEmail color='#56C0C8' className='icon'/> 
                     {email}
                 </span>
                 <span className='sub-details'>
-                    <MdCall color='#3A1078' className='icon'/> 
+                    <MdCall color='#56C0C8' className='icon'/> 
                     {contact}
                 </span>
-                <span className='sub-details'>
-                    <GiOnTarget color='#3A1078' className='icon'/>
-                    {mission}
+                <span>
+                    <ConfirmButton onClick={handleModal} style={{width:'50%', padding: '0px',marginTop: "10px",
+                                        fontSize :'14px', borderRadius : "0"}}>
+                        View Profile
+                    </ConfirmButton>
                 </span>
             </DetailsWrapper>
         </CardContainer>

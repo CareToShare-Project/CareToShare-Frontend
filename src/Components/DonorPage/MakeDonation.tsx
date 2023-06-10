@@ -105,7 +105,7 @@ function MakeDonation() {
                         <select className="ui search dropdown" ref={organisationRef}>
                             <option value="">Organisation</option>
                             {organisations.map((organisation: any) => {
-                                return <option value={organisation.organisationName}>
+                                return <option value={organisation.organisationName} key={organisation.organisationName}>
                                             {organisation.organisationName}
                                         </option>
                             })}

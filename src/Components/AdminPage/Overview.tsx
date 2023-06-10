@@ -6,7 +6,7 @@ import DonationChart from './DonationChart';
 import DonationRequestChart from './DonationRequestChart';
 import RequestChart from './RequestChart';
 import { getAllDonations, fetchRequests, getAllOrganisations, getAllDonors} from '../Shared_util/Constants/Functions';
-import { DonorsProps, OrganisationProps, donationProps, requestProps } from '../Shared_util/Constants/Types';
+import { DonorProps, OrganisationProps, donationProps, requestProps } from '../Shared_util/Constants/Types';
 
 
 
@@ -14,7 +14,7 @@ const Overview = () => {
     const [donations, setDonations] = useState<donationProps[]>([])
     const [requests, setRequests] = useState<requestProps[]>([])
     const [organisations, setOrganisations] = useState<OrganisationProps[]>([])
-    const [donors, setDonors] = useState<DonorsProps[]>([])
+    const [donors, setDonors] = useState<DonorProps[]>([])
 
     useEffect(()=>{
         getAllDonations(setDonations)

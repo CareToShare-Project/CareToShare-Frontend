@@ -5,10 +5,12 @@ import { TableWrapper } from '../DonorPage/DonorStyles';
 import { getAllDonations, approveDonation } from '../Shared_util/Constants/Functions';
 import SearchBar from "../Shared_util/SearchBar/SearchBar"
 import LoginToast from '../Shared_util/Toast/LoginToast';
+import { donationProps } from '../Shared_util/Constants/Types';
+import { status } from '../Shared_util/Constants/Status';
 
 
 const ApproveDonation = () => {
-    const [donations, setDonation] = useState<any>([])
+    const [donations, setDonation] = useState<donationProps[]>([])
     const [showLoading, setShowLoading] = useState(false)
     const [refresh, setRefresh] = useState("")
     const [query, setQuery] = useState("")
@@ -38,20 +40,25 @@ const ApproveDonation = () => {
                             </tr>
                         </thead>
                         <tbody className='table-body'> 
-                            {donations.map((donation: any) => {
+                            {donations.map((donation: donationProps) => {
                                 return (
-                                    <tr>
+                                    <tr key={donation.donationId}>
                                         <td>{donation.donatedBy}</td>
                                         <td>{donation.donatedTo}</td>
                                         <td>{donation.createdAt.slice(0,10)}</td>
                                         <td>{donation.location}</td>
                                         <td>
-                                            <a href={donation.itemPhoto} target="_blank" rel="noreferrer">View</a>
+                                            <a 
+                                              href={donation.itemPhoto} 
+                                              target="_blank" 
+                                              rel="noreferrer">
+                                                View
+                                            </a>
                                         </td>
                                         <td>
-                                            {donation.donationStatus === "Pending"  ? 
+                                            {donation.donationStatus === status.pending  ? 
                                                     <ApproveButton 
-                                                        onClick={()=> approveDonation("In Progress", 
+                                                        onClick={()=> approveDonation(status.inProgress, 
                                                                                     donation.donationId, 
                                                                                     setShowLoading,
                                                                                     setToastMessage,

@@ -7,10 +7,11 @@ import { getAllOrganisations , approveOrganisationRegistration,
          activateOrganisation} from '../Shared_util/Constants/Functions';
 import SearchBar from "../Shared_util/SearchBar/SearchBar"
 import LoginToast from '../Shared_util/Toast/LoginToast';
+import { OrganisationProps} from '../Shared_util/Constants/Types';
 
 
 const ApproveRegistration = () => {
-    const [organisations, setOrganisation] = useState<any>([])
+    const [organisations, setOrganisation] = useState<OrganisationProps[]>([])
     const [showLoading, setShowLoading] = useState(false)
     const [refresh, setRefresh] = useState("")
     const [query, setQuery] = useState("")
@@ -43,9 +44,9 @@ const ApproveRegistration = () => {
                             </tr>
                         </thead>
                         <tbody className='table-body'> 
-                            {organisations.map((org: any) => {
+                            {organisations.map((org: OrganisationProps) => {
                                 return (
-                                    <tr>
+                                    <tr key={org._id}>
                                         <td>{org.organisationName}</td>
                                         <td>{org.isActive ? "Active" : "Inactive"}</td>
                                         <td>{org.createdAt.slice(0,10)}</td>

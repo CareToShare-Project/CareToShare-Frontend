@@ -41,16 +41,7 @@ export interface PasswordResetProps{
     navigateTo : string
 }
 
-export interface organisationCardProp {
-    details: {
-        organisationName : string,
-        location : string,
-        email : string,
-        contact : string,
-        mission : string,
-        isVerified : boolean
-    }
-}
+
 
 export interface RequestCardProp {
     details : {
@@ -74,15 +65,15 @@ export interface NavBarProp {
 
 export interface donationProps {
     donationType?: string,
-    donationId?: string,
+    donationId: string,
     donatedBy?: string,
     donatedTo?: string,
     donationStatus?: string,
     description?: string,
     itemPhoto?: string,
     location?: string,
-    createdAt?: Date,
-    updatedAt?: Date
+    createdAt: string,
+    updatedAt: string
 }
 
 export interface DonationChartProps{
@@ -90,14 +81,14 @@ export interface DonationChartProps{
 }
 
 export interface requestProps {
-    requestId?: string,
+    requestId: string,
     requestedBy?: string,
     requestType?: string,
     requestTo?: string,
     description?:string,
     requestStatus?:string,
     requestImage?:string,
-    createdAt?: Date,
+    createdAt: string,
     updatedAt?: Date
 }
 
@@ -112,27 +103,34 @@ export interface DonationRequestChartProps{
 }
 
 export interface OrganisationProps{
-    username?: string,
-    email?: string,
-    location?: string,
-    organisationName?: string,
+    username: string,
+    _id : string,
+    email: string,
+    isVerified: boolean,
+    location: string,
+    organisationName: string,
     contact?: string,
     isApproved?: boolean,
     isActive?: boolean,
     role ?: string,
     reviews? : string[],
-    mission? : string,
-    createdAt?: Date,
+    businessCertificate: string,
+    mission : string,
+    createdAt: string,
     updatedAt?: Date
 }
 
-export interface OrganisationsProps{
-    organisations: OrganisationProps[]
+export interface organisationCardProp {
+    details: OrganisationProps,
+    setShow : React.Dispatch<React.SetStateAction<boolean>>,
+    setDetails : React.Dispatch<React.SetStateAction<OrganisationProps | undefined>>
 }
+
 
 export interface DonorProps {
     email?: string,
-    username?: string,
+    _id : string,
+    username: string,
     firstName?: string,
     lastName?:string,
     location?:string,
@@ -140,10 +138,12 @@ export interface DonorProps {
     reviews?: string[],
     isActive?: boolean,
     role?: string,
-    createdAt?: Date,
+    createdAt: string,
     updatedAt?: Date
 }
 
-export interface DonorsProps {
-    donors : DonorProps[]
+export interface ProfileModalProps{
+    show : boolean,
+    setShow: React.Dispatch<React.SetStateAction<boolean>>,
+    details: OrganisationProps | undefined
 }

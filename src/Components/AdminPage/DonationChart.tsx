@@ -1,17 +1,18 @@
 import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { DonationChartProps } from '../Shared_util/Constants/Types';
+import { status } from '../Shared_util/Constants/Status';
 
 const DonationChart:React.FC<DonationChartProps>= ({donations}) => {
-  const pending = donations.filter(item=> item.donationStatus === "Pending");
-  const inProgress = donations.filter(item=> item.donationStatus === "In Progress");
-  const completed = donations.filter(item=>item.donationStatus === "Completed")
+  const pending = donations.filter(item=> item.donationStatus === status.pending);
+  const inProgress = donations.filter(item=> item.donationStatus === status.inProgress);
+  const completed = donations.filter(item=>item.donationStatus === status.completed)
   
 
   const data = [
-    { status: 'Pending', count: pending.length},
-    { status: 'In Progress', count:inProgress.length },
-    { status: 'Completed', count: completed.length},
+    { status: status.pending, count: pending.length},
+    { status: status.inProgress, count:inProgress.length },
+    { status: status.completed, count: completed.length},
   ];
 
   

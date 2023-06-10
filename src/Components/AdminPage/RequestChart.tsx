@@ -1,17 +1,18 @@
 import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { RequestChartProps } from '../Shared_util/Constants/Types';
+import { status } from '../Shared_util/Constants/Status';
 
 
 const RequestChart: React.FC<RequestChartProps> = ({requests}) => {
-  const pending = requests.filter(item=> item.requestStatus === "Pending");
-  const inProgress = requests.filter(item=> item.requestStatus === "In Progress");
-  const completed = requests.filter(item=>item.requestStatus === "Completed")
+  const pending = requests.filter(item=> item.requestStatus === status.pending);
+  const inProgress = requests.filter(item=> item.requestStatus === status.inProgress);
+  const completed = requests.filter(item=>item.requestStatus === status.completed)
  
   const data = [
-    { status: 'Pending', count: pending.length },
-    { status: 'In Progress', count: inProgress.length },
-    { status: 'Completed', count: completed.length},
+    { status: status.pending, count: pending.length },
+    { status: status.inProgress, count: inProgress.length },
+    { status: status.completed, count: completed.length},
   ];
 
 

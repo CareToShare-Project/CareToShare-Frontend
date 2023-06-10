@@ -5,11 +5,12 @@ import SearchBar from '../Shared_util/SearchBar/SearchBar';
 import LoginToast from '../Shared_util/Toast/LoginToast';
 import { Spinner, Table } from 'react-bootstrap';
 import { getAllDonors, deactivateDonor, activateDonor } from '../Shared_util/Constants/Functions';
+import { DonorProps } from '../Shared_util/Constants/Types';
 
 
 
 function DonorAccount () {
-    const [donors, setDonors] = useState<any>([])
+    const [donors, setDonors] = useState<DonorProps[]>([])
     const [showLoading, setShowLoading] = useState(false)
     const [refresh, setRefresh] = useState("")
     const [query, setQuery] = useState("")
@@ -45,7 +46,7 @@ function DonorAccount () {
                         </tr>
                     </thead>
                     <tbody className='table-body'> 
-                        {donors.map((donor: any) => {
+                        {donors.map((donor: DonorProps) => {
                             return (
                                 <tr key={donor.username}>
                                     <td>{donor.username}</td>

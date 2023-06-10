@@ -3,6 +3,7 @@ import { MessageWrapper, ReviewButton, ReviewContainer, ReviewFieldsWrapper, Rev
 import LoginToast from "../Shared_util/Toast/LoginToast"
 import { DonationFormContainer as ReviewWrapper } from "./DonorStyles"
 import { getAllOrganisations } from "../Shared_util/Constants/Functions"
+import { OrganisationProps } from "../Shared_util/Constants/Types"
 //import 'semantic-ui-css/semantic.min.css';
 
 
@@ -15,7 +16,7 @@ function ReviewCharities() {
     // state to set toast message 
     const [toastMessage, setToastMessage] = useState('')
 
-    const [organisations, setOrganisations] = useState<any>([])
+    const [organisations, setOrganisations] = useState<OrganisationProps[]>([])
 
     const reviewRef = useRef<any>()
     const organisationRef = useRef<any>()
@@ -69,8 +70,8 @@ function ReviewCharities() {
                         <label htmlFor="organisations">Choose an organisation</label>
                         <select className="ui search dropdown" id="organisations" ref={organisationRef}>
                             <option value="">Organisation</option>
-                            {organisations.map((organisation: any) => {
-                                return <option value={organisation.organisationName}>
+                            {organisations.map((organisation: OrganisationProps) => {
+                                return <option value={organisation.organisationName} key={organisation._id}>
                                             {organisation.organisationName}
                                         </option>
                             })}

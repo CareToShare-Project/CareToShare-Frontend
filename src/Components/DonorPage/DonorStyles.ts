@@ -219,7 +219,7 @@ export const CardContainer = styled.div`
     gap: 5px;
     width: 30%;
     max-width: 240px;
-    min-width: 230px;
+    min-width: 240px;
     height: 300px;
     border-radius: 10px;
     background: white;
@@ -274,9 +274,10 @@ export const DetailsWrapper = styled.div`
     }
 
     .sub-details{
-        color: black;
+        color: ${({theme})=> theme.color.primary};;
         margin-top: 5px;
         font-family: Poppins;
+        gap: 10px;
         font-size: 13px;
         width: 90%;
 
@@ -286,6 +287,32 @@ export const DetailsWrapper = styled.div`
         
     }
     
+`
+
+export const ReviewWrapper = styled.div`
+    h5{
+        color: ${({theme})=> theme.background.primary};
+    }
+    
+    div{
+        height: 200px;
+        overflow-y: scroll;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+
+        li{
+            list-style-type: disc;
+            height: max-content;
+            padding: 5px;
+            font-size: 15px;
+            cursor: pointer;
+
+            &:hover{
+                background: rgba(0,0,0,0.2);
+            }
+        }
+    }
 `
 
 export const ImageContainer = styled.div`
@@ -732,6 +759,7 @@ export const UpdateBtn = styled(ConfirmButton)`
 export const ImageField = styled(Field)`
     height: 35px;
 `
+
 
 
 
