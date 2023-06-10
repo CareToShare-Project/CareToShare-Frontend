@@ -71,3 +71,79 @@ export interface NavBarProp {
     username : string| undefined,
     userType : string
 }
+
+export interface donationProps {
+    donationType?: string,
+    donationId?: string,
+    donatedBy?: string,
+    donatedTo?: string,
+    donationStatus?: string,
+    description?: string,
+    itemPhoto?: string,
+    location?: string,
+    createdAt?: Date,
+    updatedAt?: Date
+}
+
+export interface DonationChartProps{
+    donations: donationProps[]
+}
+
+export interface requestProps {
+    requestId?: string,
+    requestedBy?: string,
+    requestType?: string,
+    requestTo?: string,
+    description?:string,
+    requestStatus?:string,
+    requestImage?:string,
+    createdAt?: Date,
+    updatedAt?: Date
+}
+
+export interface RequestChartProps{
+    requests : requestProps[]
+}
+
+export interface DonationRequestChartProps{
+    donations: donationProps[],
+    requests : requestProps[]
+
+}
+
+export interface OrganisationProps{
+    username?: string,
+    email?: string,
+    location?: string,
+    organisationName?: string,
+    contact?: string,
+    isApproved?: boolean,
+    isActive?: boolean,
+    role ?: string,
+    reviews? : string[],
+    mission? : string,
+    createdAt?: Date,
+    updatedAt?: Date
+}
+
+export interface OrganisationsProps{
+    organisations: OrganisationProps[]
+}
+
+export interface DonorProps {
+    email?: string,
+    username?: string,
+    firstName?: string,
+    lastName?:string,
+    location?:string,
+    contact?:string,
+    reviews?: string[],
+    isActive?: boolean,
+    role?: string,
+    createdAt?: Date,
+    updatedAt?: Date
+}
+
+export interface DonorsProps {
+    donors : DonorProps[]
+}

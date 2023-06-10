@@ -6,14 +6,15 @@ import DonationChart from './DonationChart';
 import DonationRequestChart from './DonationRequestChart';
 import RequestChart from './RequestChart';
 import { getAllDonations, fetchRequests, getAllOrganisations, getAllDonors} from '../Shared_util/Constants/Functions';
+import { DonorsProps, OrganisationProps, donationProps, requestProps } from '../Shared_util/Constants/Types';
 
 
 
 const Overview = () => {
-    const [donations, setDonations] = useState<any>([])
-    const [requests, setRequests] = useState<any>([])
-    const [organisations, setOrganisations] = useState<any>([])
-    const [donors, setDonors] = useState<any>([])
+    const [donations, setDonations] = useState<donationProps[]>([])
+    const [requests, setRequests] = useState<requestProps[]>([])
+    const [organisations, setOrganisations] = useState<OrganisationProps[]>([])
+    const [donors, setDonors] = useState<DonorsProps[]>([])
 
     useEffect(()=>{
         getAllDonations(setDonations)
@@ -67,15 +68,15 @@ const Overview = () => {
             </SummaryWrapper>
             <DonationChartWrapper>
                 <h4>Donation Progress Tracker</h4>
-                <DonationChart />
+                <DonationChart donations={donations}/>
             </DonationChartWrapper>
             <DonationChartWrapper>
                 <h4>Request Progress Tracker</h4>
-                <RequestChart />
+                <RequestChart requests={requests}/>
             </DonationChartWrapper>
             <DonationChartWrapper>
                 <h4>Donations vs Request Distributions</h4>
-                <DonationRequestChart />
+                <DonationRequestChart donations={donations} requests={requests}/>
             </DonationChartWrapper>
             
         </OverViewWrapper>

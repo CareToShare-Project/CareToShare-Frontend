@@ -1,29 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { RequestChartProps } from '../Shared_util/Constants/Types';
 
 
-const RequestChart = () => {
-  const [requestData, setRequestData] = useState({
-                                                  pending : [],
-                                                  inProgress : [],
-                                                  completed : []
-                                                  })
+const RequestChart: React.FC<RequestChartProps> = ({requests}) => {
+  const pending = requests.filter(item=> item.requestStatus === "Pending");
+  const inProgress = requests.filter(item=> item.requestStatus === "In Progress");
+  const completed = requests.filter(item=>item.requestStatus === "Completed")
+ 
   const data = [
-    { status: 'Pending', count: requestData.pending.length },
-    { status: 'In Progress', count: requestData.inProgress.length },
-    { status: 'Completed', count: requestData.completed.length},
+    { status: 'Pending', count: pending.length },
+    { status: 'In Progress', count: inProgress.length },
+    { status: 'Completed', count: completed.length},
   ];
 
-  useEffect(()=>{
-      const results = sessionStorage.getItem('requests')
-      if(results !== null){
-        const requests = JSON.parse(results)
-        const pending = requests.filter((item: { requestStatus: string; })=> item.requestStatus === "Pending");
-        const inProgress = requests.filter((item: { requestStatus: string; })=> item.requestStatus === "In Progress");
-        const completed = requests.filter((item: { requestStatus: string; })=> item.requestStatus === "Completed");
-        setRequestData({pending, inProgress, completed})
-      }
-  }, [])
 
   return (
     <BarChart width={900} height={300} data={data}>

@@ -1,21 +1,15 @@
 import React from 'react';
 import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
+import { DonationRequestChartProps } from '../Shared_util/Constants/Types';
 // import { PieLabelRenderProps } from 'recharts';
 
 
 
 
 
-const DonationRequestChart = () => {
-    const requestResults = sessionStorage.getItem('requests')
-    const donationResults = sessionStorage.getItem('donations')
-    if(requestResults){
-        var requests = JSON.parse(requestResults) 
-    }
+const DonationRequestChart: React.FC<DonationRequestChartProps> = ({donations, requests}) => {
+    
 
-    if(donationResults){
-        var donations = JSON.parse(donationResults)
-    }
     const data = [
         { name: 'Requests', value: requests.length },
         { name: 'Donations', value: donations.length},

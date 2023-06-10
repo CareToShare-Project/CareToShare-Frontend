@@ -88,7 +88,7 @@ export const InputField = styled.input`
     padding: 5px;
     background: transparent;
     color: ${({theme}) => theme.color.primary};
-    border: 2px solid ${({theme}) => theme.color.primary};
+    border: 2px solid #96acb5;
 
     &:focus{
         border: 2px solid ${({theme}) => theme.color.hover2};

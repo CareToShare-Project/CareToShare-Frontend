@@ -26,6 +26,7 @@ export const CreateAccountWrapper = styled(RegistrationContainer)`
 export const CreateAccountInputField = styled(InputField)`
     width: 350px;
     height: 30px;
+    border-radius: 5px;
     color: ${({theme}) => theme.color.primary};
 `
 export const CreateAccountFieldWrapper = styled.div`
@@ -41,9 +42,9 @@ export const RoleContainer = styled.select`
     width: 100%;
     padding: 0px;
     border: none;
-    border-radius: 10px;
-    height: 35px;
-    border: 2px solid ${({theme}) => theme.color.primary};
+    border-radius: 5px;
+    height: 30px;
+    border: 2px solid #96acb5;
     
 `
 export const CreateButton = styled(ConfirmButton)`

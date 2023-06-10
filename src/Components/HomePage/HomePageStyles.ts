@@ -216,6 +216,7 @@ export const NavigationContainer = styled.div`
             font-family: Poppins;
             font-weight: 600;
             font-size: 14px;
+            letter-spacing: 0.9px;
             color: white;
             cursor: pointer;
             transition: color 0.3s;
@@ -249,10 +250,11 @@ export const BodyContainer = styled.div`
 
     p{
         color: ${({theme})=> theme.color.secondary}; 
-        font-weight: 800px;
+        font-weight: 500;
         font-family: Roboto;
         transform : translateX(32px);
         opacity: 0;
+        font-size: 14px;
         width: 50%;
         animation: ${fadeFromLeft} 1s ease-in-out forwards;
 
@@ -292,7 +294,7 @@ export const FooterContainer = styled.div`
 
     div{
         width: 360px;
-        height: 150px;
+        height: 200px;
         background: rgba(0,0,0,0.4);
         padding: 10px;
         padding-top: 30px;
@@ -302,6 +304,15 @@ export const FooterContainer = styled.div`
         text-align: center;
         color: white;
         border-radius: 2px;
+        cursor: pointer;
+
+        &:hover{
+            background: rgba(0,0,0,0.9);
+
+            p{
+                opacity: 1;
+            }
+        }
 
         span{
             font-weight: 700;
@@ -312,7 +323,9 @@ export const FooterContainer = styled.div`
         }
         p{
             opacity: 0.6;
-            font-size: 13px;
+            font-size: 14px;
+
+           
         }
     }
 `

@@ -1,29 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { DonationChartProps } from '../Shared_util/Constants/Types';
 
-const DonationChart = () => {
-  const [donationData, setDonationData] = useState({
-                                                      pending: [],
-                                                      inProgress : [],
-                                                      completed : []
-          })
+const DonationChart:React.FC<DonationChartProps>= ({donations}) => {
+  const pending = donations.filter(item=> item.donationStatus === "Pending");
+  const inProgress = donations.filter(item=> item.donationStatus === "In Progress");
+  const completed = donations.filter(item=>item.donationStatus === "Completed")
+  
 
   const data = [
-    { status: 'Pending', count: donationData.pending.length },
-    { status: 'In Progress', count: donationData.inProgress.length },
-    { status: 'Completed', count: donationData.completed.length},
+    { status: 'Pending', count: pending.length},
+    { status: 'In Progress', count:inProgress.length },
+    { status: 'Completed', count: completed.length},
   ];
 
-  useEffect(()=>{
-   const results = sessionStorage.getItem('donations')
-   if(results !== null) {
-      const donations = JSON.parse(results)
-      const pending = donations.filter((item: { donationStatus: string; })=> item.donationStatus === "Pending");
-      const inProgress = donations.filter((item: { donationStatus: string; })=> item.donationStatus === "In Progress");
-      const completed = donations.filter((item: { donationStatus: string; })=> item.donationStatus === "Completed");
-      setDonationData({pending, inProgress, completed})
-   }
-  }, [])
+  
 
   return (
     <BarChart width={900} height={300} data={data}>
