@@ -3,7 +3,7 @@ import {FaPeopleCarry, FaStarHalfAlt, FaPrayingHands, FaHandHoldingHeart, FaUser
 import {GoVerified} from "react-icons/go"
 import {BiLoaderCircle, BiDonateHeart} from 'react-icons/bi'
 import {BsChatText, BsHandThumbsUp} from 'react-icons/bs'
-import {MdVerified} from 'react-icons/md'
+import {BsPostcardHeart} from 'react-icons/bs'
 import {RiUserSettingsFill, RiUserSettingsLine} from 'react-icons/ri'
 import { SideBarFeaturesProp } from './Types'
 
@@ -104,6 +104,11 @@ export const charityFeatures = [
         title:'Request Progress',
         icon: BiLoaderCircle,
         link: 'requestProgress'
+    },
+    {
+        title:'Post',
+        icon: BsPostcardHeart,
+        link: 'post'
     },
     {
         title:'Send Message',

@@ -9,11 +9,64 @@ export const TextWrapper = styled.textarea`
     background: transparent;
     width: 100%;
     color: ${({theme}) => theme.color.primary};
-    border: 2px solid ${({theme}) => theme.color.primary};;
+    border: 2px solid ${({theme}) => theme.color.primary};
     cursor: pointer;
 
     &:focus{
         border: 2px solid ${({theme})=> theme.color.hover2};
         outline: none;
     }
+`
+
+export const PostWrapper = styled.div`
+    width: 80%;
+    height: 500px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.3);
+    border: 3px solid white;
+    margin: 20px;
+`
+
+export const PostFieldWrapper = styled.div`
+    width: 100%;
+    padding: 30px 50px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 40px;
+
+    label{
+        color: ${({theme}) => theme.background.primary};
+        font-family: Poppins;
+    }
+
+    textarea{
+        width: 70%;
+        height: 200px;
+        color: ${({theme}) => theme.color.primary};
+        border: 2px solid ${({theme}) => theme.color.primary};
+        cursor: pointer;
+        font-family: Roboto;
+        font-weight: 600;
+
+        &:focus{
+            border: 2px solid ${({theme})=> theme.color.hover2};
+            outline: none;
+        }
+    }
+
+    input{
+        width: 70%;
+        color: ${({theme}) => theme.color.primary};
+        border: 2px solid #96acb5;
+       
+        &:focus{
+            border: 2px solid ${({theme}) => theme.color.hover2};
+            outline: none;
+        }
+    }
+    
+    
+
 `

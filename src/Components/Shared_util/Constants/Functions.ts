@@ -10,6 +10,13 @@ export const uploadImage = (e : React.ChangeEvent<HTMLInputElement>, setImageUpl
     console.log("success")
 }
 
+// handle multiple image uploads
+export const uploadMultipleImages = (e : React.ChangeEvent<HTMLInputElement>, setImageUpload : React.Dispatch<any>) => {
+    if(e.target.files === null) return
+    setImageUpload(e.target.files)
+    console.log("success")
+}
+
 // uploads file to the firebase storage
 export const uploadFileToStorageBucket = (imageUpload : any, setImageUrl : React.Dispatch<React.SetStateAction<string>>, path : string) => {
     if(imageUpload === null) return;

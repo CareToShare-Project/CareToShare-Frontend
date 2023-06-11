@@ -98,6 +98,7 @@ export const FeedWrapper = styled.div`
             display: flex;
             align-items: center;
             gap: 15px;
+            width: 100%;    
 
             img{
                 width: 80px;
@@ -106,19 +107,26 @@ export const FeedWrapper = styled.div`
             }
     
             .org{
-                color: ${({theme})=> theme.background.primary};
-                font-weight: 800;
-                font-family: Noto Sans, sans-sarif;
+                display:flex;
+                flex-direction: column;
+                width: 100%;
+                
+                .head{
+                    color: ${({theme})=> theme.background.primary};
+                    font-weight: 800;
+                    font-family: Noto Sans, sans-sarif;
+                    font-size: 16px;
                 }
-            .post{
-                font-size: 14px;
-                color: rgba(0,0,0,0.5);
+                span{
+                    font-size: 13px;
+                    color: ${({theme})=> theme.color.primary};;
+                }
             }
-
+            
             .time{
                 font-size: 14px;
-                font-weight: 600;
-                color: rgba(0,0,0.5);
+                color: rgba(0,0,0,0.5);
+                width: 40%;
             }
         }
 
