@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect} from 'react';
 import { PostWrapper, PostFieldWrapper } from './CharityStyles';
 import { Heading } from '../Login/LoginStyles';
 import { uploadMultipleImages } from '../Shared_util/Constants/Functions';
@@ -8,13 +8,13 @@ import { storage } from '../Shared_util/Constants/FireBase';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { v4 } from 'uuid';
 import { addPost } from '../Store/Post-Slice';
+import { OrganisationProps } from '../Shared_util/Constants/Types';
 
 const Post = () => {
     const [imageUpload, setImageUpload] = useState<any>()
     let images: string[] = []
     const messageRef = useRef<any>("")
-
-    
+    const [user, setUser] = useState<OrganisationProps>()
     const dispatch = useAppDispatch();
 
     const uploadFileToStorageBucket = () => {
@@ -39,11 +39,13 @@ const Post = () => {
     const handlePost = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         uploadFileToStorageBucket()
+        const organisationName = user?.organisationName || 'Unknown' 
+        const username = user?.username || "Unknown"
         setTimeout(()=> {
             if(messageRef.current){
                 dispatch(addPost({
-                organisation: "Zuuba Foundation",
-                username : "@ghanaAid",
+                organisation: organisationName,
+                username : username,
                 message : messageRef.current.value,
                 images : images,
                 date : new Date().toLocaleString()
@@ -51,9 +53,16 @@ const Post = () => {
         }))
             console.log('forms submitted') 
     }
-        }, 5000)
-          
-    }
+        }, 5000) }
+
+    useEffect(()=>{
+        const results = sessionStorage.getItem('user')
+        if(results !== null){
+            const userData = JSON.parse(results)
+            setUser(userData)
+            }
+        }, [setUser])
+    
     return(
         <PostWrapper>
             <form

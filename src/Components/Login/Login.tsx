@@ -50,15 +50,10 @@ const Login: React.FC = () => {
 
             // gets username and role from the results
             const {role, username} = results?.data?.user
-            const photo = results?.data?.user?.photo
-
-            // gets photo and store in local storage on login
-            if(!photo){
-                sessionStorage.setItem('profilePhoto', JSON.stringify(''))
-            }else{
-                sessionStorage.setItem('profilePhoto', JSON.stringify(photo))
-            }
             
+            // sets user details in session storage
+
+            sessionStorage.setItem('user', JSON.stringify(results.data.user))
             
             
             //stores the homepage url/link in local storage on login

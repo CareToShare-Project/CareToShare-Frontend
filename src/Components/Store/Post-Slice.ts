@@ -7,8 +7,7 @@ interface PostProps {
     message: string,
     organisation: string,
     likes: number,
-    images: string[]
-    dislikes: number,
+    images: string[],
     comments: string[],
     postedOn : string
 }
@@ -34,7 +33,6 @@ export const PostSlice = createSlice({
                 organisation: action.payload.organisation,
                 likes: 0,
                 images: action.payload.images,
-                dislikes: 0,
                 comments: [],
                 postedOn : action.payload.date
             })
@@ -46,23 +44,17 @@ export const PostSlice = createSlice({
             state.posts = [...newpost]
         },
 
-        likePost : (state, action: PayloadAction<{liked: boolean, id: number}>) => {
+        likePost : (state, action: PayloadAction<{id: number}>) => {
             const post = state.posts.find(item => item.id === action.payload.id);
-            if(action.payload.liked && post){
-                post.likes += -1;
-            }
-            else if(post){
-                post.likes += 1;
+            if(post){
+                post.likes += 1 
             }
             
         },
-        disLikePost : (state, action: PayloadAction<{disliked: boolean, id: number}>) => {
+        dislikePost : (state, action: PayloadAction<{id: number}>) => {
             const post = state.posts.find(item => item.id === action.payload.id);
-            if(action.payload.disliked && post){
-                post.dislikes += 1;
-            }
-            else if(post){
-                post.dislikes += -1;
+            if(post){
+                post.likes -= 1 
             }
             
         },
@@ -78,4 +70,4 @@ export const PostSlice = createSlice({
 })
 
 export default PostSlice.reducer;
-export const {addPost, likePost, disLikePost, addComment} = PostSlice.actions
+export const {addPost, likePost,dislikePost, addComment} = PostSlice.actions

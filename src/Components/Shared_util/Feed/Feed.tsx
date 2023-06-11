@@ -1,35 +1,38 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import {FeedPageContainer, FeedWrapper, RightNavBar} from "./Feed.Styles"
 import img from "../../HomePage/images/home1.jpg"
-import { AiFillLike, AiFillDislike} from "react-icons/ai"
+import { AiFillLike} from "react-icons/ai"
 import { useAppDispatch, useAppSelector } from "../../Store/Store"
-import { disLikePost, likePost } from "../../Store/Post-Slice"
+import { likePost, dislikePost} from "../../Store/Post-Slice"
+
 
 
 const Feed = () => {
     const posts = useAppSelector(state=> state.post.posts)
-    console.log(posts)
-    const [liked, setLiked] = useState(false)
-    const [disliked, setDisliked] = useState(true)
+    const [user, setUser] = useState<any>("hello")
     const dispatch = useAppDispatch()
+    const [likedBy, setLikedBy] = useState<string[]>([])
     
     const handlePostLike = (id: number) => {
-        dispatch(likePost({
-            liked,
-            id
-        }))
-
-        setLiked(prev=>!prev)
+        const item = likedBy.find(item=> item === user?.username)
+        if(item){
+            dispatch(dislikePost({id}))
+            const removedUserList = likedBy.filter(item => item !== user?.username)
+            setLikedBy(removedUserList)
+        }else{
+            dispatch(likePost({id}))
+            const username = user.username
+            setLikedBy(prev=> [...prev, username])
+        }
     }
 
-    const handlePostDislike = (id: number) => {
-        dispatch(disLikePost({
-            disliked,
-            id
-        }))
-
-        setDisliked(prev=>!prev)
-    }
+    useEffect(()=>{
+        const results = sessionStorage.getItem('user')
+        if(results !== null){
+            const userData = JSON.parse(results)
+            setUser(userData)
+        }
+    }, [setUser])
 
     
 
@@ -65,10 +68,6 @@ const Feed = () => {
                                     <AiFillLike size={20} onClick={()=>handlePostLike(post.id)}/> 
                                     <span>{post.likes}</span>
                                 </span>
-                                <span>
-                                    <AiFillDislike size={20} onClick={()=>handlePostDislike(post.id)}/> 
-                                    <span>{post.dislikes}</span>
-                                </span>
                                 <span>comments</span>
                             </div>
                     </div>
@@ -80,7 +79,6 @@ const Feed = () => {
             </FeedWrapper>
             <RightNavBar>
                 <ul>
-                    <li>All</li>
                     <li>Recent</li>
                     <li>Sort by likes</li>
                 </ul>
