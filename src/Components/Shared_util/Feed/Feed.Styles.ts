@@ -78,6 +78,10 @@ export const FeedWrapper = styled.div`
                 &:hover{
                     color: ${({theme})=> theme.background.primary};
                 }
+
+                .liked{
+                    color: ${({theme})=> theme.background.primary};
+                }
                 span{
                     font-size: 14px;
                     font-family: Roboto;

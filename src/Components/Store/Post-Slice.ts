@@ -6,7 +6,7 @@ interface PostProps {
     username: string, 
     message: string,
     organisation: string,
-    likes: number,
+    likes: string[],
     images: string[],
     comments: string[],
     postedOn : string
@@ -31,7 +31,7 @@ export const PostSlice = createSlice({
                 message: action.payload.message,
                 username: action.payload.username,
                 organisation: action.payload.organisation,
-                likes: 0,
+                likes: [],
                 images: action.payload.images,
                 comments: [],
                 postedOn : action.payload.date
@@ -44,21 +44,18 @@ export const PostSlice = createSlice({
             state.posts = [...newpost]
         },
 
-        likePost : (state, action: PayloadAction<{id: number}>) => {
+        likePost : (state, action: PayloadAction<{username: string, id: number}>) => {
             const post = state.posts.find(item => item.id === action.payload.id);
-            if(post){
-                post.likes += 1 
+            const user = post?.likes.find(item => item === action.payload.username);
+            if(user && post){
+                const filteredLikes = post.likes.filter(item=> item !== action.payload.username)
+                post.likes = [...filteredLikes]
+            }else if(post){
+                post.likes = [...post.likes, action.payload.username]
             }
             
         },
-        dislikePost : (state, action: PayloadAction<{id: number}>) => {
-            const post = state.posts.find(item => item.id === action.payload.id);
-            if(post){
-                post.likes -= 1 
-            }
-            
-        },
-
+      
         addComment : (state, action : PayloadAction<{comment: string, id: number}>)=>{
             const post = state.posts.find(item=> item.id === action.payload.id)
             if(post){
@@ -70,4 +67,4 @@ export const PostSlice = createSlice({
 })
 
 export default PostSlice.reducer;
-export const {addPost, likePost,dislikePost, addComment} = PostSlice.actions
+export const {addPost, likePost, addComment} = PostSlice.actions

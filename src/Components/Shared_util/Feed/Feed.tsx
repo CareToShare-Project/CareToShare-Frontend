@@ -3,27 +3,24 @@ import {FeedPageContainer, FeedWrapper, RightNavBar} from "./Feed.Styles"
 import img from "../../HomePage/images/home1.jpg"
 import { AiFillLike} from "react-icons/ai"
 import { useAppDispatch, useAppSelector } from "../../Store/Store"
-import { likePost, dislikePost} from "../../Store/Post-Slice"
+import { likePost} from "../../Store/Post-Slice"
 
 
 
 const Feed = () => {
     const posts = useAppSelector(state=> state.post.posts)
-    const [user, setUser] = useState<any>("hello")
+    console.log(posts)
+    const [user, setUser] = useState<any>("")
     const dispatch = useAppDispatch()
-    const [likedBy, setLikedBy] = useState<string[]>([])
+    
     
     const handlePostLike = (id: number) => {
-        const item = likedBy.find(item=> item === user?.username)
-        if(item){
-            dispatch(dislikePost({id}))
-            const removedUserList = likedBy.filter(item => item !== user?.username)
-            setLikedBy(removedUserList)
-        }else{
-            dispatch(likePost({id}))
-            const username = user.username
-            setLikedBy(prev=> [...prev, username])
-        }
+        const username = user.username
+        dispatch(likePost({
+            username,
+            id
+        }))
+       
     }
 
     useEffect(()=>{
@@ -32,6 +29,7 @@ const Feed = () => {
             const userData = JSON.parse(results)
             setUser(userData)
         }
+        
     }, [setUser])
 
     
@@ -65,8 +63,12 @@ const Feed = () => {
                             </div>
                             <div className="likes">
                                 <span>
-                                    <AiFillLike size={20} onClick={()=>handlePostLike(post.id)}/> 
-                                    <span>{post.likes}</span>
+                                    <AiFillLike size={20} 
+                                                onClick={()=>handlePostLike(post.id)} 
+                                                className={post.likes.includes(user.username) ? 'liked' : ''}/> 
+                                    <span >
+                                        {post.likes.length}
+                                    </span>
                                 </span>
                                 <span>comments</span>
                             </div>
