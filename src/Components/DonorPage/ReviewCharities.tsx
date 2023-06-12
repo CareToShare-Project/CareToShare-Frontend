@@ -4,6 +4,7 @@ import LoginToast from "../Shared_util/Toast/LoginToast"
 import { DonationFormContainer as ReviewWrapper } from "./DonorStyles"
 import { getAllOrganisations } from "../Shared_util/Constants/Functions"
 import { OrganisationProps } from "../Shared_util/Constants/Types"
+import Select from 'react-select';
 //import 'semantic-ui-css/semantic.min.css';
 
 
@@ -17,6 +18,11 @@ function ReviewCharities() {
     const [toastMessage, setToastMessage] = useState('')
 
     const [organisations, setOrganisations] = useState<OrganisationProps[]>([])
+    const [selectedOrganization, setSelectedOrganization] = useState<OrganisationProps>();
+
+    const handleChange = (selectedOption: any) => {
+        setSelectedOrganization(selectedOption);
+    };
 
     const reviewRef = useRef<any>()
     const organisationRef = useRef<any>()
@@ -68,14 +74,15 @@ function ReviewCharities() {
                 <ReviewFormWrapper onSubmit={submitReview}>
                     <ReviewFieldsWrapper>
                         <label htmlFor="organisations">Choose an organisation</label>
-                        <select className="ui search dropdown" id="organisations" ref={organisationRef}>
-                            <option value="">Organisation</option>
-                            {organisations.map((organisation: OrganisationProps) => {
-                                return <option value={organisation.organisationName} key={organisation._id}>
-                                            {organisation.organisationName}
-                                        </option>
-                            })}
-                        </select>
+                        <Select
+                            value={selectedOrganization}
+                            onChange={handleChange}
+                            options={organisations}
+                            getOptionLabel={(org) => org.organisationName}
+                            getOptionValue={(org) => org.username}
+                            placeholder="Select an organization"
+                        />
+
                     </ReviewFieldsWrapper>
                     <ReviewFieldsWrapper>
                         <label htmlFor="review">Your review</label>

@@ -52,7 +52,7 @@ function ViewFoundations(){
                                             )
                                     })}
                                 </ViewFoundationContainer>}
-            {!organisations && <NoOrganisationContainer>
+            {!organisations.length && <NoOrganisationContainer>
                                     <h4>No organisation found</h4>
                                 </NoOrganisationContainer>
                     }

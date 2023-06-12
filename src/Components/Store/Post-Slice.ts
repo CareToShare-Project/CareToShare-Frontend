@@ -1,24 +1,35 @@
 import { createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 
-interface PostProps {
+export interface PostProps {
     id: number,
     username: string, 
     message: string,
     organisation: string,
     likes: string[],
     images: string[],
-    comments: string[],
+    comments: CommentProps[],
     postedOn : string
+}
+
+export interface Post{
+    post : PostProps
 }
 
 interface PostsState {
     posts : PostProps[]
 }
 
+interface CommentProps {
+    username : string,
+    comment : string
+}
+
 const initialState : PostsState = {
     posts : []
 }
+
+
 
 
 export const PostSlice = createSlice({
@@ -56,7 +67,7 @@ export const PostSlice = createSlice({
             
         },
       
-        addComment : (state, action : PayloadAction<{comment: string, id: number}>)=>{
+        addComment : (state, action : PayloadAction<{comment: CommentProps, id: number}>)=>{
             const post = state.posts.find(item=> item.id === action.payload.id)
             if(post){
                 post.comments.push(action.payload.comment)

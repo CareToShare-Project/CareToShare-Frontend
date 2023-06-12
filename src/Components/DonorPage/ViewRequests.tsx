@@ -1,6 +1,6 @@
 import React, { useEffect, useState} from 'react'
 import RequestCard from './RequestCard';
-import { RightSideContentWrapper, ViewFoundationContainer } from './DonorStyles';
+import { NoOrganisationContainer, RightSideContentWrapper, ViewFoundationContainer } from './DonorStyles';
 import SearchBar from '../Shared_util/SearchBar/SearchBar';
 import { NoOrganisationContainer as NoRequestContainer } from './DonorStyles';
 import { BASE_URL } from '../Shared_util/Constants/Base_URL';
@@ -55,7 +55,10 @@ function ViewRequests (){
                                     )
                             })}
                     </ViewFoundationContainer>
-               </div>} 
+               </div>}
+            {
+                !campaigns.length && <NoRequestContainer>No Campaigns available</NoRequestContainer>
+            }
             {specificRequests && 
                 <div className='request'>
                     <h5>Your Donations</h5>
@@ -72,6 +75,9 @@ function ViewRequests (){
                 </div>
             
             }
+            {!specificRequests.length && <NoRequestContainer>
+                                                No request has been made for your donations
+                                        </NoRequestContainer>}
         
 {/* 
             {

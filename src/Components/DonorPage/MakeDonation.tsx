@@ -11,6 +11,8 @@ import {v4} from "uuid"
 import { uploadImage, uploadFileToStorageBucket } from "../Shared_util/Constants/Functions";
 import { useParams } from "react-router-dom"
 import { getAllOrganisations } from "../Shared_util/Constants/Functions"
+import Select from 'react-select';
+import { OrganisationProps } from "../Shared_util/Constants/Types"
 
 function MakeDonation() {
     const organisationRef: any = useRef('');
@@ -22,7 +24,12 @@ function MakeDonation() {
 
     const {username} = useParams()
     
-    const [organisations, setOrganisations] = useState<any>([])
+    const [organisations, setOrganisations] = useState<OrganisationProps[]>([])
+    const [selectedOrganization, setSelectedOrganization] = useState<OrganisationProps>();
+
+    const handleChange = (selectedOption: any) => {
+        setSelectedOrganization(selectedOption);
+    };
 
     const handleDonationType = (e : React.ChangeEvent<HTMLSelectElement>) => {
         setDonationType(e.target.value);
@@ -102,14 +109,14 @@ function MakeDonation() {
 
                     <FieldWrapper className={`field ${donationType==="Generic" ? 'disabled' : ''}`}>
                         <DonationInputLabel>Donate To</DonationInputLabel>
-                        <select className="ui search dropdown" ref={organisationRef}>
-                            <option value="">Organisation</option>
-                            {organisations.map((organisation: any) => {
-                                return <option value={organisation.organisationName} key={organisation.organisationName}>
-                                            {organisation.organisationName}
-                                        </option>
-                            })}
-                        </select>
+                        <Select
+                            value={selectedOrganization}
+                            onChange={handleChange}
+                            options={organisations}
+                            getOptionLabel={(org) => org.organisationName}
+                            getOptionValue={(org) => org.username}
+                            placeholder="Select an organization"
+                        />
                     </FieldWrapper >
                     <FieldWrapper className="field">
                         <DonationInputLabel>Location</DonationInputLabel>

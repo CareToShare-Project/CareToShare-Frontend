@@ -3,48 +3,15 @@ import styled from "styled-components"
 export const FeedPageContainer = styled.div`
     width: 100%;
     display: flex;
+    flex-direction: column;
     gap: 20px;
+    padding: 10px;
     position: relative;
 `
 
-export const RightNavBar = styled.div`
-    width: 20%;
-    height: 300px;
-    background: ${({theme})=> theme.color.hover}; 
-    border: 2px solid white;
-    border-radius: 20px;
-    box-shadow: 0px 0px 3px rgba(0,0,0,0.4);
-    position: sticky;
-    top: 0px;
-    right: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 
-    ul{
-        font-size: 14px;
-        letter-spacing: 1.3px;
-        color: ${({theme})=> theme.color.primary};
-        display: flex;
-        flex-direction: column;
-        font-family: Poppins;
-        gap: 5px;
-
-        li{
-            
-            cursor: pointer;
-
-            &:hover{
-                color: ${({theme})=> theme.background.primary};
-            }
-        }
-    }
-    
-
-    
-`
 export const FeedWrapper = styled.div`
-    width: 75%;
+    width: 95%;
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -53,34 +20,35 @@ export const FeedWrapper = styled.div`
     
     
     .feed-card{
-        background: ${({theme})=> theme.color.hover};
-        border: 2px solid white;
-        box-shadow: 0px 0px 3px rgba(0,0,0,0.4);
+        background: ${({theme})=> theme.color.secondary};
+        border-radius: 10px;
+        box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);
+        border: 3px solid white;
         height: max-content;
         padding: 20px;
-        border-radius: 10px;
         display: flex;
         flex-direction: column;
         gap: 10px;
 
         .likes{
             color: ${({theme})=> theme.color.primary};
-            padding-top: 20px;
-            padding-left: 20px;
+            margin: 0px 20px;
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 30px;
 
             span{
                 display: flex;
                 align-items: center;
+                gap: 5px;
+                font-weight: 600;
                 cursor: pointer;
                 &:hover{
                     color: ${({theme})=> theme.background.primary};
                 }
 
                 .liked{
-                    color: ${({theme})=> theme.background.primary};
+                    color: red;
                 }
                 span{
                     font-size: 14px;
@@ -92,9 +60,10 @@ export const FeedWrapper = styled.div`
         p{
             color: black;
             font-size: 14px;
-            font-family: Roboto;
-            font-weight: 550;
-            padding: 5px;
+            font-family: Noto Sans;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            margin: 0 20px;
         
         }
 
@@ -139,11 +108,45 @@ export const FeedWrapper = styled.div`
             display: flex;
             flex-wrap: wrap;
             gap: 15px;
+            margin: 20px 20px;
             img{
                 width: 200px;
                 height: 150px;
                 border-radius: 10px;
                 box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+            }
+        }
+
+        .comment-section{
+            height: max-height:
+            width: 100%;
+            margin: 20px;
+
+            .input-field{
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .view-comments{
+                display: flex;
+                flex-direction: column;
+
+                div{
+                    display: flex;
+                    flex-direction: column;
+                    margin: 5px 10px;
+
+                    .username{
+                       color: ${({theme})=> theme.background.primary};
+                       font-size: 14px;
+                    }
+
+                    .message{
+                        font-size: 13px;
+
+                    }
+                }
             }
         }
     }

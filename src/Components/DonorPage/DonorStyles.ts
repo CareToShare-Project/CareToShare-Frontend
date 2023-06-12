@@ -414,7 +414,7 @@ export const DonationForms = styled.form`
     width: 400px;
     height: 470px;
     overflow-y: scroll;
-    box-shadow: 0px  5px 10px rgba(0,0,0,0.5);
+    box-shadow: 0px  5px 10px rgba(0,0,0,0.2);
     border-radius: 10px;
     background: white;
     display : flex;
@@ -597,7 +597,7 @@ export const ReviewFormWrapper = styled.form`
     align-items: center;
     justify-content: center;
     border-radius: 5px;
-    box-shadow: 0px 0px 20px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.2);
     gap: 15px;
     @media (max-width: 930px){
         width: 100%;

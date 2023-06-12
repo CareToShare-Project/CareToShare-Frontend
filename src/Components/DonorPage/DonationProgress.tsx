@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import {RightSideContentWrapper, TableWrapper} from './DonorStyles';
+import {NoOrganisationContainer, RightSideContentWrapper, TableWrapper} from './DonorStyles';
 import SearchBar from '../Shared_util/SearchBar/SearchBar';
 import Table from 'react-bootstrap/Table';
 import { NoOrganisationContainer as NoDonationContainer } from './DonorStyles';
@@ -25,7 +25,7 @@ const DonationProgress = () => {
 
             {donations && 
             <TableWrapper>
-                <Table responsive className='table' striped hover >
+                <Table responsive className='table' striped hover bordered>
                     <thead className='table-heading'>
                         <tr>
                             <th>Type</th>
@@ -53,6 +53,9 @@ const DonationProgress = () => {
                         }
                     </tbody>
                 </Table>
+                {
+                    !donations.length && <NoOrganisationContainer>You haven't made any donations yet</NoOrganisationContainer>
+                }
         </TableWrapper>}
         {!donations && <NoDonationContainer>
                             <h4>No Donation found</h4>
