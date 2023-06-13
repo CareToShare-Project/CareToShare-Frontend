@@ -190,8 +190,17 @@ export const PageWrapper = styled.div`
     display: flex;
     flex-direction: column;
     gap: 10px;  
-    height: 100vh;
+    position: relative;
    
+`
+
+export const ShadeContainer = styled.div`
+    position: absolute;
+    background: #1b5c61;
+    opacity: 0.5;
+    height: 100vh;
+    width: 100vw;
+    z-index: 200;
 `
 
 export const NavigationContainer = styled.div`
@@ -201,6 +210,7 @@ export const NavigationContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    z-index: 300;
 
     h3{
         letter-spacing: 1.3px;  
@@ -230,21 +240,23 @@ export const NavigationContainer = styled.div`
 `
 export const BodyContainer = styled.div`
     width: 100%;
-    padding: 10px 100px;
-    height: 300px;
+    padding: 30px 100px;
+    height: 200px;
     margin-top: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     gap: 5px;
+    z-index: 300;
     
      h1{
         transform: translateX(70px);
         letter-spacing: 2px;
         color: white;
+        font-size: 43px;
         opacity: 0;
-        font-weight: 800;
-        font-family: Work Sans, sans-serif;
+        font-family: Playfair Display, serif;
         animation: ${fadeFromRight} 1s ease-in-out forwards;
     }
 
@@ -254,8 +266,9 @@ export const BodyContainer = styled.div`
         font-family: Roboto;
         transform : translateX(32px);
         opacity: 0;
-        font-size: 14px;
-        width: 50%;
+        font-size: 16px;
+        width: 62%;
+        text-align: center;
         animation: ${fadeFromLeft} 1s ease-in-out forwards;
 
     }
@@ -270,11 +283,11 @@ export const BodyContainer = styled.div`
         background: ${({theme})=> theme.background.primary};
         outline: 0;
         border: 0;
-        transition: all 0.9s ease-in-out;
+        transition: all 0.5s ease-in-out;
+        box-shadow: 0px 0px 4px 3px rgba(20, 107, 113, 0.5);
 
         &:hover{
-            box-shadow: 0px 0px 4px 3px rgba(0,0,0,0.2);  
-             
+            transform : scale(1.05);
         }
     }
     
@@ -290,6 +303,7 @@ export const FooterContainer = styled.div`
     padding: 0px 0px;
     margin-top: 60px;
     animation: ${fadeFromBottom} 1s ease-in-out forwards;
+    z-index: 300;
 
 
     div{
@@ -305,9 +319,11 @@ export const FooterContainer = styled.div`
         color: white;
         border-radius: 2px;
         cursor: pointer;
+        transition: all 0.5s ease-in-out;
 
         &:hover{
             background: rgba(0,0,0,0.9);
+            transform : scale(1.05);
 
             p{
                 opacity: 1;

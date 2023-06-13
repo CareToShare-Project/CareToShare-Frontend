@@ -1,5 +1,5 @@
 import React from 'react';
-import {BodyContainer,FooterContainer, NavigationContainer, PageWrapper } from './HomePageStyles';
+import {BodyContainer,FooterContainer, NavigationContainer, PageWrapper, ShadeContainer } from './HomePageStyles';
 import '../Shared_Styles/General/Styles.css'
 import { MdOutlineDeliveryDining, MdVerifiedUser } from 'react-icons/md';
 import { BiDonateHeart } from 'react-icons/bi';
@@ -10,6 +10,7 @@ const LandingPage = () => {
 
     return(
             <PageWrapper className='body-container'>
+                <ShadeContainer>heya</ShadeContainer>
                 <NavigationContainer>
                     <h3>Logo</h3>
                     <div>
@@ -19,7 +20,7 @@ const LandingPage = () => {
                     </div>
                 </NavigationContainer>
                 <BodyContainer>
-                    <h1>CareToShare</h1>
+                    <h1>Empowering Change Through Giving</h1>
                     <p>Welcome to Care to Share, a platform dedicated to bringing positive change 
                         through the power of giving. Care to Share is your gateway to making a meaningful 
                         impact in the lives of those in need and contributing to causes you care about

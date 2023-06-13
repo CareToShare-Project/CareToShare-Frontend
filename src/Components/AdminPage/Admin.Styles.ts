@@ -50,10 +50,10 @@ export const BoxWrapper = styled.div`
 export const Box = styled.div`
     width: 23%;
     height: 120px;
-    background: ${({theme})=> theme.color.hover};
-    border: 2px solid white;
+    background: white;
     border-radius: 10px;
-    box-shadow: 0px 0px 3px rgba(0,0,0,0.4);
+    box-shadow: 0px 0px 4px 3px rgba(20, 107, 113, 0.1);
+    border: 1px solid rgba(86, 192, 200, 0.3);
     padding: 20px;
     display: flex;
     align-items: center;

@@ -170,11 +170,20 @@ export const FeaturesWrapper = styled.ul`
 
 
     #active{
-        background: ${({theme})=> theme.color.hover};
-        color: ${({theme})=> theme.color.primary};
+        background: rgb(0, 129, 141);
+        color: white;
         font-weight: 700;
         border-top-right-radius: 10px;
-        color: ${({theme})=> theme.color.primary}
+
+        &:hover{
+            color: white;
+        }
+
+        .title{
+            &:hover{
+                color: white;
+            }
+        }
     }
     .feature{
         list-style-type: none;
@@ -190,9 +199,6 @@ export const FeaturesWrapper = styled.ul`
         cursor: pointer;
         transition: all 500ms ease-in-out;
 
-        #rotate{
-            animation: ${rotateAnimation} 3s ease-in-out infinite;
-        }
         .icon{
             flex: 30%;
             display: grid;
@@ -206,15 +212,17 @@ export const FeaturesWrapper = styled.ul`
         .title{
             flex: 70%;
             font-size: 14px;
+            font-family: Poppins;
+            letter-spacing: 0.1px;
             font-weight: 700;
             &:hover{
-                color: ${({theme})=> theme.color.primary};;
+                color: white;
             }
 
         }
         &:hover{
-            background: ${({theme})=> theme.color.hover};
-            color: ${({theme})=> theme.color.primary};
+            background: rgb(0, 129, 141);
+            color: white;
             border-top-right-radius: 10px;
         }
 

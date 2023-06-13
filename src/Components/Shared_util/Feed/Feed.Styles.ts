@@ -22,9 +22,10 @@ export const FeedWrapper = styled.div`
     .feed-card{
         background: ${({theme})=> theme.color.secondary};
         border-radius: 10px;
-        box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);
-        border: 3px solid white;
+        box-shadow: 0px 0px 4px 3px rgba(20, 107, 113, 0.1);
+        border: 1px solid rgba(86, 192, 200, 0.3);
         height: max-content;
+        font-family: Roboto;
         padding: 20px;
         display: flex;
         flex-direction: column;
@@ -60,8 +61,9 @@ export const FeedWrapper = styled.div`
         p{
             color: black;
             font-size: 14px;
-            font-family: Noto Sans;
-            font-weight: 500;
+            font-family: Roboto;
+            font-weight: 600;
+            opacity: 0.5;
             letter-spacing: 0.3px;
             margin: 0 20px;
         
@@ -113,7 +115,7 @@ export const FeedWrapper = styled.div`
                 width: 200px;
                 height: 150px;
                 border-radius: 10px;
-                box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+                box-shadow: 0px 0px 4px 3px rgba(20, 107, 113, 0.1);
             }
         }
 

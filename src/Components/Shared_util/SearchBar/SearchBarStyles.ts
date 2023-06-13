@@ -17,14 +17,13 @@ export const SearchBox = styled.div`
     width: 300px;
     height: 30px;
     align-items: center;
+    font-family: Roboto;
+    font-size: 13px;
     border: 2px solid ${({theme})=> theme.background.primary};
     border-radius: 10px;
     outline: 0px;
     position: relative;
     margin-top: 10px;
-    @media (max-width: 930px){
-        width: 80%;
-    }
     &:focus{
             border: 2px solid ${({theme})=> theme.color.hover2};;
         }
@@ -37,16 +36,15 @@ export const SearchBox = styled.div`
             background: none;
             border: 0px;
             text-indent: 32px;
-            color: ${({theme})=> theme.background.primary};
+            color: ${({theme})=> theme.color.primary};
             font-size: 16px;
-            letter-spacing: 2px;
         }    
 
         .search-icon{
-            font-size: 25px;
+            font-size: 16px;
             opacity: 0.5;
             position: absolute;
-            left: 2px;
+            left: 10px;
             
         }
 `

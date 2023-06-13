@@ -36,7 +36,7 @@ export const RegistrationContainer = styled.div`
 
 export const RegistrationHeader = styled.header`
     font-size: ${({theme})=> theme.fontSizes.medium};
-    font-family: Noto Sans, Poppins;
+    font-family: Roboto;
     font-weight: 700;
     letter-spacing: 1.2px;
     text-align: center;
@@ -74,7 +74,7 @@ export const FieldWrapper = styled.div`
 export const InputLabel = styled.label`
     font-size: 15px;
     font-weight: bolder;
-    font-family: Poppins;
+    font-family: Roboto;
     color: ${({theme}) => theme.color.primary};
 `
 
@@ -119,6 +119,7 @@ export const DonorPageContainer = styled.div`
     width: 100vw;
     height: 100vh;
     display: flex;
+    
 `
 
 export const NavBarWrapper = styled.div`
@@ -150,7 +151,7 @@ export const MainPageContainer = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 15px;
-    background: ${({theme})=> theme.background.secondary};
+    background: white;
 `
 
 export const RightSideContent = styled.div`
@@ -223,7 +224,8 @@ export const CardContainer = styled.div`
     height: 300px;
     border-radius: 10px;
     background: white;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 4px 3px rgba(20, 107, 113, 0.1);
+    border: 1px solid rgba(86, 192, 200, 0.3);
     cursor: pointer;
     transition: all 400ms ease-in-out;
    
@@ -338,7 +340,7 @@ export const Column = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 2px;
-    margin-top: 2px;
+    margin: 5px 0px;
     font-family: Poppins;
     font-size: 14px;
 
@@ -357,7 +359,8 @@ export const DonateButton = styled(ConfirmButton)`
     background: ${({theme})=> theme.color.primary};
     color: white;
     width: 80%;
-    font-size: 14px;
+    font-size: 13px;
+    padding: 2px;
     margin: 0 auto;
     &:hover{
         border: 1px solid ${({theme})=> theme.color.primary};
@@ -414,7 +417,8 @@ export const DonationForms = styled.form`
     width: 400px;
     height: 470px;
     overflow-y: scroll;
-    box-shadow: 0px  5px 10px rgba(0,0,0,0.2);
+    box-shadow: 0px 0px 4px 3px rgba(20, 107, 113, 0.1);
+    border: 1px solid rgba(86, 192, 200, 0.3);
     border-radius: 10px;
     background: white;
     display : flex;
@@ -572,15 +576,16 @@ export const MessageWrapper = styled.div`
 
 
     h4{
-        text-align: center;
         color: ${({theme}) => theme.background.primary};
-        font-weight: 600;
         letter-spacing: 1.3px;
-        font-family: Noto sans;
+        font-family: Playfair Display, serif;
+        font-weight: 600;
     }
     p{
-        font-weight: 600;
+        font-weight: bold;
+        opacity: 0.7;
         font-size: 15px;
+        font-family: Roboto;
     }
     @media (max-width: 930px){
         width: 100%;
@@ -597,7 +602,8 @@ export const ReviewFormWrapper = styled.form`
     align-items: center;
     justify-content: center;
     border-radius: 5px;
-    box-shadow: 0px 0px 20px rgba(0,0,0,0.2);
+    box-shadow: 0px 0px 4px 3px rgba(20, 107, 113, 0.1);
+    border: 1px solid rgba(86, 192, 200, 0.3);
     gap: 15px;
     @media (max-width: 930px){
         width: 100%;
@@ -654,37 +660,25 @@ export const ReviewButton = styled(SubmitButton)`
 // edit profile styles
 export const EditProfileWrapper = styled.div`
     width: 100%;
-    height: 700px;
+    height: max-content;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow-y: hidden;
-
-    .heading{
-        position: absolute;
-        top: 10%;
-        left: 10%;
-        color: ${({theme}) => theme.color.secondary};
-        font-family: Poppins;
-        font-weight: 600;
-    }
+    border-radius: 10px;
+    
 `
-export const BackgroundImage = styled.img`
-    width: 100%;
-    overflow-y: hidden;
-    overflow-x: hidden;
 
-`
 
 export const FormsWrapper = styled.div`
-    width: 80%;
-    height: 350px;
+    width: 100%;
     background: white;
-    position: absolute;
     display: flex;
-    top: 20%;
-    border-radius: 5px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 4px 3px rgba(20, 107, 113, 0.1);
+    border: 1px solid rgba(86, 192, 200, 0.3);
+    
 `
 export const Wrapper = styled(RightSideContentWrapper)`
     overflow-y : hidden;
@@ -693,22 +687,23 @@ export const Wrapper = styled(RightSideContentWrapper)`
 export const RightPanel = styled.form`
     width: 70%;
     height: 100%;
-    padding: 15px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 0px;
 `
 
 export const LeftPanel = styled.div`
     width: 30%;
     height: 100%;
     border: 2px solid white;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 15px;
-    background: ${({theme}) => theme.color.hover};
+    background: rgba(104, 211, 221, 0.3);
     position: relative;
 
     span{
@@ -733,17 +728,19 @@ export const Row = styled.div`
 `
 
 export const FieldContainer = styled(FieldWrapper)`
-    width: 50%;
+    width: 60%;
 `
 
 export const Label = styled(InputLabel)`
-    color: ${({theme}) => theme.color.primary}
+    color: ${({theme}) => theme.color.primary};
+    font-family: Roboto;
 `
 
 export const Field = styled(InputField)`
     color: ${({theme}) => theme.color.primary};
     border: 2px solid ${({theme}) => theme.color.primary};
     height: 28px;
+    font-family: Roboto;
 `
 
 export const ProfilePhotoWrapper = styled.img`

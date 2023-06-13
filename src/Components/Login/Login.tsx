@@ -18,6 +18,7 @@ const Login: React.FC = () => {
     const passwordRef : any = useRef()
     const navigate = useNavigate()
 
+
     // state for setting password visibility
     const [showpassword, setShowPassword] = useState(false)
 
@@ -28,8 +29,7 @@ const Login: React.FC = () => {
     const [showLoading, setShowLoading] = useState(false)
     // state to set toast message 
     const [toastMessage, setToastMessage] = useState('')
-    
-    
+
     // handles logins
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

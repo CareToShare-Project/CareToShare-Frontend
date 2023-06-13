@@ -18,7 +18,7 @@ export const CreateAccountWrapper = styled(RegistrationContainer)`
     background: white;
     height: 550px;
     width: 400px;
-    box-shadow: 0px 5px 20px rgba(0,0,0,0.3);
+    box-shadow: 0px 0px 4px 3px rgba(20, 107, 113, 0.2);
     border: 3px solid white;
     animation: ${pulseAnimation} 1s ease-in-out;
 `
@@ -27,6 +27,7 @@ export const CreateAccountInputField = styled(InputField)`
     width: 350px;
     height: 30px;
     border-radius: 5px;
+    font-family: Roboto;
     color: ${({theme}) => theme.color.primary};
 `
 export const CreateAccountFieldWrapper = styled.div`

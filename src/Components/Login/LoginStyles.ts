@@ -1,10 +1,11 @@
 import styled, {keyframes} from "styled-components";
 
 export const Heading = styled.h4`
-    font-family: Noto Sans;
+    font-family: Roboto;
     font-size: 20px;
-    font-weight: 600;
+    font-weight: bolder;
     letter-spacing: 0.5px;
+    font-size: 20px;
     color: ${({theme})=> theme.color.primary};
     span{
         color:${({theme})=> theme.color.primary};  
@@ -29,11 +30,11 @@ export const FormWrapper = styled.form`
     align-items: center;
     gap: 30px;
     width: 400px;
-    height: 450px;
+    height: 420px;
     border-radius: 10px;
-    padding: 80px;
+    padding: 40px;
     background: white;
-    box-shadow: 0px 5px 20px rgba(0,0,0,0.3);
+    box-shadow: 0px 0px 4px 3px rgba(20, 107, 113, 0.2);
     border: 3px solid white;
     outline: transparent;
     border: 0;
@@ -54,6 +55,7 @@ export const FormContainer = styled.div`
     .forgot-password {
         color: ${({theme})=> theme.color.hover2}; 
         position: absolute;
+        font-family: Roboto;
         bottom: -15px;
         right: 20px;
         text-decoration: none;
@@ -74,7 +76,7 @@ export const FormField = styled.div`
 export const InputField = styled.input`
     width: 300px;
     text-indent: 5px;
-    font-family: Poppins;
+    font-family: Roboto;
     color:${({theme})=> theme.color.primary};
     padding: 5px;
     outline: transparent;
@@ -114,6 +116,7 @@ export const RegisterStyles = styled.div`
     color: ${({theme})=> theme.color.primary};
     span{
         color: ${({theme})=> theme.color.hover2};
+        font-family: Roboto;
     &:hover{
         text-decoration: underline;
         cursor: pointer;

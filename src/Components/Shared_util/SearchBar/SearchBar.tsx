@@ -19,7 +19,7 @@ const SearchBar: React.FC<queryProp> = ({query, setQuery, setRefresh}) => {
                 <MdSearch className="search-icon"/>
             </SearchBox>
             <RefreshWrapper onClick={()=>setRefresh(v4())}>
-                <MdRefresh size={30}/>
+                <MdRefresh size={25}/>
             </RefreshWrapper>
         </SearchBarContainer>
     )

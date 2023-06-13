@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import {MdEmail} from "react-icons/md"
 import { BASE_URL } from '../Shared_util/Constants/Base_URL'
 import LoginToast from '../Shared_util/Toast/LoginToast'
+import BackgroundSVG from '../Shared_util/SVG/Background'
 
 function EmailNotification(){
     // state to show or hide toast
@@ -41,7 +42,7 @@ function EmailNotification(){
 
     return (
         <NotificationContainer>
-
+            <BackgroundSVG />
             <EmailNotificationLeftSection>
                 <h1>Check your email</h1>
                 <div className='top'>

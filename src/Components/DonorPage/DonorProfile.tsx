@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from "react"
-import { BackgroundImage, EditProfileHeading, EditProfileWrapper,
-        FormsWrapper, LeftPanel, RightPanel, Row, Wrapper, FieldContainer, 
-        Label, Field, UpdateBtn, ProfilePhotoWrapper, ImageField} from "./DonorStyles"
+import {EditProfileHeading, EditProfileWrapper,
+        FormsWrapper, LeftPanel, RightPanel,Wrapper, FieldContainer, 
+        Label, Field, UpdateBtn, ProfilePhotoWrapper} from "./DonorStyles"
 import bg from "../HomePage/images/backgroundImage.jpg"
 import { FaUserCircle } from "react-icons/fa"
 import { useParams } from "react-router-dom"
@@ -88,8 +88,6 @@ function DonorProfile(){
     return(
         <Wrapper>
             <EditProfileWrapper>
-                <BackgroundImage src={bg} alt="bg"/>
-                <h4 className="heading">Edit Profile</h4>
                 <FormsWrapper>
                     <LeftPanel>
                         {imageUrl ? <ProfilePhotoWrapper /> : <FaUserCircle size={100} /> }
@@ -97,7 +95,7 @@ function DonorProfile(){
                     </LeftPanel>
                     <RightPanel onSubmit={UpdateUserProfile}>
                         <EditProfileHeading>Account Settings</EditProfileHeading>
-                        <Row>
+                        
                            <FieldContainer>
                                 <Label htmlFor="first">First Name</Label>
                                 <Field type="text" id="first" ref={firstNameRef}/>
@@ -106,8 +104,8 @@ function DonorProfile(){
                                 <Label htmlFor="last">Last Name</Label>
                                 <Field type="text" id="last" ref={lastNameRef}/>
                            </FieldContainer>
-                        </Row>
-                        <Row>
+                        
+                        
                            <FieldContainer>
                                 <Label htmlFor="phone">Phone</Label>
                                 <Field type="text" id="phone" ref={phoneRef}/>
@@ -116,13 +114,13 @@ function DonorProfile(){
                                 <Label htmlFor="email">Email Address</Label>
                                 <Field type="text" id="email" ref={emailRef}/>
                            </FieldContainer>
-                        </Row>
-                        <Row>
+                        
+                        
                            <FieldContainer>
                                 <Label htmlFor="location">Location</Label>
                                 <Field type="text" id="location" ref={locationRef}/>
                            </FieldContainer>
-                        </Row>
+                        
                         <UpdateBtn>Update</UpdateBtn>
                     </RightPanel>
                     <LoginToast  

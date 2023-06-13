@@ -34,7 +34,7 @@ export const ResetWrapper = styled.form`
     border-radius: 20px;
     gap: 20px;
     background: white;
-    box-shadow: 0px 5px 20px rgba(0,0,0,0.3);
+    box-shadow: 0px 0px 4px 3px rgba(20, 107, 113, 0.2);
     border: 3px solid white;
     z-index: 100;
     
@@ -53,8 +53,9 @@ export const ResetWrapper = styled.form`
     }
 `
 export const Header = styled.header`
+    font-family: Roboto;
     font-size: 20px;
-    font-weight: 700;
+    font-weight: 600;
     color: ${({theme})=> theme.color.primary};
     width: 90%;
 
@@ -100,7 +101,7 @@ export const SubmitEmailContainer = styled(SubmitButton)`
 export const NotificationContainer = styled(ResetContainer)`
     background: ${({theme})=> theme.background.secondary};
     justify-content: space-between;
-    padding: 10px 120px;
+    padding: 10px 180px;
     @media (max-width: 906px){
         flex-direction: column-reverse;
         justify-content: flex-end;
@@ -117,15 +118,21 @@ export const EmailNotificationLeftSection = styled.div`
     display: flex;
     flex-direction: column;
     gap: 30px;
+    z-index: 400;
+
+    span{
+        font-family: Roboto;
+    }
 
     h1{
-        font-family: Poppins;
         font-weight: 700;
+        font-family: Roboto;
     }
 
     h4{
-        color: ${({theme})=> theme.background.primary};
-        font-family: Poppins;
+        font-family: Roboto;
+        font-size: 16px;
+        font-weight: 700;
         
     }
 
@@ -134,18 +141,16 @@ export const EmailNotificationLeftSection = styled.div`
         flex-direction: column;
         
         .link{
-            color:  ${({theme})=> theme.color.primary};
+            color: blue;
             font-weight: 500;
             cursor: pointer;
-            
-            &:hover{
-                text-decoration: underline;
-            }
+            text-decoration: underline;
         }
     }
 `
 
 export const EmailNotificationRightSection = styled.div`
+    z-index: 300;
     span{
         font-size: 350px;
         color: ${({theme})=> theme.background.primary};

@@ -89,7 +89,7 @@ const ResetPassword : React.FC =()=>{
                             />
                         <SubmitEmailContainer>
                         {showLoading && <Spinner animation='border' size='sm' className='spinner'/>}
-                                                <span>Verify and reset password</span>
+                                                <span>Save Password</span>
                         </SubmitEmailContainer>
                     </div>
                     <LoginToast  

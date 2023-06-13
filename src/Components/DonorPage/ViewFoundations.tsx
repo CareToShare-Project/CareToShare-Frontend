@@ -7,6 +7,7 @@ import { getAllOrganisations } from '../Shared_util/Constants/Functions'
 import ProfileModal from './ProfileModal'
 
 
+
 function ViewFoundations(){
     const [organisations, setOrganisations] = useState<OrganisationProps[]>([])
     const [refresh, setRefresh] = useState("")
@@ -15,7 +16,7 @@ function ViewFoundations(){
     const [details, setDetails] = useState<OrganisationProps>()
 
     
-    
+   
     // gets all organisations on page load
     useEffect(()=>{
         const results = sessionStorage.getItem('organisations')
