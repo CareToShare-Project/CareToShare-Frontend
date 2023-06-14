@@ -46,29 +46,35 @@ const Login: React.FC = () => {
                 headers : {'content-type':'application/json'},
                 body : JSON.stringify(userDetails)
             })
-            const results = await response.json()
 
-            // gets username and role from the results
-            const {role, username} = results?.data?.user
-            
-            // sets user details in session storage
+            if(response.status === 201){
+                const results = await response.json()    
 
-            sessionStorage.setItem('user', JSON.stringify(results.data.user))
-            
-            
-            //stores the homepage url/link in local storage on login
-            sessionStorage.setItem('page', JSON.stringify(''))
-            // gets token and store in local storage on login
-            const token = results.token
-            sessionStorage.setItem('accesstoken', JSON.stringify(token))
-            
-            if(results.status === "success" ){
-                setToastMessage('Successfully Logged In')
-                setShowToast(true)
-                setTimeout(()=> {
-                    navigate(`${role}/${username}`)
-                }, 1000)
+                
+
+                //stores the homepage url/link in session storage on login
+                sessionStorage.setItem('page', JSON.stringify(''))
+                
+                //gets username & role 
+                const userDetails = results.data
+                console.log(userDetails)
+                const role = results.role
+                sessionStorage.setItem('userDetails', JSON.stringify(userDetails))
+
+                // gets token and store in session storage on login
+                const token = results.token || ""
+                sessionStorage.setItem('accesstoken', JSON.stringify(token))
+                
+                if(results.status === "success" ){
+                    setToastMessage('Successfully Logged In')
+                    setShowToast(true)
+                    setTimeout(()=> {
+                        navigate(`${role}`)
+                    }, 1000)
+                }
             }
+
+           
                 
     }catch(err){
         console.log(err)

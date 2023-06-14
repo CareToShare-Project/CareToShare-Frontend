@@ -22,7 +22,6 @@ export const DonationChartWrapper = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 20px;
     h4{
         color: ${({theme})=> theme.color.primary};
@@ -36,7 +35,6 @@ export const SummaryWrapper = styled.div`
     gap: 20px;
     h4{
         color: ${({theme})=> theme.color.primary};
-        text-align: center;
     }
 `
 export const BoxWrapper = styled.div`

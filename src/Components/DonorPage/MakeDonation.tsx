@@ -9,10 +9,11 @@ import { TextWrapper } from "../CharityPage/CharityStyles"
 import { BASE_URL } from "../Shared_util/Constants/Base_URL"
 import {v4} from "uuid"
 import { uploadImage, uploadFileToStorageBucket } from "../Shared_util/Constants/Functions";
-import { useParams } from "react-router-dom"
 import { getAllOrganisations } from "../Shared_util/Constants/Functions"
 import Select from 'react-select';
 import { OrganisationProps } from "../Shared_util/Constants/Types"
+import { useNavigate } from "react-router-dom"
+
 
 function MakeDonation() {
     const organisationRef: any = useRef('');
@@ -21,11 +22,17 @@ function MakeDonation() {
     const [donationType, setDonationType] = useState('Generic');
     const [imageUpload, setImageUpload] = useState<any>()
     const [imageUrl, setImageUrl] = useState("")
-
-    const {username} = useParams()
     
+    const navigate = useNavigate()
+
+    const userData = sessionStorage.getItem('userDetails')
+    const userDetails = userData && JSON.parse(userData)
+
     const [organisations, setOrganisations] = useState<OrganisationProps[]>([])
     const [selectedOrganization, setSelectedOrganization] = useState<OrganisationProps>();
+
+    const tokenData = sessionStorage.getItem('accesstoken')
+    const accessToken = tokenData && JSON.parse(tokenData)
 
     const handleChange = (selectedOption: any) => {
         setSelectedOrganization(selectedOption);
@@ -41,14 +48,14 @@ function MakeDonation() {
     const handleDonation = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try{
-            const image = uploadFileToStorageBucket(imageUpload, setImageUrl , "donationImages")
-            console.log(image)
+            uploadFileToStorageBucket(imageUpload, setImageUrl , "donationImages")
+            
             const donationId = v4();
             if(donationType === 'Generic'){
                 organisationRef.current.value = ""
             }
             const donation = {
-                    donatedBy : username,
+                    donatedBy : userDetails.username,
                     donationId : donationId,
                     donationType : donationType,
                     description : descriptionRef.current.value,
@@ -60,10 +67,16 @@ function MakeDonation() {
             const response = await fetch(`${BASE_URL}/donations`, {
                     method : 'POST',
                     headers : {
-                        'content-type' : 'application/json'
+                        'content-type' : 'application/json',
+                        'authorization' : `Bearer ${accessToken}`
                     },
                     body : JSON.stringify(donation)
                 })
+
+                if(response.status === 401){
+                    navigate('/login')
+                    return
+                }
 
                 const results = await response.json()
                 console.log(results)
@@ -82,7 +95,7 @@ function MakeDonation() {
             const availableOrganisations = JSON.parse(results);
             setOrganisations(availableOrganisations)
         }else{
-            getAllOrganisations(setOrganisations);
+            getAllOrganisations(setOrganisations, "", "");
         }
     },[])
     

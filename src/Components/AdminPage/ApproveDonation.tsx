@@ -7,6 +7,7 @@ import SearchBar from "../Shared_util/SearchBar/SearchBar"
 import LoginToast from '../Shared_util/Toast/LoginToast';
 import { donationProps } from '../Shared_util/Constants/Types';
 import { status } from '../Shared_util/Constants/Status';
+import { useNavigate } from 'react-router-dom';
 
 
 const ApproveDonation = () => {
@@ -19,10 +20,14 @@ const ApproveDonation = () => {
 
     // state to set toast message 
     const [toastMessage, setToastMessage] = useState('')
+    const tokenData = sessionStorage.getItem('accesstoken')
+    const accessToken = tokenData && JSON.parse(tokenData)
+
+    const navigate = useNavigate()
 
     useEffect(()=> {
-        getAllDonations(setDonation)
-    }, [refresh])
+        getAllDonations(setDonation, accessToken, navigate)
+    }, [refresh, accessToken, navigate])
 
     return (
           <ApproveDonationContainer>
@@ -58,11 +63,13 @@ const ApproveDonation = () => {
                                         <td>
                                             {donation.donationStatus === status.pending  ? 
                                                     <ApproveButton 
-                                                        onClick={()=> approveDonation(status.inProgress, 
-                                                                                    donation.donationId, 
-                                                                                    setShowLoading,
-                                                                                    setToastMessage,
-                                                                                    setShowToast)}>
+                                                        onClick={()=> approveDonation( 
+                                                                                     donation.donationId, 
+                                                                                     setShowLoading,
+                                                                                     setToastMessage,
+                                                                                     setShowToast,
+                                                                                     accessToken,
+                                                                                     navigate)}>
                                                         Approve
                                                     </ApproveButton> : <span>Approved</span>
                                             }

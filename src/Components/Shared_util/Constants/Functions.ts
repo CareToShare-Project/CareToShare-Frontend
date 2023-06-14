@@ -3,6 +3,9 @@ import {ref, uploadBytes, getDownloadURL} from "firebase/storage"
 import {v4} from "uuid"
 import { BASE_URL } from "./Base_URL";
 
+
+
+
 // handles file upload 
 export const uploadImage = (e : React.ChangeEvent<HTMLInputElement>, setImageUpload : React.Dispatch<any>) => {
     if(e.target.files === null) return
@@ -36,13 +39,18 @@ export const uploadFileToStorageBucket = (imageUpload : any, setImageUrl : React
 }
 
  // fetch all available organisations
- export const getAllOrganisations = async(setOrganisations : React.Dispatch<any>) => {
+ export const getAllOrganisations = async(setOrganisations : React.Dispatch<any>, accessToken : string, navigate : any) => {
     try{
         const response = await fetch(`${BASE_URL}/organisations`,{
             method : 'GET',
-            headers : {'content-type':'application/json'},
+            headers : {
+                'content-type':'application/json',
+                'authorization' : `Bearer ${accessToken}`
+                
+            },
         })
-
+    
+        if(response.status === 401) return navigate('/login')
         const results = await response.json();
         const organisation = results.data
             if(results.status === "success"){
@@ -57,20 +65,32 @@ export const uploadFileToStorageBucket = (imageUpload : any, setImageUrl : React
 // deactivate donor account
 export const deactivateOrganisation= async(username : string ,setShowLoading : React.Dispatch<React.SetStateAction<boolean>>,
                                     setToastMessage: React.Dispatch<React.SetStateAction<string>>,
-                                    setShowToast : React.Dispatch<React.SetStateAction<boolean>>) => {
+                                    setShowToast : React.Dispatch<React.SetStateAction<boolean>>,
+                                    accessToken: string,
+                                    navigate: any) => {
             setShowLoading(true)
             try{
                 const response = await fetch(`${BASE_URL}/organisations/${username}/deactivateOrganisation`, {
                 method : 'PATCH',
-                headers : {'content-type':'application/json'},
+                headers : {
+                    'content-type':'application/json',
+                    'authorization' : `Bearer ${accessToken}`
+                },
                     })
+                
+                if(response.status === 401) return navigate("/login")
 
-    if(response.ok){
+            if(response.ok){
+                setShowLoading(false)
+                setToastMessage("User account is deactivated, Refresh page!")
+                setShowToast(true)
+            }
+        else{
             setShowLoading(false)
-            setToastMessage("User account is deactivated, Refresh page!")
-            setShowToast(true)
-
-    }}catch(err){
+            setToastMessage("An error occured, try again later")
+            setShowToast(true) 
+        }
+    }catch(err){
         console.log(err)
     }
 }
@@ -78,20 +98,31 @@ export const deactivateOrganisation= async(username : string ,setShowLoading : R
 // activate organisation account
 export const activateOrganisation= async(username : string ,setShowLoading : React.Dispatch<React.SetStateAction<boolean>>,
                                             setToastMessage: React.Dispatch<React.SetStateAction<string>>,
-                                            setShowToast : React.Dispatch<React.SetStateAction<boolean>>) => {
+                                            setShowToast : React.Dispatch<React.SetStateAction<boolean>>,
+                                            accessToken: string,
+                                            navigate: any) => {
                     setShowLoading(true)
                     try{
                         const response = await fetch(`${BASE_URL}/organisations/${username}/activateOrganisation`, {
                                 method : 'PATCH',
-                                headers : {'content-type':'application/json'},
+                                headers : {
+                                    'content-type':'application/json',
+                                    'authorization': `Bearer ${accessToken}`
+                                },
                                     })
+                        if(response.status===401) return navigate("/login")
 
-                    if(response.ok){
-                        setShowLoading(false)
-                        setToastMessage("User account is deactivated, Refresh page!")
-                        setShowToast(true)
+                        if(response.ok){
+                            setShowLoading(false)
+                            setToastMessage("User account is activated, Refresh page!")
+                            setShowToast(true)
 
-                    }}catch(err){
+                            }else{
+                                setShowLoading(false)
+                                setToastMessage("An error occured, try again later")
+                                setShowToast(true)
+                            }
+                    }catch(err){
                         console.log(err)
                 }
     }
@@ -100,15 +131,26 @@ export const activateOrganisation= async(username : string ,setShowLoading : Rea
 export const approveOrganisationRegistration = async(username : string, 
                                                     setShowLoading : React.Dispatch<React.SetStateAction<boolean>>,
                                                     setToastMessage: React.Dispatch<React.SetStateAction<string>>,
-                                                    setShowToast : React.Dispatch<React.SetStateAction<boolean>>) => 
+                                                    setShowToast : React.Dispatch<React.SetStateAction<boolean>>,
+                                                    accessToken : string,
+                                                    navigate: any) => 
 {
     setShowLoading(true)
     try{
         const response = await fetch(`${BASE_URL}/organisations/${username}/approve-registration`,{
             method : 'PATCH',
-            headers : {'content-type':'application/json'},
+            headers : {
+                'content-type':'application/json',
+                'authorization' : `Bearer ${accessToken}`
+            },
         })
 
+        if(response.status=== 401) return navigate('/login')
+        if(response.status===500) {
+            setShowLoading(false)
+            setToastMessage("An error occured, try again later")
+            setShowToast(true)
+        }
         const results = await response.json();
             if(results.status === "success"){
                 setShowLoading(false)
@@ -120,13 +162,19 @@ export const approveOrganisationRegistration = async(username : string,
     }
 }
 
+
 // fetches all donors
-export const getAllDonors = async(setDonors : React.Dispatch<any>) => {
+export const getAllDonors = async(setDonors : React.Dispatch<any>, accessToken: string, navigate: any) => {
     try{
         const response = await fetch(`${BASE_URL}/donors`,{
             method : 'GET',
-            headers : {'content-type':'application/json'},
+            headers : {
+                'content-type':'application/json',
+                'authorization' : `Bearer ${accessToken}`
+            },
         })
+
+        if(response.status === 401) return navigate("/login")
 
         const results = await response.json();
         const donors = results.data.donors
@@ -142,19 +190,27 @@ export const getAllDonors = async(setDonors : React.Dispatch<any>) => {
 // deactivate donor account
 export const deactivateDonor = async(username : string ,setShowLoading : React.Dispatch<React.SetStateAction<boolean>>,
                                     setToastMessage: React.Dispatch<React.SetStateAction<string>>,
-                                    setShowToast : React.Dispatch<React.SetStateAction<boolean>>) => {
+                                    setShowToast : React.Dispatch<React.SetStateAction<boolean>>,
+                                    accessToken: string,
+                                    navigate: any) => {
     setShowLoading(true)
     try{
         const response = await fetch(`${BASE_URL}/donors/${username}/deactivateDonor`, {
             method : 'PATCH',
-            headers : {'content-type':'application/json'},
+            headers : {'content-type':'application/json',
+                        'authorization' : `Bearer ${accessToken}`},
         })
-        
+
+        if(response.status === 401) return navigate("/login")
+
         if(response.ok){
             setShowLoading(false)
             setToastMessage("User account is deactivated, Refresh page!")
             setShowToast(true)
-
+        }else{
+            setShowLoading(false)
+            setToastMessage("An error occured, try again later")
+            setShowToast(true)
         }
        
         
@@ -167,19 +223,27 @@ export const deactivateDonor = async(username : string ,setShowLoading : React.D
 // activate donor account
 export const activateDonor = async(username : string ,setShowLoading : React.Dispatch<React.SetStateAction<boolean>>,
                                     setToastMessage: React.Dispatch<React.SetStateAction<string>>,
-                                    setShowToast : React.Dispatch<React.SetStateAction<boolean>>) => {
+                                    setShowToast : React.Dispatch<React.SetStateAction<boolean>>,
+                                    accessToken: string, 
+                                    navigate: any) => {
     setShowLoading(true)
     try{
         const response = await fetch(`${BASE_URL}/donors/${username}/activateDonor`, {
             method : 'PATCH',
-            headers : {'content-type':'application/json'},
+            headers : {'content-type':'application/json',
+                        'authorization' : `Bearer ${accessToken}`},
         })
+
+        if(response.status === 401) return navigate("/login")
         
         if(response.ok){
             setShowLoading(false)
             setToastMessage("User account is activated, Refresh page!")
             setShowToast(true)
-
+        }else{
+            setShowLoading(false)
+            setToastMessage("An error occured, try again later")
+            setShowToast(true)
         }
         
     }catch(err){
@@ -188,12 +252,21 @@ export const activateDonor = async(username : string ,setShowLoading : React.Dis
 }
 
 // gets all donations from a user
-export const getUserDonations = async(setDonations : React.Dispatch<any>, donor : string | null |undefined) => {
+export const getUserDonations = async(setDonations : React.Dispatch<any>, 
+                                      donor : string | null |undefined, 
+                                      accessToken : string, navigate : any) => {
     try{
         const response = await fetch(`${BASE_URL}/donations/${donor}/UserDonation`,{
             method : 'GET',
-            headers : {'content-type':'application/json'},
+            headers : {
+                'content-type':'application/json',
+                'authorization' : `Bearer ${accessToken}`
+            },
         })
+    
+        if(response.status === 401) return navigate('/login')
+
+        if(response.status === 500) return
 
         const results = await response.json();
         const donation = results.data
@@ -208,13 +281,19 @@ export const getUserDonations = async(setDonations : React.Dispatch<any>, donor 
 }
 
 // gets all donations from a user
-export const getAllDonations = async(setDonations : React.Dispatch<any>) => {
+export const getAllDonations = async(setDonations : React.Dispatch<any>, accessToken : string, navigate : any) => {
     try{
         const response = await fetch(`${BASE_URL}/donations`,{
             method : 'GET',
-            headers : {'content-type':'application/json'},
+            headers : {
+                'content-type':'application{/json',
+                'authorization' : `Bearer ${accessToken}`
+            },
         })
 
+        if(response.status === 401) return navigate("/login")
+
+        if(response.status === 500) return 
         const results = await response.json();
         const donation = results.data
         if(results.status === "success"){
@@ -227,20 +306,32 @@ export const getAllDonations = async(setDonations : React.Dispatch<any>) => {
 }
 
 // approve donation by admin
-export const approveDonation = async(status : string, 
+export const approveDonation = async( 
                                     donationId : string , 
                                     setShowLoading : React.Dispatch<React.SetStateAction<boolean>>,
                                     setToastMessage: React.Dispatch<React.SetStateAction<string>>,
-                                    setShowToast : React.Dispatch<React.SetStateAction<boolean>>) => {
+                                    setShowToast : React.Dispatch<React.SetStateAction<boolean>>,
+                                    accessToken: string,
+                                    navigate: any) => {
     setShowLoading(true)
     try{
-        const response = await fetch(`${BASE_URL}/donations/${donationId}/updateStatus`,{
+        const response = await fetch(`${BASE_URL}/donations/${donationId}/approveDonation`,{
             method : 'PATCH',
-            headers : {'content-type':'application/json'},
-            body : JSON.stringify({
-                donationStatus : status
-            })
+            headers : {
+                'content-type':'application/json',
+                'authorization' : `Bearer ${accessToken}`
+            }  
         })
+
+        
+
+        if(response.status===401) return navigate("/login")
+
+        if(response.status === 500) {
+            setShowLoading(false)
+            setToastMessage("An error occured")
+            setShowToast(true)
+        }
 
         const results = await response.json();
         if(results.status === "success"){
@@ -253,7 +344,9 @@ export const approveDonation = async(status : string,
 }
 
 // fetches all requests from the backend
-export const getAllRequests =  async (setCampaigns: React.Dispatch<any>, setSpecificRequest : React.Dispatch<any>, username : string | null |undefined ) => {
+export const getAllRequests =  async (setCampaigns: React.Dispatch<any>, 
+                                      setSpecificRequest : React.Dispatch<any>, 
+                                      username : string | null |undefined ) => {
     try{
         const response = await fetch(`${BASE_URL}/requests`,{
             method : 'GET',
@@ -277,13 +370,17 @@ export const getAllRequests =  async (setCampaigns: React.Dispatch<any>, setSpec
 }
 
 // fetches all requests and display to admin for approval
-export const fetchRequests =  async (setRequests: React.Dispatch<any> ) => {
+export const fetchRequests =  async (setRequests: React.Dispatch<any>, accessToken : string, navigate : any ) => {
     try{
         const response = await fetch(`${BASE_URL}/requests`,{
             method : 'GET',
-            headers : {'content-type':'application/json'},
+            headers : {
+                'content-type':'application/json',
+                'authorization' : `Bearer ${accessToken}`
+            },
         })
 
+        if(response.status === 401) return navigate('/login')
         const results = await response.json();
         const requests = results.data
         if(results.status === "success"){
@@ -297,19 +394,29 @@ export const fetchRequests =  async (setRequests: React.Dispatch<any> ) => {
 }
 
 // approve requests from organisations
-export const approveRequest = async(status : string, requestId : string , setShowLoading : React.Dispatch<React.SetStateAction<boolean>>,
+export const approveRequest = async(requestId : string , setShowLoading : React.Dispatch<React.SetStateAction<boolean>>,
                                     setToastMessage: React.Dispatch<React.SetStateAction<string>>,
-                                    setShowToast : React.Dispatch<React.SetStateAction<boolean>>
+                                    setShowToast : React.Dispatch<React.SetStateAction<boolean>>,
+                                    accessToken: string,
+                                    navigate: any
                                     ) => {
         setShowLoading(true)
         try{
-            const response = await fetch(`${BASE_URL}/requests/${requestId}/updateStatus`,{
+            const response = await fetch(`${BASE_URL}/requests/${requestId}/approveRequest`,{
                 method : 'PATCH',
-                headers : {'content-type':'application/json'},
-                body : JSON.stringify({
-                donationStatus : status
+                headers : {
+                    'content-type':'application/json',
+                    'authorization' : `Bearer ${accessToken}`
+                },
+                
             })
-            })
+
+            if(response.status === 401) return navigate("/login")
+            if(response.status === 500) {
+                setShowLoading(false)
+                setToastMessage("An error occured, try again")
+                setShowToast(true)
+            }
 
             const results = await response.json();
             if(results.status === "success"){

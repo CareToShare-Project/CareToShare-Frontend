@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {useRef, useState } from 'react';
 import img from "../../HomePage/images/home1.jpg"
 import { useAppDispatch} from "../../Store/Store"
 import { Post, addComment, likePost} from "../../Store/Post-Slice"
@@ -6,20 +6,21 @@ import { MdChat, MdDelete} from 'react-icons/md';
 import { FaHeart } from 'react-icons/fa';
 import { InputField } from '../../Login/LoginStyles';
 import { ConfirmButton } from '../../DonorPage/DonorStyles';
-import { useParams } from 'react-router-dom';
+
 
 const PostComponent: React.FC<Post> = ({post}) => {
-    const [user, setUser] = useState<any>("")
     const dispatch = useAppDispatch()
     const [showComment, setShowComment] = useState(false)
     const commentRef = useRef<any>("")
-    const {username} = useParams()
+    
+    const userData = sessionStorage.getItem('userDetails')
+    const userDetails = userData && JSON.parse(userData)
 
     
     
     
     const handlePostLike = (id: number) => {
-        const username = user.username
+        const username = userDetails.username
         dispatch(likePost({
             username,
             id
@@ -27,7 +28,7 @@ const PostComponent: React.FC<Post> = ({post}) => {
     }
 
     const addCommentController = (id: number) => {
-        const username = user.username;
+        const username = userDetails.username;
         if(commentRef.current){
             const comment = commentRef.current.value
             const commentData = {username, comment}
@@ -35,14 +36,6 @@ const PostComponent: React.FC<Post> = ({post}) => {
         }
     } 
 
-    useEffect(()=>{
-        const results = sessionStorage.getItem('user')
-        if(results !== null){
-            const userData = JSON.parse(results)
-            setUser(userData)
-        }
-        
-    }, [setUser])
 
     return(
         <div className="feed-card" key={post.id}>
@@ -69,7 +62,7 @@ const PostComponent: React.FC<Post> = ({post}) => {
                         <span>
                             <FaHeart size={25} 
                                 onClick={()=>handlePostLike(post.id)} 
-                                className={post.likes.includes(user.username) ? 'liked' : ''}/> 
+                                className={post.likes.includes(userDetails.username) ? 'liked' : ''}/> 
                                 <span>
                                     {post.likes.length}
                                 </span>
@@ -81,7 +74,7 @@ const PostComponent: React.FC<Post> = ({post}) => {
                             </span>
                         </span>
 
-                        {post.username === user.username ?
+                        {post.username === userDetails.username ?
                             <span>
                                 <MdDelete size={25} />
                                 <span>Delete Post</span>

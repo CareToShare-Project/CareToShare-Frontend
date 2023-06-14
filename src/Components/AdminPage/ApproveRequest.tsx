@@ -6,6 +6,7 @@ import { fetchRequests, approveRequest } from '../Shared_util/Constants/Function
 import SearchBar from "../Shared_util/SearchBar/SearchBar"
 import LoginToast from '../Shared_util/Toast/LoginToast';
 import { requestProps } from '../Shared_util/Constants/Types';
+import { useNavigate } from 'react-router-dom';
 
 
 const ApproveRequest = () => {
@@ -19,9 +20,14 @@ const ApproveRequest = () => {
     // state to set toast message 
     const [toastMessage, setToastMessage] = useState('')
 
+    const tokenData = sessionStorage.getItem('accesstoken')
+    const accessToken = tokenData && JSON.parse(tokenData)
+
+    const navigate = useNavigate()
+
     useEffect(()=> {
-        fetchRequests(setRequests)
-    }, [refresh])
+        fetchRequests(setRequests, accessToken, navigate)
+    }, [refresh, accessToken, navigate])
 
     return (
           <ApproveDonationContainer>
@@ -49,8 +55,12 @@ const ApproveRequest = () => {
                                         <td>{req.createdAt.slice(0,10)}</td>
                                         <td>
                                             { req.requestStatus === "Pending" ?
-                                                <ApproveButton onClick={()=> approveRequest("In Progress", req.requestId, 
-                                                                            setShowLoading, setToastMessage, setShowToast)}
+                                                <ApproveButton onClick={()=> approveRequest(req.requestId, 
+                                                                                            setShowLoading, 
+                                                                                            setToastMessage, 
+                                                                                            setShowToast,
+                                                                                            accessToken,
+                                                                                            navigate)}
                                                 >
                                                     Approve
                                                 </ApproveButton> : <span>Approved</span>

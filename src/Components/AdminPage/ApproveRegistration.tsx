@@ -8,6 +8,7 @@ import { getAllOrganisations , approveOrganisationRegistration,
 import SearchBar from "../Shared_util/SearchBar/SearchBar"
 import LoginToast from '../Shared_util/Toast/LoginToast';
 import { OrganisationProps} from '../Shared_util/Constants/Types';
+import { useNavigate } from 'react-router-dom';
 
 
 const ApproveRegistration = () => {
@@ -21,10 +22,16 @@ const ApproveRegistration = () => {
     // state to set toast message 
     const [toastMessage, setToastMessage] = useState('')
 
+    const tokenData = sessionStorage.getItem('accesstoken')
+    const accessToken = tokenData && JSON.parse(tokenData)
+
+    const navigate = useNavigate()
+    
+
 
     useEffect(()=> {
-        getAllOrganisations(setOrganisation)
-    }, [refresh])
+        getAllOrganisations(setOrganisation, accessToken, navigate)
+    }, [refresh, accessToken, navigate])
 
     return (
           <ApproveDonationContainer>
@@ -63,7 +70,9 @@ const ApproveRegistration = () => {
                                                     <ApproveButton 
                                                         onClick={()=> approveOrganisationRegistration(
                                                                         org.username, setShowLoading, 
-                                                                        setToastMessage, setShowToast)}
+                                                                        setToastMessage, setShowToast,
+                                                                        accessToken,
+                                                                        navigate)}
                                                     >
                                                         Approve
                                                     </ApproveButton> 
@@ -71,12 +80,20 @@ const ApproveRegistration = () => {
                                         </td>
                                         <td>
                                         { org.isActive ?
-                                            <ApproveButton onClick={()=> deactivateOrganisation(org.username, setShowLoading, 
-                                                                    setToastMessage, setShowToast)} >
+                                            <ApproveButton onClick={()=> deactivateOrganisation(org.username, 
+                                                                                                setShowLoading, 
+                                                                                                setToastMessage, 
+                                                                                                setShowToast,
+                                                                                                accessToken,
+                                                                                                navigate)} >
                                                 Deactivate
                                             </ApproveButton> : 
-                                            <ApproveButton onClick={()=>activateOrganisation(org.username, setShowLoading, 
-                                                                                    setToastMessage, setShowToast)}>
+                                            <ApproveButton onClick={()=>activateOrganisation(org.username, 
+                                                                                             setShowLoading, 
+                                                                                             setToastMessage, 
+                                                                                             setShowToast,
+                                                                                             accessToken,
+                                                                                             navigate)}>
                                                 Activate
                                             </ApproveButton>
                                     }

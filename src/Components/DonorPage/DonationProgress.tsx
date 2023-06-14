@@ -1,23 +1,30 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, {useEffect, useState } from 'react'
 import {NoOrganisationContainer, RightSideContentWrapper, TableWrapper} from './DonorStyles';
 import SearchBar from '../Shared_util/SearchBar/SearchBar';
 import Table from 'react-bootstrap/Table';
 import { NoOrganisationContainer as NoDonationContainer } from './DonorStyles';
 import { getUserDonations } from '../Shared_util/Constants/Functions';
-import { useParams } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import { donationProps } from '../Shared_util/Constants/Types';
 
 
 const DonationProgress = () => {
-    const {username} = useParams()
     const [query, setQuery] = useState('')
     const [donations, setDonations] = useState<donationProps[]>([])
     const [refresh, setRefresh] = useState<string>("")
 
+    const navigate = useNavigate()
+
+    const tokenData = sessionStorage.getItem('accesstoken')
+    const accessToken = tokenData && JSON.parse(tokenData)
+
+    const userData = sessionStorage.getItem('userDetails')
+    const userDetails = userData && JSON.parse(userData)
+
   
     useEffect(()=>{
-        getUserDonations(setDonations, username)
-    }, [username, refresh])
+        getUserDonations(setDonations, userDetails.username, accessToken, navigate)
+    }, [refresh, accessToken, navigate, userDetails.username])
 
     return(
         <RightSideContentWrapper>

@@ -1,5 +1,5 @@
 import React from 'react';
-import HomePage from '../HomePage/HomePage';
+//import HomePage from '../HomePage/HomePage';
 import LandingPage from '../HomePage/LandingPage';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import CharityRegistrationPage from '../CharityPage/CharityRegistrationPage';
@@ -45,7 +45,7 @@ const PagesRoute = () => {
                 <Route path='login/createAccount/Donor/:username' element = {<DonorRegistrationPage />} />
 
                 {/* admin routes */}
-                <Route path='login/Admin/:username' element = {<AdminPage/>} >
+                <Route path='login/Admin/' element = {<AdminPage/>} >
                     <Route path='' element={<Overview />}/>
                     <Route path='editProfile' element={<h2>Edit userProfile</h2>}/>
                     <Route path='approveDonations' element = {<ApproveDonation/>}/>
@@ -57,7 +57,7 @@ const PagesRoute = () => {
                 
                 
                 {/* organization routes */}
-                <Route path='login/Organisation/:username' element = {<CharityPage />}>
+                <Route path='login/Organisation' element = {<CharityPage />}>
                     <Route path='' element={<Feed />}/>
                     <Route path='editProfile' element={<h2>Edit userProfile</h2>}/>      
                     <Route path='requestProgress' element = {<h2>Check progress</h2>}/>
@@ -68,7 +68,7 @@ const PagesRoute = () => {
                 </Route>
                 
                 {/* donor routes */}
-                <Route path='login/Donor/:username' element = {<DonorPage/>}>
+                <Route path='login/Donor' element = {<DonorPage/>}>
                     <Route path='' element={<Feed />}/>
                     <Route path='viewCharities' element={<ViewFoundations />}/>
                     <Route path='viewRequests' element = {<ViewRequests />}/>

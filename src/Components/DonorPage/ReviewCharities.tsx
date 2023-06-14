@@ -5,6 +5,7 @@ import { DonationFormContainer as ReviewWrapper } from "./DonorStyles"
 import { getAllOrganisations } from "../Shared_util/Constants/Functions"
 import { OrganisationProps } from "../Shared_util/Constants/Types"
 import Select from 'react-select';
+import { useNavigate } from "react-router-dom"
 //import 'semantic-ui-css/semantic.min.css';
 
 
@@ -27,6 +28,12 @@ function ReviewCharities() {
     const reviewRef = useRef<any>()
     const organisationRef = useRef<any>()
 
+    const tokenData = sessionStorage.getItem('accesstoken')
+    const accessToken = tokenData && JSON.parse(tokenData)
+
+    const navigate = useNavigate();
+
+
     
     
 
@@ -46,9 +53,9 @@ function ReviewCharities() {
             const availableOrganisations = JSON.parse(results);
             setOrganisations(availableOrganisations)
         }else{
-            getAllOrganisations(setOrganisations);
+            getAllOrganisations(setOrganisations, accessToken , navigate);
         }
-    },[])
+    },[accessToken, navigate])
 
     return(
         <ReviewWrapper>

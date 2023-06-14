@@ -7,6 +7,7 @@ import DonationRequestChart from './DonationRequestChart';
 import RequestChart from './RequestChart';
 import { getAllDonations, fetchRequests, getAllOrganisations, getAllDonors} from '../Shared_util/Constants/Functions';
 import { DonorProps, OrganisationProps, donationProps, requestProps } from '../Shared_util/Constants/Types';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -15,13 +16,17 @@ const Overview = () => {
     const [requests, setRequests] = useState<requestProps[]>([])
     const [organisations, setOrganisations] = useState<OrganisationProps[]>([])
     const [donors, setDonors] = useState<DonorProps[]>([])
+    const tokenData = sessionStorage.getItem('accesstoken')
+    const accessToken = tokenData && JSON.parse(tokenData)
+
+    const navigate = useNavigate()
 
     useEffect(()=>{
-        getAllDonations(setDonations)
-        fetchRequests(setRequests)
-        getAllOrganisations(setOrganisations)
-        getAllDonors(setDonors)
-    }, [])
+        getAllDonations(setDonations, accessToken, navigate )
+        fetchRequests(setRequests, accessToken, navigate)
+        getAllOrganisations(setOrganisations, accessToken, navigate)
+        getAllDonors(setDonors, accessToken, navigate)
+    }, [accessToken, navigate])
     
     return(
         <OverViewWrapper>

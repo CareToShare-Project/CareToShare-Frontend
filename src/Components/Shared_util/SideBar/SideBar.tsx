@@ -27,6 +27,9 @@ const SideBar: React.FC<SideBarProps> = ({features}) => {
     const handleLogout = () => {
         setCurrentPage('')
         sessionStorage.setItem('page', JSON.stringify(''))
+        sessionStorage.setItem('userDetails', '')
+        sessionStorage.setItem('accesstoken' , '')
+        sessionStorage.setItem('userDonations', "")
         navigate('/login')
     }
 

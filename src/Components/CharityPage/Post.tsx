@@ -9,6 +9,8 @@ import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { v4 } from 'uuid';
 import { addPost } from '../Store/Post-Slice';
 import { OrganisationProps } from '../Shared_util/Constants/Types';
+import { useNavigate } from 'react-router-dom';
+import LoginToast from '../Shared_util/Toast/LoginToast';
 
 const Post = () => {
     const [imageUpload, setImageUpload] = useState<any>()
@@ -16,6 +18,14 @@ const Post = () => {
     const messageRef = useRef<any>("")
     const [user, setUser] = useState<OrganisationProps>()
     const dispatch = useAppDispatch();
+
+     // state to show or hide toast
+     const [showToast, setShowToast] = useState(false)
+     
+     // state to set toast message 
+     const [toastMessage, setToastMessage] = useState('')
+
+    const navigate = useNavigate()
 
     const uploadFileToStorageBucket = () => {
         if(imageUpload === null) return;
@@ -51,9 +61,18 @@ const Post = () => {
                 date : new Date().toLocaleString()
         
         }))
-            console.log('forms submitted') 
+            console.log('forms submitted')
+            setToastMessage('Success')
+            setShowToast(true)
+            sessionStorage.setItem('page', JSON.stringify(''))
+            setTimeout(()=>{
+                navigate("/login/Organisation")
+            },1000)
+        }
+        }, 5000) 
+    
+    
     }
-        }, 5000) }
 
     useEffect(()=>{
         const results = sessionStorage.getItem('user')
@@ -84,6 +103,11 @@ const Post = () => {
                     Post
                 </ConfirmButton>
             </form>
+            <LoginToast 
+                showToast={showToast}
+                setShowToast= {setShowToast}
+                toastMessage={toastMessage}
+            />
             
         </PostWrapper>
         

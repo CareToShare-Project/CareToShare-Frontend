@@ -1,5 +1,4 @@
 import React from 'react'
-import { useParams } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import { charityFeatures } from '../Shared_util/Constants/SideBarFeatures';
 import SideBar from '../Shared_util/SideBar/SideBar';
@@ -7,12 +6,14 @@ import { MainPageContainer, RightSideContent , DonorPageContainer as CharityPage
 import NavBar from '../Shared_util/NavBar';
 
 function CharityPage(){
-    const {username} = useParams();
+    const userData = sessionStorage.getItem('userDetails')
+    const userDetails = userData && JSON.parse(userData)
+  
     return (
             <CharityPageContainer>
                 <SideBar  features={charityFeatures} />
                 <MainPageContainer>
-                    <NavBar userType='Charity' username={username}/>
+                    <NavBar userType='Charity' username={userDetails.username}/>
                     <RightSideContent>
                         <Outlet />
                     </RightSideContent>

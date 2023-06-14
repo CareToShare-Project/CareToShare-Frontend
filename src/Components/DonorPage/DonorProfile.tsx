@@ -2,15 +2,14 @@ import React, {useEffect, useRef, useState} from "react"
 import {EditProfileHeading, EditProfileWrapper,
         FormsWrapper, LeftPanel, RightPanel,Wrapper, FieldContainer, 
         Label, Field, UpdateBtn, ProfilePhotoWrapper} from "./DonorStyles"
-import bg from "../HomePage/images/backgroundImage.jpg"
 import { FaUserCircle } from "react-icons/fa"
-import { useParams } from "react-router-dom"
 import { BASE_URL } from "../Shared_util/Constants/Base_URL"
 import LoginToast from "../Shared_util/Toast/LoginToast"
+import { useNavigate } from "react-router-dom"
 
 
 function DonorProfile(){
-    const {username} = useParams();
+    
     const [imageUrl, setImageUrl] = useState("")
 
     // state to show or hide toast
@@ -18,20 +17,34 @@ function DonorProfile(){
 
     // state to set toast message 
     const [toastMessage, setToastMessage] = useState('')
+    const userData = sessionStorage.getItem('userDetails')
+    const userDetails = userData && JSON.parse(userData)
 
-    const firstNameRef = useRef<any>()
-    const lastNameRef = useRef<any>()
-    const emailRef = useRef<any>()
-    const phoneRef = useRef<any>()
-    const locationRef = useRef<any>()
+    const firstNameRef = useRef<any>(userDetails.firstName)
+    const lastNameRef = useRef<any>(userDetails.lastName)
+    const emailRef = useRef<any>(userDetails.email)
+    const phoneRef = useRef<any>(userDetails.contact)
+    const locationRef = useRef<any>(userDetails.location)
+
+    const tokenData = sessionStorage.getItem('accesstoken')
+    const accessToken = tokenData && JSON.parse(tokenData);
+
+    const navigate = useNavigate()
+
+    
 
     // fetches user details and displays in the field inputs
     const fetchUserDetails = async() => {
         try{
-            const response = await fetch(`${BASE_URL}/donors/${username}`,{
+            const response = await fetch(`${BASE_URL}/donors/${userDetails.username}`,{
                 method : 'GET',
-                headers : {'content-type':'application/json'},
+                headers : {
+                    'content-type':'application/json',
+                    'authorization' : `Bearer ${accessToken}`
+                },
             })
+            
+            if(response.status === 401) return  navigate('/login')
 
             const results = await response.json();
             const donorDetails = results.data.donor
@@ -39,7 +52,6 @@ function DonorProfile(){
             const {email, firstName, lastName, location, contact , photo} = donorDetails
 
             setImageUrl(photo)
-
             firstNameRef.current.value = firstName
             lastNameRef.current.value = lastName
             emailRef.current.value = email
@@ -63,7 +75,7 @@ function DonorProfile(){
                 location: locationRef.current.value,
                 contact : phoneRef.current.value
             }
-            const response = await fetch(`${BASE_URL}/donors/${username}`,{
+            const response = await fetch(`${BASE_URL}/donors/${userDetails.username}`,{
                 method : 'PATCH',
                 headers : {'content-type':'application/json'},
                 body : JSON.stringify(user)
@@ -91,7 +103,7 @@ function DonorProfile(){
                 <FormsWrapper>
                     <LeftPanel>
                         {imageUrl ? <ProfilePhotoWrapper /> : <FaUserCircle size={100} /> }
-                        <span>{username}</span>
+                        <span>{userDetails.username}</span>
                     </LeftPanel>
                     <RightPanel onSubmit={UpdateUserProfile}>
                         <EditProfileHeading>Account Settings</EditProfileHeading>
