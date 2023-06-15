@@ -99,7 +99,7 @@ const PostComponent: React.FC<Post> = ({post}) => {
                     <div className='view-comments'>
                         {post.comments && post.comments.map(item=>{
                             return (
-                                <div>
+                                <div key={item.username}>
                                     <span className='username'> {item.username}</span>
                                     <span className='message'>{item.comment}</span>
                                 </div>

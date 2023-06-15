@@ -16,7 +16,7 @@ const Feed = () => {
              {posts &&  
                 posts.map((post: PostProps)=> {
                     return (
-                       <PostComponent post={post}/>
+                       <PostComponent post={post} key={post.id}/>
                      )
                     } 
                     )

@@ -1,5 +1,5 @@
 import React from 'react';
-//import HomePage from '../HomePage/HomePage';
+import HomePage from '../HomePage/HomePage';
 import LandingPage from '../HomePage/LandingPage';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import CharityRegistrationPage from '../CharityPage/CharityRegistrationPage';

@@ -21,6 +21,8 @@ function ReviewCharities() {
     const [organisations, setOrganisations] = useState<OrganisationProps[]>([])
     const [selectedOrganization, setSelectedOrganization] = useState<OrganisationProps>();
 
+    console.log(selectedOrganization)
+
     const handleChange = (selectedOption: any) => {
         setSelectedOrganization(selectedOption);
     };

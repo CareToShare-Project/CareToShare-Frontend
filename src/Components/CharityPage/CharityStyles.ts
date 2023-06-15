@@ -44,11 +44,12 @@ export const PostFieldWrapper = styled.div`
     textarea{
         width: 70%;
         height: 200px;
-        color: ${({theme}) => theme.color.primary};
+        color: black;
         border: 2px solid ${({theme}) => theme.color.primary};
         cursor: pointer;
+        font-size: 15px;
         font-family: Roboto;
-        font-weight: 600;
+        font-weight: 500;
 
         &:focus{
             border: 2px solid ${({theme})=> theme.color.hover2};

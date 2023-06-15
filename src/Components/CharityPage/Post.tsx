@@ -9,8 +9,9 @@ import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { v4 } from 'uuid';
 import { addPost } from '../Store/Post-Slice';
 import { OrganisationProps } from '../Shared_util/Constants/Types';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import LoginToast from '../Shared_util/Toast/LoginToast';
+import { Spinner } from 'react-bootstrap';
 
 const Post = () => {
     const [imageUpload, setImageUpload] = useState<any>()
@@ -18,6 +19,7 @@ const Post = () => {
     const messageRef = useRef<any>("")
     const [user, setUser] = useState<OrganisationProps>()
     const dispatch = useAppDispatch();
+    const [showLoading, setShowLoading] = useState(false)
 
      // state to show or hide toast
      const [showToast, setShowToast] = useState(false)
@@ -25,7 +27,7 @@ const Post = () => {
      // state to set toast message 
      const [toastMessage, setToastMessage] = useState('')
 
-    const navigate = useNavigate()
+    
 
     const uploadFileToStorageBucket = () => {
         if(imageUpload === null) return;
@@ -48,6 +50,7 @@ const Post = () => {
 
     const handlePost = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        setShowLoading(true)
         uploadFileToStorageBucket()
         const organisationName = user?.organisationName || 'Unknown' 
         const username = user?.username || "Unknown"
@@ -64,12 +67,9 @@ const Post = () => {
             console.log('forms submitted')
             setToastMessage('Success')
             setShowToast(true)
-            sessionStorage.setItem('page', JSON.stringify(''))
-            setTimeout(()=>{
-                navigate("/login/Organisation")
-            },1000)
+            setShowLoading(false)
         }
-        }, 5000) 
+        }, 10000) 
     
     
     }
@@ -100,6 +100,7 @@ const Post = () => {
                 </PostFieldWrapper>
                 <ConfirmButton 
                     style={{width: '200px', position: 'absolute', right: '58px', bottom: '-20px'}}>
+                    {showLoading && <Spinner animation='border' size='sm' className='spinner'/>}
                     Post
                 </ConfirmButton>
             </form>

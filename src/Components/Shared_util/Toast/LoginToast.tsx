@@ -11,7 +11,7 @@ const LoginToast: React.FC<LoginToastProps> = ({showToast, setShowToast, toastMe
             <Toast 
                 onClose= {() => setShowToast(false)}
                 show={showToast}
-                delay={10000}
+                delay={5000}
                 bg='neutral'
                 autohide
                 className="toast">

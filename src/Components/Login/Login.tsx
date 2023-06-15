@@ -47,17 +47,17 @@ const Login: React.FC = () => {
                 body : JSON.stringify(userDetails)
             })
 
-            if(response.status === 201){
+            if(response.status === 400) {
+                setToastMessage('Account is not active')
+                setShowToast(true)
+                setShowLoading(false)
+            }else if(response.status === 201){
                 const results = await response.json()    
-
-                
-
                 //stores the homepage url/link in session storage on login
                 sessionStorage.setItem('page', JSON.stringify(''))
                 
                 //gets username & role 
                 const userDetails = results.data
-                console.log(userDetails)
                 const role = results.role
                 sessionStorage.setItem('userDetails', JSON.stringify(userDetails))
 
@@ -72,15 +72,18 @@ const Login: React.FC = () => {
                         navigate(`${role}`)
                     }, 1000)
                 }
+                
+            }else{
+                setToastMessage('Invalid Credentials!')
+                setShowToast(true)   
+                setShowLoading(false)
             }
 
            
                 
     }catch(err){
         console.log(err)
-        setToastMessage('Invalid Credentials!')
-        setShowToast(true)   
-        setShowLoading(false)
+        
         
     }
 }
