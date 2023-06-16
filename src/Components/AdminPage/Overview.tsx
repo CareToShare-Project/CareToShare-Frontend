@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Box, BoxWrapper, DonationChartWrapper, Left, OverViewWrapper, Right, SummaryWrapper } from './Admin.Styles';
-import {FaUsers, FaHandsHelping} from 'react-icons/fa'
-import {BiDonateHeart} from "react-icons/bi"
+import { FaUsers, FaHandsHelping } from 'react-icons/fa'
+import { BiDonateHeart } from "react-icons/bi"
 import DonationChart from './DonationChart';
 import DonationRequestChart from './DonationRequestChart';
 import RequestChart from './RequestChart';
-import { getAllDonations, fetchRequests, getAllOrganisations, getAllDonors} from '../Shared_util/Constants/Functions';
+import { getAllDonations, fetchRequests, getAllOrganisations, getAllDonors } from '../Shared_util/Constants/Functions';
 import { DonorProps, OrganisationProps, donationProps, requestProps } from '../Shared_util/Constants/Types';
 import { useNavigate } from 'react-router-dom';
 
@@ -21,14 +21,14 @@ const Overview = () => {
 
     const navigate = useNavigate()
 
-    useEffect(()=>{
-        getAllDonations(setDonations, accessToken, navigate )
+    useEffect(() => {
+        getAllDonations(setDonations, accessToken, navigate)
         fetchRequests(setRequests, accessToken, navigate)
         getAllOrganisations(setOrganisations, accessToken, navigate)
         getAllDonors(setDonors, accessToken, navigate)
     }, [accessToken, navigate])
-    
-    return(
+
+    return (
         <OverViewWrapper>
             <SummaryWrapper>
                 <h4>Summarized Statistics</h4>
@@ -39,7 +39,7 @@ const Overview = () => {
                             <span>Donors</span>
                         </Left>
                         <Right>
-                            <FaUsers className='icon'/>
+                            <FaUsers className='icon' />
                         </Right>
                     </Box>
                     <Box>
@@ -48,7 +48,7 @@ const Overview = () => {
                             <span>Organisations</span>
                         </Left>
                         <Right>
-                            <FaUsers className='icon'/>
+                            <FaUsers className='icon' />
                         </Right>
                     </Box>
                     <Box>
@@ -57,7 +57,7 @@ const Overview = () => {
                             <span>Donations</span>
                         </Left>
                         <Right>
-                            <BiDonateHeart className='icon'/>
+                            <BiDonateHeart className='icon' />
                         </Right>
                     </Box>
                     <Box>
@@ -66,28 +66,28 @@ const Overview = () => {
                             <span>Request</span>
                         </Left>
                         <Right>
-                            <FaHandsHelping className='icon'/>
+                            <FaHandsHelping className='icon' />
                         </Right>
                     </Box>
                 </BoxWrapper>
             </SummaryWrapper>
             <DonationChartWrapper>
                 <h4>Donation Progress Tracker</h4>
-                <DonationChart donations={donations}/>
+                <DonationChart donations={donations} />
             </DonationChartWrapper>
             <DonationChartWrapper>
                 <h4>Request Progress Tracker</h4>
-                <RequestChart requests={requests}/>
+                <RequestChart requests={requests} />
             </DonationChartWrapper>
             <DonationChartWrapper>
                 <h4>Donations vs Request Distributions</h4>
-                <DonationRequestChart donations={donations} requests={requests}/>
+                <DonationRequestChart donations={donations} requests={requests} />
             </DonationChartWrapper>
-            
+
         </OverViewWrapper>
     )
 
-    
+
 }
 
 

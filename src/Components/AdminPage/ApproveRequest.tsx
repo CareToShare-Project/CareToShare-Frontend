@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ApproveDonationContainer , ApproveButton} from './Admin.Styles';
+import { ApproveDonationContainer, ApproveButton } from './Admin.Styles';
 import { Spinner, Table } from 'react-bootstrap';
 import { TableWrapper } from '../DonorPage/DonorStyles';
 import { fetchRequests, approveRequest } from '../Shared_util/Constants/Functions';
@@ -25,62 +25,62 @@ const ApproveRequest = () => {
 
     const navigate = useNavigate()
 
-    useEffect(()=> {
+    useEffect(() => {
         fetchRequests(setRequests, accessToken, navigate)
     }, [refresh, accessToken, navigate])
 
     return (
-          <ApproveDonationContainer>
-                <SearchBar query={query} setQuery={setQuery} setRefresh={setRefresh}/>
-                <TableWrapper>
-                    <Table responsive className='table' striped hover bordered >
-                        <thead className='table-heading'>
-                            <tr>
-                                <th>Request Type</th>
-                                <th>Request From</th>
-                                <th>Request To</th>
-                                <th>Description</th>
-                                <th>Date</th>
-                                <th>Approve</th>
-                            </tr>
-                        </thead>
-                        <tbody className='table-body'> 
-                            {requests.map((req: requestProps) => {
-                                return (
-                                    <tr key={req.requestId}>
-                                        <td>{req.requestType}</td>
-                                        <td>{req.requestedBy}</td>
-                                        <td>{req.requestType === "Specific" ? req.requestTo : "Generic"}</td>
-                                        <td>{req.description}</td>
-                                        <td>{req.createdAt.slice(0,10)}</td>
-                                        <td>
-                                            { req.requestStatus === "Pending" ?
-                                                <ApproveButton onClick={()=> approveRequest(req.requestId, 
-                                                                                            setShowLoading, 
-                                                                                            setToastMessage, 
-                                                                                            setShowToast,
-                                                                                            accessToken,
-                                                                                            navigate)}
-                                                >
-                                                    Approve
-                                                </ApproveButton> : <span>Approved</span>
-                                            }
-                                            
-                                        </td>
-                                    </tr>
-                                )
-                            })}
-                        </tbody>
-                    </Table>
-                    <LoginToast  
-                            showToast={showToast} 
-                            setShowToast={setShowToast} 
-                            toastMessage={toastMessage}
-                        />   
-                </TableWrapper>
-                {showLoading && <Spinner animation='border'  className='spinner'/>}
-          </ApproveDonationContainer>
-        );
+        <ApproveDonationContainer>
+            <SearchBar query={query} setQuery={setQuery} setRefresh={setRefresh} />
+            <TableWrapper>
+                <Table responsive className='table' striped hover bordered >
+                    <thead className='table-heading'>
+                        <tr>
+                            <th>Request Type</th>
+                            <th>Request From</th>
+                            <th>Request To</th>
+                            <th>Description</th>
+                            <th>Date</th>
+                            <th>Approve</th>
+                        </tr>
+                    </thead>
+                    <tbody className='table-body'>
+                        {requests.map((req: requestProps) => {
+                            return (
+                                <tr key={req.requestId}>
+                                    <td>{req.requestType}</td>
+                                    <td>{req.requestedBy}</td>
+                                    <td>{req.requestType === "Specific" ? req.requestTo : "Generic"}</td>
+                                    <td>{req.description}</td>
+                                    <td>{req.createdAt.slice(0, 10)}</td>
+                                    <td>
+                                        {req.requestStatus === "Pending" ?
+                                            <ApproveButton onClick={() => approveRequest(req.requestId,
+                                                setShowLoading,
+                                                setToastMessage,
+                                                setShowToast,
+                                                accessToken,
+                                                navigate)}
+                                            >
+                                                Approve
+                                            </ApproveButton> : <span>Approved</span>
+                                        }
+
+                                    </td>
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </Table>
+                <LoginToast
+                    showToast={showToast}
+                    setShowToast={setShowToast}
+                    toastMessage={toastMessage}
+                />
+            </TableWrapper>
+            {showLoading && <Spinner animation='border' className='spinner' />}
+        </ApproveDonationContainer>
+    );
 }
 
 

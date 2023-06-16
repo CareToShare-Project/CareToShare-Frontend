@@ -8,8 +8,7 @@ import { storage } from '../Shared_util/Constants/FireBase';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { v4 } from 'uuid';
 import { addPost } from '../Store/Post-Slice';
-import { OrganisationProps } from '../Shared_util/Constants/Types';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import LoginToast from '../Shared_util/Toast/LoginToast';
 import { Spinner } from 'react-bootstrap';
 
@@ -17,15 +16,19 @@ const Post = () => {
     const [imageUpload, setImageUpload] = useState<any>()
     let images: string[] = []
     const messageRef = useRef<any>("")
-    const [user, setUser] = useState<OrganisationProps>()
     const dispatch = useAppDispatch();
     const [showLoading, setShowLoading] = useState(false)
+
+    const navigate = useNavigate()
 
      // state to show or hide toast
      const [showToast, setShowToast] = useState(false)
      
      // state to set toast message 
      const [toastMessage, setToastMessage] = useState('')
+
+     const userData = sessionStorage.getItem('userDetails')
+     const userDetails = userData && JSON.parse(userData)
 
     
 
@@ -52,35 +55,28 @@ const Post = () => {
         e.preventDefault()
         setShowLoading(true)
         uploadFileToStorageBucket()
-        const organisationName = user?.organisationName || 'Unknown' 
-        const username = user?.username || "Unknown"
+    
         setTimeout(()=> {
             if(messageRef.current){
                 dispatch(addPost({
-                organisation: organisationName,
-                username : username,
+                organisation: userDetails.organisationName,
+                username : userDetails.username,
                 message : messageRef.current.value,
                 images : images,
                 date : new Date().toLocaleString()
         
         }))
-            console.log('forms submitted')
             setToastMessage('Success')
             setShowToast(true)
             setShowLoading(false)
+            navigate("/login/organisation/")
         }
         }, 10000) 
     
     
     }
 
-    useEffect(()=>{
-        const results = sessionStorage.getItem('user')
-        if(results !== null){
-            const userData = JSON.parse(results)
-            setUser(userData)
-            }
-        }, [setUser])
+    
     
     return(
         <PostWrapper>

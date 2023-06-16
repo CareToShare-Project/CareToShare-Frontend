@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { ApproveButton, ApproveDonationContainer } from './Admin.Styles';
 import { TableWrapper } from '../DonorPage/DonorStyles';
 import SearchBar from '../Shared_util/SearchBar/SearchBar';
@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-function DonorAccount () {
+function DonorAccount() {
     const [donors, setDonors] = useState<DonorProps[]>([])
     const [showLoading, setShowLoading] = useState(false)
     const [refresh, setRefresh] = useState("")
@@ -25,15 +25,15 @@ function DonorAccount () {
 
     const navigate = useNavigate()
 
-    useEffect(()=>{
-        getAllDonors(setDonors, accessToken, navigate )
+    useEffect(() => {
+        getAllDonors(setDonors, accessToken, navigate)
     }, [accessToken, navigate, refresh])
 
 
 
     return (
         <ApproveDonationContainer>
-            <SearchBar query={query} setQuery={setQuery} setRefresh={setRefresh}/>
+            <SearchBar query={query} setQuery={setQuery} setRefresh={setRefresh} />
             <TableWrapper>
                 <Table responsive className='table' striped hover bordered>
                     <thead className='table-heading'>
@@ -48,7 +48,7 @@ function DonorAccount () {
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody className='table-body'> 
+                    <tbody className='table-body'>
                         {donors.map((donor: DonorProps) => {
                             return (
                                 <tr key={donor.username}>
@@ -60,35 +60,35 @@ function DonorAccount () {
                                     <td>{donor.contact}</td>
                                     <td>{donor.location} </td>
                                     <td>
-                                        { donor.isActive ?
-                                            <ApproveButton onClick={()=> deactivateDonor(donor.username, setShowLoading, 
-                                                                                            setToastMessage, setShowToast,
-                                                                                            accessToken, navigate)} >
+                                        {donor.isActive ?
+                                            <ApproveButton onClick={() => deactivateDonor(donor.username, setShowLoading,
+                                                setToastMessage, setShowToast,
+                                                accessToken, navigate)} >
                                                 Deactivate
-                                            </ApproveButton> : 
-                                            <ApproveButton onClick={()=>activateDonor(donor.username, setShowLoading, 
-                                                                                    setToastMessage, setShowToast, accessToken,
-                                                                                    navigate)}>
+                                            </ApproveButton> :
+                                            <ApproveButton onClick={() => activateDonor(donor.username, setShowLoading,
+                                                setToastMessage, setShowToast, accessToken,
+                                                navigate)}>
                                                 Activate
                                             </ApproveButton>
-                                    }
-                                    
-                                </td>
-                            </tr>
-                        )
-                    })}
-                </tbody>
-            </Table>
-            <LoginToast  
-                    showToast={showToast} 
-                    setShowToast={setShowToast} 
+                                        }
+
+                                    </td>
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </Table>
+                <LoginToast
+                    showToast={showToast}
+                    setShowToast={setShowToast}
                     toastMessage={toastMessage}
-                />   
-        </TableWrapper>
-        {showLoading && <Spinner animation='border'  className='spinner'/>}
-  </ApproveDonationContainer>
-);
-        
+                />
+            </TableWrapper>
+            {showLoading && <Spinner animation='border' className='spinner' />}
+        </ApproveDonationContainer>
+    );
+
 }
 
 export default DonorAccount

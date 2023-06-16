@@ -10,7 +10,7 @@ const LandingPage = () => {
 
     return(
             <PageWrapper className='body-container'>
-                <ShadeContainer>heya</ShadeContainer>
+                <ShadeContainer></ShadeContainer>
                 <NavigationContainer>
                     <h3>Logo</h3>
                     <div>

@@ -1,15 +1,17 @@
-import React, {useEffect, useRef, useState} from "react"
-import {EditProfileHeading, EditProfileWrapper,
-        FormsWrapper, LeftPanel, RightPanel,Wrapper, FieldContainer, 
-        Label, Field, UpdateBtn, ProfilePhotoWrapper} from "./DonorStyles"
+import React, { useEffect, useRef, useState } from "react"
+import {
+    EditProfileHeading, EditProfileWrapper,
+    FormsWrapper, LeftPanel, RightPanel, Wrapper, FieldContainer,
+    Label, Field, UpdateBtn, ProfilePhotoWrapper
+} from "./DonorStyles"
 import { FaUserCircle } from "react-icons/fa"
 import { BASE_URL } from "../Shared_util/Constants/Base_URL"
 import LoginToast from "../Shared_util/Toast/LoginToast"
 import { useNavigate } from "react-router-dom"
 
 
-function DonorProfile(){
-    
+function DonorProfile() {
+
     const [imageUrl, setImageUrl] = useState("")
 
     // state to show or hide toast
@@ -31,25 +33,25 @@ function DonorProfile(){
 
     const navigate = useNavigate()
 
-    
+
 
     // fetches user details and displays in the field inputs
-    const fetchUserDetails = async() => {
-        try{
-            const response = await fetch(`${BASE_URL}/donors/${userDetails.username}`,{
-                method : 'GET',
-                headers : {
-                    'content-type':'application/json',
-                    'authorization' : `Bearer ${accessToken}`
+    const fetchUserDetails = async () => {
+        try {
+            const response = await fetch(`${BASE_URL}/donors/${userDetails.username}`, {
+                method: 'GET',
+                headers: {
+                    'content-type': 'application/json',
+                    'authorization': `Bearer ${accessToken}`
                 },
             })
-            
-            if(response.status === 401) return  navigate('/login')
+
+            if (response.status === 401) return navigate('/login')
 
             const results = await response.json();
             const donorDetails = results.data.donor
             console.log()
-            const {email, firstName, lastName, location, contact , photo} = donorDetails
+            const { email, firstName, lastName, location, contact, photo } = donorDetails
 
             setImageUrl(photo)
             firstNameRef.current.value = firstName
@@ -58,88 +60,88 @@ function DonorProfile(){
             locationRef.current.value = location
             phoneRef.current.value = contact
 
-        
+
         }
-        catch(error){
+        catch (error) {
             console.log(error)
         }
     }
 
-    const UpdateUserProfile = async(e: React.FormEvent<HTMLFormElement>) => {
+    const UpdateUserProfile = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        try{
+        try {
             const user = {
-                firstName : firstNameRef.current.value,
-                lastName : lastNameRef.current.value,
-                email : emailRef.current.value,
+                firstName: firstNameRef.current.value,
+                lastName: lastNameRef.current.value,
+                email: emailRef.current.value,
                 location: locationRef.current.value,
-                contact : phoneRef.current.value
+                contact: phoneRef.current.value
             }
-            const response = await fetch(`${BASE_URL}/donors/${userDetails.username}`,{
-                method : 'PATCH',
-                headers : {'content-type':'application/json'},
-                body : JSON.stringify(user)
+            const response = await fetch(`${BASE_URL}/donors/${userDetails.username}`, {
+                method: 'PATCH',
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify(user)
             })
 
             const results = await response.json()
-            if(results.status === "success"){
+            if (results.status === "success") {
                 setToastMessage("You have successfully updated your profile")
                 setShowToast(true)
             }
 
-        }catch(error){
+        } catch (error) {
             console.log(error)
         }
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         fetchUserDetails()
     })
-    
 
-    return(
+
+    return (
         <Wrapper>
             <EditProfileWrapper>
                 <FormsWrapper>
                     <LeftPanel>
-                        {imageUrl ? <ProfilePhotoWrapper /> : <FaUserCircle size={100} /> }
+                        {imageUrl ? <ProfilePhotoWrapper /> : <FaUserCircle size={100} />}
                         <span>{userDetails.username}</span>
                     </LeftPanel>
                     <RightPanel onSubmit={UpdateUserProfile}>
                         <EditProfileHeading>Account Settings</EditProfileHeading>
-                        
-                           <FieldContainer>
-                                <Label htmlFor="first">First Name</Label>
-                                <Field type="text" id="first" ref={firstNameRef}/>
-                           </FieldContainer>
-                           <FieldContainer>
-                                <Label htmlFor="last">Last Name</Label>
-                                <Field type="text" id="last" ref={lastNameRef}/>
-                           </FieldContainer>
-                        
-                        
-                           <FieldContainer>
-                                <Label htmlFor="phone">Phone</Label>
-                                <Field type="text" id="phone" ref={phoneRef}/>
-                           </FieldContainer>
-                           <FieldContainer>
-                                <Label htmlFor="email">Email Address</Label>
-                                <Field type="text" id="email" ref={emailRef}/>
-                           </FieldContainer>
-                        
-                        
-                           <FieldContainer>
-                                <Label htmlFor="location">Location</Label>
-                                <Field type="text" id="location" ref={locationRef}/>
-                           </FieldContainer>
-                        
+
+                        <FieldContainer>
+                            <Label htmlFor="first">First Name</Label>
+                            <Field type="text" id="first" ref={firstNameRef} />
+                        </FieldContainer>
+                        <FieldContainer>
+                            <Label htmlFor="last">Last Name</Label>
+                            <Field type="text" id="last" ref={lastNameRef} />
+                        </FieldContainer>
+
+
+                        <FieldContainer>
+                            <Label htmlFor="phone">Phone</Label>
+                            <Field type="text" id="phone" ref={phoneRef} />
+                        </FieldContainer>
+                        <FieldContainer>
+                            <Label htmlFor="email">Email Address</Label>
+                            <Field type="text" id="email" ref={emailRef} />
+                        </FieldContainer>
+
+
+                        <FieldContainer>
+                            <Label htmlFor="location">Location</Label>
+                            <Field type="text" id="location" ref={locationRef} />
+                        </FieldContainer>
+
                         <UpdateBtn>Update</UpdateBtn>
                     </RightPanel>
-                    <LoginToast  
-                            showToast={showToast} 
-                            setShowToast={setShowToast} 
-                            toastMessage={toastMessage}
-                        />   
+                    <LoginToast
+                        showToast={showToast}
+                        setShowToast={setShowToast}
+                        toastMessage={toastMessage}
+                    />
                 </FormsWrapper>
             </EditProfileWrapper>
         </Wrapper>

@@ -89,7 +89,7 @@ const Login: React.FC = () => {
 }
 
     useEffect(()=>{
-        console.log('page rendered')
+        console.log('Login page rendered')
     }, [])
 
   
