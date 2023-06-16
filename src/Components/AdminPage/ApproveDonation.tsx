@@ -94,7 +94,7 @@ const ApproveDonation = () => {
                     toastMessage={toastMessage}
                 />
             </TableWrapper>
-            {showLoading && <Spinner animation="border" className="spinner" />}
+            {showLoading && <Spinner animation="border" className="spinner" style={{color: 'black'}}/>}
         </ApproveDonationContainer>
     );
 };

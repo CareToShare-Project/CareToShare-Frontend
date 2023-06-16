@@ -69,8 +69,8 @@ export interface donationProps {
     donatedBy?: string,
     donatedTo?: string,
     donationStatus?: string,
-    description?: string,
-    itemPhoto?: string,
+    description: string,
+    itemPhoto: string,
     location?: string,
     createdAt: string,
     updatedAt: string
@@ -146,4 +146,10 @@ export interface ProfileModalProps{
     show : boolean,
     setShow: React.Dispatch<React.SetStateAction<boolean>>,
     details: OrganisationProps | undefined
+}
+
+export interface DonatedItemProps {
+    show: boolean,
+    setShow: React.Dispatch<React.SetStateAction<boolean>>,
+    details : donationProps
 }

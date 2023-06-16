@@ -80,6 +80,13 @@ export const deactivateOrganisation = async (username: string, setShowLoading: R
 
         if (response.status === 401) return navigate("/login")
 
+        if(response.status === 403) {
+            setShowLoading(false)
+            setToastMessage("You do not have permission to perform this action")
+            setShowToast(true)
+            return
+        }
+
         if (response.ok) {
             setShowLoading(false)
             setToastMessage("User account is deactivated, Refresh page!")
@@ -111,6 +118,13 @@ export const activateOrganisation = async (username: string, setShowLoading: Rea
             },
         })
         if (response.status === 401) return navigate("/login")
+
+        if(response.status === 403) {
+            setShowLoading(false)
+            setToastMessage("You do not have permission to perform this action")
+            setShowToast(true)
+            return
+        }
 
         if (response.ok) {
             setShowLoading(false)
@@ -145,6 +159,14 @@ export const approveOrganisationRegistration = async (username: string,
         })
 
         if (response.status === 401) return navigate('/login')
+
+        if(response.status === 403) {
+            setShowLoading(false)
+            setToastMessage("You do not have permission to perform this action")
+            setShowToast(true)
+            return
+        }
+
         if (response.status === 500) {
             setShowLoading(false)
             setToastMessage("An error occured, try again later")
@@ -204,6 +226,13 @@ export const deactivateDonor = async (username: string, setShowLoading: React.Di
 
         if (response.status === 401) return navigate("/login")
 
+        if(response.status === 403) {
+            setShowLoading(false)
+            setToastMessage("You do not have permission to perform this action")
+            setShowToast(true)
+            return
+        }
+
         if (response.ok) {
             setShowLoading(false)
             setToastMessage("User account is deactivated, Refresh page!")
@@ -238,6 +267,13 @@ export const activateDonor = async (username: string, setShowLoading: React.Disp
         })
 
         if (response.status === 401) return navigate("/login")
+
+        if(response.status === 403) {
+            setShowLoading(false)
+            setToastMessage("You do not have permission to perform this action")
+            setShowToast(true)
+            return
+        }
 
         if (response.ok) {
             setShowLoading(false)
@@ -330,6 +366,13 @@ export const approveDonation = async (
 
 
         if (response.status === 401) return navigate("/login")
+
+        if(response.status===403) {
+            setShowLoading(false)
+            setToastMessage("You do not have permission to perform this action!")
+            setShowToast(true)
+            return
+        }
 
         if (response.status === 500) {
             setShowLoading(false)
@@ -424,6 +467,13 @@ export const approveRequest = async (requestId: string, setShowLoading: React.Di
         })
 
         if (response.status === 401) return navigate("/login")
+
+        if(response.status === 403) {
+            setShowLoading(false)
+            setToastMessage("You do not have permission to perform this action")
+            setShowToast(true)
+            return
+        }
         if (response.status === 500) {
             setShowLoading(false)
             setToastMessage("An error occured, try again")
