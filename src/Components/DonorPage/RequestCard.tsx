@@ -2,11 +2,14 @@ import React from 'react'
 import { CardContainer, ImageWrapper, ImageContainer, DetailsWrapper, Column, DonateButton} from './DonorStyles'
 import image1 from '../HomePage/images/image2.jpg'
 import { RequestCardProp } from '../Shared_util/Constants/Types'
+import {useNavigate} from "react-router-dom"
 
 
 const RequestCard: React.FC<RequestCardProp> = ({ details }) => {
 
     const { requestType, requestedBy, description} = details
+    
+    const navigate = useNavigate()
 
     return (
         <CardContainer>
@@ -15,8 +18,6 @@ const RequestCard: React.FC<RequestCardProp> = ({ details }) => {
                 <span>{requestType}</span>
             </ImageContainer>
             <DetailsWrapper>
-
-                {requestType === "Campaign" ?
                     <>
                         <Column>
                             <header>From</header>
@@ -26,23 +27,13 @@ const RequestCard: React.FC<RequestCardProp> = ({ details }) => {
                             <header>{requestType}</header>
                             <span>{description}</span>
                         </Column>
-                        <DonateButton>Donate</DonateButton>
-                    </> :
-                    <div
-                        style={{
-                            display: 'flex', width: '80%', margin: '30px auto'
-                            , flexDirection: 'column', gap: '10px'
-                        }}>
-                        <Column>
-                            <header>From</header>
-                            <span>{requestedBy}</span>
-                        </Column>
-                        <div style={{ display: 'flex', width: '100%' }}>
-                            <DonateButton>Accept</DonateButton>
-                            <DonateButton>Decline</DonateButton>
-                        </div>
-
-                    </div>}
+                        <DonateButton onClick={()=>{
+                                    navigate("/login/donor/makeDonations")
+                                    sessionStorage.setItem('page', JSON.stringify('makeDonations'))
+                                    }}>
+                            Support
+                        </DonateButton>
+                    </> 
             </DetailsWrapper>
         </CardContainer>
 

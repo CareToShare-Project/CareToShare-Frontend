@@ -78,6 +78,7 @@ function MakeDonation() {
                         location: locationRef.current.value,
                         itemPhoto: imageUrl,
                         donatedTo: selectedOrg,
+                        contact: userDetails.contact
                     };
                     const response = await fetch(`${BASE_URL}/donations`, {
                         method: "POST",

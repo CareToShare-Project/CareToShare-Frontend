@@ -189,6 +189,31 @@ export const RightSideContentWrapper = styled.div`
         box-shadow: 0px 0px  3px rgba(0,0,0,0.4);
     }
 
+    .general {
+        width: 100%;
+        
+        h4{
+            color: ${({theme})=> theme.color.primary};
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+    }
+
+    .specific {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 15px;
+        padding: 5px;
+         h4{
+            color: ${({theme})=> theme.color.primary};
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+    }
+
     div{
         h5{
             color: ${({theme})=> theme.color.primary};
@@ -222,6 +247,7 @@ export const CardContainer = styled.div`
     max-width: 240px;
     min-width: 240px;
     height: 300px;
+    padding-bottom: 5px;
     border-radius: 10px;
     background: white;
     box-shadow: 0px 0px 4px 3px rgba(20, 107, 113, 0.1);
@@ -254,11 +280,27 @@ export const DetailsWrapper = styled.div`
     flex-direction: column;
     padding-left: 15px;
     text-align: center;
+    overflow-y: scroll;
+    
 
     span{
         display: flex;
         align-items: center;
         gap: 2px;
+    }
+
+    .donation-details{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap:2px;
+        
+        .heading{
+            color: ${({theme})=> theme.background.primary};
+        }
+        .content{
+            color: ${({theme})=> theme.color.primary};
+        }
     }
 
     .organizationName{
@@ -276,7 +318,7 @@ export const DetailsWrapper = styled.div`
     }
 
     .sub-details{
-        color: ${({theme})=> theme.color.primary};;
+        color: ${({theme})=> theme.color.primary};
         margin-top: 5px;
         font-family: Poppins;
         gap: 10px;
@@ -464,7 +506,7 @@ export const DonationInputLabel = styled(InputLabel)`
     color: black;
 `
 export const DonationInputField = styled(InputField)`
-    color: ${({theme}) => theme.background.primary};
+    color: ${({theme}) => theme.color.primary};
     border: 2px solid ${({theme}) => theme.color.primary};
     width: 100%;
 `

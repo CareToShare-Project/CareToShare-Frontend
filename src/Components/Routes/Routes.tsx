@@ -27,6 +27,11 @@ import ApproveRequest from '../AdminPage/ApproveRequest';
 import Overview from '../AdminPage/Overview';
 import DonorAccount from '../AdminPage/DonorAccount';
 import Post from '../CharityPage/Post';
+import ViewDonation from '../CharityPage/ViewDonation';
+import RequestProgress from '../CharityPage/RequestProgress'
+import MakeRequest from '../CharityPage/MakeRequest';
+import Donations from '../CharityPage/Donations';
+import Requests from '../DonorPage/Requests';
 
 const PagesRoute = () => {
 
@@ -47,7 +52,6 @@ const PagesRoute = () => {
                 {/* admin routes */}
                 <Route path='login/Admin/' element = {<AdminPage/>} >
                     <Route path='' element={<Overview />}/>
-                    <Route path='editProfile' element={<h2>Edit userProfile</h2>}/>
                     <Route path='approveDonations' element = {<ApproveDonation/>}/>
                     <Route path='approveRequests' element = {<ApproveRequest/>} />
                     <Route path='manageDonorsAccount' element = {<DonorAccount />} />
@@ -60,11 +64,11 @@ const PagesRoute = () => {
                 <Route path='login/Organisation' element = {<CharityPage />}>
                     <Route path='' element={<Feed />}/>
                     <Route path='editProfile' element={<h2>Edit userProfile</h2>}/>      
-                    <Route path='requestProgress' element = {<h2>Check progress</h2>}/>
-                    <Route path='viewDonations' element = {<h2>View Available donations</h2>} />
+                    <Route path='requestProgress' element = {<RequestProgress />}/>
+                    <Route path='donationProgress' element = {<Donations />}/>
+                    <Route path='viewDonations' element = {<ViewDonation />} />
                     <Route path='post' element={<Post />}/>
-                    <Route path='appreciativeMessage' element = {<h2>Send Appreciative Message</h2>} />
-                    <Route path='makeRequest' element = {<h2>Make Requests</h2>}/>
+                    <Route path='makeRequest' element = {<MakeRequest />}/>
                 </Route>
                 
                 {/* donor routes */}
@@ -72,6 +76,7 @@ const PagesRoute = () => {
                     <Route path='' element={<Feed />}/>
                     <Route path='viewCharities' element={<ViewFoundations />}/>
                     <Route path='viewRequests' element = {<ViewRequests />}/>
+                    <Route path='request' element = {<Requests />}/>
                     <Route path='makeDonations' element = {<MakeDonation />} />
                     <Route path='donationProgress' element = {<DonationProgress />}/>
                     <Route path='reviewCharities' element = {<ReviewCharities />} />

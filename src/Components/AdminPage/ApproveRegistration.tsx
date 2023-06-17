@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ApproveDonationContainer, ApproveButton } from './Admin.Styles';
+import { ApproveDonationContainer, ApproveButton, PaginationContainer } from './Admin.Styles';
 import { Spinner, Table } from 'react-bootstrap';
 import { TableWrapper } from '../DonorPage/DonorStyles';
 import {
@@ -105,6 +105,15 @@ const ApproveRegistration = () => {
                         })}
                     </tbody>
                 </Table>
+                <PaginationContainer>
+                    <ApproveButton> 
+                        Previous
+                    </ApproveButton>
+                    <span>Page 1</span>
+                    <ApproveButton> 
+                        Next
+                    </ApproveButton>
+                </PaginationContainer>
                 <LoginToast
                     showToast={showToast}
                     setShowToast={setShowToast}

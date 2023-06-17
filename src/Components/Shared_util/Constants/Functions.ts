@@ -320,6 +320,36 @@ export const getUserDonations = async (setDonations: React.Dispatch<any>,
     }
 }
 
+// gets all donations made to an organisation
+export const getOrganisationDonations = async (setDonations: React.Dispatch<any>,
+    donatedTo: string,
+    accessToken: string, navigate: any) => {
+    try {
+        const response = await fetch(`${BASE_URL}/donations`, {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `Bearer ${accessToken}`
+            },
+        })
+
+        if (response.status === 401) return navigate('/login')
+        if (response.status === 400) return console.log('bad request')
+        if (response.status === 500) return
+
+        const results = await response.json();
+        const donation = results.data
+
+        if (results.status === "success") {
+            const userDonation = donation.filter((item: { donatedTo: string; }) => item.donatedTo === donatedTo)
+            setDonations(userDonation)
+            sessionStorage.setItem('userDonations', JSON.stringify(donation))
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 // gets all donations from a user
 export const getAllDonations = async (setDonations: React.Dispatch<any>, accessToken: string, navigate: any) => {
     try {
@@ -409,7 +439,7 @@ export const getAllRequests = async (setCampaigns: React.Dispatch<any>,
         if (response.status === 401) return navigate("/login")
 
         const results = await response.json();
-        const campaignData = results.data.filter((item: { requestType: string; }) => item.requestType === "Campaign");
+        const campaignData = results.data.filter((item: { requestType: string; requestStatus : string }) => item.requestType === "Campaign" && item.requestStatus === "In Progress");
         const specificRequestData = results.data.filter((item: { requestTo: string; }) => item.requestTo === username);
         if (results.status === "success") {
             setCampaigns(campaignData)
@@ -441,6 +471,30 @@ export const fetchRequests = async (setRequests: React.Dispatch<any>, accessToke
         if (results.status === "success") {
             setRequests(requests)
             sessionStorage.setItem('requests', JSON.stringify(requests))
+        }
+    }
+    catch (error) {
+        console.log(error)
+    }
+}
+
+// fetches all organisationRequests
+export const organisationRequest = async (setRequests: React.Dispatch<any>, requestedBy : string,accessToken: string, navigate: any) => {
+    try {
+        const response = await fetch(`${BASE_URL}/requests/${requestedBy}/organisationRequests`, {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `Bearer ${accessToken}`
+            },
+        })
+
+        if (response.status === 401) return navigate('/login')
+        const results = await response.json();
+        const requests = results.data
+        if (results.status === "success") {
+            setRequests(requests)
+            sessionStorage.setItem('Orgrequests', JSON.stringify(requests))
         }
     }
     catch (error) {
@@ -490,6 +544,109 @@ export const approveRequest = async (requestId: string, setShowLoading: React.Di
         console.log(error)
     }
 }
+
+// accept request from organisations
+export const acceptRequest = async (requestId: string, setShowLoading: React.Dispatch<React.SetStateAction<boolean>>,
+    setToastMessage: React.Dispatch<React.SetStateAction<string>>,
+    setShowToast: React.Dispatch<React.SetStateAction<boolean>>,
+    accessToken: string,
+    navigate: any,
+    organisation: string
+) => {
+    setShowLoading(true)
+    try {
+        const response = await fetch(`${BASE_URL}/requests/${requestId}/acceptRequest`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `Bearer ${accessToken}`
+            },
+            
+
+        })
+
+        const responseDonation = await fetch(`${BASE_URL}/donations/${requestId}/updateDonation`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `Bearer ${accessToken}`
+            },
+            body : JSON.stringify({
+                donatedTo : organisation
+            })
+
+        })
+        console.log(responseDonation)
+       
+
+        if (response.status === 401) return navigate("/login")
+
+        if(response.status === 403) {
+            setShowLoading(false)
+            setToastMessage("You do not have permission to perform this action")
+            setShowToast(true)
+            return
+        }
+        if (response.status === 500) {
+            setShowLoading(false)
+            setToastMessage("An error occured, try again")
+            setShowToast(true)
+        }
+
+        const results = await response.json();
+        if (results.status === "success") {
+            setShowLoading(false)
+            setToastMessage("Request accepted Successfully, Refresh page!")
+            setShowToast(true)
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const acceptDonation = async (donationId: string, setShowLoading: React.Dispatch<React.SetStateAction<boolean>>,
+    setToastMessage: React.Dispatch<React.SetStateAction<string>>,
+    setShowToast: React.Dispatch<React.SetStateAction<boolean>>,
+    accessToken: string,
+    navigate: any,
+) => {
+    setShowLoading(true)
+    try {
+        const response = await fetch(`${BASE_URL}/donations/${donationId}/acceptDonation`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `Bearer ${accessToken}`
+            },
+
+        })
+
+        if (response.status === 401) return navigate("/login")
+
+        if(response.status === 403) {
+            setShowLoading(false)
+            setToastMessage("You do not have permission to perform this action")
+            setShowToast(true)
+            return
+        }
+        if (response.status === 500) {
+            setShowLoading(false)
+            setToastMessage("An error occured, try again")
+            setShowToast(true)
+        }
+
+        const results = await response.json();
+        if (results.status === "success") {
+            setShowLoading(false)
+            setToastMessage("Donation accepted Successfully, Refresh page!")
+            setShowToast(true)
+        }
+    } catch (error) {
+        console.log(error)
+        setShowLoading(false)
+    }
+}
+
 
 
 export { }

@@ -48,25 +48,6 @@ function ViewRequests() {
             {
                 !campaigns.length && <NoRequestContainer>No Campaigns available</NoRequestContainer>
             }
-            {specificRequests &&
-                <div className='request'>
-                    <h5>Your Donations</h5>
-                    <ViewFoundationContainer>
-                        {specificRequests
-                            .filter((item: { requestedBy: string }) => {
-                                return item.requestedBy.toLowerCase().includes(query.toLowerCase())
-                            }).map((req: RequestCardProp['details']) => {
-                                return (
-                                    <RequestCard details={req} key={req.requestId} />
-                                )
-                            })}
-                    </ViewFoundationContainer>
-                </div>
-
-            }
-            {!specificRequests.length && <NoRequestContainer>
-                No request has been made for your donations
-            </NoRequestContainer>}
         </RightSideContentWrapper>
     )
 }

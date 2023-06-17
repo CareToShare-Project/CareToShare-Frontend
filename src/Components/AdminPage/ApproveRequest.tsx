@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ApproveDonationContainer, ApproveButton } from './Admin.Styles';
+import { ApproveDonationContainer, ApproveButton, PaginationContainer } from './Admin.Styles';
 import { Spinner, Table } from 'react-bootstrap';
 import { TableWrapper } from '../DonorPage/DonorStyles';
 import { fetchRequests, approveRequest } from '../Shared_util/Constants/Functions';
@@ -51,7 +51,7 @@ const ApproveRequest = () => {
                                     <td>{req.requestType}</td>
                                     <td>{req.requestedBy}</td>
                                     <td>{req.requestType === "Specific" ? req.requestTo : "Generic"}</td>
-                                    <td>{req.description}</td>
+                                    <td style={{width: '200px'}}>{req.description}</td>
                                     <td>{req.createdAt.slice(0, 10)}</td>
                                     <td>
                                         {req.requestStatus === "Pending" ?
@@ -72,6 +72,15 @@ const ApproveRequest = () => {
                         })}
                     </tbody>
                 </Table>
+                <PaginationContainer>
+                    <ApproveButton> 
+                        Previous
+                    </ApproveButton>
+                    <span>Page 1</span>
+                    <ApproveButton> 
+                        Next
+                    </ApproveButton>
+                </PaginationContainer>
                 <LoginToast
                     showToast={showToast}
                     setShowToast={setShowToast}

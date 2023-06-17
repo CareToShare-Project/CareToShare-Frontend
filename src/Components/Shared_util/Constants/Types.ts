@@ -64,16 +64,24 @@ export interface NavBarProp {
 }
 
 export interface donationProps {
-    donationType?: string,
+    donationType: string,
     donationId: string,
-    donatedBy?: string,
+    donatedBy: string,
     donatedTo?: string,
     donationStatus?: string,
     description: string,
     itemPhoto: string,
     location?: string,
     createdAt: string,
-    updatedAt: string
+    updatedAt: string,
+    contact?: string
+}
+
+export interface donationCardProps {
+    details : donationProps,
+    setShowLoading: React.Dispatch<React.SetStateAction<boolean>>,
+    setToastMessage: React.Dispatch<React.SetStateAction<string>>,
+    setShowToast : React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export interface DonationChartProps{
@@ -89,7 +97,8 @@ export interface requestProps {
     requestStatus?:string,
     requestImage?:string,
     createdAt: string,
-    updatedAt?: Date
+    updatedAt?: Date,
+    contact: string
 }
 
 export interface RequestChartProps{

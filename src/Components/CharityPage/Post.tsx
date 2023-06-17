@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect} from 'react';
+import React, { useRef, useState} from 'react';
 import { PostWrapper, PostFieldWrapper } from './CharityStyles';
 import { Heading } from '../Login/LoginStyles';
 import { uploadMultipleImages } from '../Shared_util/Constants/Functions';
@@ -11,6 +11,7 @@ import { addPost } from '../Store/Post-Slice';
 import { useNavigate } from 'react-router-dom';
 import LoginToast from '../Shared_util/Toast/LoginToast';
 import { Spinner } from 'react-bootstrap';
+import {AiOutlineUpload} from "react-icons/ai"
 
 const Post = () => {
     const [imageUpload, setImageUpload] = useState<any>()
@@ -91,11 +92,18 @@ const Post = () => {
                     <textarea ref={messageRef}></textarea>
                 </PostFieldWrapper>
                 <PostFieldWrapper>
-                    <label>Attach images</label>
-                    <input type='file' onChange={(e)=>uploadMultipleImages(e,setImageUpload)} multiple/>
+                    <label>Attach images *</label>
+                    <div>
+                        <label className='upload-images' htmlFor='image'>
+                            <AiOutlineUpload size={20}/>
+                            UPLOAD
+                        </label>
+                        
+                        <input type='file' id="image" onChange={(e)=>uploadMultipleImages(e,setImageUpload)} multiple/>
+                    </div>
                 </PostFieldWrapper>
                 <ConfirmButton 
-                    style={{width: '200px', position: 'absolute', right: '58px', bottom: '-20px'}}>
+                    style={{width: '200px', position: 'absolute', right: '60px',bottom: '-15px'}}>
                     {showLoading && <Spinner animation='border' size='sm' className='spinner'/>}
                     Post
                 </ConfirmButton>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { ApproveButton, ApproveDonationContainer } from './Admin.Styles';
+import { ApproveButton, ApproveDonationContainer, PaginationContainer } from './Admin.Styles';
 import { TableWrapper } from '../DonorPage/DonorStyles';
 import SearchBar from '../Shared_util/SearchBar/SearchBar';
 import LoginToast from '../Shared_util/Toast/LoginToast';
@@ -79,6 +79,15 @@ function DonorAccount() {
                         })}
                     </tbody>
                 </Table>
+                <PaginationContainer>
+                    <ApproveButton> 
+                        Previous
+                    </ApproveButton>
+                    <span>Page 1</span>
+                    <ApproveButton> 
+                        Next
+                    </ApproveButton>
+                </PaginationContainer>
                 <LoginToast
                     showToast={showToast}
                     setShowToast={setShowToast}

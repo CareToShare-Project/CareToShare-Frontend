@@ -2,7 +2,7 @@ import {AiFillHome, AiFillEye} from 'react-icons/ai'
 import {FaPeopleCarry, FaStarHalfAlt, FaPrayingHands, FaHandHoldingHeart, FaUsers} from 'react-icons/fa'
 import {GoVerified} from "react-icons/go"
 import {BiLoaderCircle, BiDonateHeart} from 'react-icons/bi'
-import {BsChatText, BsHandThumbsUp} from 'react-icons/bs'
+import {BsHandThumbsUp} from 'react-icons/bs'
 import {BsPostcardHeart} from 'react-icons/bs'
 import {RiUserSettingsFill, RiUserSettingsLine} from 'react-icons/ri'
 import { SideBarFeaturesProp } from './Types'
@@ -21,12 +21,17 @@ export const donorFeatures: SideBarFeaturesProp['features'] = [
         link: 'viewCharities'
     },
     {
-        title: 'Campaigns/Requests',
+        title: 'Campaigns',
         icon: AiFillEye,
         link: 'viewRequests'
     },
     {
-        title: 'Make Donations',
+        title: 'Requests',
+        icon: AiFillEye,
+        link: 'request'
+    },
+    {
+        title: 'Donate',
         icon: BiDonateHeart,
         link: 'makeDonations'
     },
@@ -106,15 +111,16 @@ export const charityFeatures = [
         link: 'requestProgress'
     },
     {
+        title:'Donations',
+        icon: BiLoaderCircle,
+        link: 'donationProgress'
+    },
+    {
         title:'Post',
         icon: BsPostcardHeart,
         link: 'post'
     },
-    {
-        title:'Send Message',
-        icon: BsChatText,
-        link: 'appreciativeMessage'
-    },
+   
 
 
 

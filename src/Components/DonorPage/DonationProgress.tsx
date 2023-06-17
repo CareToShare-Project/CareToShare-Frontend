@@ -37,6 +37,7 @@ const DonationProgress = () => {
                             <tr>
                                 <th>Type</th>
                                 <th>Organisation</th>
+                                <th>Description</th>
                                 <th>Date</th>
                                 <th>Location</th>
                                 <th>Status</th>
@@ -51,6 +52,7 @@ const DonationProgress = () => {
                                             <td>
                                                 {donation.donationType === "Specific" ? donation.donatedTo : "-"}
                                             </td>
+                                            <td style={{width: '200px'}}>{donation.description}</td>
                                             <td>{donation.updatedAt.slice(0, 10)}</td>
                                             <td>{donation.location}</td>
                                             <td>{donation.donationStatus}</td>

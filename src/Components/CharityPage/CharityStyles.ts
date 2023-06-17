@@ -41,6 +41,8 @@ export const PostFieldWrapper = styled.div`
         font-family: Poppins;
     }
 
+
+
     textarea{
         width: 70%;
         height: 200px;
@@ -56,17 +58,25 @@ export const PostFieldWrapper = styled.div`
             outline: none;
         }
     }
+    div{
+        input[type="file"] {
+            display: none;
+        }
 
-    input{
-        width: 70%;
-        color: ${({theme}) => theme.color.primary};
-        border: 2px solid #96acb5;
-       
-        &:focus{
-            border: 2px solid ${({theme}) => theme.color.hover2};
-            outline: none;
+        .upload-images{
+            display: inline-block;
+            text-transform: uppercase;
+            padding: 10px 40px;
+            background: ${({theme}) => theme.background.primary};
+            color: white; 
+            border-radius: 5px;
+            font-weight: 600;
+            width: 300px;
+            text-align: center;
+            cursor: pointer;
         }
     }
+    
     
     
 
