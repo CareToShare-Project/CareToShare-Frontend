@@ -21,12 +21,12 @@ export const donorFeatures: SideBarFeaturesProp['features'] = [
         link: 'viewCharities'
     },
     {
-        title: 'Campaigns',
+        title: 'View Campaigns',
         icon: AiFillEye,
         link: 'viewRequests'
     },
     {
-        title: 'Requests',
+        title: 'View Requests',
         icon: AiFillEye,
         link: 'request'
     },
@@ -36,7 +36,7 @@ export const donorFeatures: SideBarFeaturesProp['features'] = [
         link: 'makeDonations'
     },
     {
-        title:'Donation Progress',
+        title:'Check Progress',
         icon: BiLoaderCircle,
         link: 'donationProgress'
     },
@@ -101,7 +101,7 @@ export const charityFeatures = [
         link: 'viewDonations'
     },
     {
-        title:'Request',
+        title:'Create Campaign',
         icon: FaPrayingHands,
         link: 'makeRequest'
     },
@@ -111,7 +111,7 @@ export const charityFeatures = [
         link: 'requestProgress'
     },
     {
-        title:'Donations',
+        title:'Donation Progress',
         icon: BiLoaderCircle,
         link: 'donationProgress'
     },

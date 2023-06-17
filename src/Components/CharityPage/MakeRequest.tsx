@@ -25,13 +25,8 @@ function MakeRequest() {
     const campaignRef: any = useRef("");
     const [imageUpload, setImageUpload] = useState<any>();
     const [imageUrl, setImageUrl] = useState("");
-
     const [showLoading, setShowLoading] = useState(false);
-
-    // state to show or hide toast
     const [showToast, setShowToast] = useState(false);
-
-    // state to set toast message
     const [toastMessage, setToastMessage] = useState("");
 
     const navigate = useNavigate();
@@ -64,7 +59,8 @@ function MakeRequest() {
                 body: JSON.stringify(request),
             });
 
-            console.log(response)
+            navigate("/login/organisation")
+            sessionStorage.setItem('page', JSON.stringify(""))
 
     }catch (error) {
         console.log(error);

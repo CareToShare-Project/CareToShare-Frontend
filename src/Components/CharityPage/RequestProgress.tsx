@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { DonateButton, NoOrganisationContainer, RightSideContentWrapper, TableWrapper } from '../DonorPage/DonorStyles';
 import SearchBar from '../Shared_util/SearchBar/SearchBar';
 import Table from 'react-bootstrap/Table';
-import { fetchRequests, organisationRequest } from '../Shared_util/Constants/Functions';
+import {organisationRequest } from '../Shared_util/Constants/Functions';
 import { useNavigate } from 'react-router-dom';
 import { requestProps } from '../Shared_util/Constants/Types';
+import { BASE_URL } from '../Shared_util/Constants/Base_URL';
 
 
 const RequestProgress = () => {
@@ -19,7 +20,21 @@ const RequestProgress = () => {
     const userData = sessionStorage.getItem('userDetails')
     const userDetails = userData && JSON.parse(userData)
 
-    
+    const closeRequest = async(id: string) => {
+        const response= await fetch(`${BASE_URL}/requests/${id}/updateRequest`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `Bearer ${accessToken}`
+            },
+            body : JSON.stringify({
+                requestStatus : "Completed"
+            })
+
+        })
+
+        console.log(response)
+    }
 
     
 
@@ -59,7 +74,7 @@ const RequestProgress = () => {
                                             <td>{req.requestStatus}</td>
                                             <td>
                                             {req.requestTo ==="General" ? 
-                                                <DonateButton>
+                                                <DonateButton onClick={()=>closeRequest(req.requestId)}>
                                                     Close Campaign
                                                 </DonateButton> : "No action"
                                                  }

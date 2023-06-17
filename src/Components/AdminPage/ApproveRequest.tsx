@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ApproveDonationContainer, ApproveButton, PaginationContainer } from './Admin.Styles';
+import { ApproveDonationContainer, ApproveButton} from './Admin.Styles';
 import { Spinner, Table } from 'react-bootstrap';
 import { TableWrapper } from '../DonorPage/DonorStyles';
 import { fetchRequests, approveRequest } from '../Shared_util/Constants/Functions';
@@ -14,16 +14,15 @@ const ApproveRequest = () => {
     const [showLoading, setShowLoading] = useState(false)
     const [refresh, setRefresh] = useState("")
     const [query, setQuery] = useState("")
-    // state to show or hide toast
     const [showToast, setShowToast] = useState(false)
-
-    // state to set toast message 
     const [toastMessage, setToastMessage] = useState('')
+
+    const navigate = useNavigate()
 
     const tokenData = sessionStorage.getItem('accesstoken')
     const accessToken = tokenData && JSON.parse(tokenData)
 
-    const navigate = useNavigate()
+
 
     useEffect(() => {
         fetchRequests(setRequests, accessToken, navigate)
@@ -51,7 +50,7 @@ const ApproveRequest = () => {
                                     <td>{req.requestType}</td>
                                     <td>{req.requestedBy}</td>
                                     <td>{req.requestType === "Specific" ? req.requestTo : "Generic"}</td>
-                                    <td style={{width: '200px'}}>{req.description}</td>
+                                    <td style={{ width: '200px' }}>{req.description}</td>
                                     <td>{req.createdAt.slice(0, 10)}</td>
                                     <td>
                                         {req.requestStatus === "Pending" ?
@@ -72,15 +71,6 @@ const ApproveRequest = () => {
                         })}
                     </tbody>
                 </Table>
-                <PaginationContainer>
-                    <ApproveButton> 
-                        Previous
-                    </ApproveButton>
-                    <span>Page 1</span>
-                    <ApproveButton> 
-                        Next
-                    </ApproveButton>
-                </PaginationContainer>
                 <LoginToast
                     showToast={showToast}
                     setShowToast={setShowToast}

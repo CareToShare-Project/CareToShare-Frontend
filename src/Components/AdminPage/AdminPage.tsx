@@ -8,6 +8,7 @@ import NavBar from '../Shared_util/NavBar'
 function AdminPage(){
     const userData = sessionStorage.getItem('userDetails')
     const userDetails = userData && JSON.parse(userData)
+    
     return (
         <AdminPageContainer>
             <SideBar  features={adminFeatures}/>

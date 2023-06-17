@@ -9,7 +9,7 @@ function BackgroundSVG() {
                 <defs><linearGradient id="grad1_0" x1="33.3%" y1="0%" x2="100%" y2="100%">
                     <stop offset="20%" stopColor="#daf5ff" stopOpacity="1"></stop>
                     <stop offset="80%" stopColor="#daf5ff" stopOpacity="1"></stop>
-                    </linearGradient>
+                </linearGradient>
                 </defs>
                 <defs><linearGradient id="grad2_0" x1="0%" y1="0%" x2="66.7%" y2="100%"><stop offset="20%" stopColor="#daf5ff" stopOpacity="1"></stop>
                     <stop offset="80%" stopColor="#daf5ff" stopOpacity="1"></stop></linearGradient>

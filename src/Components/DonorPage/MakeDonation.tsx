@@ -30,13 +30,8 @@ function MakeDonation() {
     const [donationType, setDonationType] = useState("Generic");
     const [imageUpload, setImageUpload] = useState<any>();
     const [imageUrl, setImageUrl] = useState("");
-
     const [showLoading, setShowLoading] = useState(false);
-
-    // state to show or hide toast
     const [showToast, setShowToast] = useState(false);
-
-    // state to set toast message
     const [toastMessage, setToastMessage] = useState("");
 
     const navigate = useNavigate();

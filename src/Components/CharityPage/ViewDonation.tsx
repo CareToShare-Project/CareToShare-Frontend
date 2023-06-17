@@ -8,65 +8,61 @@ import { useNavigate } from 'react-router-dom';
 import { NoOrganisationContainer as NoDonationContainer } from '../DonorPage/DonorStyles';
 import LoginToast from '../Shared_util/Toast/LoginToast';
 import { Spinner } from 'react-bootstrap';
-import { BASE_URL } from '../Shared_util/Constants/Base_URL';
+
 
 const ViewDonation = () => {
     const [refresh, setRefresh] = useState("")
     const [query, setQuery] = useState("")
-    const [donations, setDonations ] = useState<donationProps[]>([])
-
-    const [showLoading, setShowLoading] = useState(false);
-    // state to show or hide toast
+    const [donations, setDonations] = useState<donationProps[]>([])
+    const [showLoading, setShowLoading] = useState(false)
     const [showToast, setShowToast] = useState(false);
-
-    // state to set toast message
     const [toastMessage, setToastMessage] = useState("");
 
 
     const tokenData = sessionStorage.getItem("accesstoken");
     const accessToken = tokenData && JSON.parse(tokenData);
 
-    const generalDonations = donations?.filter(item=> item.donationType === "Generic" && item.donationStatus ==="In Progress");
+    const generalDonations = donations?.filter(item => item.donationType === "Generic" && item.donationStatus === "In Progress");
 
     const navigate = useNavigate()
 
-    useEffect(()=>{
+    useEffect(() => {
         getAllDonations(setDonations, accessToken, navigate)
     }, [accessToken, refresh, navigate])
 
     return (
         <RightSideContentWrapper>
             <SearchBar query={query} setQuery={setQuery} setRefresh={setRefresh} />
-            
-            {generalDonations && 
+
+            {generalDonations &&
                 <div className='general'>
-                <ViewFoundationContainer>
-                     {generalDonations.map(item=>{
-                        return(
-                            <DonationCard 
-                                details={item} 
-                                key={item.donationId}
-                                setShowLoading={setShowLoading}
-                                setShowToast={setShowToast}
-                                setToastMessage={setToastMessage}
-                               />
-                        )
+                    <ViewFoundationContainer>
+                        {generalDonations.map(item => {
+                            return (
+                                <DonationCard
+                                    details={item}
+                                    key={item.donationId}
+                                    setShowLoading={setShowLoading}
+                                    setShowToast={setShowToast}
+                                    setToastMessage={setToastMessage}
+                                />
+                            )
                         })}
-                </ViewFoundationContainer>
-            </div>
+                    </ViewFoundationContainer>
+                </div>
             }
             {
                 !generalDonations.length && <NoDonationContainer>
-                                                No donation available
-                                            </NoDonationContainer>
+                    No donation available
+                </NoDonationContainer>
             }
             <LoginToast
-                    showToast={showToast}
-                    setShowToast={setShowToast}
-                    toastMessage={toastMessage}
-                />
-            {showLoading && <Spinner animation="border" className="spinner" style={{color: 'black'}}/>}
-            
+                showToast={showToast}
+                setShowToast={setShowToast}
+                toastMessage={toastMessage}
+            />
+            {showLoading && <Spinner animation="border" className="spinner" style={{ color: 'black' }} />}
+
         </RightSideContentWrapper>
     )
 }

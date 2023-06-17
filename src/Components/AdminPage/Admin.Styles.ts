@@ -103,16 +103,5 @@ export const ApproveButton = styled(DonateButton)`
     font-size: 12px;
 `
 
-export const PaginationContainer = styled.div`
-    width: max-content;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
-    span{
-        font-family: Roboto;
-    }
-`
 
 export {}

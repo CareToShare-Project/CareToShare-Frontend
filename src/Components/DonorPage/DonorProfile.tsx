@@ -13,12 +13,9 @@ import { useNavigate } from "react-router-dom"
 function DonorProfile() {
 
     const [imageUrl, setImageUrl] = useState("")
-
-    // state to show or hide toast
     const [showToast, setShowToast] = useState(false)
-
-    // state to set toast message 
     const [toastMessage, setToastMessage] = useState('')
+
     const userData = sessionStorage.getItem('userDetails')
     const userDetails = userData && JSON.parse(userData)
 
@@ -27,6 +24,10 @@ function DonorProfile() {
     const emailRef = useRef<any>(userDetails.email)
     const phoneRef = useRef<any>(userDetails.contact)
     const locationRef = useRef<any>(userDetails.location)
+
+
+
+
 
     const tokenData = sessionStorage.getItem('accesstoken')
     const accessToken = tokenData && JSON.parse(tokenData);

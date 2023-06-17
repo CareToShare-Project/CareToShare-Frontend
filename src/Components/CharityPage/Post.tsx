@@ -19,14 +19,10 @@ const Post = () => {
     const messageRef = useRef<any>("")
     const dispatch = useAppDispatch();
     const [showLoading, setShowLoading] = useState(false)
+    const [showToast, setShowToast] = useState(false)
+    const [toastMessage, setToastMessage] = useState('')
 
     const navigate = useNavigate()
-
-     // state to show or hide toast
-     const [showToast, setShowToast] = useState(false)
-     
-     // state to set toast message 
-     const [toastMessage, setToastMessage] = useState('')
 
      const userData = sessionStorage.getItem('userDetails')
      const userDetails = userData && JSON.parse(userData)
@@ -71,6 +67,7 @@ const Post = () => {
             setShowToast(true)
             setShowLoading(false)
             navigate("/login/organisation/")
+            sessionStorage.setItem('page', JSON.stringify(''))
         }
         }, 10000) 
     

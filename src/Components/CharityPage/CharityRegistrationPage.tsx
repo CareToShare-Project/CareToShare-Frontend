@@ -11,16 +11,13 @@ import BackgroundSVG from '../Shared_util/SVG/Background';
 
 
 function CharityRegistrationPage() {
-    const { username } = useParams()
-    console.log(username)
-
-    // tracks organisation certificate states
     const [cert, setCert] = useState<any>()
     const [certUrl, setCertUrl] = useState("")
-
-    //tracks organisation profile photo states
     const [imageUpload, setImageUpload] = useState<any>()
     const [imageUrl, setImageUrl] = useState("")
+
+    // const userData = sessionStorage.getItem('userDetails')
+    // const userDetails = userData && JSON.parse(userData)
 
 
     const handleSubmit = async (e :React.FormEvent<HTMLFormElement>) => {

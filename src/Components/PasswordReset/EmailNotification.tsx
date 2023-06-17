@@ -1,44 +1,45 @@
-import React, {useState} from 'react'
-import { EmailNotificationLeftSection, EmailNotificationRightSection, NotificationContainer} from './passwordResetStyles'
+import React, { useState } from 'react'
+import { EmailNotificationLeftSection, EmailNotificationRightSection, NotificationContainer } from './passwordResetStyles'
 import { useNavigate, useParams } from 'react-router-dom'
-import {MdEmail} from "react-icons/md"
+import { MdEmail } from "react-icons/md"
 import { BASE_URL } from '../Shared_util/Constants/Base_URL'
 import LoginToast from '../Shared_util/Toast/LoginToast'
 import BackgroundSVG from '../Shared_util/SVG/Background'
 
-function EmailNotification(){
+function EmailNotification() {
     // state to show or hide toast
     const [showToast, setShowToast] = useState(false)
-      // state to set toast message 
+    // state to set toast message 
     const [toastMessage, setToastMessage] = useState('')
-    const {email} = useParams()
+    const { email } = useParams()
     const navigate = useNavigate()
 
-    const ResendPasswordResetLink = async() => {
+    const ResendPasswordResetLink = async () => {
         try {
-                const response = await fetch(`${BASE_URL}/forgotPassword`, {
-                    method: 'POST',
-                    headers : {'content-type' : 'application/json'},
-                    body : JSON.stringify({email})
-                })
+            const response = await fetch(`${BASE_URL}/forgotPassword`, {
+                method: 'POST',
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify({ email })
+            })
 
-                const data = await response.json();
-                if(data.status === 'success'){
-                    setToastMessage('Reset link has been sent successfully')
-                    setShowToast(true)
-                }else{
-                    console.log("an error occured sending reset link")
-                }
-                
-                console.log(data)
+            const data = await response.json();
+            if (data.status === 'success') {
+                setToastMessage('Reset link has been sent successfully')
+                setShowToast(true)
+            } else {
+                console.log("an error occured sending reset link")
             }
-        catch(err){
+
+            console.log(data)
+        }
+        catch (err) {
             console.log(err)
 
-        }}
-    
-    
-    
+        }
+    }
+
+
+
 
     return (
         <NotificationContainer>
@@ -55,19 +56,19 @@ function EmailNotification(){
                 <div className="bottom">
                     <span className='link' onClick={ResendPasswordResetLink}>Resend Verification Link</span>
                     <span>Wrong email address? {' '}
-                        <span className='link' onClick={()=> navigate('/login') }>Back to signup</span>
+                        <span className='link' onClick={() => navigate('/login')}>Back to signup</span>
                     </span>
                 </div>
-                
+
             </EmailNotificationLeftSection>
             <EmailNotificationRightSection>
                 <span><MdEmail /></span>
             </EmailNotificationRightSection>
-            <LoginToast  
-                        showToast={showToast} 
-                        setShowToast={setShowToast} 
-                        toastMessage={toastMessage}
-                    />   
+            <LoginToast
+                showToast={showToast}
+                setShowToast={setShowToast}
+                toastMessage={toastMessage}
+            />
         </NotificationContainer >
     )
 }

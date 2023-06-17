@@ -13,11 +13,7 @@ const Donations = () => {
     const [query, setQuery] = useState('')
     const [donations, setDonations] = useState<donationProps[]>([])
     const [refresh, setRefresh] = useState<string>("")
-
-    // state to show or hide toast
     const [showToast, setShowToast] = useState(false);
-
-    // state to set toast message
     const [toastMessage, setToastMessage] = useState("");
     const [showLoading, setShowLoading] = useState(false);
 
