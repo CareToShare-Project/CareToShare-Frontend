@@ -37,7 +37,7 @@ const ApproveRequest = () => {
                     <thead className='table-heading'>
                         <tr>
                             <th>Request Type</th>
-                            <th>Request From</th>
+                            <th>Requested By</th>
                             <th>Request To</th>
                             <th>Description</th>
                             <th>Date</th>

@@ -57,7 +57,7 @@ const ViewDonation = () => {
             }
             {
                 !generalDonations.length && <NoDonationContainer>
-                                                No available donation
+                                                No donation available
                                             </NoDonationContainer>
             }
             <LoginToast

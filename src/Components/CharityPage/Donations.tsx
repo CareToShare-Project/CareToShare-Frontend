@@ -63,7 +63,7 @@ const Donations = () => {
                                     return (
                                         <tr key={donation.donationId}>
                                             <td>{donation.donatedBy}</td>
-                                            <td>{donation?.contact || "No contact info"}</td>
+                                            <td>{donation.contact}</td>
                                             <td>{donation.location}</td>
                                             <td>{donation.createdAt.slice(0,10)}</td>
                                             <td style={{width: '200px'}}>

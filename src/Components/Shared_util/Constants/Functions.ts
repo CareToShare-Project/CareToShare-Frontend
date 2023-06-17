@@ -423,8 +423,6 @@ export const approveDonation = async (
 
 // fetches all requests from the backend
 export const getAllRequests = async (setCampaigns: React.Dispatch<any>,
-    setSpecificRequest: React.Dispatch<any>,
-    username: string | null | undefined,
     accessToken: string,
     navigate: any) => {
     try {
@@ -440,13 +438,11 @@ export const getAllRequests = async (setCampaigns: React.Dispatch<any>,
 
         const results = await response.json();
         const campaignData = results.data.filter((item: { requestType: string; requestStatus : string }) => item.requestType === "Campaign" && item.requestStatus === "In Progress");
-        const specificRequestData = results.data.filter((item: { requestTo: string; }) => item.requestTo === username);
         if (results.status === "success") {
             setCampaigns(campaignData)
-            setSpecificRequest(specificRequestData)
             sessionStorage.setItem('requests', JSON.stringify(results.data))
             sessionStorage.setItem('campaigns', JSON.stringify(campaignData))
-            sessionStorage.setItem('specificRequests', JSON.stringify(specificRequestData))
+            
         }
     }
     catch (error) {

@@ -11,22 +11,19 @@ import { getAllRequests } from '../Shared_util/Constants/Functions';
 function ViewRequests() {
     const [query, setQuery] = useState("")
     const [campaigns, setCampaigns] = useState<any>([])
-    const [specificRequests, setSpecificRequest] = useState<any>([])
     const [refresh, setRefresh] = useState<string>("")
 
     const tokenData = sessionStorage.getItem('accesstoken')
     const accessToken = tokenData && JSON.parse(tokenData)
 
-    const userData = sessionStorage.getItem('userDetails')
-    const userDetails = userData && JSON.parse(userData)
 
     const navigate = useNavigate();
 
 
     // fetches requests 
     useEffect(() => {
-        getAllRequests(setCampaigns, setSpecificRequest, userDetails.username, accessToken, navigate)
-    }, [refresh, userDetails.username, accessToken, navigate])
+        getAllRequests(setCampaigns,  accessToken, navigate)
+    }, [refresh, accessToken, navigate])
 
     return (
         <RightSideContentWrapper>
