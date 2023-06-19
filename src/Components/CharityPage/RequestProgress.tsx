@@ -2,16 +2,21 @@ import React, { useEffect, useState } from 'react'
 import { DonateButton, NoOrganisationContainer, RightSideContentWrapper, TableWrapper } from '../DonorPage/DonorStyles';
 import SearchBar from '../Shared_util/SearchBar/SearchBar';
 import Table from 'react-bootstrap/Table';
-import {organisationRequest } from '../Shared_util/Constants/Functions';
+import {closeCampaign, organisationRequest } from '../Shared_util/Constants/Functions';
 import { useNavigate } from 'react-router-dom';
 import { requestProps } from '../Shared_util/Constants/Types';
 import { BASE_URL } from '../Shared_util/Constants/Base_URL';
+import LoginToast from '../Shared_util/Toast/LoginToast';
+import { Spinner } from 'react-bootstrap';
 
 
 const RequestProgress = () => {
     const [query, setQuery] = useState('')
     const [requests, setRequests] = useState<requestProps[]>([])
     const [refresh, setRefresh] = useState<string>("")
+    const [showToast, setShowToast] = useState(false);
+    const [toastMessage, setToastMessage] = useState("");
+    const [showLoading, setShowLoading] = useState(false);
 
     const navigate = useNavigate()
 
@@ -19,22 +24,6 @@ const RequestProgress = () => {
     const accessToken = tokenData && JSON.parse(tokenData)
     const userData = sessionStorage.getItem('userDetails')
     const userDetails = userData && JSON.parse(userData)
-
-    const closeRequest = async(id: string) => {
-        const response= await fetch(`${BASE_URL}/requests/${id}/updateRequest`, {
-            method: 'PATCH',
-            headers: {
-                'content-type': 'application/json',
-                'authorization': `Bearer ${accessToken}`
-            },
-            body : JSON.stringify({
-                requestStatus : "Completed"
-            })
-
-        })
-
-        console.log(response)
-    }
 
     
 
@@ -73,8 +62,8 @@ const RequestProgress = () => {
                                             <td>{req.description}</td>
                                             <td>{req.requestStatus}</td>
                                             <td>
-                                            {req.requestTo ==="General" ? 
-                                                <DonateButton onClick={()=>closeRequest(req.requestId)}>
+                                            {req.requestTo ==="General" && req.requestStatus !=="Completed"? 
+                                                <DonateButton onClick={()=>closeCampaign(req.requestId, setShowLoading,setToastMessage,setShowToast, accessToken,navigate)}>
                                                     Close Campaign
                                                 </DonateButton> : "No action"
                                                  }
@@ -86,10 +75,16 @@ const RequestProgress = () => {
                             }
                         </tbody>
                     </Table>
+                    <LoginToast
+                        showToast={showToast}
+                        setShowToast={setShowToast}
+                        toastMessage={toastMessage}
+                    />
                     {
                         !requests.length && <NoOrganisationContainer>You haven't made any request yet</NoOrganisationContainer>
                     }
                 </TableWrapper>}
+                {showLoading && <Spinner animation="border" className="spinner" style={{color: 'black'}}/>}
         </RightSideContentWrapper>
     )
 };

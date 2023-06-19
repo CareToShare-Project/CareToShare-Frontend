@@ -600,6 +600,52 @@ export const acceptRequest = async (requestId: string, setShowLoading: React.Dis
     }
 }
 
+// close campaign function
+export const closeCampaign = async (requestId: string, setShowLoading: React.Dispatch<React.SetStateAction<boolean>>,
+    setToastMessage: React.Dispatch<React.SetStateAction<string>>,
+    setShowToast: React.Dispatch<React.SetStateAction<boolean>>,
+    accessToken: string,
+    navigate: any,
+) => {
+    setShowLoading(true)
+    try {
+        const response = await fetch(`${BASE_URL}/requests/${requestId}/acceptRequest`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `Bearer ${accessToken}`
+            },
+            
+
+        })
+
+        if (response.status === 401) return navigate("/login")
+
+        if(response.status === 403) {
+            setShowLoading(false)
+            setToastMessage("You do not have permission to perform this action")
+            setShowToast(true)
+            return
+        }
+        if (response.status === 500) {
+            setShowLoading(false)
+            setToastMessage("An error occured, try again")
+            setShowToast(true)
+        }
+
+        const results = await response.json();
+        console.log(results)
+        if (results.status === "success") {
+            setShowLoading(false)
+            setToastMessage("Successfully closed campaign, Refresh page!")
+            setShowToast(true)
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
 export const acceptDonation = async (donationId: string, setShowLoading: React.Dispatch<React.SetStateAction<boolean>>,
     setToastMessage: React.Dispatch<React.SetStateAction<string>>,
     setShowToast: React.Dispatch<React.SetStateAction<boolean>>,
