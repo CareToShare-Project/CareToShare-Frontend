@@ -101,7 +101,8 @@ export const SubmitEmailContainer = styled(SubmitButton)`
 export const NotificationContainer = styled(ResetContainer)`
     background: ${({theme})=> theme.background.secondary};
     justify-content: space-between;
-    padding: 10px 180px;
+    flex-direction: row-reverse;
+    padding: 10px 100px;
     @media (max-width: 906px){
         flex-direction: column-reverse;
         justify-content: flex-end;

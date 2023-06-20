@@ -1,9 +1,8 @@
 import React from "react"
 import { PageNotFoundContainer } from "./PageNotFoundStyles";
-import { TbError404 } from "react-icons/tb"
-import { BiErrorAlt } from "react-icons/bi"
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion"
+import img from "../HomePage/images/amico.png"
 
 function PageNotFound() {
     const navigate = useNavigate()
@@ -14,10 +13,7 @@ function PageNotFound() {
             exit={{ opacity: 0, transition: { duration: 0.3 } }}
         >
             <PageNotFoundContainer>
-                <div className="error-code">
-                    <BiErrorAlt size={"80px"} />
-                    <TbError404 size={"100px"} />
-                </div>
+               <img src={img} alt="" style={{width: '400px', height : '400px'}}/>
                 <div className="error-message">Page Not Found</div>
                 <span onClick={() => navigate('/')}>Go Back to Home Page</span>
             </PageNotFoundContainer>

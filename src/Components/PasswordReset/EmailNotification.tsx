@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { EmailNotificationLeftSection, EmailNotificationRightSection, NotificationContainer } from './passwordResetStyles'
 import { useNavigate, useParams } from 'react-router-dom'
-import { MdEmail } from "react-icons/md"
 import { BASE_URL } from '../Shared_util/Constants/Base_URL'
 import LoginToast from '../Shared_util/Toast/LoginToast'
+import img from "../HomePage/images/cuate.png"
 import BackgroundSVG from '../Shared_util/SVG/Background'
 
 function EmailNotification() {
@@ -45,7 +45,7 @@ function EmailNotification() {
         <NotificationContainer>
             <BackgroundSVG />
             <EmailNotificationLeftSection>
-                <h1>Check your email</h1>
+                <h1>Verify your email</h1>
                 <div className='top'>
                     <span>We sent a verification link to: </span>
                     <h4>{email}</h4>
@@ -55,14 +55,13 @@ function EmailNotification() {
 
                 <div className="bottom">
                     <span className='link' onClick={ResendPasswordResetLink}>Resend Verification Link</span>
-                    <span>Wrong email address? {' '}
-                        <span className='link' onClick={() => navigate('/login')}>Back to signup</span>
-                    </span>
+                    <span>Wrong email address? {' '}</span>
+                    <span className='link' onClick={() => navigate('/login')}>Back to signup</span>
                 </div>
 
             </EmailNotificationLeftSection>
             <EmailNotificationRightSection>
-                <span><MdEmail /></span>
+                <img src={img} alt='zuba' style={{width: "450px" ,height: "300px"}}/>
             </EmailNotificationRightSection>
             <LoginToast
                 showToast={showToast}

@@ -45,17 +45,11 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ show, setShow, details }) =
                     <h5>Reviews</h5>
                     <hr></hr>
                     <div>
-                        <li>Review goes here</li>
-                        <li>Review goes here</li>
-                        <li>Review goes here</li>
-                        <li>Review goes here</li>
-                        <li>Review goes here</li>
-                        <li>Review goes here</li>
-                        <li>Review goes here</li>
-                        <li>Review goes here</li>
-                        <li>Review goes here</li>
-                        <li>Review goes here</li>
-                        <li>Review goes here</li>
+                        {details?.reviews && details.reviews.map((item, index)=> {
+                            return(
+                                <li key={index}>{item}</li>
+                            )
+                        })}
                     </div>
                 </ReviewWrapper>
 
