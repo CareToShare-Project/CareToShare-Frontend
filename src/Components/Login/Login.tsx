@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import {
     FormWrapper, FormField, InputField, RegisterStyles,
-    SubmitButton, FormContainer, Heading
+    SubmitButton, FormContainer, Heading, IllustrationWrapper
 } from './LoginStyles'
 import { FaUser, FaLock } from 'react-icons/fa'
 import { UserLoginProps } from '../Shared_util/Constants/Types';
@@ -13,6 +13,7 @@ import '../Shared_Styles/General/Styles.css'
 import { motion } from "framer-motion"
 import { AiFillEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import BackgroundSVG from '../Shared_util/SVG/Background';
+import img from "../HomePage/images/pana.png"
 
 const Login: React.FC = () => {
 
@@ -102,6 +103,7 @@ const Login: React.FC = () => {
             exit={{ x: window.innerWidth, transition: { duration: 0.3 } }}
         >
             <BackgroundSVG />
+            
             <FormWrapper onSubmit={handleLogin}>
                 <Heading>
                     Login

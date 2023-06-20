@@ -15,6 +15,14 @@ export const Heading = styled.h4`
 export const LoginContainer = styled.div`
     
 `
+
+export const IllustrationWrapper = styled.img`
+    width: 250px;
+    position: fixed;
+    bottom: 0px;
+    left: 20px;
+    
+`
 const pulseAnimation = keyframes`
    0% {
      transform: scale(0);
