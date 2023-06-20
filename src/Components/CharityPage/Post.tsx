@@ -101,8 +101,8 @@ const Post = () => {
                 </PostFieldWrapper>
                 <ConfirmButton 
                     style={{width: '200px', position: 'absolute', right: '60px',bottom: '-15px'}}>
+                        Post
                     {showLoading && <Spinner animation='border' size='sm' className='spinner'/>}
-                    Post
                 </ConfirmButton>
             </form>
             <LoginToast 

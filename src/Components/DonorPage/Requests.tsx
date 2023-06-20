@@ -48,7 +48,6 @@ const Requests = () => {
                     <Table responsive className='table' striped hover bordered>
                         <thead className='table-heading'>
                             <tr>
-                                <th>Type</th>
                                 <th>Requested By</th>
                                 <th>Date</th>
                                 <th>Description</th>
@@ -61,7 +60,6 @@ const Requests = () => {
                                 requestsToDonor.map((req: requestProps) => {
                                     return (
                                         <tr key={req.requestId}>
-                                            <td>{req.requestType}</td>
                                             <td>
                                                 {req.requestedBy}
                                             </td>
@@ -72,7 +70,7 @@ const Requests = () => {
                                             {req.requestStatus ==="In Progress" ? 
                                                 <DonateButton onClick={()=> acceptRequestHandler(req.requestId, req.requestedBy)}>
                                                     Accept
-                                                </DonateButton> : "Completed"
+                                                </DonateButton> : "No action"
                                                  }
                                                 
                                             </td>

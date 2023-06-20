@@ -8,6 +8,7 @@ import { FaUserCircle } from "react-icons/fa"
 import { BASE_URL } from "../Shared_util/Constants/Base_URL"
 import LoginToast from "../Shared_util/Toast/LoginToast"
 import { useNavigate } from "react-router-dom"
+import { Spinner } from "react-bootstrap"
 
 
 function DonorProfile() {
@@ -15,6 +16,7 @@ function DonorProfile() {
     const [imageUrl, setImageUrl] = useState("")
     const [showToast, setShowToast] = useState(false)
     const [toastMessage, setToastMessage] = useState('')
+    const [showLoading, setShowLoading] = useState(false)
 
     const userData = sessionStorage.getItem('userDetails')
     const userDetails = userData && JSON.parse(userData)
@@ -24,10 +26,6 @@ function DonorProfile() {
     const emailRef = useRef<any>(userDetails.email)
     const phoneRef = useRef<any>(userDetails.contact)
     const locationRef = useRef<any>(userDetails.location)
-
-
-
-
 
     const tokenData = sessionStorage.getItem('accesstoken')
     const accessToken = tokenData && JSON.parse(tokenData);
@@ -64,12 +62,13 @@ function DonorProfile() {
 
         }
         catch (error) {
-            console.log(error)
+            return;
         }
     }
 
     const UpdateUserProfile = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        setShowLoading(true)
         try {
             const user = {
                 firstName: firstNameRef.current.value,
@@ -88,10 +87,16 @@ function DonorProfile() {
             if (results.status === "success") {
                 setToastMessage("You have successfully updated your profile")
                 setShowToast(true)
+                setTimeout(() => {
+                    navigate("/login/donor")
+                    sessionStorage.setItem('page', JSON.stringify(''))
+                }, 2000)
             }
 
         } catch (error) {
-            console.log(error)
+            setToastMessage("An error occured try again later")
+            setShowToast(true)
+            setShowLoading(false)
         }
     }
 
@@ -136,7 +141,7 @@ function DonorProfile() {
                             <Field type="text" id="location" ref={locationRef} />
                         </FieldContainer>
 
-                        <UpdateBtn>Update</UpdateBtn>
+                        <UpdateBtn>Update {showLoading && <Spinner animation='border' size="sm" className='spinner' />}</UpdateBtn>
                     </RightPanel>
                     <LoginToast
                         showToast={showToast}

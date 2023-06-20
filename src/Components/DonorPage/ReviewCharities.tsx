@@ -6,50 +6,75 @@ import { getAllOrganisations } from "../Shared_util/Constants/Functions"
 import { OrganisationProps } from "../Shared_util/Constants/Types"
 import Select from 'react-select';
 import { useNavigate } from "react-router-dom"
+import { Spinner } from "react-bootstrap"
+import { BASE_URL } from "../Shared_util/Constants/Base_URL"
 
 
 
 
 
 function ReviewCharities() {
-    // state to show or hide toast
     const [showToast, setShowToast] = useState(false)
-
-    // state to set toast message 
     const [toastMessage, setToastMessage] = useState('')
-
     const [organisations, setOrganisations] = useState<OrganisationProps[]>([])
     const [selectedOrganization, setSelectedOrganization] = useState<OrganisationProps>();
-
+    const [showLoading, setShowLoading] = useState(false)
+    const reviewRef = useRef<any>()
+    const tokenData = sessionStorage.getItem('accesstoken')
+    const accessToken = tokenData && JSON.parse(tokenData)
 
     const handleChange = (selectedOption: any) => {
         setSelectedOrganization(selectedOption);
     };
 
-    const reviewRef = useRef<any>()
-
-    const tokenData = sessionStorage.getItem('accesstoken')
-    const accessToken = tokenData && JSON.parse(tokenData)
-
     const navigate = useNavigate();
 
-
-
-
-
-    const submitReview = (e: React.FormEvent<HTMLFormElement>) => {
+    const submitReview = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        if (reviewRef.current) {
-            console.log(reviewRef.current.value)
-            console.log(selectedOrganization?.organisationName)
-        }
-        setToastMessage("Thank you for being an essential part of our donation app community!")
-        setShowToast(true)
+        setShowLoading(true)
+        if (selectedOrganization?.username && reviewRef.current) {
+            const review = reviewRef.current.value
+            try {
+                const response = await fetch(`${BASE_URL}/organisations/${selectedOrganization.username}/addReviews`, {
+                    method: 'PATCH',
+                    headers: {
+                        'content-type': 'application/json',
+                        'authorization': `Bearer ${accessToken}`
+                    },
+                    body : JSON.stringify({
+                        review
+                    })
+                })
 
-        setTimeout(() => {
-            navigate("/login/donor/")
-            sessionStorage.setItem('page', '')
-        }, 2000)
+                if (response.status === 401) return navigate('/login')
+
+                if (response.status === 403) {
+                    setShowLoading(false)
+                    setToastMessage("You do not have permission to perform this action")
+                    setShowToast(true)
+                    return
+                }
+
+                if (response.status === 500) {
+                    setShowLoading(false)
+                    setToastMessage("An error occured, try again later")
+                    setShowToast(true)
+                }
+                const results = await response.json();
+                if (results.status === "success") {
+                    setToastMessage("Successfully reviewed organisation")
+                    setShowToast(true)
+                    setTimeout(() => {
+                        navigate("/login/donor")
+                        sessionStorage.setItem('page', JSON.stringify(''))
+                    }, 2000)
+                }
+            } catch (error) {
+                setToastMessage("An error occured!")
+                setShowToast(true)
+                setShowLoading(false)
+            }
+        }
     }
 
     // gets all organisations on page load
@@ -93,9 +118,9 @@ function ReviewCharities() {
                     </ReviewFieldsWrapper>
                     <ReviewFieldsWrapper>
                         <label htmlFor="review">Your review</label>
-                        <textarea ref={reviewRef} id="review"></textarea>
+                        <textarea ref={reviewRef} id="review" required></textarea>
                     </ReviewFieldsWrapper>
-                    <ReviewButton>Submit</ReviewButton>
+                    <ReviewButton>Submit {showLoading && <Spinner animation='border' size="sm" className='spinner' />}</ReviewButton>
                     <LoginToast
                         showToast={showToast}
                         setShowToast={setShowToast}
@@ -103,6 +128,7 @@ function ReviewCharities() {
                     />
                 </ReviewFormWrapper>
             </ReviewContainer>
+
         </ReviewWrapper>
     )
 }

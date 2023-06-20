@@ -345,13 +345,14 @@ export const ReviewWrapper = styled.div`
         overflow-y: scroll;
         display: flex;
         flex-direction: column;
-        padding: 10px;
 
         li{
-            list-style-type: disc;
+            list-style-type: none;
             height: max-content;
-            padding: 5px;
-            font-size: 15px;
+            margin-bottom: 10px;
+            font-family: Roboto;
+            font-size: 14px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
             cursor: pointer;
 
             &:hover{
@@ -662,7 +663,6 @@ export const ReviewFieldsWrapper = styled(FieldWrapper)`
         height: 150px;
         border: 2px solid ${({theme}) => theme.color.primary};
         outline: 0;
-        text-indent: 20px;
         border-radius: 5px;
 
         &:focus{
