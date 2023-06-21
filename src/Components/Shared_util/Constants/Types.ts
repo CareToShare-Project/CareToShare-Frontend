@@ -122,7 +122,7 @@ export interface OrganisationProps{
     isApproved?: boolean,
     isActive?: boolean,
     role ?: string,
-    reviews? : string[],
+    reviews : string[],
     businessCertificate: string,
     mission : string,
     createdAt: string,

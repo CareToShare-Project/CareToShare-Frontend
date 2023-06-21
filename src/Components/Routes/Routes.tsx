@@ -32,6 +32,7 @@ import RequestProgress from '../CharityPage/RequestProgress'
 import MakeRequest from '../CharityPage/MakeRequest';
 import Donations from '../CharityPage/Donations';
 import Requests from '../DonorPage/Requests';
+import Verification from '../AdminPage/Verification';
 
 const PagesRoute = () => {
 
@@ -55,7 +56,7 @@ const PagesRoute = () => {
                     <Route path='approveDonations' element={<ApproveDonation />} />
                     <Route path='approveRequests' element={<ApproveRequest />} />
                     <Route path='manageDonorsAccount' element={<DonorAccount />} />
-                    <Route path='verify' element={<h2>Verify Organisation</h2>} />
+                    <Route path='verify' element={<Verification />} />
                     <Route path='verifyRegistration' element={<ApproveRegistration />} />
                 </Route>
 
