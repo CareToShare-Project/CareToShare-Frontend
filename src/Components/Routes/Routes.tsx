@@ -33,6 +33,7 @@ import MakeRequest from '../CharityPage/MakeRequest';
 import Donations from '../CharityPage/Donations';
 import Requests from '../DonorPage/Requests';
 import Verification from '../AdminPage/Verification';
+import CharityProfile from '../CharityPage/CharityProfile';
 
 const PagesRoute = () => {
 
@@ -64,7 +65,7 @@ const PagesRoute = () => {
                 {/* organization routes */}
                 <Route path='login/Organisation' element={<CharityPage />}>
                     <Route path='' element={<Feed />} />
-                    <Route path='editProfile' element={<h2>Edit userProfile</h2>} />
+                    <Route path='editProfile' element={<CharityProfile />} />
                     <Route path='requestProgress' element={<RequestProgress />} />
                     <Route path='donationProgress' element={<Donations />} />
                     <Route path='viewDonations' element={<ViewDonation />} />

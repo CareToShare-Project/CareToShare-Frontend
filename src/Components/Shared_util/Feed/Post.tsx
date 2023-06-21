@@ -34,6 +34,7 @@ const PostComponent: React.FC<Post> = ({ post }) => {
             const commentData = { username, comment }
             dispatch(addComment({ comment: commentData, id }))
         }
+        setShowComment(false)
     }
 
 

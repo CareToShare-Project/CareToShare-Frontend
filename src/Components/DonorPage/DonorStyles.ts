@@ -751,7 +751,7 @@ export const LeftPanel = styled.div`
     span{
         color : ${({theme}) => theme.color.primary};
         font-size : 18px;
-        font-weight: 700;
+        font-weight: 500;
     }
 `
 

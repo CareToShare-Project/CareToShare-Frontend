@@ -120,6 +120,11 @@ export const charityFeatures = [
         icon: BsPostcardHeart,
         link: 'post'
     },
+    {
+        title:'Profile',
+        icon: RiUserSettingsFill,
+        link: 'editProfile'
+    },
    
 
 
