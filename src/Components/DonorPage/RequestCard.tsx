@@ -7,14 +7,14 @@ import { useNavigate } from "react-router-dom"
 
 const RequestCard: React.FC<RequestCardProp> = ({ details }) => {
 
-    const { requestType, requestedBy, description } = details
+    const { requestType, requestedBy, description,requestImage } = details
 
     const navigate = useNavigate()
 
     return (
         <CardContainer>
             <ImageContainer>
-                <ImageWrapper src={image1} alt='request-photo' />
+                {requestImage ? <ImageWrapper src={requestImage} alt='request-photo' />:<ImageWrapper src={image1} alt='request-photo' />}
                 <span>{requestType}</span>
             </ImageContainer>
             <DetailsWrapper>

@@ -49,6 +49,7 @@ export interface RequestCardProp {
         requestedBy : string,
         description? : string,
         requestId : string,
+        requestImage: string
     }
 }
 
@@ -95,7 +96,7 @@ export interface requestProps {
     requestTo?: string,
     description?:string,
     requestStatus?:string,
-    requestImage?:string,
+    requestImage:string,
     createdAt: string,
     updatedAt?: Date,
     contact: string

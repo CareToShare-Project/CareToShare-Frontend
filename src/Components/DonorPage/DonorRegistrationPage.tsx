@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useState } from "react";
 import {
     FieldWrapper, InputField, InputLabel, RegistrationContainer,
     RegistrationHeader, RegistrationWrapper, ConfirmButton
@@ -9,6 +9,8 @@ import '../Shared_Styles/General/Styles.css'
 import { BASE_URL } from "../Shared_util/Constants/Base_URL";
 import { uploadImage, uploadFileToStorageBucket } from "../Shared_util/Constants/Functions";
 import BackgroundSVG from "../Shared_util/SVG/Background";
+import { Spinner } from "react-bootstrap";
+import LoginToast from "../Shared_util/Toast/LoginToast";
 
 
 function DonorRegistrationPage() {
@@ -18,59 +20,77 @@ function DonorRegistrationPage() {
     const contactRef: any = useRef();
     const locationRef: any = useRef();
 
-    const [imageUpload, setImageUpload] = useState<any>()
+    const [showToast, setShowToast] = useState(false)
+    const [toastMessage, setToastMessage] = useState('')
+    const [showLoading, setShowLoading] = useState(false)
+    const [imageUpload, setImageUpload] = useState<any>(null)
     const [imageUrl, setImageUrl] = useState("")
 
     const username = useParams().username;
-    console.log(username)
-
 
     const navigate = useNavigate();
 
 
     //handle user update
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        try {
-            const message = uploadFileToStorageBucket(imageUpload, setImageUrl, "profile-photos")
-            console.log(message)
+        setShowLoading(true);
+        uploadFileToStorageBucket(imageUpload, setImageUrl, "profile-photos");
 
-            const userDetails = {
-                firstName: firstNameRef.current.value,
-                lastName: lastNameRef.current.value,
-                contact: contactRef.current.value,
-                location: locationRef.current.value,
-                photo: imageUrl
-            }
-
-            const response = await fetch(`${BASE_URL}/donors/${username}`, {
-                method: 'PATCH',
-                headers: {
-                    'content-type': 'application/json',
-                },
-                body: JSON.stringify(userDetails)
-
-            })
-
-            const results = await response.json()
-            if (results.status !== 'error') {
-                const updatedDonor = results.data.user;
-                console.log(updatedDonor)
-                navigate('/login')
+        
+        setTimeout(async () => {
+            if (imageUrl === "" && imageUpload !== null) {
+                uploadFileToStorageBucket(imageUpload, setImageUrl, "profile-photos");
+                setToastMessage("Confirm submission")
+                setShowToast(true)
+                setShowLoading(false)
+                return;
             } else {
-                console.log('an error occured')
-            }
+                try {
+                    const userDetails = {
+                        firstName: firstNameRef.current.value,
+                        lastName: lastNameRef.current.value,
+                        contact: contactRef.current.value,
+                        location: locationRef.current.value,
+                        photo: imageUrl
+                    }
 
-        } catch (err) {
-            console.log(err)
-        }
+                    const response = await fetch(`${BASE_URL}/donors/${username}`, {
+                        method: 'PATCH',
+                        headers: {
+                            'content-type': 'application/json',
+                        },
+                        body: JSON.stringify(userDetails)
+
+                    })
+
+                    const results = await response.json()
+                    if (results.status === 'success') {
+                        const updatedDonor = results.data.user;
+                        console.log(updatedDonor)
+                        setToastMessage("Successfully created an account")
+                        setShowToast(true)
+                        setTimeout(()=>{
+                            navigate('/login')
+                        }, 3000)
+                        
+                    } else {
+                        setToastMessage("An error occured. Try again")
+                        setShowToast(true)
+                        setShowLoading(false)
+                    }
+
+                } catch (err) {
+                    console.log("an error occured")
+                    setShowLoading(false)
+                }
+            }
+        }, 2000)
+
     }
 
-    useEffect(() => {
-        console.log("Page is rendered")
-        console.log(imageUpload)
-        console.log(imageUrl)
-    }, [imageUpload, imageUrl])
+
+
 
 
 
@@ -105,9 +125,20 @@ function DonorRegistrationPage() {
                             onChange={(e) => uploadImage(e, setImageUpload)}
                             accept=".jpeg .png .jpg" />
                     </FieldWrapper>
-                    <ConfirmButton>
-                        Confirm
-                    </ConfirmButton>
+                    {
+                       imageUrl ? 
+                       <ConfirmButton>
+                            Confirm {showLoading && <Spinner animation='border' size="sm" className='spinner'  />}
+                        </ConfirmButton> : 
+                        <ConfirmButton>
+                            Save {showLoading && <Spinner animation='border' size="sm" className='spinner'  />}
+                        </ConfirmButton>
+                    }
+                    <LoginToast
+                        showToast={showToast}
+                        setShowToast={setShowToast}
+                        toastMessage={toastMessage}
+                    />
                 </RegistrationContainer>
             </form>
         </RegistrationWrapper>

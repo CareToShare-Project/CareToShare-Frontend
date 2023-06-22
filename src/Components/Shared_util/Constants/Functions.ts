@@ -10,7 +10,6 @@ import { BASE_URL } from "./Base_URL";
 export const uploadImage = (e: React.ChangeEvent<HTMLInputElement>, setImageUpload: React.Dispatch<any>) => {
     if (e.target.files === null) return
     setImageUpload(e.target.files[0])
-    console.log("success")
 }
 
 // handle multiple image uploads
@@ -62,7 +61,7 @@ export const getAllOrganisations = async (setOrganisations: React.Dispatch<any>,
     }
 }
 
-// deactivate donor account
+// deactivate organisation account
 export const deactivateOrganisation = async (username: string, setShowLoading: React.Dispatch<React.SetStateAction<boolean>>,
     setToastMessage: React.Dispatch<React.SetStateAction<string>>,
     setShowToast: React.Dispatch<React.SetStateAction<boolean>>,
@@ -80,7 +79,7 @@ export const deactivateOrganisation = async (username: string, setShowLoading: R
 
         if (response.status === 401) return navigate("/login")
 
-        if(response.status === 403) {
+        if (response.status === 403) {
             setShowLoading(false)
             setToastMessage("You do not have permission to perform this action")
             setShowToast(true)
@@ -119,7 +118,7 @@ export const activateOrganisation = async (username: string, setShowLoading: Rea
         })
         if (response.status === 401) return navigate("/login")
 
-        if(response.status === 403) {
+        if (response.status === 403) {
             setShowLoading(false)
             setToastMessage("You do not have permission to perform this action")
             setShowToast(true)
@@ -160,7 +159,7 @@ export const approveOrganisationRegistration = async (username: string,
 
         if (response.status === 401) return navigate('/login')
 
-        if(response.status === 403) {
+        if (response.status === 403) {
             setShowLoading(false)
             setToastMessage("You do not have permission to perform this action")
             setShowToast(true)
@@ -226,7 +225,7 @@ export const deactivateDonor = async (username: string, setShowLoading: React.Di
 
         if (response.status === 401) return navigate("/login")
 
-        if(response.status === 403) {
+        if (response.status === 403) {
             setShowLoading(false)
             setToastMessage("You do not have permission to perform this action")
             setShowToast(true)
@@ -268,7 +267,7 @@ export const activateDonor = async (username: string, setShowLoading: React.Disp
 
         if (response.status === 401) return navigate("/login")
 
-        if(response.status === 403) {
+        if (response.status === 403) {
             setShowLoading(false)
             setToastMessage("You do not have permission to perform this action")
             setShowToast(true)
@@ -397,7 +396,7 @@ export const approveDonation = async (
 
         if (response.status === 401) return navigate("/login")
 
-        if(response.status===403) {
+        if (response.status === 403) {
             setShowLoading(false)
             setToastMessage("You do not have permission to perform this action!")
             setShowToast(true)
@@ -437,12 +436,12 @@ export const getAllRequests = async (setCampaigns: React.Dispatch<any>,
         if (response.status === 401) return navigate("/login")
 
         const results = await response.json();
-        const campaignData = results.data.filter((item: { requestType: string; requestStatus : string }) => item.requestType === "Campaign" && item.requestStatus === "In Progress");
+        const campaignData = results.data.filter((item: { requestType: string; requestStatus: string }) => item.requestType === "Campaign" && item.requestStatus === "In Progress");
         if (results.status === "success") {
             setCampaigns(campaignData)
             sessionStorage.setItem('requests', JSON.stringify(results.data))
             sessionStorage.setItem('campaigns', JSON.stringify(campaignData))
-            
+
         }
     }
     catch (error) {
@@ -475,7 +474,7 @@ export const fetchRequests = async (setRequests: React.Dispatch<any>, accessToke
 }
 
 // fetches all organisationRequests
-export const organisationRequest = async (setRequests: React.Dispatch<any>, requestedBy : string,accessToken: string, navigate: any) => {
+export const organisationRequest = async (setRequests: React.Dispatch<any>, requestedBy: string, accessToken: string, navigate: any) => {
     try {
         const response = await fetch(`${BASE_URL}/requests/${requestedBy}/organisationRequests`, {
             method: 'GET',
@@ -518,7 +517,7 @@ export const approveRequest = async (requestId: string, setShowLoading: React.Di
 
         if (response.status === 401) return navigate("/login")
 
-        if(response.status === 403) {
+        if (response.status === 403) {
             setShowLoading(false)
             setToastMessage("You do not have permission to perform this action")
             setShowToast(true)
@@ -557,7 +556,7 @@ export const acceptRequest = async (requestId: string, setShowLoading: React.Dis
                 'content-type': 'application/json',
                 'authorization': `Bearer ${accessToken}`
             },
-            
+
 
         })
 
@@ -567,17 +566,17 @@ export const acceptRequest = async (requestId: string, setShowLoading: React.Dis
                 'content-type': 'application/json',
                 'authorization': `Bearer ${accessToken}`
             },
-            body : JSON.stringify({
-                donatedTo : organisation
+            body: JSON.stringify({
+                donatedTo: organisation
             })
 
         })
         console.log(responseDonation)
-       
+
 
         if (response.status === 401) return navigate("/login")
 
-        if(response.status === 403) {
+        if (response.status === 403) {
             setShowLoading(false)
             setToastMessage("You do not have permission to perform this action")
             setShowToast(true)
@@ -615,13 +614,13 @@ export const closeCampaign = async (requestId: string, setShowLoading: React.Dis
                 'content-type': 'application/json',
                 'authorization': `Bearer ${accessToken}`
             },
-            
+
 
         })
 
         if (response.status === 401) return navigate("/login")
 
-        if(response.status === 403) {
+        if (response.status === 403) {
             setShowLoading(false)
             setToastMessage("You do not have permission to perform this action")
             setShowToast(true)
@@ -665,7 +664,7 @@ export const acceptDonation = async (donationId: string, setShowLoading: React.D
 
         if (response.status === 401) return navigate("/login")
 
-        if(response.status === 403) {
+        if (response.status === 403) {
             setShowLoading(false)
             setToastMessage("You do not have permission to perform this action")
             setShowToast(true)

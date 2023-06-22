@@ -57,9 +57,19 @@ function MakeDonation() {
 
     const handleDonation = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        try {
-            setShowLoading(true);
+        setShowLoading(true)
+        uploadFileToStorageBucket(imageUpload, setImageUrl, "donationImages");
+        if (imageUrl === "" && imageUpload !== null){
             uploadFileToStorageBucket(imageUpload, setImageUrl, "donationImages");
+                setToastMessage("Confirm submission")
+                setShowToast(true)
+                setShowLoading(false)
+                return;
+        }
+        else{
+            try {
+            setShowLoading(true);
+            
             setTimeout(
                 async () => {
                     const donationId = v4();
@@ -96,22 +106,21 @@ function MakeDonation() {
                         return;
                     }
                     const results = await response.json();
-                    console.log(results);
-                    setToastMessage("Success");
-                    setShowToast(true);
-                    setShowLoading(false);
-
-                    navigate("/login/donor/");
-                    sessionStorage.setItem("page", "");
-                },
-
-                10000
-            );
-        } catch (error) {
-            console.log(error);
-            setShowLoading(false);
+                    if(results.status === "success"){
+                        setToastMessage("Success");
+                        setShowToast(true);
+                        setShowLoading(false);
+                        setTimeout(()=>{
+                            navigate("/login/donor/");
+                            sessionStorage.setItem("page", "");  
+                        },2000)   
+                    }
+                }, 6000);
+            }catch (error) {
+                setShowLoading(false);
         }
-    };
+    }
+};
 
     // gets all organisations on page load
     useEffect(() => {
@@ -184,20 +193,36 @@ function MakeDonation() {
                             ref={descriptionRef}
                         ></TextWrapper>
                     </FieldWrapper>
-                    <DonateButton
+                    {imageUrl ? 
+                        <DonateButton
+                            className="donate-btn"
+                            style={{
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                width: "200px",
+                            }}>
+                            Donate
+                            {showLoading && (
+                                <Spinner animation="border" size="sm" className="spinner" />
+                            )}
+                        </DonateButton> :
+                        <DonateButton
                         className="donate-btn"
                         style={{
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",
                             width: "200px",
-                        }}
-                    >
-                        Donate
+                        }}>
+                        Save
                         {showLoading && (
                             <Spinner animation="border" size="sm" className="spinner" />
                         )}
-                    </DonateButton>
+                    </DonateButton> 
+
+                    
+                }
                 </div>
             </DonationForms>
             <LoginToast

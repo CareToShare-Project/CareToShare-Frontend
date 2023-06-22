@@ -49,9 +49,12 @@ function ViewFoundations() {
                         )
                     })}
             </ViewFoundationContainer>}
-            {!organisations.length && <NoOrganisationContainer>
-                <h4>No organisation found</h4>
-            </NoOrganisationContainer>
+            {!organisations.filter((item: OrganisationProps) => {
+                return item.organisationName.toLowerCase().includes(query.toLowerCase()) ||
+                    item.location.toLowerCase().includes(query.toLowerCase())
+            }).length && <NoOrganisationContainer>
+                            <h4>No organisation found</h4>
+                        </NoOrganisationContainer>
             }
             <ProfileModal
                 show={show}
