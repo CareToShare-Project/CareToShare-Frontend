@@ -9,7 +9,8 @@ export interface PostProps {
     likes: string[],
     images: string[],
     comments: CommentProps[],
-    postedOn : string
+    postedOn : string,
+    profilePhoto : string
 }
 
 export interface Post{
@@ -36,7 +37,7 @@ export const PostSlice = createSlice({
     name : "post",
     initialState,
     reducers : {
-        addPost : (state, action: PayloadAction<{organisation: string, username: string, message : string, images: string[], date : string}> ) => {
+        addPost : (state, action: PayloadAction<{organisation: string, username: string, message : string, images: string[], date : string , photo: string}>,  ) => {
             state.posts.push({
                 id: state.posts.length,
                 message: action.payload.message,
@@ -45,7 +46,8 @@ export const PostSlice = createSlice({
                 likes: [],
                 images: action.payload.images,
                 comments: [],
-                postedOn : action.payload.date
+                postedOn : action.payload.date,
+                profilePhoto : action.payload.photo
             })
 
             console.log("added")

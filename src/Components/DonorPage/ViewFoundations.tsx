@@ -33,7 +33,8 @@ function ViewFoundations() {
     return (
         <RightSideContentWrapper>
             <SearchBar query={query} setQuery={setQuery} setRefresh={setRefresh} />
-            {organisations && <ViewFoundationContainer>
+            {organisations && 
+            <ViewFoundationContainer>
                 {organisations
                     .filter((item: OrganisationProps) => {
                         return item.organisationName.toLowerCase().includes(query.toLowerCase()) ||

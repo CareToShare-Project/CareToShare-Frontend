@@ -48,6 +48,11 @@ export const FormWrapper = styled.form`
     border: 0;
     z-index: 200;
     animation: ${pulseAnimation} 0.5s ease-in-out;
+
+    @media (max-width: 450px){
+            width: 90%;
+            padding: 20px;
+        }
 `
 export const FormContainer = styled.div`
     position: relative;
@@ -59,6 +64,11 @@ export const FormContainer = styled.div`
     gap: 10px;
     padding: 20px;
     color : ${({theme})=> theme.color.primary};
+    @media (max-width: 450px){
+          width: 100%;
+        }
+
+    
 
     .forgot-password {
         color: ${({theme})=> theme.color.hover2}; 
@@ -79,6 +89,9 @@ export const FormField = styled.div`
     display: flex;
     align-items: center;
     margin-bottom: 15px;
+    @media (max-width: 450px){
+            width: 100%;
+        }
     
 `
 export const InputField = styled.input`

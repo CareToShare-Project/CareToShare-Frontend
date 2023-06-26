@@ -66,7 +66,7 @@ const Verification = () => {
         setTimeout(()=>{
             setShow(true)
             setShowLoading(false)
-        },5000)
+        },1500)
 
     }
 

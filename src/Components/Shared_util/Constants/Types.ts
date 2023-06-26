@@ -127,7 +127,8 @@ export interface OrganisationProps{
     businessCertificate: string,
     mission : string,
     createdAt: string,
-    updatedAt?: Date
+    updatedAt?: Date,
+    photo : string
 }
 
 export interface organisationCardProp {

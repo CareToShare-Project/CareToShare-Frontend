@@ -59,7 +59,7 @@ function CreateAccount() {
     return (
         <div className='centered'>
             <BackgroundSVG />
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className='form'>
                 <CreateAccountWrapper>
                     <Heading style={{ "marginTop": "5px" }}>
                         Create an account
@@ -98,18 +98,12 @@ function CreateAccount() {
                             {showPassword ?
                                 <AiOutlineEyeInvisible
                                     color='#56C0C8'
-                                    style={{
-                                        'position': 'absolute', 'right': '20px',
-                                        'bottom': '15px', 'cursor': 'pointer'
-                                    }}
+                                    className='eye'
                                     onClick={() => setShowPassword(prev => !prev)}
                                 /> :
                                 <AiFillEye
                                     color='#56C0C8'
-                                    style={{
-                                        'position': 'absolute', 'right': '20px',
-                                        'bottom': '15px', 'cursor': 'pointer'
-                                    }}
+                                    className='eye'
                                     onClick={() => setShowPassword(prev => !prev)}
                                 />}
                         </CreateAccountFieldWrapper>
@@ -124,20 +118,15 @@ function CreateAccount() {
                             />
 
                             {showPassword ?
+                            
                                 <AiOutlineEyeInvisible
                                     color='#56C0C8'
-                                    style={{
-                                        'position': 'absolute', 'right': '20px',
-                                        'bottom': '15px', 'cursor': 'pointer'
-                                    }}
+                                    className='eye'
                                     onClick={() => setShowPassword(prev => !prev)}
                                 /> :
                                 <AiFillEye
                                     color='#56C0C8'
-                                    style={{
-                                        'position': 'absolute', 'right': '20px',
-                                        'bottom': '15px', 'cursor': 'pointer'
-                                    }}
+                                    className='eye'
                                     onClick={() => setShowPassword(prev => !prev)}
                                 />}
                         </CreateAccountFieldWrapper>

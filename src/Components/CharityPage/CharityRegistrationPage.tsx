@@ -54,8 +54,8 @@ function CharityRegistrationPage() {
                         mission: missionRef.current.value,
                         contact: contactRef.current.value,
                         location: locationRef.current.value,
-                        photo: imageUrl,
-                        businessCertificate: certUrl
+                        photo: imageUrl || 'no image',
+                        businessCertificate: certUrl || 'no cert'
                     }
 
                     const response = await fetch(`${BASE_URL}/organisations/${username}`, {
@@ -124,7 +124,7 @@ function CharityRegistrationPage() {
                                 id='file' 
                                 accept='.pdf'
                                 onChange={((e)=>fileUpload(e, setCert))}
-                                required/>
+                                />
                         </FieldWrapper>
                         <FieldWrapper>
                             <InputLabel htmlFor='photo'>Upload your profile photo</InputLabel>
@@ -133,7 +133,7 @@ function CharityRegistrationPage() {
                                 id='photo' 
                                 accept='.jpeg .png .jpg'
                                 onChange={((e)=>fileUpload(e, setImageUpload))}
-                                required/>
+                                />
                         </FieldWrapper>
                         <FieldWrapper>
                             <InputLabel htmlFor='missions'>Briefly describe the organization's mission</InputLabel>

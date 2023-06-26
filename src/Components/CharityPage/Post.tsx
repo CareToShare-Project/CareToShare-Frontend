@@ -60,7 +60,8 @@ const Post = () => {
                 username : userDetails.username,
                 message : messageRef.current.value,
                 images : images,
-                date : new Date().toLocaleString()
+                date : new Date().toLocaleString(),
+                photo: userDetails.photo || ""
         
         }))
             setToastMessage('Success')

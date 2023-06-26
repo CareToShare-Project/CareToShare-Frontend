@@ -41,7 +41,7 @@ const PostComponent: React.FC<Post> = ({ post }) => {
     return (
         <div className="feed-card" key={post.id}>
             <div className="header">
-                <img src={img} alt="post-profile" />
+                {post.profilePhoto ? <img src={post.profilePhoto} alt="post-profile" /> :<img src={img} alt="post-profile" />}
                 <span className="org">
                     <span className="head">{post.organisation} </span>
                     <span>{post.username}</span>

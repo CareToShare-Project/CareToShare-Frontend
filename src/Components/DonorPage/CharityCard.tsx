@@ -8,7 +8,7 @@ import { organisationCardProp } from '../Shared_util/Constants/Types';
 
 const CharityCard: React.FC<organisationCardProp> = ({ details, setShow, setDetails }) => {
 
-    const { organisationName, location, email, contact, isVerified } = details
+    const { organisationName, location, email, contact, isVerified, photo} = details
 
     const handleModal = () => {
         setShow(true)
@@ -17,7 +17,7 @@ const CharityCard: React.FC<organisationCardProp> = ({ details, setShow, setDeta
 
     return (
         <CardContainer>
-            <ImageWrapper src={image1} alt='profile' />
+            {photo ? <ImageWrapper src={photo} alt='profile' /> : <ImageWrapper src={image1} alt='profile' />}
             <DetailsWrapper>
                 <span className='organizationName'>
                     <span>{organisationName}</span>

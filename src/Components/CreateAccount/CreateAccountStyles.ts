@@ -21,6 +21,12 @@ export const CreateAccountWrapper = styled(RegistrationContainer)`
     box-shadow: 0px 0px 4px 3px rgba(20, 107, 113, 0.2);
     border: 3px solid white;
     animation: ${pulseAnimation} 1s ease-in-out;
+    margin: 0 auto;
+    @media (max-width: 450px){
+            width: 90%;
+        }
+
+
 `
 
 export const CreateAccountInputField = styled(InputField)`
@@ -29,6 +35,15 @@ export const CreateAccountInputField = styled(InputField)`
     border-radius: 5px;
     font-family: Roboto;
     color: ${({theme}) => theme.color.primary};
+
+    @media (max-width: 450px){
+            width: 100%;
+        }
+
+    
+    
+    
+  
 `
 export const CreateAccountFieldWrapper = styled.div`
     display: flex;
@@ -38,6 +53,22 @@ export const CreateAccountFieldWrapper = styled.div`
     gap: 5px;
     padding: 8px;
 
+    @media (max-width: 450px){
+        width: 95%;
+    }
+   
+
+    .eye{
+        position: absolute;
+        right: 20px;
+        bottom: 15px;
+        cursor: pointer;
+    
+    }
+
+    
+   
+
 `
 export const RoleContainer = styled.select`
     width: 100%;
@@ -46,6 +77,7 @@ export const RoleContainer = styled.select`
     border-radius: 5px;
     height: 30px;
     border: 2px solid #96acb5;
+    
     
 `
 export const CreateButton = styled(ConfirmButton)`

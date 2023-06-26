@@ -32,6 +32,11 @@ export const RegistrationContainer = styled.div`
     overflow-y: scroll;
     overflow-x: hidden;
     animation: ${pulseAnimation} 1s ease-in-out;
+    margin: 0px auto;
+        
+        @media (max-width: 450px){
+            width: 70%;    
+        }
 `
 
 export const RegistrationHeader = styled.header`
@@ -174,6 +179,12 @@ export const RightSideContentWrapper = styled.div`
     flex-direction: column;
     align-items: flex-start;
     gap: 40px;
+    
+    @media (max-width: 700px){
+        align-items: center;
+        justify-content: center;
+    }
+
 
     .requests{
         background: ${({theme})=> theme.background.secondary};
@@ -234,9 +245,21 @@ export const ViewFoundationContainer = styled.div`
     align-items: flex-start;
     column-gap: 10px;
     row-gap: 30px;
-    @media (max-width: 415px){
-        flex-direction: column;
+
+    @media (max-width: 1281px){
+        column-gap: 5px;
     }
+    @media (max-width: 1025px){
+        column-gap: 5px;
+    }
+   
+    @media (max-width: 680px){
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+        
 
 `
 export const CardContainer = styled.div`
@@ -254,6 +277,15 @@ export const CardContainer = styled.div`
     border: 1px solid rgba(86, 192, 200, 0.3);
     cursor: pointer;
     transition: all 400ms ease-in-out;
+
+    @media (max-width: 757px){
+        width: 230px;
+        min-width: 230px;
+    }
+    @media (max-width: 680px){
+       width: 85%;
+       max-width: 85%;
+    }
    
   
    
@@ -309,7 +341,7 @@ export const DetailsWrapper = styled.div`
         display: flex;
         align-items: center;
         gap: 10px;
-        width: 90%;
+        width: 100%;
 
         .verified{
             font-size : 20px;

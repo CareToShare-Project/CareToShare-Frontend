@@ -1,23 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BodyContainer, FooterContainer, NavigationContainer, PageWrapper, ShadeContainer } from './HomePageStyles';
 import '../Shared_Styles/General/Styles.css'
 import { MdOutlineDeliveryDining, MdVerifiedUser } from 'react-icons/md';
 import { BiDonateHeart } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
+import { AiOutlineMenu } from 'react-icons/ai';
 
 const LandingPage = () => {
     const navigate = useNavigate()
+    const [showMenu, setShowMenu] = useState(false)
 
     return (
-        <PageWrapper className='body-container'>
+        <PageWrapper className='home'>
             <ShadeContainer></ShadeContainer>
             <NavigationContainer>
                 <h3>Logo</h3>
-                <div>
+                <div className={showMenu ? 'showMenu' : ''}>
                     <span>About</span>
                     <span onClick={() => navigate('login')}>Sign In</span>
                     <span onClick={() => navigate('login/createAccount')}>Sign Up</span>
                 </div>
+                <span className='menu' onClick={()=>setShowMenu(prev=>!prev)}><AiOutlineMenu size={25}/></span>
             </NavigationContainer>
             <BodyContainer>
                 <h1>Empowering Change Through Giving</h1>

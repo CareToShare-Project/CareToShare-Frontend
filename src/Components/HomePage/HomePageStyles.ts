@@ -198,9 +198,13 @@ export const ShadeContainer = styled.div`
     position: absolute;
     background: #1b5c61;
     opacity: 0.5;
-    height: 100vh;
+    height: 102vh;
     width: 100vw;
     z-index: 200;
+    @media (max-width: 450px){
+            height: 155vh;
+        }
+    
 `
 
 export const NavigationContainer = styled.div`
@@ -211,6 +215,30 @@ export const NavigationContainer = styled.div`
     align-items: center;
     justify-content: space-between;
     z-index: 300;
+    position: relative;
+
+    .menu{
+        display: none;
+        @media (max-width: 450px){
+              display: inline-block;
+              color: white;
+              cursor: pointer;
+        }
+
+        }
+    .showMenu{
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        right: 0;
+        top: 40px;
+        gap: 15px;
+        transform: translateX(70px);
+        animation: ${fadeFromRight} 0.3s ease-in-out forwards;
+        background: rgba(0,0,0,0.5);
+        padding: 20px;
+        border-radius: 5px;
+    }
 
     h3{
         letter-spacing: 1.3px;  
@@ -221,6 +249,11 @@ export const NavigationContainer = styled.div`
         display: flex;
         align-items: center;
         gap: 40px;
+
+        @media (max-width: 450px){
+              display: none;
+
+        }
 
         span{
             font-family: Poppins;
@@ -235,29 +268,49 @@ export const NavigationContainer = styled.div`
                 color :${({theme})=> theme.background.primary};
                 
             }
-        }
+        } 
+        
     }
+
+    @media (max-width: 860px){
+            padding: 10px 5px; 
+        }
 `
 export const BodyContainer = styled.div`
     width: 100%;
     padding: 30px 100px;
     height: 200px;
-    margin-top: 20px;
+    margin-top: 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 5px;
     z-index: 300;
+    @media (max-width: 860px){
+            padding: 10px 0px; 
+    }
+
+    @media (max-width: 750px){
+            height: 100vh;
+        }
+
+
     
      h1{
         transform: translateX(70px);
         letter-spacing: 2px;
         color: white;
         font-size: 43px;
+        text-align: center;
         opacity: 0;
         font-family: Playfair Display, serif;
         animation: ${fadeFromRight} 1s ease-in-out forwards;
+
+        @media (max-width: 860px){
+            font-size: 30px; 
+            text-align: center;
+    }
     }
 
     p{
@@ -270,6 +323,10 @@ export const BodyContainer = styled.div`
         width: 62%;
         text-align: center;
         animation: ${fadeFromLeft} 1s ease-in-out forwards;
+
+        @media (max-width: 450px){
+            width: 95%;
+        }
 
     }
 
@@ -330,6 +387,7 @@ export const FooterContainer = styled.div`
             }
         }
 
+
         span{
             font-weight: 700;
             font-family: Poppins;
@@ -343,5 +401,21 @@ export const FooterContainer = styled.div`
 
            
         }
+
+        @media (max-width: 1011px){
+            width: 100%; 
     }
+    }
+
+    @media (max-width: 1011px){
+       display: grid;
+       grid-template-columns: 1fr 1fr;
+       row-gap: 5px;
+       padding: 10px;
+    }
+    @media (max-width: 450px){
+            display:flex;
+            flex-direction: column;
+        }
+
 `

@@ -11,6 +11,21 @@
   z-index: 100;
 }
 
+.home {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-image: url("../../HomePage/images/home1.jpg");
+  background-position: center;
+  background-size: cover;
+  background-blend-mode: lighten;
+  z-index: 100;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
 .centered {
   width: 100vw;
   height: 100vh;
@@ -20,6 +35,11 @@
   background: #DAF5FF;
   overflow-x: hidden;
 }
+.centered .form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
 .centered form {
   z-index: 200;
 }
@@ -27,6 +47,7 @@
 .modal-container .modal-dialog {
   border-radius: 20px;
 }
+
 ::-webkit-scrollbar {
   width: 0px;
   height: 2px;
