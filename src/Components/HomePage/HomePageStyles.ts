@@ -198,7 +198,7 @@ export const ShadeContainer = styled.div`
     position: absolute;
     background: #1b5c61;
     opacity: 0.5;
-    height: 102vh;
+    height: 111vh;
     width: 100vw;
     z-index: 200;
     @media (max-width: 450px){

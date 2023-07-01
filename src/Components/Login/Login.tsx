@@ -106,7 +106,7 @@ const Login: React.FC = () => {
             
             <FormWrapper onSubmit={handleLogin}>
                 <Heading>
-                    Login
+                    <h4>Login</h4>
                 </Heading>
                 <FormContainer>
                     <FormField>
@@ -130,7 +130,7 @@ const Login: React.FC = () => {
                             <AiOutlineEyeInvisible
                                 color='white'
                                 style={{
-                                    'position': 'absolute', 'right': '20px',
+                                    'position': 'absolute', 'right': '30px',
                                     color: "#56C0C8", cursor: "pointer"
                                 }}
                                 onClick={() => setShowPassword(prev => !prev)}
@@ -138,7 +138,7 @@ const Login: React.FC = () => {
                             <AiFillEye
                                 color='white'
                                 style={{
-                                    'position': 'absolute', 'right': '20px',
+                                    'position': 'absolute', 'right': '30px',
                                     color: "#56C0C8", cursor: 'pointer'
                                 }}
                                 onClick={() => setShowPassword(prev => !prev)}

@@ -50,7 +50,9 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ show, setShow, details }) =
                                 <li key={index}>{item}</li>
                             )
                         })}
+                        {details?.reviews.length === 0 && <div>No reviews available</div>}
                     </div>
+                    
                 </ReviewWrapper>
 
 

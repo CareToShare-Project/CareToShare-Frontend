@@ -3,10 +3,20 @@ import styled, {keyframes} from "styled-components";
 export const Heading = styled.h4`
     font-family: Roboto;
     font-size: 20px;
-    font-weight: bolder;
+    text-align: center;
     letter-spacing: 0.5px;
     font-size: 20px;
     color: ${({theme})=> theme.color.primary};
+
+    h4{
+        font-weight: 700;
+
+        @media (max-width: 450px){
+            color: ${({theme})=> theme.background.primary};
+            font-size: 25px;
+        }
+
+    }
     span{
         color:${({theme})=> theme.color.primary};  
     }
@@ -37,10 +47,10 @@ export const FormWrapper = styled.form`
     flex-direction: column;
     align-items: center;
     gap: 30px;
-    width: 400px;
+    width: 350px;
     height: 420px;
     border-radius: 10px;
-    padding: 40px;
+    padding: 40px 50px;
     background: white;
     box-shadow: 0px 0px 4px 3px rgba(20, 107, 113, 0.2);
     border: 3px solid white;
@@ -50,8 +60,10 @@ export const FormWrapper = styled.form`
     animation: ${pulseAnimation} 0.5s ease-in-out;
 
     @media (max-width: 450px){
-            width: 90%;
+            width: 100%;
             padding: 20px;
+            border-radius: 0;
+            box-shadow: none;
         }
 `
 export const FormContainer = styled.div`
@@ -89,6 +101,7 @@ export const FormField = styled.div`
     display: flex;
     align-items: center;
     margin-bottom: 15px;
+    width: 90%;
     @media (max-width: 450px){
             width: 100%;
         }

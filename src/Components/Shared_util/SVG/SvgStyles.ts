@@ -11,6 +11,11 @@ export const BackgroundWrapper = styled.div`
     #visual{
         width: 100%;
         height: 100vh;
+        
+        
+        @media (max-width: 450px){
+            background: white;
+        }
 
         
     }

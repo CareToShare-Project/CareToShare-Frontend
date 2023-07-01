@@ -35,7 +35,10 @@ export const RegistrationContainer = styled.div`
     margin: 0px auto;
         
         @media (max-width: 450px){
-            width: 70%;    
+            width: 70%;
+            background: ${({theme}) => theme.background.secondary};
+            border: none;
+            box-shadow: none;
         }
 `
 

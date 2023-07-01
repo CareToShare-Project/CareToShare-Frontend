@@ -61,8 +61,8 @@ function CreateAccount() {
             <BackgroundSVG />
             <form onSubmit={handleSubmit} className='form'>
                 <CreateAccountWrapper>
-                    <Heading style={{ "marginTop": "5px" }}>
-                        Create an account
+                    <Heading style={{ "marginTop": "5px", "fontWeight" : "700"}}>
+                        <h4>Create an account</h4>
                     </Heading>
                     <FormContainer style={{ "gap": "10px", "marginTop": "-10px" }}>
                         <CreateAccountFieldWrapper>
