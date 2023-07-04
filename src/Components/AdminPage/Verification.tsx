@@ -30,9 +30,9 @@ const Verification = () => {
     const accessToken = tokenData && JSON.parse(tokenData)
 
     // sentiment analysis function 
-    const calculateSentiment = (reviews : string[]) => {
+    const calculateSentiment = (reviews: string[]) => {
         setShowLoading(true)
-        if(reviews.length === 0){
+        if (reviews.length === 0) {
             setShowLoading(false)
             setToastMessage("There are no reviews to analyze")
             setShowToast(true)
@@ -40,11 +40,11 @@ const Verification = () => {
         }
 
         const analyzer = new Sentiment();
-        
+
         // Analyze each review and get the sentiment result
         const sentimentResults = reviews.map((review) => analyzer.analyze(review));
         console.log('sentimentResults', sentimentResults)
-    
+
         // Calculate the average sentiment score
         const totalScore = sentimentResults.reduce((total, result) => total + result.score, 0);
         console.log('totalScore', totalScore)
@@ -54,19 +54,19 @@ const Verification = () => {
 
         // Convert the average sentiment score to a percentage
         const sentimentPercentage = Math.round((averageSentiment + 5) * 10);
-        if(sentimentPercentage > 100) {
+        if (sentimentPercentage > 100) {
             setResult(100)
-        }else if(sentimentPercentage < 0){
+        } else if (sentimentPercentage < 0) {
             setResult(0)
-        }else{
+        } else {
             setResult(sentimentPercentage)
         }
-        
 
-        setTimeout(()=>{
+
+        setTimeout(() => {
             setShow(true)
             setShowLoading(false)
-        },1500)
+        }, 1500)
 
     }
 
@@ -75,71 +75,77 @@ const Verification = () => {
     }, [refresh, accessToken, navigate])
 
 
-    return(
+    return (
         <ApproveDonationContainer>
             <SearchBar query={query} setQuery={setQuery} setRefresh={setRefresh} />
             <TableWrapper>
-            <Table responsive className='table' striped hover bordered >
-                <thead className='table-heading'>
-                    <tr>
-                        <th>Name of Organisation</th>
-                        <th>Location</th>
-                        <th>Contact</th>
-                        <th>Created At</th>
-                        <th>Action</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody className='table-body'>
-                    {organisations.map((org: OrganisationProps) => {
-                        return (
-                            <tr key={org.username}>
-                                <td>{org.organisationName}</td>
-                                <td>{org.location}</td>
-                                <td>{org.contact}</td>
-                                <td>{org.createdAt.slice(0, 10)}</td>
-                                <td>
-                                    <AnalyzeButton style={{padding: "5px"}} onClick={()=>calculateSentiment(org.reviews)}>
-                                        Analyze 
-                                    </AnalyzeButton>
-                                </td>
-                                <td>
-                                    <AnalyzeButton style={{padding: "5px"}}>
-                                        Verify 
-                                    </AnalyzeButton>
-                                </td>
-                            </tr>
-                        )
-                    })}
-                </tbody>
-            </Table>
-            <LoginToast
-                showToast={showToast}
-                setShowToast={setShowToast}
-                toastMessage={toastMessage}
-            />
-        </TableWrapper>
-        {showLoading && <Spinner animation='border' className='spinner' style={{color: "black"}}/>}
-            <Modal show={show} onHide={() =>setShow(false)}>
-                <Modal.Body 
-                    style={{height: "200px", display: "flex", width: "100%", fontFamily: "Poppins", fontWeight: "700",
-                            alignItems: "center", justifyContent: "center", flexDirection: "column", letterSpacing: '1.2px', gap: "20px"}}>
-                    <div style={{color: "#56C0C8"}}>
+                <Table responsive className='table' striped hover bordered >
+                    <thead className='table-heading'>
+                        <tr>
+                            <th>Name of Organisation</th>
+                            <th>Location</th>
+                            <th>Contact</th>
+                            <th>Email</th>
+                            <th>Created At</th>
+                            <th>Action</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody className='table-body'>
+                        {organisations.filter(item => item.email.toLowerCase().includes(query.toLowerCase()) ||
+                            item.organisationName.toLowerCase().includes(query.toLowerCase()) ||
+                            item.location.toLowerCase().includes(query.toLowerCase())).map((org: OrganisationProps) => {
+                                return (
+                                    <tr key={org.username}>
+                                        <td>{org.organisationName}</td>
+                                        <td>{org.location}</td>
+                                        <td>{org.contact}</td>
+                                        <td>{org.email}</td>
+                                        <td>{org.createdAt.slice(0, 10)}</td>
+                                        <td>
+                                            <AnalyzeButton style={{ padding: "5px" }} onClick={() => calculateSentiment(org.reviews)}>
+                                                Analyze
+                                            </AnalyzeButton>
+                                        </td>
+                                        <td>
+                                            <AnalyzeButton style={{ padding: "5px" }}>
+                                                Verify
+                                            </AnalyzeButton>
+                                        </td>
+                                    </tr>
+                                )
+                            })}
+                    </tbody>
+                </Table>
+                <LoginToast
+                    showToast={showToast}
+                    setShowToast={setShowToast}
+                    toastMessage={toastMessage}
+                />
+            </TableWrapper>
+            {showLoading && <Spinner animation='border' className='spinner' style={{ color: "black" }} />}
+            <Modal show={show} onHide={() => setShow(false)}>
+                <Modal.Body
+                    style={{
+                        height: "200px", display: "flex", width: "100%", fontFamily: "Poppins", fontWeight: "700",
+                        alignItems: "center", justifyContent: "center", flexDirection: "column", letterSpacing: '1.2px', gap: "20px"
+                    }}>
+                    <div style={{ color: "#56C0C8" }}>
                         Results from Analysis:
                     </div>
-                   { result >= 75 ? 
-                    <div style={{fontFamily: "Poppins", color: "#56C0C8", display: 'flex' , flexDirection: 'column', alignItems:"center"}}>
-                        <h1 style={{fontSize: "70px"}}>
-                            {result}%
-                        </h1>
-                        <div><FaThumbsUp /></div>
-                    </div> : 
-                    <div style={{fontFamily: "Poppins", color: "red", display: 'flex' , flexDirection: 'column', alignItems:"center"}}>
-                        <h1 style={{fontSize: "70px"}}>
-                            {result}%
-                        </h1>
-                        <div><FaThumbsDown /></div>
-                    </div>
+                    {result >= 75 ?
+                        <div style={{ fontFamily: "Poppins", color: "#56C0C8", display: 'flex', flexDirection: 'column', alignItems: "center" }}>
+                            <h1 style={{ fontSize: "70px" }}>
+                                {result}%
+                            </h1>
+                            <div><FaThumbsUp /></div>
+                        </div> :
+                        <div style={{ fontFamily: "Poppins", color: "red", display: 'flex', flexDirection: 'column', alignItems: "center" }}>
+                            <h1 style={{ fontSize: "70px" }}>
+                                {result}%
+                            </h1>
+                            <div><FaThumbsDown /></div>
+                        </div>
                     }
                 </Modal.Body>
             </Modal>

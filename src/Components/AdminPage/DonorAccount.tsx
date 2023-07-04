@@ -49,7 +49,9 @@ function DonorAccount() {
                         </tr>
                     </thead>
                     <tbody className='table-body'>
-                        {donors.map((donor: DonorProps) => {
+                        {donors.filter(item=> item.username.toLowerCase().includes(query.toLowerCase()) || 
+                                        item.email?.toLowerCase().includes(query.toLowerCase()) || item.firstName?.toLowerCase().includes(query.toLowerCase())
+                                        || item.lastName?.toLowerCase().includes(query.toLowerCase()) || item.location?.toLowerCase().includes(query.toLowerCase())).map((donor: DonorProps) => {
                             return (
                                 <tr key={donor.username}>
                                     <td>{donor.username}</td>

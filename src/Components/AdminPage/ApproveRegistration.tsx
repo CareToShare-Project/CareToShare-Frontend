@@ -46,13 +46,16 @@ const ApproveRegistration = () => {
                             <th>Date</th>
                             <th>Location</th>
                             <th>Mission</th>
-                            <th>View Certificates</th>
+                            <th style={{width: "100px"}}>
+                                Certificate
+                            </th>
                             <th>Approve</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody className='table-body'>
-                        {organisations.map((org: OrganisationProps) => {
+                        {organisations.filter(item => item.mission.toLowerCase().includes(query.toLowerCase()) || 
+                         item.location.toLowerCase().includes(query.toLowerCase()) || item.organisationName.toLowerCase().includes(query.toLowerCase())).map((org: OrganisationProps) => {
                             return (
                                 <tr key={org._id}>
                                     <td>{org.organisationName}</td>
@@ -61,8 +64,14 @@ const ApproveRegistration = () => {
                                     <td>{org.location}</td>
                                     <td className='mission'>{org.mission}</td>
                                     <td>
-                                        {org.businessCertificate ?
-                                            <a href={org.businessCertificate} target="_blank" rel="noreferrer">View</a> :
+                                        {org.businessCertificate !== "no cert" ?
+                                            <a 
+                                                href={org.businessCertificate} 
+                                                target="_blank" 
+                                                rel="noreferrer"
+                                                style={{textDecoration: 'none'}}>
+                                                View
+                                            </a> :
                                             "none"}
                                     </td>
 
