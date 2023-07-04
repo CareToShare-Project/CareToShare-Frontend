@@ -54,6 +54,7 @@ const PagesRoute = () => {
                 {/* admin routes */}
                 <Route path='login/Admin/' element={<AdminPage />} >
                     <Route path='' element={<Overview />} />
+                    <Route path='viewCharities' element={<ViewFoundations />} />
                     <Route path='approveDonations' element={<ApproveDonation />} />
                     <Route path='approveRequests' element={<ApproveRequest />} />
                     <Route path='manageDonorsAccount' element={<DonorAccount />} />

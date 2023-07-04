@@ -45,7 +45,8 @@ const ApproveDonation = () => {
                         </tr>
                     </thead>
                     <tbody className="table-body">
-                        {donations.map((donation: donationProps) => {
+                        {donations.filter(item=> item.donatedBy.toLowerCase().includes(query.toLowerCase()) || 
+                            item.location?.toLowerCase().includes(query.toLowerCase()) || item.donatedTo?.toLowerCase().includes(query.toLowerCase())).map((donation: donationProps) => {
                             return (
                                 <tr key={donation.donationId}>
                                     <td>{donation.donatedBy}</td>

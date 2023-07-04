@@ -61,6 +61,11 @@ export const adminFeatures = [
         link : ''
     },
     {
+        title: 'Charity Foundations',
+        icon : FaPeopleCarry,
+        link: 'viewCharities'
+    },
+    {
         title: 'Approve Donations',
         icon : FaHandHoldingHeart,
         link : 'approveDonations'

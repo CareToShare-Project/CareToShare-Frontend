@@ -130,6 +130,7 @@ function MakeRequest() {
                         <DonationInputLabel>Upload Campaign Image</DonationInputLabel>
                         <DonationInputField
                             type="file"
+                            required
                             style={{ height: "40px" }}
                             onChange={(e) => uploadImage(e, setImageUpload)}
                         />
