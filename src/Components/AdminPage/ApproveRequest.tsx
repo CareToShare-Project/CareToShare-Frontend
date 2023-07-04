@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ApproveDonationContainer, ApproveButton} from './Admin.Styles';
+import { ApproveDonationContainer, ApproveButton } from './Admin.Styles';
 import { Spinner, Table } from 'react-bootstrap';
 import { TableWrapper } from '../DonorPage/DonorStyles';
 import { fetchRequests, approveRequest } from '../Shared_util/Constants/Functions';
@@ -44,31 +44,32 @@ const ApproveRequest = () => {
                         </tr>
                     </thead>
                     <tbody className='table-body'>
-                        {requests.map((req: requestProps) => {
-                            return (
-                                <tr key={req.requestId}>
-                                    <td>{req.requestType}</td>
-                                    <td>{req.requestedBy}</td>
-                                    <td>{req.requestType === "Specific" ? req.requestTo : "Generic"}</td>
-                                    <td style={{ width: '200px' }}>{req.description}</td>
-                                    <td>{req.createdAt.slice(0, 10)}</td>
-                                    <td>
-                                        {req.requestStatus === "Pending" ?
-                                            <ApproveButton onClick={() => approveRequest(req.requestId,
-                                                setShowLoading,
-                                                setToastMessage,
-                                                setShowToast,
-                                                accessToken,
-                                                navigate)}
-                                            >
-                                                Approve
-                                            </ApproveButton> : <span>Approved</span>
-                                        }
+                        {requests.filter(item => item.description?.toLowerCase().includes(query.toLowerCase()) ||
+                            item.requestedBy?.toLowerCase().includes(query.toLowerCase()) || item.requestTo?.toLowerCase().includes(query.toLowerCase())).map((req: requestProps) => {
+                                return (
+                                    <tr key={req.requestId}>
+                                        <td>{req.requestType}</td>
+                                        <td>{req.requestedBy}</td>
+                                        <td>{req.requestType === "Specific" ? req.requestTo : "Generic"}</td>
+                                        <td style={{ width: '200px' }}>{req.description}</td>
+                                        <td>{req.createdAt.slice(0, 10)}</td>
+                                        <td>
+                                            {req.requestStatus === "Pending" ?
+                                                <ApproveButton onClick={() => approveRequest(req.requestId,
+                                                    setShowLoading,
+                                                    setToastMessage,
+                                                    setShowToast,
+                                                    accessToken,
+                                                    navigate)}
+                                                >
+                                                    Approve
+                                                </ApproveButton> : <span>Approved</span>
+                                            }
 
-                                    </td>
-                                </tr>
-                            )
-                        })}
+                                        </td>
+                                    </tr>
+                                )
+                            })}
                     </tbody>
                 </Table>
                 <LoginToast
