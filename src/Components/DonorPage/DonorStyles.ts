@@ -824,6 +824,8 @@ export const ProfilePhotoWrapper = styled.img`
     width: 100px;
     height: 100px;
     object-fit: cover;
+    border-radius: 50%;
+    box-shadow:  0px 0px 4px 3px rgba(20, 107, 113, 0.1);
 `
 
 export const UpdateBtn = styled(ConfirmButton)`

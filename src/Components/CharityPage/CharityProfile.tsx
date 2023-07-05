@@ -46,6 +46,8 @@ function CharityProfile() {
 
             if (response.status === 401) return navigate('/login')
 
+            setImageUrl(userDetails.photo)
+
             const results = await response.json();
             const organisationDetails = results.data
             
@@ -105,7 +107,7 @@ function CharityProfile() {
             <EditProfileWrapper>
                 <FormsWrapper>
                     <LeftPanel>
-                        {imageUrl ? <ProfilePhotoWrapper /> : <FaUserCircle size={100} />}
+                        {imageUrl ? <ProfilePhotoWrapper src={userDetails.photo} /> : <FaUserCircle size={100} />}
                         <span>{userDetails.username}</span>
                     </LeftPanel>
                     <RightPanel onSubmit={UpdateUserProfile}>
