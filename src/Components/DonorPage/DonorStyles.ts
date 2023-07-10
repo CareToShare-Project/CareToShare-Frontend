@@ -339,17 +339,11 @@ export const DetailsWrapper = styled.div`
     }
 
     .organizationName{
-        font-size: 16px;
+        font-size: 15px;
         font-weight: 700;
         display: flex;
-        align-items: center;
-        gap: 10px;
         width: 100%;
 
-        .verified{
-            font-size : 20px;
-            color: green;
-        }
     }
 
     .sub-details{

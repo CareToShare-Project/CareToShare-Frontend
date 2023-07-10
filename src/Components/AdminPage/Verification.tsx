@@ -4,7 +4,7 @@ import { ApproveButton as AnalyzeButton, ApproveDonationContainer } from "./Admi
 import { TableWrapper } from "../DonorPage/DonorStyles"
 import SearchBar from "../Shared_util/SearchBar/SearchBar"
 import { Modal, Spinner, Table } from "react-bootstrap"
-import { getAllOrganisations } from "../Shared_util/Constants/Functions"
+import { getAllOrganisations, verifyOrganisation } from "../Shared_util/Constants/Functions"
 import { OrganisationProps } from "../Shared_util/Constants/Types"
 import LoginToast from "../Shared_util/Toast/LoginToast"
 import Sentiment from "sentiment"
@@ -108,9 +108,12 @@ const Verification = () => {
                                             </AnalyzeButton>
                                         </td>
                                         <td>
-                                            <AnalyzeButton style={{ padding: "5px" }}>
+                                            {org.isVerified ? 'verified' : <AnalyzeButton 
+                                                style={{ padding: "5px" }} 
+                                                onClick={() => verifyOrganisation(org.username, setShowLoading, setToastMessage, setShowToast, accessToken, navigate)}>
                                                 Verify
                                             </AnalyzeButton>
+                                            }
                                         </td>
                                     </tr>
                                 )

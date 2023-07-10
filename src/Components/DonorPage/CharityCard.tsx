@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CardContainer, ConfirmButton, DetailsWrapper, ImageWrapper } from './DonorStyles';
 import image1 from '../HomePage/images/image1.jpg'
 import { MdLocationOn, MdEmail, MdCall, MdVerified } from 'react-icons/md'
@@ -7,7 +7,7 @@ import { organisationCardProp } from '../Shared_util/Constants/Types';
 
 
 const CharityCard: React.FC<organisationCardProp> = ({ details, setShow, setDetails }) => {
-
+    const [showFullName, setShowFullName] = useState(false)
     const { organisationName, location, email, contact, isVerified, photo} = details
 
     const handleModal = () => {
@@ -19,9 +19,10 @@ const CharityCard: React.FC<organisationCardProp> = ({ details, setShow, setDeta
         <CardContainer>
             {photo ? <ImageWrapper src={photo} alt='profile' /> : <ImageWrapper src={image1} alt='profile' />}
             <DetailsWrapper>
-                <span className='organizationName'>
-                    <span>{organisationName}</span>
-                    <span className='verified'>{isVerified ? <MdVerified /> : ''}</span>
+                <span className='organizationName' onClick={()=>setShowFullName(prev=> !prev)}>
+                    <span>{organisationName.length <= 24 || showFullName? organisationName : `${organisationName.slice(0,19)}...`} 
+                            {isVerified ? <MdVerified color='green' size={21}/> : ''}
+                    </span>
                 </span>
                 <span className='sub-details'>
                     <MdLocationOn color='#56C0C8' className='icon' />

@@ -182,6 +182,49 @@ export const approveOrganisationRegistration = async (username: string,
     }
 }
 
+// verify organisation
+export const verifyOrganisation = async (username: string,
+    setShowLoading: React.Dispatch<React.SetStateAction<boolean>>,
+    setToastMessage: React.Dispatch<React.SetStateAction<string>>,
+    setShowToast: React.Dispatch<React.SetStateAction<boolean>>,
+    accessToken: string,
+    navigate: any) => {
+    setShowLoading(true)
+    try {
+        const response = await fetch(`${BASE_URL}/organisations/${username}/mark-as-verified`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `Bearer ${accessToken}`
+            },
+        })
+
+        if (response.status === 401) return navigate('/login')
+
+        if (response.status === 403) {
+            setShowLoading(false)
+            setToastMessage("You do not have permission to perform this action")
+            setShowToast(true)
+            return
+        }
+
+        if (response.status === 500) {
+            setShowLoading(false)
+            setToastMessage("An error occured, try again later")
+            setShowToast(true)
+        }
+        const results = await response.json();
+        if (results.status === "success") {
+            setShowLoading(false)
+            setToastMessage("Organisation has been verified successfully, Refresh page!")
+            setShowToast(true)
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
 
 // fetches all donors
 export const getAllDonors = async (setDonors: React.Dispatch<any>, accessToken: string, navigate: any) => {

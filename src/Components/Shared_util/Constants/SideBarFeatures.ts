@@ -1,10 +1,12 @@
 import {AiFillHome, AiFillEye} from 'react-icons/ai'
-import {FaPeopleCarry, FaStarHalfAlt, FaPrayingHands, FaHandHoldingHeart, FaUsers} from 'react-icons/fa'
+import {FaPeopleCarry,  FaPrayingHands, FaHandHoldingHeart, FaUsers , FaUserCog} from 'react-icons/fa'
 import {GoVerified} from "react-icons/go"
 import {BiLoaderCircle, BiDonateHeart} from 'react-icons/bi'
-import {BsHandThumbsUp} from 'react-icons/bs'
+import {SiCodereview} from 'react-icons/si'
+import {MdCampaign} from 'react-icons/md'
+import {BsFillHandThumbsUpFill} from 'react-icons/bs'
 import {BsPostcardHeart} from 'react-icons/bs'
-import {RiUserSettingsFill, RiUserSettingsLine} from 'react-icons/ri'
+import {RiUserSettingsFill} from 'react-icons/ri'
 import { SideBarFeaturesProp } from './Types'
 
 
@@ -22,7 +24,7 @@ export const donorFeatures: SideBarFeaturesProp['features'] = [
     },
     {
         title: 'View Campaigns',
-        icon: AiFillEye,
+        icon: MdCampaign,
         link: 'viewRequests'
     },
     {
@@ -42,12 +44,12 @@ export const donorFeatures: SideBarFeaturesProp['features'] = [
     },
     {
         title: 'Review Charities',
-        icon: FaStarHalfAlt,
+        icon: SiCodereview,
         link: 'reviewCharities'
     },
     {
         title : 'Profile',
-        icon : RiUserSettingsFill,
+        icon : FaUserCog,
         link : 'editProfile'
     }
 
@@ -72,7 +74,7 @@ export const adminFeatures = [
     },
     {
         title: 'Approve Request',
-        icon : BsHandThumbsUp,
+        icon : BsFillHandThumbsUpFill,
         link : 'approveRequests'
     },
     {
@@ -87,7 +89,7 @@ export const adminFeatures = [
     },
     {
         title: 'Manage Donors',
-        icon : RiUserSettingsLine,
+        icon : FaUserCog,
         link : 'manageDonorsAccount'
     },
    
