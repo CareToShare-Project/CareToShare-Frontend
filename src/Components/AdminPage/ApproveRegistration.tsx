@@ -45,11 +45,11 @@ const ApproveRegistration = () => {
                             <th>Status</th>
                             <th>Date</th>
                             <th>Location</th>
-                            <th>Mission</th>
+                            <th style={{width: "250px"}}>Mission</th>
                             <th style={{width: "100px"}}>
                                 Certificate
                             </th>
-                            <th>Approve</th>
+                            {/* <th>Approve</th> */}
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -75,7 +75,7 @@ const ApproveRegistration = () => {
                                             "none"}
                                     </td>
 
-                                    <td>
+                                    {/* <td>
                                         {org.isApproved ? <span>Approved</span> :
                                             <ApproveButton
                                                 onClick={() => approveOrganisationRegistration(
@@ -87,7 +87,7 @@ const ApproveRegistration = () => {
                                                 Approve
                                             </ApproveButton>
                                         }
-                                    </td>
+                                    </td> */}
                                     <td>
                                         {org.isActive ?
                                             <ApproveButton onClick={() => deactivateOrganisation(org.username,

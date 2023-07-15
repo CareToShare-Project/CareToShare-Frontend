@@ -84,8 +84,8 @@ const Verification = () => {
                         <tr>
                             <th>Name of Organisation</th>
                             <th>Location</th>
-                            <th>Contact</th>
-                            <th>Email</th>
+                            {/* <th>Contact</th>
+                            <th>Email</th> */}
                             <th>Created At</th>
                             <th>Action</th>
                             <th>Action</th>
@@ -99,8 +99,8 @@ const Verification = () => {
                                     <tr key={org.username}>
                                         <td>{org.organisationName}</td>
                                         <td>{org.location}</td>
-                                        <td>{org.contact}</td>
-                                        <td>{org.email}</td>
+                                        {/* <td>{org.contact}</td>
+                                        <td>{org.email}</td> */}
                                         <td>{org.createdAt.slice(0, 10)}</td>
                                         <td>
                                             <AnalyzeButton style={{ padding: "5px" }} onClick={() => calculateSentiment(org.reviews)}>

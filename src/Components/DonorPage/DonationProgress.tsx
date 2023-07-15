@@ -29,13 +29,13 @@ const DonationProgress = () => {
     return (
         <RightSideContentWrapper>
             <SearchBar query={query} setQuery={setQuery} setRefresh={setRefresh} />
-
             {donations &&
                 <TableWrapper>
+                    <span>{donations.length} donations</span>
                     <Table responsive className='table' striped hover bordered>
                         <thead className='table-heading'>
                             <tr>
-                                <th>Type</th>
+                                {/* <th>Type</th> */}
                                 <th>Organisation</th>
                                 <th>Description</th>
                                 <th>Date</th>
@@ -48,7 +48,7 @@ const DonationProgress = () => {
                                 donations.map((donation: donationProps) => {
                                     return (
                                         <tr key={donation.donationId}>
-                                            <td>{donation.donationType}</td>
+                                            {/* <td>{donation.donationType}</td> */}
                                             <td>
                                                 {donation.donationType === "Specific" ? donation.donatedTo : "-"}
                                             </td>

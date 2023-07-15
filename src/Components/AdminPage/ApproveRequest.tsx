@@ -35,12 +35,12 @@ const ApproveRequest = () => {
                 <Table responsive className='table' striped hover bordered >
                     <thead className='table-heading'>
                         <tr>
-                            <th>Request Type</th>
+                            {/* <th>Request Type</th> */}
                             <th>Requested By</th>
-                            <th>Request To</th>
+                            {/* <th>Request To</th> */}
                             <th>Description</th>
                             <th>Date</th>
-                            <th>Approve</th>
+                            {/* <th>Approve</th> */}
                         </tr>
                     </thead>
                     <tbody className='table-body'>
@@ -48,12 +48,12 @@ const ApproveRequest = () => {
                             item.requestedBy?.toLowerCase().includes(query.toLowerCase()) || item.requestTo?.toLowerCase().includes(query.toLowerCase())).map((req: requestProps) => {
                                 return (
                                     <tr key={req.requestId}>
-                                        <td>{req.requestType}</td>
+                                        {/* <td>{req.requestType}</td> */}
                                         <td>{req.requestedBy}</td>
-                                        <td>{req.requestType === "Specific" ? req.requestTo : "Generic"}</td>
-                                        <td style={{ width: '200px' }}>{req.description}</td>
+                                        {/* <td>{req.requestType === "Specific" ? req.requestTo : "Generic"}</td> */}
+                                        <td>{req.description}</td>
                                         <td>{req.createdAt.slice(0, 10)}</td>
-                                        <td>
+                                        {/* <td>
                                             {req.requestStatus === "Pending" ?
                                                 <ApproveButton onClick={() => approveRequest(req.requestId,
                                                     setShowLoading,
@@ -66,7 +66,7 @@ const ApproveRequest = () => {
                                                 </ApproveButton> : <span>Approved</span>
                                             }
 
-                                        </td>
+                                        </td> */}
                                     </tr>
                                 )
                             })}

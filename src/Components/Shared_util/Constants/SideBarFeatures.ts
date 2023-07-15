@@ -1,10 +1,9 @@
 import {AiFillHome, AiFillEye} from 'react-icons/ai'
-import {FaPeopleCarry,  FaPrayingHands, FaHandHoldingHeart, FaUsers , FaUserCog} from 'react-icons/fa'
+import {FaPeopleCarry,  FaPrayingHands, FaHandHoldingHeart, FaUsers , FaUserCog, FaHandsHelping, FaHistory} from 'react-icons/fa'
 import {GoVerified} from "react-icons/go"
 import {BiLoaderCircle, BiDonateHeart} from 'react-icons/bi'
 import {SiCodereview} from 'react-icons/si'
 import {MdCampaign} from 'react-icons/md'
-import {BsFillHandThumbsUpFill} from 'react-icons/bs'
 import {BsPostcardHeart} from 'react-icons/bs'
 import {RiUserSettingsFill} from 'react-icons/ri'
 import { SideBarFeaturesProp } from './Types'
@@ -27,19 +26,19 @@ export const donorFeatures: SideBarFeaturesProp['features'] = [
         icon: MdCampaign,
         link: 'viewRequests'
     },
+    // {
+    //     title: 'View Requests',
+    //     icon: AiFillEye,
+    //     link: 'request'
+    // },
     {
-        title: 'View Requests',
-        icon: AiFillEye,
-        link: 'request'
-    },
-    {
-        title: 'Donate',
+        title: 'Make Donation',
         icon: BiDonateHeart,
         link: 'makeDonations'
     },
     {
-        title:'Check Progress',
-        icon: BiLoaderCircle,
+        title:'Donation History',
+        icon: FaHistory,
         link: 'donationProgress'
     },
     {
@@ -68,13 +67,13 @@ export const adminFeatures = [
         link: 'viewCharities'
     },
     {
-        title: 'Approve Donations',
+        title: 'Donations',
         icon : FaHandHoldingHeart,
         link : 'approveDonations'
     },
     {
-        title: 'Approve Request',
-        icon : BsFillHandThumbsUpFill,
+        title: 'Requests',
+        icon : FaHandsHelping,
         link : 'approveRequests'
     },
     {

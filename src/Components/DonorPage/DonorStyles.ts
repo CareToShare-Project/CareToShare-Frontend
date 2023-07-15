@@ -544,6 +544,15 @@ export const DonationInputField = styled(InputField)`
 // check donation progress styles
 export const TableWrapper = styled.div`
     width: 100%;
+
+    span{
+            display: flex;
+            justify-content: flex-end;
+            margin-right: 20px;
+            margin-bottom: 10px;
+            font-family: Roboto;
+            font-weight: 600;
+        }
     .table{
         .table-heading{
             font-family: Roboto;

@@ -79,7 +79,7 @@ const PagesRoute = () => {
                     <Route path='' element={<Feed />} />
                     <Route path='viewCharities' element={<ViewFoundations />} />
                     <Route path='viewRequests' element={<ViewRequests />} />
-                    <Route path='request' element={<Requests />} />
+                    {/* <Route path='request' element={<Requests />} /> */}
                     <Route path='makeDonations' element={<MakeDonation />} />
                     <Route path='donationProgress' element={<DonationProgress />} />
                     <Route path='reviewCharities' element={<ReviewCharities />} />

@@ -41,7 +41,7 @@ const ApproveDonation = () => {
                             <th>Date</th>
                             <th>Location</th>
                             <th>View Items</th>
-                            <th>Approve</th>
+                            {/* <th>Approve</th> */}
                         </tr>
                     </thead>
                     <tbody className="table-body">
@@ -62,7 +62,7 @@ const ApproveDonation = () => {
                                             View
                                         </a>
                                     </td>
-                                    <td>
+                                    {/* <td>
                                         {donation.donationStatus === status.pending ? (
                                             <ApproveButton
                                                 onClick={() =>
@@ -81,7 +81,7 @@ const ApproveDonation = () => {
                                         ) : (
                                             <span>Approved</span>
                                         )}
-                                    </td>
+                                    </td> */}
                                 </tr>
                             );
                         })}
