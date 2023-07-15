@@ -31,12 +31,12 @@ const Verification = () => {
 
     // sentiment analysis function 
     const calculateSentiment = (reviews: string[]) => {
-        setShowLoading(true)
+        //setShowLoading(true)
         if (reviews.length === 0) {
-            setShowLoading(false)
-            setToastMessage("There are no reviews to analyze")
-            setShowToast(true)
-            return
+            // setShowLoading(false)
+            // setToastMessage("There are no reviews to analyze")
+            // setShowToast(true)
+            return '-'
         }
 
         const analyzer = new Sentiment();
@@ -55,18 +55,22 @@ const Verification = () => {
         // Convert the average sentiment score to a percentage
         const sentimentPercentage = Math.round((averageSentiment + 5) * 10);
         if (sentimentPercentage > 100) {
-            setResult(100)
+            //setResult(100)
+            return '100%';
         } else if (sentimentPercentage < 0) {
-            setResult(0)
+            //setResult(0)
+            return '0%';
         } else {
-            setResult(sentimentPercentage)
+            //setResult(sentimentPercentage)
+            return `${sentimentPercentage}%`;
         }
+        
 
 
-        setTimeout(() => {
-            setShow(true)
-            setShowLoading(false)
-        }, 1500)
+        // setTimeout(() => {
+        //     setShow(true)
+        //     setShowLoading(false)
+        // }, 1500)
 
     }
 
@@ -87,7 +91,7 @@ const Verification = () => {
                             {/* <th>Contact</th>
                             <th>Email</th> */}
                             <th>Created At</th>
-                            <th>Action</th>
+                            <th>Results</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -102,11 +106,12 @@ const Verification = () => {
                                         {/* <td>{org.contact}</td>
                                         <td>{org.email}</td> */}
                                         <td>{org.createdAt.slice(0, 10)}</td>
-                                        <td>
+                                        <td>{calculateSentiment(org.reviews)}</td>
+                                        {/* <td>
                                             <AnalyzeButton style={{ padding: "5px" }} onClick={() => calculateSentiment(org.reviews)}>
                                                 Analyze
                                             </AnalyzeButton>
-                                        </td>
+                                        </td> */}
                                         <td>
                                             {org.isVerified ? 'verified' : <AnalyzeButton 
                                                 style={{ padding: "5px" }} 
