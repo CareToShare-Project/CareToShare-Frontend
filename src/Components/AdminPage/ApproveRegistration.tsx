@@ -38,6 +38,7 @@ const ApproveRegistration = () => {
         <ApproveDonationContainer>
             <SearchBar query={query} setQuery={setQuery} setRefresh={setRefresh} />
             <TableWrapper>
+            <span>{organisations.length} Organisations</span>
                 <Table responsive className='table' striped hover bordered >
                     <thead className='table-heading'>
                         <tr>

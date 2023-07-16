@@ -35,6 +35,7 @@ function DonorAccount() {
         <ApproveDonationContainer>
             <SearchBar query={query} setQuery={setQuery} setRefresh={setRefresh} />
             <TableWrapper>
+                <span>{donors.length} Donors</span>
                 <Table responsive className='table' striped hover bordered>
                     <thead className='table-heading'>
                         <tr>

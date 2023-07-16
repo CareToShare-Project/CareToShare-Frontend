@@ -245,6 +245,14 @@ export const RightSideContentWrapper = styled.div`
 `
 
 // view foundation and view requests styles
+
+const fadeFromRight = keyframes`
+    to{
+        transform: translateX(0px);
+        opacity: 1;  
+    }
+`
+
 export const ViewFoundationContainer = styled.div`
     width: 100%;
     display: flex;
@@ -252,10 +260,9 @@ export const ViewFoundationContainer = styled.div`
     align-items: flex-start;
     column-gap: 10px;
     row-gap: 30px;
-
-    .campaign-card {
-        width: 300px;
-    }
+    transform: translateX(100px);
+    opacity: 0;
+    animation: ${fadeFromRight} 0.8s ease-in-out forwards;
 
     @media (max-width: 1281px){
         column-gap: 5px;

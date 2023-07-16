@@ -5,7 +5,7 @@ export const SearchBarContainer = styled.div`
     display: flex;
     align-items: flex-end;
     gap: 2px;
-    justify-content: flex-end;
+    justify-content: center;
     padding: 0px 50px;
     
        
@@ -14,7 +14,7 @@ export const SearchBarContainer = styled.div`
 
 export const SearchBox = styled.div`
     display: flex;
-    width: 300px;
+    width: 400px;
     height: 30px;
     align-items: center;
     font-family: Roboto;

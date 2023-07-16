@@ -77,9 +77,9 @@ const Donations = () => {
                                             </td>
                                             <td>
                                                 {donation.itemPhoto ?
-                                                    <span onClick={()=> displayItems(donation.itemPhoto)}>
-                                                       <AiFillEye /> 
-                                                    </span> : "No image"}
+                                                    <div onClick={()=> displayItems(donation.itemPhoto)}>
+                                                       <AiFillEye size={15} color='green' /> 
+                                                    </div> : "No image"}
                                             </td>
                                             <td>
                                                 {donation.donationStatus === "Completed" ? "Completed" :

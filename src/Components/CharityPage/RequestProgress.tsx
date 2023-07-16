@@ -65,7 +65,7 @@ const RequestProgress = () => {
                                             {req.requestTo ==="General" && req.requestStatus !=="Completed"? 
                                                 <DonateButton onClick={()=>closeCampaign(req.requestId, setShowLoading,setToastMessage,setShowToast, accessToken,navigate)}>
                                                     Close Campaign
-                                                </DonateButton> : "No action"
+                                                </DonateButton> : "Closed"
                                                  }
                                                 
                                             </td>
