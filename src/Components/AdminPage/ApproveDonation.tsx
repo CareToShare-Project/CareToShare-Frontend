@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ApproveDonationContainer, ApproveButton} from "./Admin.Styles";
 import { Modal, Spinner, Table } from "react-bootstrap";
-import { TableWrapper } from "../DonorPage/DonorStyles";
+import { NoOrganisationContainer, TableWrapper } from "../DonorPage/DonorStyles";
 import {
     getAllDonations,
     approveDonation,
@@ -92,6 +92,12 @@ const ApproveDonation = () => {
                         })}
                     </tbody>
                 </Table>
+                {donations
+                        .filter(item=> item.donatedBy.toLowerCase().includes(query.toLowerCase()) || 
+                                         item.location?.toLowerCase().includes(query.toLowerCase()) || 
+                                         item.donatedTo?.toLowerCase().includes(query.toLowerCase()))
+                        .length === 0 ? <NoOrganisationContainer>No Donation Found</NoOrganisationContainer> : ""
+                }
                 <LoginToast
                     showToast={showToast}
                     setShowToast={setShowToast}

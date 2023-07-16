@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { ApproveButton as AnalyzeButton, ApproveDonationContainer } from "./Admin.Styles"
-import { TableWrapper } from "../DonorPage/DonorStyles"
+import { NoOrganisationContainer, TableWrapper } from "../DonorPage/DonorStyles"
 import SearchBar from "../Shared_util/SearchBar/SearchBar"
 import { Modal, Spinner, Table } from "react-bootstrap"
 import { getAllOrganisations, verifyOrganisation } from "../Shared_util/Constants/Functions"
@@ -129,6 +129,13 @@ const Verification = () => {
                             })}
                     </tbody>
                 </Table>
+                {
+                    organisations
+                            .filter(item => item.email.toLowerCase().includes(query.toLowerCase()) ||
+                                            item.organisationName.toLowerCase().includes(query.toLowerCase()) ||
+                                            item.location.toLowerCase().includes(query.toLowerCase()))
+                            .length === 0 ? <NoOrganisationContainer>No Organisation Found</NoOrganisationContainer> : ""
+                }
                 <LoginToast
                     showToast={showToast}
                     setShowToast={setShowToast}

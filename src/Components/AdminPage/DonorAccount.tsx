@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { ApproveButton, ApproveDonationContainer} from './Admin.Styles';
-import { TableWrapper } from '../DonorPage/DonorStyles';
+import { NoOrganisationContainer, TableWrapper } from '../DonorPage/DonorStyles';
 import SearchBar from '../Shared_util/SearchBar/SearchBar';
 import LoginToast from '../Shared_util/Toast/LoginToast';
 import { Spinner, Table } from 'react-bootstrap';
@@ -82,6 +82,14 @@ function DonorAccount() {
                         })}
                     </tbody>
                 </Table>
+                {donors
+                    .filter(item=> item.username.toLowerCase().includes(query.toLowerCase()) || 
+                                   item.email?.toLowerCase().includes(query.toLowerCase()) || 
+                                   item.firstName?.toLowerCase().includes(query.toLowerCase())|| 
+                                   item.lastName?.toLowerCase().includes(query.toLowerCase()) || 
+                                   item.location?.toLowerCase().includes(query.toLowerCase()))
+                    .length === 0 ? <NoOrganisationContainer>No Donor Found</NoOrganisationContainer> : ""
+                }
                 <LoginToast
                     showToast={showToast}
                     setShowToast={setShowToast}
