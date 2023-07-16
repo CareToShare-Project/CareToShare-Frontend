@@ -29,8 +29,32 @@ const Verification = () => {
     const tokenData = sessionStorage.getItem('accesstoken')
     const accessToken = tokenData && JSON.parse(tokenData)
 
-    const testing = organisations.map(item=> item.createdAt);
-    console.log(typeof testing[0])
+    function calculateDaysSince(dateString : string) {
+        // Convert the given date string to a Date object
+        const givenDate = new Date(dateString);
+      
+        // Get the current date
+        const currentDate = new Date();
+      
+        // Calculate the time difference in milliseconds
+        const timeDiff = currentDate.getTime() - givenDate.getTime();
+      
+        // Convert the time difference to days
+        const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24));
+
+        if(daysDiff >= 28){
+            const months = Math.floor(daysDiff/28)
+            return `${months} month(s)`;
+        }
+      
+        return `${daysDiff} days`;
+      }
+      
+      // Example usage
+    //   const givenDateString = "2023-01-01";
+    //   const daysSince = calculateDaysSince(givenDateString);
+    //   console.log("Number of days since", givenDateString + ":", daysSince);
+      
 
     // sentiment analysis function 
     const calculateSentiment = (reviews: string[]) => {
@@ -91,8 +115,9 @@ const Verification = () => {
                             <th>Name of Organisation</th>
                             <th>Location</th>
                             {/* <th>Contact</th>
-                            <th>Email</th> */}
-                            <th>Created At</th>
+                            <th>Email</th>
+                            <th>Created At</th> */}
+                            <th>Platform Usage Duration</th>
                             <th>Review Count</th>
                             <th>Results</th>
                             <th>Action</th>
@@ -107,8 +132,9 @@ const Verification = () => {
                                         <td>{org.organisationName}</td>
                                         <td>{org.location}</td>
                                         {/* <td>{org.contact}</td>
-                                        <td>{org.email}</td> */}
-                                        <td>{org.createdAt.slice(0, 10)}</td>
+                                        <td>{org.email}</td>
+                                        <td>{org.createdAt.slice(0, 10)}</td> */}
+                                        <td>{calculateDaysSince(org.createdAt.slice(0, 10))}</td>
                                         <td>{org.reviews.length}</td>
                                         <td>{calculateSentiment(org.reviews)}</td>
                                         {/* <td>
