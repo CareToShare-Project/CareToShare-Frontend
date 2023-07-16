@@ -101,24 +101,24 @@ export const charityFeatures = [
         icon : AiFillHome,
         link : ''
     },
-    {
-        title:'Available Donations',
-        icon: BiDonateHeart,
-        link: 'viewDonations'
-    },
+    // {
+    //     title:'Available Donations',
+    //     icon: BiDonateHeart,
+    //     link: 'viewDonations'
+    // },
     {
         title:'Create Campaign',
         icon: FaPrayingHands,
         link: 'makeRequest'
     },
     {
-        title:'Request Progress',
-        icon: BiLoaderCircle,
+        title:'Campaign History',
+        icon: FaHistory,
         link: 'requestProgress'
     },
     {
-        title:'Donation Progress',
-        icon: BiLoaderCircle,
+        title:'Donations',
+        icon: BiDonateHeart,
         link: 'donationProgress'
     },
     {

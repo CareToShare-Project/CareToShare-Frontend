@@ -29,6 +29,9 @@ const Verification = () => {
     const tokenData = sessionStorage.getItem('accesstoken')
     const accessToken = tokenData && JSON.parse(tokenData)
 
+    const testing = organisations.map(item=> item.createdAt);
+    console.log(typeof testing[0])
+
     // sentiment analysis function 
     const calculateSentiment = (reviews: string[]) => {
         //setShowLoading(true)
@@ -38,7 +41,6 @@ const Verification = () => {
             // setShowToast(true)
             return '-'
         }
-
         const analyzer = new Sentiment();
 
         // Analyze each review and get the sentiment result
@@ -91,6 +93,7 @@ const Verification = () => {
                             {/* <th>Contact</th>
                             <th>Email</th> */}
                             <th>Created At</th>
+                            <th>Review Count</th>
                             <th>Results</th>
                             <th>Action</th>
                         </tr>
@@ -106,6 +109,7 @@ const Verification = () => {
                                         {/* <td>{org.contact}</td>
                                         <td>{org.email}</td> */}
                                         <td>{org.createdAt.slice(0, 10)}</td>
+                                        <td>{org.reviews.length}</td>
                                         <td>{calculateSentiment(org.reviews)}</td>
                                         {/* <td>
                                             <AnalyzeButton style={{ padding: "5px" }} onClick={() => calculateSentiment(org.reviews)}>

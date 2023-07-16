@@ -10,7 +10,6 @@ const DonationChart: React.FC<DonationChartProps> = ({ donations }) => {
 
 
   const data = [
-    { status: status.pending, count: pending.length },
     { status: status.inProgress, count: inProgress.length },
     { status: status.completed, count: completed.length },
   ];

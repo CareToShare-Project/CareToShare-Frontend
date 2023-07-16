@@ -7,6 +7,8 @@ import { acceptDonation, getOrganisationDonations } from '../Shared_util/Constan
 import { useNavigate } from 'react-router-dom';
 import { donationProps} from '../Shared_util/Constants/Types';
 import LoginToast from '../Shared_util/Toast/LoginToast';
+import {AiFillEye} from "react-icons/ai"
+import { Modal } from 'react-bootstrap';
 
 
 const Donations = () => {
@@ -17,6 +19,9 @@ const Donations = () => {
     const [toastMessage, setToastMessage] = useState("");
     const [showLoading, setShowLoading] = useState(false);
 
+    const [show, setShow] = useState(false)
+    const [itemPhoto, setItemPhoto] = useState('')
+
     const navigate = useNavigate()
 
     const tokenData = sessionStorage.getItem('accesstoken')
@@ -26,6 +31,11 @@ const Donations = () => {
 
     const acceptDonationHandler = (id: string) => {
         acceptDonation(id,setShowLoading,setToastMessage,setShowToast,accessToken, navigate)
+    }
+
+    const displayItems = (photo : string) => {
+        setItemPhoto(photo);
+        setShow(true)
     }
 
     
@@ -67,9 +77,9 @@ const Donations = () => {
                                             </td>
                                             <td>
                                                 {donation.itemPhoto ?
-                                                    <a href={donation.itemPhoto} target="_blank" rel="noreferrer">
-                                                        View
-                                                    </a> : "No image"}
+                                                    <span onClick={()=> displayItems(donation.itemPhoto)}>
+                                                       <AiFillEye /> 
+                                                    </span> : "No image"}
                                             </td>
                                             <td>
                                                 {donation.donationStatus === "Completed" ? "Completed" :
@@ -93,6 +103,12 @@ const Donations = () => {
                         !donations.length && <NoOrganisationContainer>No donation Found</NoOrganisationContainer>
                     }
                 </TableWrapper>}
+
+                <Modal show={show} onHide={() => setShow(false)}>
+                    <Modal.Body>
+                        <img src={itemPhoto} alt="item" style={{width: '100%'}}/>
+                    </Modal.Body>
+                </Modal>
         </RightSideContentWrapper>
     )
 };

@@ -5,7 +5,7 @@ export const Heading = styled.h4`
     font-size: 20px;
     text-align: center;
     letter-spacing: 0.5px;
-    font-size: 20px;
+    font-weight: 700;
     color: ${({theme})=> theme.color.primary};
 
     h4{

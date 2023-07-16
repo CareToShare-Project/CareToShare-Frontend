@@ -10,7 +10,6 @@ const RequestChart: React.FC<RequestChartProps> = ({requests}) => {
   const completed = requests.filter(item=>item.requestStatus === status.completed)
  
   const data = [
-    { status: status.pending, count: pending.length },
     { status: status.inProgress, count: inProgress.length },
     { status: status.completed, count: completed.length},
   ];

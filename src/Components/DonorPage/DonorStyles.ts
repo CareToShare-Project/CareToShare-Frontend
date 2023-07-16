@@ -64,6 +64,10 @@ export const FieldWrapper = styled.div`
     gap: 5px;
     padding: 10px;
 
+    .css-b62m3t-container{
+        width: 112%;
+    }
+
     select{
         height: 30px;
         border-radius: 4px;
@@ -248,6 +252,10 @@ export const ViewFoundationContainer = styled.div`
     align-items: flex-start;
     column-gap: 10px;
     row-gap: 30px;
+
+    .campaign-card {
+        width: 300px;
+    }
 
     @media (max-width: 1281px){
         column-gap: 5px;

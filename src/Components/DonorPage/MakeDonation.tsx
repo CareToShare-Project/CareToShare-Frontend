@@ -27,7 +27,6 @@ import LoginToast from "../Shared_util/Toast/LoginToast";
 function MakeDonation() {
     const locationRef: any = useRef("");
     const descriptionRef: any = useRef("");
-    const [donationType, setDonationType] = useState("Generic");
     const [imageUpload, setImageUpload] = useState<any>();
     const [imageUrl, setImageUrl] = useState("");
     const [showLoading, setShowLoading] = useState(false);
@@ -50,10 +49,7 @@ function MakeDonation() {
         setSelectedOrganization(selectedOption);
     };
 
-    const handleDonationType = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setDonationType(e.target.value);
-        console.log(e.target.value);
-    };
+   
 
     const handleDonation = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -74,15 +70,13 @@ function MakeDonation() {
                 async () => {
                     const donationId = v4();
                     const org = selectedOrganization?.organisationName;
-                    const selectedOrg = selectedOrganization ? org : "General";
                     const donation = {
                         donatedBy: userDetails.username,
                         donationId: donationId,
-                        donationType: donationType,
                         description: descriptionRef.current.value,
                         location: locationRef.current.value,
                         itemPhoto: imageUrl,
-                        donatedTo: selectedOrg,
+                        donatedTo: org,
                         contact: userDetails.contact
                     };
                     const response = await fetch(`${BASE_URL}/donations`, {
@@ -140,7 +134,7 @@ function MakeDonation() {
                     Donate now <BiDonateHeart />
                 </Heading>
                 <div>
-                    <FieldWrapper style={{ width: "100%" }}>
+                    {/* <FieldWrapper style={{ width: "100%" }}>
                         <DonationInputLabel>Type</DonationInputLabel>
                         <RoleContainer
                             id="options"
@@ -154,11 +148,9 @@ function MakeDonation() {
                             <option value="Generic">Generic</option>
                             <option value="Specific">Specific</option>
                         </RoleContainer>
-                    </FieldWrapper>
+                    </FieldWrapper> */}
 
-                    <FieldWrapper
-                        className={`field ${donationType === "Generic" ? "disabled" : ""}`}
-                    >
+                    <FieldWrapper>
                         <DonationInputLabel>Donate To</DonationInputLabel>
                         <Select
                             value={selectedOrganization}
@@ -170,7 +162,7 @@ function MakeDonation() {
                         />
                     </FieldWrapper>
                     <FieldWrapper className="field">
-                        <DonationInputLabel>Location</DonationInputLabel>
+                        <DonationInputLabel>Pickup location</DonationInputLabel>
                         <DonationInputField type="text" ref={locationRef} />
                     </FieldWrapper>
 
