@@ -18,7 +18,7 @@ const ApproveDonation = () => {
     const [showLoading, setShowLoading] = useState(false);
     const [refresh, setRefresh] = useState("");
     const [show, setShow] = useState(false)
-    const [itemPhoto, setItemPhoto] = useState('')
+    const [data, setData] = useState<donationProps>()
     const [query, setQuery] = useState("");
     const [showToast, setShowToast] = useState(false);
     const [toastMessage, setToastMessage] = useState("");
@@ -28,8 +28,8 @@ const ApproveDonation = () => {
     const tokenData = sessionStorage.getItem("accesstoken");
     const accessToken = tokenData && JSON.parse(tokenData);
 
-    const displayItems = (photo : string) => {
-        setItemPhoto(photo);
+    const displayItems = (donation : donationProps) => {
+        setData(donation)
         setShow(true)
     }
 
@@ -64,7 +64,7 @@ const ApproveDonation = () => {
                                     <td>{donation.createdAt.slice(0, 10)}</td>
                                     <td>{donation.description}</td>
                                     <td>{donation.location}</td>
-                                    <td onClick={()=>displayItems(donation.itemPhoto)}>
+                                    <td onClick={()=>displayItems(donation)}>
                                         <AiFillEye size={15} color="green"/>
                                     </td>
                                     {/* <td>
@@ -108,7 +108,51 @@ const ApproveDonation = () => {
 
             <Modal show={show} onHide={() => setShow(false)}>
                 <Modal.Body>
-                  <img src={itemPhoto} alt="item" style={{width: '100%'}}/>
+                    <div style={{width: '500px', height: '300px', display: 'flex' , gap: '20px'}}>
+                        <img src={data?.itemPhoto} alt="item" style={{width: '50%', objectFit: "cover"}}/>
+                        <div style={{display: 'flex', flexDirection: 'column', gap: '20px'}}>
+                           <div>
+                                <span style={{fontFamily: "Poppins", fontWeight: "700", color: '#56C0C8'}}>
+                                    Donated By
+                                </span>
+                                <div style={{lineHeight: '13px', fontWeight: "450"}}>
+                                    {data?.donatedBy}
+                                </div>
+                            </div>
+                            <div>
+                                <span style={{fontFamily: "Poppins", fontWeight: "700", color: '#56C0C8'}}>
+                                    Donated To
+                                </span>
+                                <div style={{lineHeight: '13px', fontWeight: "450"}}>
+                                    {data?.donatedTo}
+                                </div>
+                            </div>
+                            <div>
+                                <span style={{fontFamily: "Poppins", fontWeight: "700", color: '#56C0C8'}}>
+                                    Description
+                                </span>
+                                <div style={{lineHeight: '13px', fontWeight: "450"}}>
+                                    {data?.description}
+                                </div>
+                            </div>
+                            <div>
+                                <span style={{fontFamily: "Poppins", fontWeight: "700", color: '#56C0C8'}}>
+                                    Location
+                                </span>
+                                <div style={{lineHeight: '13px', fontWeight: "450"}}>
+                                    {data?.location}
+                                </div>
+                            </div>
+                            <div>
+                                <span style={{fontFamily: "Poppins", fontWeight: "700", color: '#56C0C8'}}>
+                                    Status
+                                </span>
+                                <div style={{lineHeight: '13px', fontWeight: "450"}}>
+                                    {data?.donationStatus}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </Modal.Body>
             </Modal>
         </ApproveDonationContainer>
