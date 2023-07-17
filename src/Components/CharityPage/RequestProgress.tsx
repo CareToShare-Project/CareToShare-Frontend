@@ -41,8 +41,6 @@ const RequestProgress = () => {
                     <Table responsive className='table' striped hover bordered>
                         <thead className='table-heading'>
                             <tr>
-                                <th>Type</th>
-                                <th>RequestTo</th>
                                 <th>Date</th>
                                 <th>Description</th>
                                 <th>Status</th>
@@ -54,17 +52,15 @@ const RequestProgress = () => {
                                 requests.map((req: requestProps) => {
                                     return (
                                         <tr key={req.requestId}>
-                                            <td>{req.requestType}</td>
-                                            <td>
-                                                {req.requestTo}
-                                            </td>
                                             <td>{req.createdAt.slice(0,10)}</td>
-                                            <td>{req.description}</td>
+                                            <td style={{width: '300px'}}>
+                                                {req.description}
+                                            </td>
                                             <td>{req.requestStatus}</td>
                                             <td>
                                             {req.requestTo ==="General" && req.requestStatus !=="Completed"? 
                                                 <DonateButton onClick={()=>closeCampaign(req.requestId, setShowLoading,setToastMessage,setShowToast, accessToken,navigate)}>
-                                                    Close Campaign
+                                                    Close 
                                                 </DonateButton> : "Closed"
                                                  }
                                                 

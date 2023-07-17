@@ -50,10 +50,7 @@ const Verification = () => {
         return `${daysDiff} days`;
       }
       
-      // Example usage
-    //   const givenDateString = "2023-01-01";
-    //   const daysSince = calculateDaysSince(givenDateString);
-    //   console.log("Number of days since", givenDateString + ":", daysSince);
+     
       
 
     // sentiment analysis function 
@@ -120,7 +117,8 @@ const Verification = () => {
                             <th>Platform Usage Duration</th>
                             <th>Review Count</th>
                             <th>Results</th>
-                            <th>Action</th>
+                            <th>Verified</th>
+                            {/* <th>Action</th> */}
                         </tr>
                     </thead>
                     <tbody className='table-body'>
@@ -142,14 +140,15 @@ const Verification = () => {
                                                 Analyze
                                             </AnalyzeButton>
                                         </td> */}
-                                        <td>
+                                        <td>{org.isVerified ? "Yes" : "No"}</td>
+                                        {/* <td>
                                             {org.isVerified ? 'verified' : <AnalyzeButton 
                                                 style={{ padding: "5px" }} 
                                                 onClick={() => verifyOrganisation(org.username, setShowLoading, setToastMessage, setShowToast, accessToken, navigate)}>
                                                 Verify
                                             </AnalyzeButton>
                                             }
-                                        </td>
+                                        </td> */}
                                     </tr>
                                 )
                             })}
