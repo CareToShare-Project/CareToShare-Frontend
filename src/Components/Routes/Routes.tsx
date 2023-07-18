@@ -31,7 +31,6 @@ import ViewDonation from '../CharityPage/ViewDonation';
 import RequestProgress from '../CharityPage/RequestProgress'
 import MakeRequest from '../CharityPage/MakeRequest';
 import Donations from '../CharityPage/Donations';
-import Requests from '../DonorPage/Requests';
 import Verification from '../AdminPage/Verification';
 import CharityProfile from '../CharityPage/CharityProfile';
 

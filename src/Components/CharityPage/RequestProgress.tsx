@@ -8,6 +8,7 @@ import { requestProps } from '../Shared_util/Constants/Types';
 import { BASE_URL } from '../Shared_util/Constants/Base_URL';
 import LoginToast from '../Shared_util/Toast/LoginToast';
 import { Spinner } from 'react-bootstrap';
+import { ApproveButton } from '../AdminPage/Admin.Styles';
 
 
 const RequestProgress = () => {
@@ -41,8 +42,8 @@ const RequestProgress = () => {
                     <Table responsive className='table' striped hover bordered>
                         <thead className='table-heading'>
                             <tr>
+                                <th>Campaign</th>
                                 <th>Date</th>
-                                <th>Description</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -51,20 +52,17 @@ const RequestProgress = () => {
                             {
                                 requests.map((req: requestProps) => {
                                     return (
-                                        <tr key={req.requestId}>
-                                            <td>{req.createdAt.slice(0,10)}</td>
+                                        <tr key={req.campaignId}>
                                             <td style={{width: '300px'}}>
-                                                {req.description}
+                                                {req.campaignTitle}
                                             </td>
+                                            <td>{req.createdAt.slice(0,10)}</td>
                                             <td>{req.requestStatus}</td>
-                                            <td>
-                                            {req.requestTo ==="General" && req.requestStatus !=="Completed"? 
-                                                <DonateButton onClick={()=>closeCampaign(req.requestId, setShowLoading,setToastMessage,setShowToast, accessToken,navigate)}>
-                                                    Close 
-                                                </DonateButton> : "Closed"
-                                                 }
-                                                
+                                            <td><ApproveButton>
+                                                    close
+                                                </ApproveButton>
                                             </td>
+                                           
                                         </tr>
                                     )
                                 })

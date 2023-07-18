@@ -29,19 +29,17 @@ function ViewRequests() {
         <RightSideContentWrapper>
             <SearchBar query={query} setQuery={setQuery} setRefresh={setRefresh} />
             {campaigns &&
-                <div className='request'>
-                    <h5>Campaigns</h5>
-                    <ViewFoundationContainer>
-                        {campaigns
-                            .filter((item: { requestedBy: string }) => {
-                                return item.requestedBy.toLowerCase().includes(query.toLowerCase())
+                            
+                        campaigns
+                            .filter((item: { organisationName: string }) => {
+                                return item.organisationName.toLowerCase().includes(query.toLowerCase())
                             }).map((req: RequestCardProp['details']) => {
                                 return (
-                                    <RequestCard details={req} key={req.requestId} />
+                                    <RequestCard details={req} key={req.campaignId} />
                                 )
-                            })}
-                    </ViewFoundationContainer>
-                </div>}
+                            })
+                        }
+            
             {
                 !campaigns.length && <NoRequestContainer>No Campaigns available</NoRequestContainer>
             }

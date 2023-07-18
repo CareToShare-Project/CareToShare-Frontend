@@ -65,7 +65,7 @@ export const FieldWrapper = styled.div`
     padding: 10px;
 
     .css-b62m3t-container{
-        width: 112%;
+        width: 100%;
     }
 
     select{
@@ -410,6 +410,7 @@ export const ImageContainer = styled.div`
     position: relative;
     z-index: 10;
     width: 100%;
+    height: 400px;
 
     span{
         z-index: 20;
@@ -857,6 +858,67 @@ export const UpdateBtn = styled(ConfirmButton)`
 
 export const ImageField = styled(Field)`
     height: 35px;
+`
+
+export const CampaignCardWrapper = styled.div`
+    height: 300px;
+    width: 90%;
+    display: flex;
+    margin-bottom: 20px;
+    gap: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 4px 3px rgba(20, 107, 113, 0.1);
+`
+export const CampaignImageContainer = styled(ImageWrapper)`
+    height: 300px;
+    width: 300px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-right: 5px solid ${({theme})=> theme.background.primary};
+    border-bottom: none;
+    object-fit: cover;
+`
+
+export const CampaignDetailsContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 300px;
+    overflow-y: scroll;
+    padding: 10px;
+
+    div{
+        display: flex;
+        flex-direction: column;
+        
+        .heading{
+            font-weight: 700;
+            font-family: Poppins;
+            color: ${({theme})=> theme.background.primary}; 
+        }
+
+        .content{
+            font-size: 15px;
+            font-weight: 500;
+        }
+    }
+
+    
+    
+`
+
+export const SupportCampaignButton = styled.button`
+    width: 200px;
+    outline: 0;
+    border: 1px solid white;
+    border-radius: 5px;
+    transition: all 0.5s ease-in-out;
+    padding: 5px;
+
+    &:hover{
+        border: 1px solid ${({theme})=> theme.background.primary};
+        background: white;
+    }
 `
 
 

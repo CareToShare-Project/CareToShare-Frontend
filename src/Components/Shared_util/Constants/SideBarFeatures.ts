@@ -26,11 +26,6 @@ export const donorFeatures: SideBarFeaturesProp['features'] = [
         icon: MdCampaign,
         link: 'viewRequests'
     },
-    // {
-    //     title: 'View Requests',
-    //     icon: AiFillEye,
-    //     link: 'request'
-    // },
     {
         title: 'Make Donation',
         icon: BiDonateHeart,
@@ -72,8 +67,8 @@ export const adminFeatures = [
         link : 'approveDonations'
     },
     {
-        title: 'Requests',
-        icon : FaHandsHelping,
+        title: 'Campaigns',
+        icon :  MdCampaign,
         link : 'approveRequests'
     },
     {
@@ -101,14 +96,9 @@ export const charityFeatures = [
         icon : AiFillHome,
         link : ''
     },
-    // {
-    //     title:'Available Donations',
-    //     icon: BiDonateHeart,
-    //     link: 'viewDonations'
-    // },
     {
         title:'Create Campaign',
-        icon: FaPrayingHands,
+        icon:  MdCampaign,
         link: 'makeRequest'
     },
     {

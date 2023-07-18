@@ -479,12 +479,10 @@ export const getAllRequests = async (setCampaigns: React.Dispatch<any>,
         if (response.status === 401) return navigate("/login")
 
         const results = await response.json();
-        const campaignData = results.data.filter((item: { requestType: string; requestStatus: string }) => item.requestType === "Campaign" && item.requestStatus === "In Progress");
+        const campaignData = results.data;
         if (results.status === "success") {
             setCampaigns(campaignData)
-            sessionStorage.setItem('requests', JSON.stringify(results.data))
             sessionStorage.setItem('campaigns', JSON.stringify(campaignData))
-
         }
     }
     catch (error) {

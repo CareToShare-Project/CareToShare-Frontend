@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { ApproveDonationContainer, ApproveButton } from './Admin.Styles';
-import { Spinner, Table } from 'react-bootstrap';
+import { ApproveDonationContainer} from './Admin.Styles';
+import { Table } from 'react-bootstrap';
 import { NoOrganisationContainer, TableWrapper } from '../DonorPage/DonorStyles';
-import { fetchRequests, approveRequest } from '../Shared_util/Constants/Functions';
+import { fetchRequests} from '../Shared_util/Constants/Functions';
 import SearchBar from "../Shared_util/SearchBar/SearchBar"
-import LoginToast from '../Shared_util/Toast/LoginToast';
 import { requestProps } from '../Shared_util/Constants/Types';
 import { useNavigate } from 'react-router-dom';
+import { AiFillEye } from 'react-icons/ai';
 
 
 const ApproveRequest = () => {
     const [requests, setRequests] = useState<requestProps[]>([])
-    const [showLoading, setShowLoading] = useState(false)
     const [refresh, setRefresh] = useState("")
     const [query, setQuery] = useState("")
-    const [showToast, setShowToast] = useState(false)
-    const [toastMessage, setToastMessage] = useState('')
+    
 
     const navigate = useNavigate()
 
@@ -36,38 +34,29 @@ const ApproveRequest = () => {
                 <Table responsive className='table' striped hover bordered >
                     <thead className='table-heading'>
                         <tr>
-                            {/* <th>Request Type</th> */}
-                            <th>Requested By</th>
-                            {/* <th>Request To</th> */}
-                            <th>Description</th>
+                            <th>Campaign ID</th>
+                            <th>Organisation</th>
+                            <th>Campaign</th>
                             <th>Date</th>
-                            {/* <th>Approve</th> */}
+                            <th>Target</th>
+                            <th>Status</th>
+                            <th>View</th>
                         </tr>
                     </thead>
                     <tbody className='table-body'>
-                        {requests.filter(item => item.description?.toLowerCase().includes(query.toLowerCase()) ||
-                            item.requestedBy?.toLowerCase().includes(query.toLowerCase()) || item.requestTo?.toLowerCase().includes(query.toLowerCase())).map((req: requestProps) => {
+                        {requests.filter(item => item.campaignTitle?.toLowerCase().includes(query.toLowerCase()) || 
+                                                 item.description?.toLowerCase().includes(query.toLowerCase()) ||
+                                                 item.organisationName?.toLowerCase().includes(query.toLowerCase())).map((req: requestProps) => {
                                 return (
-                                    <tr key={req.requestId}>
-                                        {/* <td>{req.requestType}</td> */}
-                                        <td>{req.requestedBy}</td>
-                                        {/* <td>{req.requestType === "Specific" ? req.requestTo : "Generic"}</td> */}
-                                        <td>{req.description}</td>
+                                    <tr key={req.campaignId}>
+                                        <th>{req.campaignId}</th>
+                                        <td>{req.organisationName}</td>
+                                        <td>{req.campaignTitle}</td>
                                         <td>{req.createdAt.slice(0, 10)}</td>
-                                        {/* <td>
-                                            {req.requestStatus === "Pending" ?
-                                                <ApproveButton onClick={() => approveRequest(req.requestId,
-                                                    setShowLoading,
-                                                    setToastMessage,
-                                                    setShowToast,
-                                                    accessToken,
-                                                    navigate)}
-                                                >
-                                                    Approve
-                                                </ApproveButton> : <span>Approved</span>
-                                            }
-
-                                        </td> */}
+                                        <td>{req.target}</td>
+                                        <td>{req.requestStatus}</td>
+                                        <th><AiFillEye size={15} color="green"/></th>
+                                       
                                     </tr>
                                 )
                             })}
@@ -76,17 +65,12 @@ const ApproveRequest = () => {
                 {
                 requests
                         .filter(item => item.description?.toLowerCase().includes(query.toLowerCase()) ||
-                                        item.requestedBy?.toLowerCase().includes(query.toLowerCase()) || 
-                                        item.requestTo?.toLowerCase().includes(query.toLowerCase()))
+                                        item.organisationName?.toLowerCase().includes(query.toLowerCase()) || 
+                                        item.campaignTitle?.toLowerCase().includes(query.toLowerCase()))
                         .length === 0 ? <NoOrganisationContainer>No Request Found</NoOrganisationContainer> : ""
                 }
-                <LoginToast
-                    showToast={showToast}
-                    setShowToast={setShowToast}
-                    toastMessage={toastMessage}
-                />
             </TableWrapper>
-            {showLoading && <Spinner animation='border' className='spinner' />}
+            
         </ApproveDonationContainer>
     );
 }

@@ -44,13 +44,7 @@ export interface PasswordResetProps{
 
 
 export interface RequestCardProp {
-    details : {
-        requestType : string,
-        requestedBy : string,
-        description? : string,
-        requestId : string,
-        requestImage: string
-    }
+    details : requestProps
 }
 
 export interface queryProp {
@@ -90,16 +84,18 @@ export interface DonationChartProps{
 }
 
 export interface requestProps {
-    requestId: string,
-    requestedBy?: string,
-    requestType?: string,
-    requestTo?: string,
+    campaignId: string,
+    campaignTitle: string,
+    organisationName?: string,
+    username?: string,
+    email?: string,
     description?:string,
     requestStatus?:string,
-    requestImage:string,
+    campaignImage:string,
     createdAt: string,
     updatedAt?: Date,
-    contact: string
+    endDate? : Date | undefined,
+    target?: number,
 }
 
 export interface RequestChartProps{

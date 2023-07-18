@@ -6,6 +6,7 @@ import {
     DonationInputField,
     DonationInputLabel,
     FieldWrapper,
+    InputLabel,
 } from "../DonorPage/DonorStyles";
 //import { RoleContainer } from "../CreateAccount/CreateAccountStyles";
 import { Heading } from "../Login/LoginStyles";
@@ -20,9 +21,14 @@ import {
 import { useNavigate } from "react-router-dom";
 import { Spinner } from "react-bootstrap";
 import LoginToast from "../Shared_util/Toast/LoginToast";
+import { TextWrapper } from "./CharityStyles";
 
 function MakeRequest() {
     const campaignRef: any = useRef("");
+    const descriptionRef : any = useRef("")
+    const targetRef : any = useRef("")
+    const endDateRef : any = useRef("")
+
     const [imageUpload, setImageUpload] = useState<any>();
     const [imageUrl, setImageUrl] = useState("");
     const [showLoading, setShowLoading] = useState(false);
@@ -34,6 +40,7 @@ function MakeRequest() {
     const userData = sessionStorage.getItem("userDetails");
     const userDetails = userData && JSON.parse(userData);
 
+    
 
     const tokenData = sessionStorage.getItem("accesstoken");
     const accessToken = tokenData && JSON.parse(tokenData);
@@ -57,12 +64,15 @@ function MakeRequest() {
                 setShowLoading(true)
                 setTimeout(async () => {
                     const request = {
-                        requestId: v4(),
-                        requestedBy: userDetails.organisationName,
-                        requestType: 'Campaign',
-                        requestTo: 'General',
-                        description: campaignRef?.current.value,
-                        requestImage: imageUrl,
+                        campaignId: "8945",
+                        organisationName: userDetails.organisationName,
+                        username: userDetails.username,
+                        email: userDetails.email,
+                        campaignTitle : campaignRef.current.value,
+                        description: descriptionRef?.current.value,
+                        target : parseInt(targetRef.current.value),
+                        endDate: endDateRef.current.value,
+                        campaignImage: imageUrl,
                     }
                     const response = await fetch(`${BASE_URL}/requests`, {
                         method: "POST",
@@ -114,17 +124,26 @@ function MakeRequest() {
 
     return (
         <DonationFormContainer>
-            <DonationForms style={{ height: '400px', gap: '30px' }} onSubmit={handleRequest} >
+            <DonationForms style={{ height: '500px', gap: '30px' , width: " 420px", margin: '5px'}} onSubmit={handleRequest} >
                 <Heading>
                     Create a new Campaign
                 </Heading>
                 <div>
                     <FieldWrapper style={{ width: "100%" }}>
-                        <DonationInputLabel>Campaign</DonationInputLabel>
+                        <InputLabel>Campaign</InputLabel>
                         <DonationInputField type="text" ref={campaignRef} />
                     </FieldWrapper>
-                    <FieldWrapper>
-
+                    <FieldWrapper style={{ width: "100%" }}>
+                            <InputLabel htmlFor='missions'>Description</InputLabel>
+                            <TextWrapper defaultValue={''} style={{width: "100%"}} ref={descriptionRef}></TextWrapper>
+                    </FieldWrapper>
+                    <FieldWrapper style={{ width: "100%" }}>
+                        <InputLabel>Target</InputLabel>
+                        <DonationInputField type="number" ref={targetRef} />
+                    </FieldWrapper>
+                    <FieldWrapper style={{ width: "100%" }}>
+                        <InputLabel>End Date</InputLabel>
+                        <DonationInputField type="date" ref={endDateRef} />
                     </FieldWrapper>
                     <FieldWrapper className="field">
                         <DonationInputLabel>Upload Campaign Image</DonationInputLabel>
