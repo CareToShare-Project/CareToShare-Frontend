@@ -16,7 +16,7 @@ const RequestCard: React.FC<RequestCardProp> = ({ details }) => {
     const [campaignDonation, setCampaignDonations] = useState<donationProps[]>([])
     
     const totalDonations = campaignDonation.reduce((accumulator, currentValue) => accumulator + currentValue.quantity, 0)
-    const progress = target && (totalDonations/target) * 100
+    const progress = target && Math.floor((totalDonations/target) * 100)
     const tokenData = sessionStorage.getItem("accesstoken");
     const accessToken = tokenData && JSON.parse(tokenData);
     

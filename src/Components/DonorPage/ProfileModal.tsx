@@ -18,10 +18,10 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ show, setShow, details }) =
             style={{ width: '100%', height: 'max-content' }}>
             <Modal.Body style={{
                 display: 'flex', width: '100%',
-                flexDirection: 'column', padding: '20px', gap: '30px'
+                flexDirection: 'column', padding: '20px', gap: '30px', height: "500px", overflowY : "scroll"
             }}>
                 <div style={{ display: 'flex', flexDirection: 'row', width: "100%", alignItems: 'center', gap: '30px', justifyContent: 'flex-start' }}>
-                    <img src={img} alt='round' style={{ width: '120px', height: '120px', borderRadius: '50%' }} />
+                    <img src={details?.photo} alt='round' style={{ width: '120px', height: '120px', borderRadius: '50%', objectFit: "cover"}} />
                     <DetailsWrapper style={{ padding: '0px', width: '60%' }}>
                         <span className='organizationName' style={{ fontSize: "18px" }}>
                             <span>{details?.organisationName}</span>
@@ -47,7 +47,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ show, setShow, details }) =
                     <div>
                         {details?.reviews && details.reviews.map((item, index)=> {
                             return(
-                                <li key={index}>{item}</li>
+                                <li key={index}>{item.review}</li>
                             )
                         })}
                         {details?.reviews.length === 0 && <div>No reviews available</div>}

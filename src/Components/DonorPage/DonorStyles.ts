@@ -314,6 +314,7 @@ export const CardContainer = styled.div`
 export const ImageWrapper = styled.img`
     width: 100%;
     height: 150px;
+    object-fit: cover;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     border-bottom: 5px solid ${({theme})=> theme.background.primary};
@@ -329,7 +330,6 @@ export const DetailsWrapper = styled.div`
     display: flex;
     flex-direction: column;
     padding-left: 15px;
-    text-align: center;
     overflow-y: scroll;
     
 
@@ -385,8 +385,6 @@ export const ReviewWrapper = styled.div`
     }
     
     div{
-        height: 200px;
-        overflow-y: scroll;
         display: flex;
         flex-direction: column;
 
@@ -500,6 +498,7 @@ export const DonationFormContainer = styled.div`
     padding: 30px 0px;
 
     .campaignImage{
+        
         img{
             width: 500px;
             height: 500px;
@@ -509,6 +508,7 @@ export const DonationFormContainer = styled.div`
     .campaignCard{
         width: 60%;
         height: 500px;
+        overflow-y:scroll;
         border-radius: 10px;
         box-shadow: 0px 0px 4px 3px rgba(20, 107, 113, 0.1);
         border: 1px solid rgba(86, 192, 200, 0.3);
@@ -517,7 +517,7 @@ export const DonationFormContainer = styled.div`
             padding: 20px;
             
             header{
-                font-size: 30px;
+                font-size: 25px;
                 font-weight: 500;
                 font-family: Playfair;
             }
@@ -917,7 +917,7 @@ export const CampaignCardWrapper = styled.div`
     height: 300px;
     width: 90%;
     display: flex;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
     gap: 10px;
     border-radius: 10px;
     box-shadow: 0px 0px 4px 3px rgba(20, 107, 113, 0.1);

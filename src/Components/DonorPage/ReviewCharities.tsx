@@ -20,6 +20,8 @@ function ReviewCharities() {
     const [selectedOrganization, setSelectedOrganization] = useState<OrganisationProps>();
     const [showLoading, setShowLoading] = useState(false)
     const reviewRef = useRef<any>()
+    const userData = sessionStorage.getItem("userDetails");
+    const userDetails = userData && JSON.parse(userData);
     const tokenData = sessionStorage.getItem('accesstoken')
     const accessToken = tokenData && JSON.parse(tokenData)
 
@@ -42,7 +44,8 @@ function ReviewCharities() {
                         'authorization': `Bearer ${accessToken}`
                     },
                     body : JSON.stringify({
-                        review
+                        user: userDetails.username,
+                        review : review
                     })
                 })
 

@@ -46,7 +46,6 @@ const ApproveRegistration = () => {
                             <th>Status</th>
                             <th>Date</th>
                             <th>Location</th>
-                            <th style={{width: "250px"}}>Mission</th>
                             <th style={{width: "100px"}}>
                                 Certificate
                             </th>
@@ -63,7 +62,6 @@ const ApproveRegistration = () => {
                                     <td>{org.isActive ? "Active" : "Inactive"}</td>
                                     <td>{org.createdAt.slice(0, 10)}</td>
                                     <td>{org.location}</td>
-                                    <td className='mission'>{org.mission}</td>
                                     <td>
                                         {org.businessCertificate !== "no cert" ?
                                             <a 
@@ -76,19 +74,6 @@ const ApproveRegistration = () => {
                                             "none"}
                                     </td>
 
-                                    {/* <td>
-                                        {org.isApproved ? <span>Approved</span> :
-                                            <ApproveButton
-                                                onClick={() => approveOrganisationRegistration(
-                                                    org.username, setShowLoading,
-                                                    setToastMessage, setShowToast,
-                                                    accessToken,
-                                                    navigate)}
-                                            >
-                                                Approve
-                                            </ApproveButton>
-                                        }
-                                    </td> */}
                                     <td>
                                         {org.isActive ?
                                             <ApproveButton onClick={() => deactivateOrganisation(org.username,

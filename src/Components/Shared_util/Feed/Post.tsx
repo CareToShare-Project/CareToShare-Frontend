@@ -41,7 +41,7 @@ const PostComponent: React.FC<Post> = ({ post }) => {
     return (
         <div className="feed-card" key={post.id}>
             <div className="header">
-                {post.profilePhoto ? <img src={post.profilePhoto} alt="post-profile" /> :<img src={img} alt="post-profile" />}
+                {post.profilePhoto ? <img src={post.profilePhoto} alt="post-profile" style={{objectFit : "cover"}}/> :<img src={img} alt="post-profile" />}
                 <span className="org">
                     <span className="head">{post.organisation} </span>
                     <span>{post.username}</span>
@@ -54,7 +54,7 @@ const PostComponent: React.FC<Post> = ({ post }) => {
             <div className="footer">
                 {post.images && post.images.map(item => {
                     return (
-                        <img src={item} alt="footer" key={item} />
+                        <img src={item} alt="footer" key={item} style={{objectFit : "cover"}} />
                     )
                 })
                 }

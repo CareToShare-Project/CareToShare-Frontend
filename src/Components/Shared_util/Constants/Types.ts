@@ -110,7 +110,10 @@ export interface DonationRequestChartProps{
     requests : requestProps[]
 
 }
-
+export interface reviewsProp {
+    user : string,
+    review: string
+}
 export interface OrganisationProps{
     username: string,
     _id : string,
@@ -122,7 +125,7 @@ export interface OrganisationProps{
     isApproved?: boolean,
     isActive?: boolean,
     role ?: string,
-    reviews : string[],
+    reviews : reviewsProp[],
     businessCertificate: string,
     mission : string,
     createdAt: string,

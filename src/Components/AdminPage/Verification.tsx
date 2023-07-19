@@ -5,7 +5,7 @@ import { NoOrganisationContainer, TableWrapper } from "../DonorPage/DonorStyles"
 import SearchBar from "../Shared_util/SearchBar/SearchBar"
 import { Modal, Spinner, Table } from "react-bootstrap"
 import { getAllOrganisations, verifyOrganisation } from "../Shared_util/Constants/Functions"
-import { OrganisationProps } from "../Shared_util/Constants/Types"
+import { OrganisationProps, reviewsProp } from "../Shared_util/Constants/Types"
 import LoginToast from "../Shared_util/Toast/LoginToast"
 import Sentiment from "sentiment"
 import { FaThumbsDown, FaThumbsUp } from "react-icons/fa"
@@ -54,7 +54,7 @@ const Verification = () => {
       
 
     // sentiment analysis function 
-    const calculateSentiment = (reviews: string[]) => {
+    const calculateSentiment = (reviews: reviewsProp[]) => {
         //setShowLoading(true)
         if (reviews.length === 0) {
             // setShowLoading(false)
@@ -65,7 +65,7 @@ const Verification = () => {
         const analyzer = new Sentiment();
 
         // Analyze each review and get the sentiment result
-        const sentimentResults = reviews.map((review) => analyzer.analyze(review));
+        const sentimentResults = reviews.map((review) => analyzer.analyze(review.review));
         console.log('sentimentResults', sentimentResults)
 
         // Calculate the average sentiment score
@@ -129,26 +129,10 @@ const Verification = () => {
                                     <tr key={org.username}>
                                         <td>{org.organisationName}</td>
                                         <td>{org.location}</td>
-                                        {/* <td>{org.contact}</td>
-                                        <td>{org.email}</td>
-                                        <td>{org.createdAt.slice(0, 10)}</td> */}
                                         <td>{calculateDaysSince(org.createdAt.slice(0, 10))}</td>
                                         <td>{org.reviews.length}</td>
                                         <td>{calculateSentiment(org.reviews)}</td>
-                                        {/* <td>
-                                            <AnalyzeButton style={{ padding: "5px" }} onClick={() => calculateSentiment(org.reviews)}>
-                                                Analyze
-                                            </AnalyzeButton>
-                                        </td> */}
                                         <td>{org.isVerified ? "Yes" : "No"}</td>
-                                        {/* <td>
-                                            {org.isVerified ? 'verified' : <AnalyzeButton 
-                                                style={{ padding: "5px" }} 
-                                                onClick={() => verifyOrganisation(org.username, setShowLoading, setToastMessage, setShowToast, accessToken, navigate)}>
-                                                Verify
-                                            </AnalyzeButton>
-                                            }
-                                        </td> */}
                                     </tr>
                                 )
                             })}
