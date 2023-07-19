@@ -499,6 +499,13 @@ export const DonationFormContainer = styled.div`
     justify-content: center;
     padding: 30px 0px;
 
+    .campaignImage{
+        img{
+            width: 500px;
+            height: 500px;
+        }
+    }
+
     .campaignCard{
         width: 60%;
         height: 500px;
@@ -548,7 +555,7 @@ export const DonationFormContainer = styled.div`
 `
 
 export const DonationForms = styled.form`
-    width: 400px;
+    width: 30%;
     height: 470px;
     overflow-y: scroll;
     box-shadow: 0px 0px 4px 3px rgba(20, 107, 113, 0.1);

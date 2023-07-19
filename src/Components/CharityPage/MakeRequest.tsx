@@ -22,6 +22,7 @@ import { useNavigate } from "react-router-dom";
 import { Spinner } from "react-bootstrap";
 import LoginToast from "../Shared_util/Toast/LoginToast";
 import { TextWrapper } from "./CharityStyles";
+import campaignImage from "../HomePage/images/campaignImage.png"
 
 function MakeRequest() {
     const campaignRef: any = useRef("");
@@ -123,12 +124,15 @@ function MakeRequest() {
 
 
     return (
-        <DonationFormContainer>
-            <DonationForms style={{ height: '500px', gap: '30px' , width: " 420px", margin: '5px'}} onSubmit={handleRequest} >
+        <DonationFormContainer style={{gap: "30px"}}>
+            <div className="campaignImage">
+                <img src={campaignImage} alt="lol" />
+            </div>
+            <DonationForms style={{ height: '500px', gap: '30px' , margin: '5px'}} onSubmit={handleRequest} >
                 <Heading>
                     Create a new Campaign
                 </Heading>
-                <div>
+                <div style={{width: "100%"}}>
                     <FieldWrapper style={{ width: "100%" }}>
                         <InputLabel>Campaign</InputLabel>
                         <DonationInputField type="text" ref={campaignRef} />

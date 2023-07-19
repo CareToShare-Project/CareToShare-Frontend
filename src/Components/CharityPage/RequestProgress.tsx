@@ -43,6 +43,31 @@ const RequestProgress = () => {
       
         return `${daysDiff} days`;
       }
+    
+      const getAllDonations = async (campaignId: string) => {
+        try {
+            const response = await fetch(`${BASE_URL}/donations/${campaignId}`, {
+                method: 'GET',
+                headers: {
+                    'content-type': 'application{/json',
+                    'authorization': `Bearer ${accessToken}`
+                },
+            })
+    
+            if (response.status === 401) return navigate("/login")
+    
+            if (response.status === 500) return
+
+            const results = await response.json();
+            const donation = results.data
+            if (results.status === "success") {
+                return donation.reduce((accumulator: any, currentValue: { quantity: any; }) => accumulator + currentValue.quantity, 0)
+
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     useEffect(() => {
         organisationRequest(setRequests, userDetails.organisationName,accessToken, navigate)
@@ -59,8 +84,10 @@ const RequestProgress = () => {
                             <tr>
                                 <th>Campaign</th>
                                 <th>Days Left</th>
+                                <th>Target</th>
                                 <th>Status</th>
-                                <th>Action</th>
+                                <th>Close Campaign</th>
+                                <th>Donations</th>
                             </tr>
                         </thead>
                         <tbody className='table-body'>
@@ -72,9 +99,16 @@ const RequestProgress = () => {
                                                 {req.campaignTitle}
                                             </td>
                                             <td>{calculateDaysLeft(req.endDate)} </td>
+                                            <td>{req.target}</td>
                                             <td>{req.requestStatus}</td>
-                                            <td><ApproveButton>
+                                            <td>
+                                                <ApproveButton>
                                                     close
+                                                </ApproveButton>
+                                            </td>
+                                            <td>
+                                                <ApproveButton>
+                                                    view
                                                 </ApproveButton>
                                             </td>
                                            
