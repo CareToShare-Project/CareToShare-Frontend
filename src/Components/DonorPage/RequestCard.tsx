@@ -11,7 +11,7 @@ import { BASE_URL } from '../Shared_util/Constants/Base_URL'
 
 const RequestCard: React.FC<RequestCardProp> = ({ details }) => {
 
-    const {organisationName, campaignImage, campaignTitle, endDate, description, target, campaignId} = details
+    const {organisationName, campaignImage, campaignTitle, endDate, description, target, campaignId, requestStatus} = details
     const navigate = useNavigate()
     const [campaignDonation, setCampaignDonations] = useState<donationProps[]>([])
     
@@ -47,6 +47,7 @@ const RequestCard: React.FC<RequestCardProp> = ({ details }) => {
     
     const handleDonation = () => {
         sessionStorage.setItem('campaign', JSON.stringify(details))
+        sessionStorage.setItem('totalDonations', JSON.stringify(totalDonations))
         navigate('makeDonations')
     }
 
@@ -89,9 +90,14 @@ const RequestCard: React.FC<RequestCardProp> = ({ details }) => {
                     <span className='heading'>About</span>
                     <span className='content'>{description}</span>
                 </div>
+                
                 <div>
                     <span className='heading'>Organisation</span>
                     <span className='content'>{organisationName}</span>
+                </div>
+                <div>
+                    <span className='heading'>Status</span>
+                    <span className='content'>{requestStatus}</span>
                 </div>
                 <div >
                     <span className='heading'>Days Left</span>

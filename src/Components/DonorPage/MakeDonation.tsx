@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState} from "react";
 import {
     DonateButton,
     DonationFormContainer,
@@ -7,7 +7,6 @@ import {
     DonationInputLabel,
     FieldWrapper,
 } from "./DonorStyles";
-import { RoleContainer } from "../CreateAccount/CreateAccountStyles";
 import { Heading } from "../Login/LoginStyles";
 import { BiDonateHeart } from "react-icons/bi";
 import { TextWrapper } from "../CharityPage/CharityStyles";
@@ -17,12 +16,11 @@ import {
     uploadImage,
     uploadFileToStorageBucket,
 } from "../Shared_util/Constants/Functions";
-import { getAllOrganisations } from "../Shared_util/Constants/Functions";
-import Select from "react-select";
-import { OrganisationProps } from "../Shared_util/Constants/Types";
 import { useNavigate } from "react-router-dom";
 import { Spinner } from "react-bootstrap";
 import LoginToast from "../Shared_util/Toast/LoginToast";
+import { MdMoreTime} from "react-icons/md";
+import { GiProgression } from "react-icons/gi";
 
 function MakeDonation() {
     const locationRef: any = useRef("");
@@ -45,7 +43,26 @@ function MakeDonation() {
     const campaignData = sessionStorage.getItem('campaign')
     const campaignDetails = campaignData && JSON.parse(campaignData)
 
-    console.log(campaignDetails)
+    const totalDonationData = sessionStorage.getItem('totalDonations')
+    const totalDonations = totalDonationData && JSON.parse(totalDonationData)
+
+    function calculateDaysLeft(dateString : Date | undefined) {
+        // Convert the given date string to a Date object
+        if (dateString=== undefined) return
+        const givenDate = new Date(dateString);
+      
+        // Get the current date
+        const currentDate = new Date();
+      
+        // Calculate the time difference in milliseconds
+        const timeDiff =  givenDate.getTime() - currentDate.getTime();
+      
+        // Convert the time difference to days
+        const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24));
+
+      
+        return `${daysDiff} days`;
+      }
 
    
 
@@ -122,8 +139,28 @@ function MakeDonation() {
 
     
     return (
-        <DonationFormContainer>
-            <DonationForms onSubmit={handleDonation} style={{marginTop: "20px"}}>
+        <DonationFormContainer style={{gap: "20px"}}>
+            <div className="campaignCard">
+                <img src={campaignDetails.campaignImage} alt="campaign-display"/>
+                <div>
+                    <header>{campaignDetails.campaignTitle}</header>
+                    <p>{campaignDetails.description}</p>
+                    <div>
+                        <div>
+                            <MdMoreTime size={30} color='green'/> {" "}
+                            <span>{calculateDaysLeft(campaignDetails.endDate)} left</span>
+                        </div>
+                        <div>
+                            <GiProgression size={30} color='green'/>
+                            <span>{totalDonations}/{campaignDetails.target} donations</span>
+                        </div>
+                        
+                    </div>
+
+                    
+                </div>
+            </div>
+            <DonationForms onSubmit={handleDonation} style={{marginTop: "5px", height: "500px"}}>
                 <Heading>
                     Donate now <BiDonateHeart />
                 </Heading>

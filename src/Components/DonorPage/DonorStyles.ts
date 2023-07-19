@@ -499,6 +499,52 @@ export const DonationFormContainer = styled.div`
     justify-content: center;
     padding: 30px 0px;
 
+    .campaignCard{
+        width: 60%;
+        height: 500px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 4px 3px rgba(20, 107, 113, 0.1);
+        border: 1px solid rgba(86, 192, 200, 0.3);
+
+        div{
+            padding: 20px;
+            
+            header{
+                font-size: 30px;
+                font-weight: 500;
+                font-family: Playfair;
+            }
+
+            p{
+                font-family: Poppins;
+                font-weight: 500;
+                font-size: 16px;
+            }
+
+            div{
+                display: flex;
+                align-items: center;
+                gap: 2px;
+                div{
+                    span{
+                    font-family: Poppins;
+                    font-weight: 700;
+                    font-size: 16px;
+                }
+                }
+               
+            }
+        }
+
+        img{
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+    }
+
 `
 
 export const DonationForms = styled.form`
