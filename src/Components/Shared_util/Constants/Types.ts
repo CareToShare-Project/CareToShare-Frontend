@@ -59,8 +59,10 @@ export interface NavBarProp {
 }
 
 export interface donationProps {
-    donationType: string,
     donationId: string,
+    donorEmail: string,
+    organisationEmail: string,
+    campaignId: string,
     donatedBy: string,
     donatedTo?: string,
     donationStatus?: string,
@@ -69,7 +71,8 @@ export interface donationProps {
     location?: string,
     createdAt: string,
     updatedAt: string,
-    contact?: string
+    contact?: string,
+    quantity: number
 }
 
 export interface donationCardProps {

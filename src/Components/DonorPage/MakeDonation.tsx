@@ -27,6 +27,7 @@ import LoginToast from "../Shared_util/Toast/LoginToast";
 function MakeDonation() {
     const locationRef: any = useRef("");
     const descriptionRef: any = useRef("");
+    const quantityRef : any = useRef("")
     const [imageUpload, setImageUpload] = useState<any>();
     const [imageUrl, setImageUrl] = useState("");
     const [showLoading, setShowLoading] = useState(false);
@@ -38,16 +39,15 @@ function MakeDonation() {
     const userData = sessionStorage.getItem("userDetails");
     const userDetails = userData && JSON.parse(userData);
 
-    const [organisations, setOrganisations] = useState<OrganisationProps[]>([]);
-    const [selectedOrganization, setSelectedOrganization] =
-        useState<OrganisationProps>();
-
     const tokenData = sessionStorage.getItem("accesstoken");
     const accessToken = tokenData && JSON.parse(tokenData);
 
-    const handleChange = (selectedOption: any) => {
-        setSelectedOrganization(selectedOption);
-    };
+    const campaignData = sessionStorage.getItem('campaign')
+    const campaignDetails = campaignData && JSON.parse(campaignData)
+
+    console.log(campaignDetails)
+
+   
 
    
 
@@ -68,16 +68,20 @@ function MakeDonation() {
             
             setTimeout(
                 async () => {
-                    const donationId = v4();
-                    const org = selectedOrganization?.organisationName;
+                    const numberOfItems = parseInt(quantityRef.current.value) < 0 ? parseInt(quantityRef.current.value) * -1 : parseInt(quantityRef.current.value)
+
                     const donation = {
-                        donatedBy: userDetails.username,
-                        donationId: donationId,
-                        description: descriptionRef.current.value,
-                        location: locationRef.current.value,
-                        itemPhoto: imageUrl,
-                        donatedTo: org,
-                        contact: userDetails.contact
+                       donationId: v4(),
+                       campaignId: campaignDetails.campaignId,
+                       donatedBy: userDetails.username,
+                       donorEmail: userDetails.email,
+                       organisationEmail : campaignDetails.email,
+                       donatedTo : campaignDetails.organisationName,
+                       contact : userDetails.contact,
+                       description: descriptionRef.current.value,
+                       quantity: numberOfItems,
+                       location: locationRef.current.value,
+                       itemPhoto : imageUrl
                     };
                     const response = await fetch(`${BASE_URL}/donations`, {
                         method: "POST",
@@ -116,65 +120,27 @@ function MakeDonation() {
     }
 };
 
-    // gets all organisations on page load
-    useEffect(() => {
-        const results = sessionStorage.getItem("organisations");
-        if (results !== null) {
-            const availableOrganisations = JSON.parse(results);
-            setOrganisations(availableOrganisations);
-        } else {
-            getAllOrganisations(setOrganisations, accessToken, navigate);
-        }
-    }, [accessToken, navigate]);
-
+    
     return (
         <DonationFormContainer>
-            <DonationForms onSubmit={handleDonation}>
+            <DonationForms onSubmit={handleDonation} style={{marginTop: "20px"}}>
                 <Heading>
                     Donate now <BiDonateHeart />
                 </Heading>
                 <div>
-                    {/* <FieldWrapper style={{ width: "100%" }}>
-                        <DonationInputLabel>Type</DonationInputLabel>
-                        <RoleContainer
-                            id="options"
-                            style={{ border: "2px solid #3A1078" }}
-                            required
-                            onChange={handleDonationType}
-                        >
-                            <option value="" defaultValue={"Select"} disabled>
-                                Select donation type
-                            </option>
-                            <option value="Generic">Generic</option>
-                            <option value="Specific">Specific</option>
-                        </RoleContainer>
-                    </FieldWrapper> */}
-
-                    <FieldWrapper>
-                        <DonationInputLabel>Donate To</DonationInputLabel>
-                        <Select
-                            value={selectedOrganization}
-                            onChange={handleChange}
-                            options={organisations}
-                            getOptionLabel={(org) => org.organisationName}
-                            getOptionValue={(org) => org.organisationName}
-                            placeholder="Select an organization"
-                        />
-                    </FieldWrapper>
                     <FieldWrapper className="field">
                         <DonationInputLabel>Pickup location</DonationInputLabel>
                         <DonationInputField type="text" ref={locationRef} />
                     </FieldWrapper>
-
                     <FieldWrapper className="field">
                         <DonationInputLabel>Upload image of items</DonationInputLabel>
                         <DonationInputField
                             type="file"
+                            required
                             style={{ height: "40px" }}
                             onChange={(e) => uploadImage(e, setImageUpload)}
                         />
                     </FieldWrapper>
-
                     <FieldWrapper className="field">
                         <DonationInputLabel htmlFor="description">
                             Description of items
@@ -184,6 +150,13 @@ function MakeDonation() {
                             defaultValue={""}
                             ref={descriptionRef}
                         ></TextWrapper>
+                    </FieldWrapper>
+                    <FieldWrapper className="field">
+                        <DonationInputLabel>Quantity</DonationInputLabel>
+                        <DonationInputField
+                            type="number"
+                            ref={quantityRef}
+                        />
                     </FieldWrapper>
                     {imageUrl ? 
                         <DonateButton

@@ -26,8 +26,23 @@ const RequestProgress = () => {
     const userData = sessionStorage.getItem('userDetails')
     const userDetails = userData && JSON.parse(userData)
 
-    
+    function calculateDaysLeft(dateString : Date | undefined) {
+        // Convert the given date string to a Date object
+        if (dateString=== undefined) return
+        const givenDate = new Date(dateString);
+      
+        // Get the current date
+        const currentDate = new Date();
+      
+        // Calculate the time difference in milliseconds
+        const timeDiff =  givenDate.getTime() - currentDate.getTime();
+      
+        // Convert the time difference to days
+        const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24));
 
+      
+        return `${daysDiff} days`;
+      }
 
     useEffect(() => {
         organisationRequest(setRequests, userDetails.organisationName,accessToken, navigate)
@@ -43,7 +58,7 @@ const RequestProgress = () => {
                         <thead className='table-heading'>
                             <tr>
                                 <th>Campaign</th>
-                                <th>Date</th>
+                                <th>Days Left</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -56,7 +71,7 @@ const RequestProgress = () => {
                                             <td style={{width: '300px'}}>
                                                 {req.campaignTitle}
                                             </td>
-                                            <td>{req.createdAt.slice(0,10)}</td>
+                                            <td>{calculateDaysLeft(req.endDate)} </td>
                                             <td>{req.requestStatus}</td>
                                             <td><ApproveButton>
                                                     close

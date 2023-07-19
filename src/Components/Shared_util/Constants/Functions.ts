@@ -528,6 +528,7 @@ export const organisationRequest = async (setRequests: React.Dispatch<any>, requ
         if (response.status === 401) return navigate('/login')
         const results = await response.json();
         const requests = results.data
+        console.log(requests)
         if (results.status === "success") {
             setRequests(requests)
             sessionStorage.setItem('Orgrequests', JSON.stringify(requests))

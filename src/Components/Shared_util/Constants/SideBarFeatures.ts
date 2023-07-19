@@ -26,11 +26,11 @@ export const donorFeatures: SideBarFeaturesProp['features'] = [
         icon: MdCampaign,
         link: 'viewRequests'
     },
-    {
-        title: 'Make Donation',
-        icon: BiDonateHeart,
-        link: 'makeDonations'
-    },
+    // {
+    //     title: 'Make Donation',
+    //     icon: BiDonateHeart,
+    //     link: 'makeDonations'
+    // },
     {
         title:'Donation History',
         icon: FaHistory,

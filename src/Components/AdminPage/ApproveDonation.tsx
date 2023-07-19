@@ -67,26 +67,6 @@ const ApproveDonation = () => {
                                     <td onClick={()=>displayItems(donation)}>
                                         <AiFillEye size={15} color="green"/>
                                     </td>
-                                    {/* <td>
-                                        {donation.donationStatus === status.pending ? (
-                                            <ApproveButton
-                                                onClick={() =>
-                                                    approveDonation(
-                                                        donation.donationId,
-                                                        setShowLoading,
-                                                        setToastMessage,
-                                                        setShowToast,
-                                                        accessToken,
-                                                        navigate
-                                                    )
-                                                }
-                                            >
-                                                Approve
-                                            </ApproveButton>
-                                        ) : (
-                                            <span>Approved</span>
-                                        )}
-                                    </td> */}
                                 </tr>
                             );
                         })}
@@ -115,7 +95,7 @@ const ApproveDonation = () => {
                                 <span style={{fontFamily: "Poppins", fontWeight: "700", color: '#56C0C8'}}>
                                     Donated By
                                 </span>
-                                <div style={{lineHeight: '13px', fontWeight: "450"}}>
+                                <div style={{lineHeight: '16px', fontWeight: "450"}}>
                                     {data?.donatedBy}
                                 </div>
                             </div>

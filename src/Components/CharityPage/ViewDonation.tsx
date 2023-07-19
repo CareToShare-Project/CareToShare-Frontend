@@ -22,7 +22,6 @@ const ViewDonation = () => {
     const tokenData = sessionStorage.getItem("accesstoken");
     const accessToken = tokenData && JSON.parse(tokenData);
 
-    const generalDonations = donations?.filter(item => item.donationType === "Generic" && item.donationStatus === "In Progress");
 
     const navigate = useNavigate()
 
@@ -33,36 +32,6 @@ const ViewDonation = () => {
     return (
         <RightSideContentWrapper>
             <SearchBar query={query} setQuery={setQuery} setRefresh={setRefresh} />
-
-            {generalDonations &&
-                <div className='general'>
-                    <ViewFoundationContainer>
-                        {generalDonations.map(item => {
-                            return (
-                                <DonationCard
-                                    details={item}
-                                    key={item.donationId}
-                                    setShowLoading={setShowLoading}
-                                    setShowToast={setShowToast}
-                                    setToastMessage={setToastMessage}
-                                />
-                            )
-                        })}
-                    </ViewFoundationContainer>
-                </div>
-            }
-            {
-                !generalDonations.length && <NoDonationContainer>
-                    No donation available
-                </NoDonationContainer>
-            }
-            <LoginToast
-                showToast={showToast}
-                setShowToast={setShowToast}
-                toastMessage={toastMessage}
-            />
-            {showLoading && <Spinner animation="border" className="spinner" style={{ color: 'black' }} />}
-
         </RightSideContentWrapper>
     )
 }
