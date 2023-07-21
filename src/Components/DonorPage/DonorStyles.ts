@@ -917,10 +917,10 @@ export const CampaignCardWrapper = styled.div`
     height: 300px;
     width: 90%;
     display: flex;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     gap: 10px;
     border-radius: 10px;
-    box-shadow: 0px 0px 4px 3px rgba(20, 107, 113, 0.1);
+    box-shadow: 0px 0px 4px 3px rgba(0, 0, 0, 0.3);
 `
 export const CampaignImageContainer = styled(ImageWrapper)`
     height: 300px;
@@ -937,6 +937,7 @@ export const CampaignDetailsContainer = styled.div`
     flex-direction: column;
     gap: 20px;
     height: 300px;
+    width: 70%;
     overflow-y: scroll;
     padding: 10px;
 

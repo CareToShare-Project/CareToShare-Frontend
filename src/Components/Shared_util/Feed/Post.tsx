@@ -34,7 +34,8 @@ const PostComponent: React.FC<Post> = ({ post }) => {
             const commentData = { username, comment }
             dispatch(addComment({ comment: commentData, id }))
         }
-        setShowComment(false)
+        
+        commentRef.current.value = ""
     }
 
 
@@ -45,7 +46,7 @@ const PostComponent: React.FC<Post> = ({ post }) => {
                 <span className="org">
                     <span className="head">{post.organisation} </span>
                     <span>{post.username}</span>
-                    <span className="time">posted on {post.postedOn.toLocaleString()}</span>
+                    <span className="time">{post.postedOn.toLocaleString()}</span>
                 </span>
             </div>
             <p>
@@ -78,7 +79,6 @@ const PostComponent: React.FC<Post> = ({ post }) => {
                 {post.username === userDetails.username ?
                     <span>
                         <MdDelete size={25} />
-                        <span>Delete Post</span>
                     </span> : ""
                 }
             </div>
