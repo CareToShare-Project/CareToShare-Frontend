@@ -556,6 +556,7 @@ export const DonationFormContainer = styled.div`
 
 export const DonationForms = styled.form`
     width: 30%;
+    min-width: 350px;
     height: 470px;
     overflow-y: scroll;
     box-shadow: 0px 0px 4px 3px rgba(20, 107, 113, 0.1);

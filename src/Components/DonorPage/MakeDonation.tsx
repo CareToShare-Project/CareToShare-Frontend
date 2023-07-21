@@ -31,6 +31,13 @@ function MakeDonation() {
     const [showLoading, setShowLoading] = useState(false);
     const [showToast, setShowToast] = useState(false);
     const [toastMessage, setToastMessage] = useState("");
+    const [deliveryMethod, setDeliveryMethod] = useState('');
+
+    const handleDeliveryMethodChange = (e :  React.ChangeEvent<HTMLInputElement>) => {
+        setDeliveryMethod(e.target.value);
+    };
+
+    console.log(deliveryMethod)
 
     const navigate = useNavigate();
 
@@ -166,8 +173,14 @@ function MakeDonation() {
                 </Heading>
                 <div>
                     <FieldWrapper className="field">
-                        <DonationInputLabel>Pickup location</DonationInputLabel>
-                        <DonationInputField type="text" ref={locationRef} />
+                        <DonationInputLabel htmlFor="description">
+                            Description of items
+                        </DonationInputLabel>
+                        <TextWrapper
+                            className="text-field"
+                            defaultValue={""}
+                            ref={descriptionRef}
+                        ></TextWrapper>
                     </FieldWrapper>
                     <FieldWrapper className="field">
                         <DonationInputLabel>Upload image of items</DonationInputLabel>
@@ -179,22 +192,38 @@ function MakeDonation() {
                         />
                     </FieldWrapper>
                     <FieldWrapper className="field">
-                        <DonationInputLabel htmlFor="description">
-                            Description of items
-                        </DonationInputLabel>
-                        <TextWrapper
-                            className="text-field"
-                            defaultValue={""}
-                            ref={descriptionRef}
-                        ></TextWrapper>
-                    </FieldWrapper>
-                    <FieldWrapper className="field">
                         <DonationInputLabel>Quantity</DonationInputLabel>
                         <DonationInputField
                             type="number"
                             ref={quantityRef}
                         />
                     </FieldWrapper>
+                    <FieldWrapper>
+                        <DonationInputLabel>Donation Delivery Preference</DonationInputLabel>
+                    </FieldWrapper>
+                    <label style={{marginLeft: "15px", fontFamily: "Poppins", fontSize: "15px"}}>
+                        <input
+                            type="radio"
+                            value="delivery"
+                            checked={deliveryMethod === "delivery"}
+                            onChange={handleDeliveryMethodChange}
+                        />
+                        Direct Delivery to Organisation
+                    </label>
+                    <label style={{marginLeft: "15px" , fontFamily: "Poppins", fontSize: "15px"}}>
+                        <input
+                            type="radio"
+                            value="pickup"
+                            checked={deliveryMethod === "pickup"}
+                            onChange={handleDeliveryMethodChange}
+                        />
+                        Scheduled Pick-up by Organization
+                    </label>
+                    <FieldWrapper className="field">
+                        <DonationInputLabel>Pickup location</DonationInputLabel>
+                        <DonationInputField type="text" ref={locationRef} />
+                    </FieldWrapper>
+                   
                     {imageUrl ? 
                         <DonateButton
                             className="donate-btn"
