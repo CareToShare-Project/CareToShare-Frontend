@@ -83,6 +83,7 @@ const DonationProgress = () => {
                                 <th>Organisation</th>
                                 <th>Delivery Date</th>
                                 <th>Transaction Method</th>
+                                <th>Contact</th>
                                 <th>Location</th>
                                 <th>Status</th>
                                 <th>View</th>
@@ -99,6 +100,7 @@ const DonationProgress = () => {
                                             </td>
                                             <td>{donation.deliveryDate?.toString().slice(0,10)}</td>
                                             <td>{donation.deliveryMethod}</td>
+                                            <td>{donation.organisationContact}</td>
                                             <td>{donation.location}</td>
                                             <td>
                                                 {!donation.delivered && !donation.received && donation.donationStatus}

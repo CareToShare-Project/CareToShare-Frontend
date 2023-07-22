@@ -64,6 +64,7 @@ function MakeRequest() {
                     const request = {
                         campaignId: v4(),
                         organisationName: userDetails.organisationName,
+                        organisationContact: userDetails.contact,
                         username: userDetails.username,
                         email: userDetails.email,
                         campaignTitle : campaignRef.current.value,
