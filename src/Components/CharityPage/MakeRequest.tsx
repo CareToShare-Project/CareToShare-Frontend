@@ -72,6 +72,7 @@ function MakeRequest() {
                         startDate: startDateRef.current.value,
                         endDate: endDateRef.current.value,
                         campaignImage: imageUrl,
+                        location: userDetails.location
                     }
                     const response = await fetch(`${BASE_URL}/requests`, {
                         method: "POST",

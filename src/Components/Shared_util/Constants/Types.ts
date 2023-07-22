@@ -75,7 +75,7 @@ export interface donationProps {
     quantity: number,
     delivered: boolean,
     received: boolean,
-    deliveryDate : Date | undefined,
+    deliveryDate?: Date | undefined,
     deliveryMethod : string,
 }
 
@@ -101,6 +101,7 @@ export interface requestProps {
     campaignImage:string,
     createdAt: string,
     updatedAt?: Date,
+    location?: string,
     endDate? : Date | undefined,
     startDate? : Date | undefined,
     target?: number,

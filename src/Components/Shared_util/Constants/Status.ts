@@ -1,7 +1,7 @@
 export const status = {
-    pending : "Pending",
+    rejected : "Rejected",
     inProgress : "In Progress",
-    completed : "Completed"
+    accepted : "Accepted"
 }
 
 export {}

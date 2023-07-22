@@ -4,14 +4,15 @@ import { DonationChartProps } from '../Shared_util/Constants/Types';
 import { status } from '../Shared_util/Constants/Status';
 
 const DonationChart: React.FC<DonationChartProps> = ({ donations }) => {
-  const pending = donations.filter(item => item.donationStatus === status.pending);
+  const rejected = donations.filter(item => item.donationStatus === status.rejected);
   const inProgress = donations.filter(item => item.donationStatus === status.inProgress);
-  const completed = donations.filter(item => item.donationStatus === status.completed)
+  const accepted = donations.filter(item => item.donationStatus === status.accepted)
 
 
   const data = [
+    { status: status.rejected, count: rejected.length },
     { status: status.inProgress, count: inProgress.length },
-    { status: status.completed, count: completed.length },
+    { status: status.accepted, count: accepted.length },
   ];
 
 

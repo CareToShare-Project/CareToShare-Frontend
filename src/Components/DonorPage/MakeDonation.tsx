@@ -27,12 +27,13 @@ function MakeDonation() {
     const locationRef: any = useRef("");
     const descriptionRef: any = useRef("");
     const quantityRef : any = useRef("")
+    const deliveryDateRef : any = useRef("")
     const [imageUpload, setImageUpload] = useState<any>();
     const [imageUrl, setImageUrl] = useState("");
     const [showLoading, setShowLoading] = useState(false);
     const [showToast, setShowToast] = useState(false);
     const [toastMessage, setToastMessage] = useState("");
-    const [deliveryMethod, setDeliveryMethod] = useState('');
+    const [deliveryMethod, setDeliveryMethod] = useState('delivery');
 
     const handleDeliveryMethodChange = (e :  React.ChangeEvent<HTMLInputElement>) => {
         setDeliveryMethod(e.target.value);
@@ -58,7 +59,6 @@ function MakeDonation() {
     const handleDonation = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setShowLoading(true)
-        uploadFileToStorageBucket(imageUpload, setImageUrl, "donationImages");
         if (imageUrl === "" && imageUpload !== null){
             uploadFileToStorageBucket(imageUpload, setImageUrl, "donationImages");
                 setToastMessage("Confirm submission")
@@ -69,24 +69,43 @@ function MakeDonation() {
         else{
             try {
             setShowLoading(true);
-            
             setTimeout(
                 async () => {
+                    let donation;
                     const numberOfItems = parseInt(quantityRef.current.value) < 0 ? parseInt(quantityRef.current.value) * -1 : parseInt(quantityRef.current.value)
 
-                    const donation = {
-                       donationId: v4(),
-                       campaignId: campaignDetails.campaignId,
-                       donatedBy: userDetails.username,
-                       donorEmail: userDetails.email,
-                       organisationEmail : campaignDetails.email,
-                       donatedTo : campaignDetails.organisationName,
-                       contact : userDetails.contact,
-                       description: descriptionRef.current.value,
-                       quantity: numberOfItems,
-                       location: locationRef.current.value,
-                       itemPhoto : imageUrl
-                    };
+                    if(deliveryMethod === "Delivery") {
+                           donation = {
+                           donationId: v4(),
+                           campaignId: campaignDetails.campaignId,
+                           donatedBy: userDetails.username,
+                           donorEmail: userDetails.email,
+                           organisationEmail : campaignDetails.email,
+                           donatedTo : campaignDetails.organisationName,
+                           contact : userDetails.contact,
+                           description: descriptionRef.current.value,
+                           quantity: numberOfItems,
+                           deliveryMethod: deliveryMethod,
+                           deliveryDate: deliveryDateRef.current.value,
+                           location: campaignDetails.location,
+                           itemPhoto : imageUrl
+                        };
+                    }else{
+                            donation = {
+                            donationId: v4(),
+                            campaignId: campaignDetails.campaignId,
+                            donatedBy: userDetails.username,
+                            donorEmail: userDetails.email,
+                            organisationEmail : campaignDetails.email,
+                            donatedTo : campaignDetails.organisationName,
+                            contact : userDetails.contact,
+                            description: descriptionRef.current.value,
+                            quantity: numberOfItems,
+                            deliveryMethod: deliveryMethod,
+                            location: locationRef.current.value,
+                            itemPhoto : imageUrl
+                         }; 
+                    }
                     const response = await fetch(`${BASE_URL}/donations`, {
                         method: "POST",
                         headers: {
@@ -184,8 +203,8 @@ function MakeDonation() {
                     <label style={{marginLeft: "15px", fontFamily: "Poppins", fontSize: "15px"}}>
                         <input
                             type="radio"
-                            value="delivery"
-                            checked={deliveryMethod === "delivery"}
+                            value="Delivery"
+                            checked={deliveryMethod === "Delivery"}
                             onChange={handleDeliveryMethodChange}
                         />
                         Direct Delivery to Organisation
@@ -193,16 +212,24 @@ function MakeDonation() {
                     <label style={{marginLeft: "15px" , fontFamily: "Poppins", fontSize: "15px"}}>
                         <input
                             type="radio"
-                            value="pickup"
-                            checked={deliveryMethod === "pickup"}
+                            value="Pickup"
+                            checked={deliveryMethod === "Pickup"}
                             onChange={handleDeliveryMethodChange}
                         />
                         Scheduled Pick-up by Organization
                     </label>
-                    <FieldWrapper className="field">
-                        <DonationInputLabel>Pickup location</DonationInputLabel>
-                        <DonationInputField type="text" ref={locationRef} />
-                    </FieldWrapper>
+                    {deliveryMethod === "Pickup" &&
+                        <FieldWrapper className="field">
+                            <DonationInputLabel>Pickup location</DonationInputLabel>
+                            <DonationInputField type="text" ref={locationRef} />
+                        </FieldWrapper>
+                    }
+                    {deliveryMethod === "Delivery" &&
+                        <FieldWrapper className="field">
+                            <DonationInputLabel>Delivery Date</DonationInputLabel>
+                            <DonationInputField type="date" ref={deliveryDateRef} />
+                        </FieldWrapper>
+                    }
                    
                     {imageUrl ? 
                         <DonateButton

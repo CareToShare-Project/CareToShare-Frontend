@@ -128,7 +128,9 @@ const ApproveDonation = () => {
                                     Status
                                 </span>
                                 <div style={{lineHeight: '13px', fontWeight: "450"}}>
-                                    {data?.donationStatus}
+                                    {!data?.delivered && !data?.received && data?.donationStatus}
+                                    {data?.delivered && !data?.received && "Delivered"}
+                                    {data?.delivered && data?.received && "Received"}
                                 </div>
                             </div>
                         </div>

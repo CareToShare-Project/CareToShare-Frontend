@@ -18,7 +18,7 @@ const RequestProgress = () => {
     const [donations, setDonations] = useState<donationProps[]>([])
     const [refresh, setRefresh] = useState<string>("")
     const [showToast, setShowToast] = useState(false);
-    const [show, setShow] = useState(true)
+    const [show, setShow] = useState(false)
     const [toastMessage, setToastMessage] = useState("");
     const [showLoading, setShowLoading] = useState(false);
 
@@ -48,6 +48,7 @@ const RequestProgress = () => {
             const donation = results.data
             if (results.status === "success") {
                 setDonations(donation)
+                setShow(true)
             }
         } catch (error) {
             console.log(error)
@@ -114,10 +115,12 @@ const RequestProgress = () => {
                             flexDirection: 'column', padding: '20px', gap: '30px', height: "500px", overflowY : "scroll"
                         }}>
                     <TableWrapper>
+                        <span>{donations.length} donations</span>
                         <Table responsive className='table' striped hover bordered>
                             <thead className='table-heading'>
                                     <tr>
                                         <th>Donated By</th>
+                                        <th>Description</th>
                                         <th>Quantity</th>
                                         <th>Status</th>   
                                     </tr>
@@ -128,9 +131,14 @@ const RequestProgress = () => {
                                             return (
                                                 <tr key={donation.donationId}>
                                                     <td>{donation.donatedBy}</td>
+                                                    <td style={{width: "150px"}}>
+                                                        {donation.description}
+                                                    </td>
                                                     <td>{donation.quantity}</td>
                                                     <td>
-                                                        {}
+                                                        {!donation.delivered && !donation.received && donation.donationStatus}
+                                                        {donation.delivered && !donation.received && "Delivered"}
+                                                        {donation.delivered && donation.received && "Relivered"}
                                                     </td>
                                                 </tr>
                                             )

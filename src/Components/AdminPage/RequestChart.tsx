@@ -5,13 +5,12 @@ import { status } from '../Shared_util/Constants/Status';
 
 
 const RequestChart: React.FC<RequestChartProps> = ({requests}) => {
-  const pending = requests.filter(item=> item.requestStatus === status.pending);
   const inProgress = requests.filter(item=> item.requestStatus === status.inProgress);
-  const completed = requests.filter(item=>item.requestStatus === status.completed)
+  const completed = requests.filter(item=>item.requestStatus === "Completed")
  
   const data = [
     { status: status.inProgress, count: inProgress.length },
-    { status: status.completed, count: completed.length},
+    { status: "Completed", count: completed.length},
   ];
 
 
