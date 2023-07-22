@@ -15,6 +15,7 @@ import { v4 } from "uuid";
 import {
     uploadImage,
     uploadFileToStorageBucket,
+    calculateDaysLeft
 } from "../Shared_util/Constants/Functions";
 import { useNavigate } from "react-router-dom";
 import { Spinner } from "react-bootstrap";
@@ -53,27 +54,6 @@ function MakeDonation() {
     const totalDonationData = sessionStorage.getItem('totalDonations')
     const totalDonations = totalDonationData && JSON.parse(totalDonationData)
 
-    function calculateDaysLeft(dateString : Date | undefined) {
-        // Convert the given date string to a Date object
-        if (dateString=== undefined) return
-        const givenDate = new Date(dateString);
-      
-        // Get the current date
-        const currentDate = new Date();
-      
-        // Calculate the time difference in milliseconds
-        const timeDiff =  givenDate.getTime() - currentDate.getTime();
-      
-        // Convert the time difference to days
-        const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24));
-
-      
-        return `${daysDiff} days`;
-      }
-
-   
-
-   
 
     const handleDonation = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -155,7 +135,7 @@ function MakeDonation() {
                     <div>
                         <div>
                             <MdMoreTime size={30} color='green'/> {" "}
-                            <span>{calculateDaysLeft(campaignDetails.endDate)} left</span>
+                            <span>{calculateDaysLeft(campaignDetails.startDate,campaignDetails.endDate)}</span>
                         </div>
                         <div>
                             <GiProgression size={30} color='green'/>
@@ -239,8 +219,9 @@ function MakeDonation() {
                             )}
                         </DonateButton> :
                         <DonateButton
-                        className="donate-btn"
-                        style={{
+                            className="donate-btn"
+                            disabled= {calculateDaysLeft(campaignDetails.startDate,campaignDetails.endDate) === "Not Started"}
+                            style={{
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",

@@ -30,7 +30,7 @@ const CharityCard: React.FC<organisationCardProp> = ({ details, setShow, setDeta
                 </span>
                 <span className='sub-details'>
                     <MdEmail color='#56C0C8' className='icon' />
-                    {email}
+                    {email.slice(0,20)}
                 </span>
                 <span className='sub-details'>
                     <MdCall color='#56C0C8' className='icon' />

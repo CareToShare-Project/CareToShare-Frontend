@@ -2,20 +2,23 @@ import React, { useEffect, useState } from 'react'
 import { DonateButton, NoOrganisationContainer, RightSideContentWrapper, TableWrapper } from '../DonorPage/DonorStyles';
 import SearchBar from '../Shared_util/SearchBar/SearchBar';
 import Table from 'react-bootstrap/Table';
-import {closeCampaign, organisationRequest } from '../Shared_util/Constants/Functions';
+import {closeCampaign, organisationRequest, calculateDaysLeft} from '../Shared_util/Constants/Functions';
 import { useNavigate } from 'react-router-dom';
-import { requestProps } from '../Shared_util/Constants/Types';
+import { donationProps, requestProps } from '../Shared_util/Constants/Types';
 import { BASE_URL } from '../Shared_util/Constants/Base_URL';
 import LoginToast from '../Shared_util/Toast/LoginToast';
-import { Spinner } from 'react-bootstrap';
+import { Modal, Spinner } from 'react-bootstrap';
 import { ApproveButton } from '../AdminPage/Admin.Styles';
+import { AiFillEye } from 'react-icons/ai';
 
 
 const RequestProgress = () => {
     const [query, setQuery] = useState('')
     const [requests, setRequests] = useState<requestProps[]>([])
+    const [donations, setDonations] = useState<donationProps[]>([])
     const [refresh, setRefresh] = useState<string>("")
     const [showToast, setShowToast] = useState(false);
+    const [show, setShow] = useState(true)
     const [toastMessage, setToastMessage] = useState("");
     const [showLoading, setShowLoading] = useState(false);
 
@@ -26,25 +29,8 @@ const RequestProgress = () => {
     const userData = sessionStorage.getItem('userDetails')
     const userDetails = userData && JSON.parse(userData)
 
-    function calculateDaysLeft(dateString : Date | undefined) {
-        // Convert the given date string to a Date object
-        if (dateString=== undefined) return
-        const givenDate = new Date(dateString);
-      
-        // Get the current date
-        const currentDate = new Date();
-      
-        // Calculate the time difference in milliseconds
-        const timeDiff =  givenDate.getTime() - currentDate.getTime();
-      
-        // Convert the time difference to days
-        const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24));
-
-      
-        return `${daysDiff} days`;
-      }
     
-      const getAllDonations = async (campaignId: string) => {
+    const getAllDonations = async (campaignId: string) => {
         try {
             const response = await fetch(`${BASE_URL}/donations/${campaignId}`, {
                 method: 'GET',
@@ -61,8 +47,7 @@ const RequestProgress = () => {
             const results = await response.json();
             const donation = results.data
             if (results.status === "success") {
-                return donation.reduce((accumulator: any, currentValue: { quantity: any; }) => accumulator + currentValue.quantity, 0)
-
+                setDonations(donation)
             }
         } catch (error) {
             console.log(error)
@@ -86,8 +71,9 @@ const RequestProgress = () => {
                                 <th>Days Left</th>
                                 <th>Target</th>
                                 <th>Status</th>
-                                <th>Close Campaign</th>
                                 <th>Donations</th>
+                                <th>Close Campaign</th>
+                                
                             </tr>
                         </thead>
                         <tbody className='table-body'>
@@ -98,17 +84,17 @@ const RequestProgress = () => {
                                             <td style={{width: '300px'}}>
                                                 {req.campaignTitle}
                                             </td>
-                                            <td>{calculateDaysLeft(req.endDate)} </td>
+                                            <td>{calculateDaysLeft(req.startDate,req.endDate)} </td>
                                             <td>{req.target}</td>
-                                            <td>{req.requestStatus}</td>
                                             <td>
-                                                <ApproveButton>
-                                                    close
-                                                </ApproveButton>
+                                                {calculateDaysLeft(req.startDate,req.endDate) === "Not Started"? "Pending" : req.requestStatus}
+                                            </td>
+                                            <td onClick={()=> getAllDonations(req.campaignId)}>
+                                                <AiFillEye size={15} color="green"/>
                                             </td>
                                             <td>
                                                 <ApproveButton>
-                                                    view
+                                                    Close
                                                 </ApproveButton>
                                             </td>
                                            
@@ -118,6 +104,43 @@ const RequestProgress = () => {
                             }
                         </tbody>
                     </Table>
+                    <Modal
+                        show={show}
+                        onHide={() => setShow(false)}
+                        className='modal-container'
+                        style={{ width: '100%', height: 'max-content' }}>
+                        <Modal.Body style={{
+                            display: 'flex', width: '100%',
+                            flexDirection: 'column', padding: '20px', gap: '30px', height: "500px", overflowY : "scroll"
+                        }}>
+                    <TableWrapper>
+                        <Table responsive className='table' striped hover bordered>
+                            <thead className='table-heading'>
+                                    <tr>
+                                        <th>Donated By</th>
+                                        <th>Quantity</th>
+                                        <th>Status</th>   
+                                    </tr>
+                                </thead>
+                                <tbody className='table-body'>
+                                    {
+                                        donations.map((donation:  donationProps) => {
+                                            return (
+                                                <tr key={donation.donationId}>
+                                                    <td>{donation.donatedBy}</td>
+                                                    <td>{donation.quantity}</td>
+                                                    <td>
+                                                        {}
+                                                    </td>
+                                                </tr>
+                                            )
+                                        })
+                                    }
+                                </tbody>
+                             </Table>
+                            </TableWrapper>
+                        </Modal.Body>
+                    </Modal>
                     <LoginToast
                         showToast={showToast}
                         setShowToast={setShowToast}
@@ -127,6 +150,7 @@ const RequestProgress = () => {
                         !requests.length && <NoOrganisationContainer>You haven't made any request yet</NoOrganisationContainer>
                     }
                 </TableWrapper>}
+
                 {showLoading && <Spinner animation="border" className="spinner" style={{color: 'black'}}/>}
         </RightSideContentWrapper>
     )

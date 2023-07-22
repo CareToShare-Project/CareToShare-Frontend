@@ -3,7 +3,7 @@ import { ProfileModalProps } from '../Shared_util/Constants/Types';
 import { Modal } from 'react-bootstrap';
 import '../Shared_Styles/General/Styles.css'
 import { DetailsWrapper, ReviewWrapper } from './DonorStyles';
-import { MdCall, MdLocationOn, MdVerified } from 'react-icons/md';
+import { MdCall, MdEmail, MdLocationOn, MdVerified } from 'react-icons/md';
 import img from "../HomePage/images/image2.jpg"
 
 
@@ -21,17 +21,24 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ show, setShow, details }) =
                 flexDirection: 'column', padding: '20px', gap: '30px', height: "500px", overflowY : "scroll"
             }}>
                 <div style={{ display: 'flex', flexDirection: 'row', width: "100%", alignItems: 'center', gap: '30px', justifyContent: 'flex-start' }}>
-                    <img src={details?.photo} alt='round' style={{ width: '120px', height: '120px', borderRadius: '50%', objectFit: "cover"}} />
+                    {details?.photo ? 
+                            <img src={details?.photo} alt='round' style={{ width: '120px', height: '120px', borderRadius: '50%', objectFit: "cover"}} />:
+                            <img src={img} alt='round' style={{ width: '120px', height: '120px', borderRadius: '50%', objectFit: "cover"}} />
+                        }
                     <DetailsWrapper style={{ padding: '0px', width: '60%' }}>
                         <span className='organizationName' style={{ fontSize: "18px" }}>
                             <span>{details?.organisationName}</span>
                             <span className='verified'>{details?.isVerified ? <MdVerified /> : ''}</span>
                         </span>
-                        <span className='sub-details' style={{ fontSize: "16px" }}>
+                        <span className='sub-details' style={{ fontSize: "14px" }}>
                             <MdLocationOn color='#56C0C8' className='icon' />
                             {details?.location}
                         </span>
-                        <span className='sub-details' style={{ fontSize: "16px" }}>
+                        <span className='sub-details' style={{ fontSize: "14px" }}>
+                            <MdEmail color='#56C0C8' className='icon' />
+                            {details?.email.slice(0,20)}
+                        </span>
+                        <span className='sub-details' style={{ fontSize: "14px" }}>
                             <MdCall color='#56C0C8' className='icon' />
                             {details?.contact}
                         </span>

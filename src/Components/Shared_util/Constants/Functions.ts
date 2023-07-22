@@ -2,6 +2,8 @@ import { storage } from "./FireBase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage"
 import { v4 } from "uuid"
 import { BASE_URL } from "./Base_URL";
+import { reviewsProp } from "./Types";
+import Sentiment from "sentiment";
 
 
 
@@ -17,6 +19,85 @@ export const uploadMultipleImages = (e: React.ChangeEvent<HTMLInputElement>, set
     if (e.target.files === null) return
     setImageUpload(e.target.files)
     console.log("success")
+}
+
+export const calculateUsageDuration = (dateString : string) => {
+    // Convert the given date string to a Date object
+    const givenDate = new Date(dateString);
+  
+    // Get the current date
+    const currentDate = new Date();
+  
+    // Calculate the time difference in milliseconds
+    const timeDiff = currentDate.getTime() - givenDate.getTime();
+  
+    // Convert the time difference to days
+    const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24));
+
+    if(daysDiff >= 28){
+        const months = Math.floor(daysDiff/28)
+        return `${months} month(s)`;
+    }
+  
+    return `${daysDiff} days`;
+  }
+
+  export const calculateDaysLeft = (startDateString: Date | undefined,endDateString : Date | undefined) => {
+    // Convert the given date string to a Date object
+    if (endDateString=== undefined || startDateString=== undefined) return
+    const startDate = new Date(startDateString);
+    const endDate = new Date(endDateString);
+
+    // Get the current date
+    const currentDate = new Date();
+
+    if(startDate.getTime() > currentDate.getTime()) return "Not Started"
+  
+    // Calculate the time difference in milliseconds
+    const timeDiff =  endDate.getTime() - startDate.getTime();
+  
+    // Convert the time difference to days
+    const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24));
+
+    return `${daysDiff} days`;
+  }
+
+// sentiment analysis function 
+export const calculateSentiment = (reviews: reviewsProp[]) => {
+    //setShowLoading(true)
+    if (reviews.length === 0) {
+        // setShowLoading(false)
+        // setToastMessage("There are no reviews to analyze")
+        // setShowToast(true)
+        return '-'
+    }
+    const analyzer = new Sentiment();
+
+    // Analyze each review and get the sentiment result
+    const sentimentResults = reviews.map((review) => analyzer.analyze(review.review));
+    console.log('sentimentResults', sentimentResults)
+
+    // Calculate the average sentiment score
+    const totalScore = sentimentResults.reduce((total, result) => total + result.score, 0);
+    console.log('totalScore', totalScore)
+
+    const averageSentiment = totalScore / sentimentResults.length;
+    console.log('average', averageSentiment)
+
+    // Convert the average sentiment score to a percentage
+    const sentimentPercentage = Math.round((averageSentiment + 5) * 10);
+    if (sentimentPercentage > 100) {
+        //setResult(100)
+        return '100%';
+    } else if (sentimentPercentage < 0) {
+        //setResult(0)
+        return '0%';
+    } else {
+        //setResult(sentimentPercentage)
+        return `${sentimentPercentage}%`;
+    }
+    
+
 }
 
 // uploads file to the firebase storage

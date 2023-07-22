@@ -72,7 +72,11 @@ export interface donationProps {
     createdAt: string,
     updatedAt: string,
     contact?: string,
-    quantity: number
+    quantity: number,
+    delivered: boolean,
+    received: boolean,
+    deliveryDate : Date | undefined,
+    deliveryMethod : string,
 }
 
 export interface donationCardProps {
@@ -98,6 +102,7 @@ export interface requestProps {
     createdAt: string,
     updatedAt?: Date,
     endDate? : Date | undefined,
+    startDate? : Date | undefined,
     target?: number,
 }
 

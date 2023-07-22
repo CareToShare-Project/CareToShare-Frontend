@@ -8,10 +8,7 @@ import {
     FieldWrapper,
     InputLabel,
 } from "../DonorPage/DonorStyles";
-//import { RoleContainer } from "../CreateAccount/CreateAccountStyles";
 import { Heading } from "../Login/LoginStyles";
-//import { BiDonateHeart } from "react-icons/bi";
-//import { TextWrapper } from "../CharityPage/CharityStyles";
 import { BASE_URL } from "../Shared_util/Constants/Base_URL";
 import { v4 } from "uuid";
 import {
@@ -28,6 +25,7 @@ function MakeRequest() {
     const campaignRef: any = useRef("");
     const descriptionRef : any = useRef("")
     const targetRef : any = useRef("")
+    const startDateRef : any = useRef("")
     const endDateRef : any = useRef("")
 
     const [imageUpload, setImageUpload] = useState<any>();
@@ -49,8 +47,7 @@ function MakeRequest() {
     const handleRequest = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setShowLoading(true)
-        uploadFileToStorageBucket(imageUpload, setImageUrl, 'requestImages')
-
+        
         if (imageUrl === "" && imageUpload !== null) {
             uploadFileToStorageBucket(imageUpload, setImageUrl, "donationImages");
             setTimeout(()=>{
@@ -71,7 +68,8 @@ function MakeRequest() {
                         email: userDetails.email,
                         campaignTitle : campaignRef.current.value,
                         description: descriptionRef?.current.value,
-                        target : parseInt(targetRef.current.value),
+                        target : parseInt(targetRef.current.value) ?parseInt(targetRef.current.value) : 0,
+                        startDate: startDateRef.current.value,
                         endDate: endDateRef.current.value,
                         campaignImage: imageUrl,
                     }
@@ -144,6 +142,10 @@ function MakeRequest() {
                     <FieldWrapper style={{ width: "100%" }}>
                         <InputLabel>Target</InputLabel>
                         <DonationInputField type="number" ref={targetRef} />
+                    </FieldWrapper>
+                    <FieldWrapper style={{ width: "100%" }}>
+                        <InputLabel>Start Date</InputLabel>
+                        <DonationInputField type="date" ref={startDateRef} />
                     </FieldWrapper>
                     <FieldWrapper style={{ width: "100%" }}>
                         <InputLabel>End Date</InputLabel>
