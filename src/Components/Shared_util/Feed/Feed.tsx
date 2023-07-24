@@ -4,6 +4,7 @@ import { useAppSelector } from "../../Store/Store"
 import { PostProps } from "../../Store/Post-Slice"
 import PostComponent from "./Post"
 import SearchBar from "../SearchBar/SearchBar"
+import { NoOrganisationContainer } from "../../DonorPage/DonorStyles"
 
 
 
@@ -25,6 +26,9 @@ const Feed = () => {
                     }
                     )
                 }
+                {posts.length === 0 && <NoOrganisationContainer style={{fontSize: '22px', letterSpacing: "2px"}}>
+                                            Nothing to show
+                                        </NoOrganisationContainer>}
 
             </FeedWrapper>
         </FeedPageContainer>

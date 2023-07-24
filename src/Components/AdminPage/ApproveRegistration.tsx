@@ -11,6 +11,7 @@ import SearchBar from "../Shared_util/SearchBar/SearchBar"
 import LoginToast from '../Shared_util/Toast/LoginToast';
 import { OrganisationProps } from '../Shared_util/Constants/Types';
 import { useNavigate } from 'react-router-dom';
+import { v4 } from "uuid"
 
 
 const ApproveRegistration = () => {
@@ -26,6 +27,16 @@ const ApproveRegistration = () => {
     const tokenData = sessionStorage.getItem('accesstoken')
     const accessToken = tokenData && JSON.parse(tokenData)
 
+
+    const activateAccountHandler = (username: string) => {
+        activateOrganisation(username, setShowLoading,setToastMessage, setShowToast, accessToken,navigate);
+        setRefresh(v4())
+    }
+
+    const deactivateAccountHandler = (username: string) => {
+        deactivateOrganisation(username, setShowLoading,setToastMessage, setShowToast, accessToken,navigate);
+        setRefresh(v4())
+    }
 
 
 
@@ -76,20 +87,10 @@ const ApproveRegistration = () => {
 
                                     <td>
                                         {org.isActive ?
-                                            <ApproveButton onClick={() => deactivateOrganisation(org.username,
-                                                setShowLoading,
-                                                setToastMessage,
-                                                setShowToast,
-                                                accessToken,
-                                                navigate)} >
+                                            <ApproveButton onClick={() => deactivateAccountHandler(org.username)} >
                                                 Deactivate
                                             </ApproveButton> :
-                                            <ApproveButton onClick={() => activateOrganisation(org.username,
-                                                setShowLoading,
-                                                setToastMessage,
-                                                setShowToast,
-                                                accessToken,
-                                                navigate)}>
+                                            <ApproveButton onClick={() => activateAccountHandler(org.username)}>
                                                 Activate
                                             </ApproveButton>
                                         }

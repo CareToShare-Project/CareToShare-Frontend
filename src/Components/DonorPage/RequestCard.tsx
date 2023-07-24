@@ -37,7 +37,7 @@ const RequestCard: React.FC<RequestCardProp> = ({ details }) => {
             if (response.status === 500) return
 
             const results = await response.json();
-            const donation = results.data.filter((item: { donationStatus: string })=> item.donationStatus === "Completed")
+            const donation = results.data.filter((item: { donationStatus: string })=> item.donationStatus === "Accepted")
             if (results.status === "success") {
                 setCampaignDonations(donation)
 

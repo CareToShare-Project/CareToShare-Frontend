@@ -10,6 +10,7 @@ import LoginToast from '../Shared_util/Toast/LoginToast';
 import { Modal, Spinner } from 'react-bootstrap';
 import { ApproveButton } from '../AdminPage/Admin.Styles';
 import { AiFillEye } from 'react-icons/ai';
+import { v4 } from "uuid"
 
 
 const RequestProgress = () => {
@@ -28,6 +29,11 @@ const RequestProgress = () => {
     const accessToken = tokenData && JSON.parse(tokenData)
     const userData = sessionStorage.getItem('userDetails')
     const userDetails = userData && JSON.parse(userData)
+
+    const closeCampaignHandler = (campaignId: string) => {
+        closeCampaign(campaignId, setShowLoading, setToastMessage,setShowToast,accessToken, navigate)
+        setRefresh(v4())
+    }
 
     
     const getAllDonations = async (campaignId: string) => {
@@ -94,9 +100,9 @@ const RequestProgress = () => {
                                                 <AiFillEye size={15} color="green"/>
                                             </td>
                                             <td>
-                                                <ApproveButton>
+                                                {req.requestStatus === "In Progress" ?<ApproveButton onClick={()=> closeCampaignHandler(req.campaignId)}>
                                                     Close
-                                                </ApproveButton>
+                                                </ApproveButton>: "Closed"}
                                             </td>
                                            
                                         </tr>
@@ -115,7 +121,7 @@ const RequestProgress = () => {
                             flexDirection: 'column', padding: '20px', gap: '30px', height: "500px", overflowY : "scroll"
                         }}>
                     <TableWrapper>
-                        <span>{donations.length} donations</span>
+                        <span>Donations: {donations.length}</span>
                         <Table responsive className='table' striped hover bordered>
                             <thead className='table-heading'>
                                     <tr>
@@ -127,7 +133,7 @@ const RequestProgress = () => {
                                 </thead>
                                 <tbody className='table-body'>
                                     {
-                                        donations.map((donation:  donationProps) => {
+                                        donations.filter(item=> item.donationStatus !== "Rejected").map((donation:  donationProps) => {
                                             return (
                                                 <tr key={donation.donationId}>
                                                     <td>{donation.donatedBy}</td>
@@ -138,7 +144,7 @@ const RequestProgress = () => {
                                                     <td>
                                                         {!donation.delivered && !donation.received && donation.donationStatus}
                                                         {donation.delivered && !donation.received && "Delivered"}
-                                                        {donation.delivered && donation.received && "Relivered"}
+                                                        {donation.delivered && donation.received && "Received"}
                                                     </td>
                                                 </tr>
                                             )
@@ -146,6 +152,7 @@ const RequestProgress = () => {
                                     }
                                 </tbody>
                              </Table>
+                             <span>Total Quantity: {donations.filter(item=> item.donationStatus !== "Rejected").reduce((accumulator, currentValue) => accumulator + currentValue.quantity, 0)}</span>
                             </TableWrapper>
                         </Modal.Body>
                     </Modal>

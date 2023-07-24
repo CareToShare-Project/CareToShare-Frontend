@@ -48,6 +48,7 @@ const ApproveDonation = () => {
                             <th>Donated By</th>
                             <th>Donated To</th>
                             <th>Date</th>
+                            <th>Transaction method</th>
                             <th>Description</th>
                             <th>Location</th>
                             <th>View Items</th>
@@ -62,6 +63,7 @@ const ApproveDonation = () => {
                                     <td>{donation.donatedBy}</td>
                                     <td>{donation.donatedTo}</td>
                                     <td>{donation.createdAt.slice(0, 10)}</td>
+                                    <td>{donation.deliveryMethod}</td>
                                     <td>{donation.description}</td>
                                     <td>{donation.location}</td>
                                     <td onClick={()=>displayItems(donation)}>

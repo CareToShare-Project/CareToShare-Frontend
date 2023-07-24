@@ -164,7 +164,7 @@ const DonationProgress = () => {
                                     <div>
                                         <DonateButton
                                             onClick={()=>deliverDonationHandler(data.donationId)}
-                                            disabled= {data.delivered}
+                                            disabled= {data.delivered || data.donationStatus=== "In Progress" || data.donationStatus==="Rejected"}
                                             style={{width: "60%", borderRadius: "4px", padding: "3px"}}
                                             >
                                                     Deliver

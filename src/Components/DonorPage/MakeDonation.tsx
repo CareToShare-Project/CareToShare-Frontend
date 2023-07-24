@@ -52,6 +52,8 @@ function MakeDonation() {
     const campaignData = sessionStorage.getItem('campaign')
     const campaignDetails = campaignData && JSON.parse(campaignData)
 
+    console.log(campaignDetails)
+
     const totalDonationData = sessionStorage.getItem('totalDonations')
     const totalDonations = totalDonationData && JSON.parse(totalDonationData)
 

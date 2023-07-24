@@ -358,7 +358,7 @@ export const deactivateDonor = async (username: string, setShowLoading: React.Di
 
         if (response.ok) {
             setShowLoading(false)
-            setToastMessage("User account is deactivated, Refresh page!")
+            setToastMessage("User account is deactivated")
             setShowToast(true)
         } else {
             setShowLoading(false)
@@ -400,7 +400,7 @@ export const activateDonor = async (username: string, setShowLoading: React.Disp
 
         if (response.ok) {
             setShowLoading(false)
-            setToastMessage("User account is activated, Refresh page!")
+            setToastMessage("User account is activated")
             setShowToast(true)
         } else {
             setShowLoading(false)
@@ -609,7 +609,6 @@ export const organisationRequest = async (setRequests: React.Dispatch<any>, requ
         if (response.status === 401) return navigate('/login')
         const results = await response.json();
         const requests = results.data
-        console.log(requests)
         if (results.status === "success") {
             setRequests(requests)
             sessionStorage.setItem('Orgrequests', JSON.stringify(requests))
@@ -759,11 +758,12 @@ export const closeCampaign = async (requestId: string, setShowLoading: React.Dis
         console.log(results)
         if (results.status === "success") {
             setShowLoading(false)
-            setToastMessage("Successfully closed campaign, Refresh page!")
+            setToastMessage("Successfully closed campaign")
             setShowToast(true)
         }
     } catch (error) {
         console.log(error)
+        setShowLoading(false)
     }
 }
 
@@ -787,6 +787,13 @@ export const acceptDonation = async (donationId: string, setShowLoading: React.D
 
         if (response.status === 401) return navigate("/login")
 
+        if (response.status === 400){
+            setShowLoading(false)
+            setToastMessage("An error occured")
+            setShowToast(true)
+            return
+        }
+
         if (response.status === 403) {
             setShowLoading(false)
             setToastMessage("You do not have permission to perform this action")
@@ -800,13 +807,13 @@ export const acceptDonation = async (donationId: string, setShowLoading: React.D
         }
 
         const results = await response.json();
+        console.log(results)
         if (results.status === "success") {
             setShowLoading(false)
             setToastMessage("Donation accepted Successfully")
             setShowToast(true)
         }
     } catch (error) {
-        console.log(error)
         setShowLoading(false)
     }
 }

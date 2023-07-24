@@ -31,8 +31,10 @@ function ViewRequests() {
             {campaigns &&
                             
                         campaigns
-                            .filter((item: { organisationName: string }) => {
-                                return item.organisationName.toLowerCase().includes(query.toLowerCase())
+                            .filter((item: {
+                                requestStatus: string; organisationName: string}) => {
+                                return item.organisationName.toLowerCase().includes(query.toLowerCase()) ||
+                                item.requestStatus === "In Progress"
                             }).map((req: RequestCardProp['details']) => {
                                 return (
                                     <RequestCard details={req} key={req.campaignId} />

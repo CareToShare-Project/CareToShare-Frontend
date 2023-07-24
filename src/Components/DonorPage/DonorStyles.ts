@@ -614,6 +614,13 @@ export const DonationInputField = styled(InputField)`
 // check donation progress styles
 export const TableWrapper = styled.div`
     width: 100%;
+    position: relative;
+
+    .spinner{
+        position: absolute;
+        top: 30%;
+        left: 50%;
+    }
 
     span{
             display: flex;
@@ -915,7 +922,7 @@ export const ImageField = styled(Field)`
 `
 
 export const CampaignCardWrapper = styled.div`
-    height: 300px;
+    height: 400px;
     width: 90%;
     display: flex;
     margin-bottom: 30px;
@@ -924,10 +931,10 @@ export const CampaignCardWrapper = styled.div`
     box-shadow: 0px 0px 4px 3px rgba(0, 0, 0, 0.3);
 `
 export const CampaignImageContainer = styled(ImageWrapper)`
-    height: 300px;
-    width: 300px;
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
+    height: 400px;
+    width: 400px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
     border-right: 5px solid ${({theme})=> theme.background.primary};
     border-bottom: none;
     object-fit: cover;
@@ -937,7 +944,7 @@ export const CampaignDetailsContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 20px;
-    height: 300px;
+    height: 400px;
     width: 70%;
     overflow-y: scroll;
     padding: 10px;

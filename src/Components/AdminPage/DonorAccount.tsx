@@ -7,6 +7,7 @@ import { Spinner, Table } from 'react-bootstrap';
 import { getAllDonors, deactivateDonor, activateDonor } from '../Shared_util/Constants/Functions';
 import { DonorProps } from '../Shared_util/Constants/Types';
 import { useNavigate } from 'react-router-dom';
+import { v4 } from "uuid"
 
 
 
@@ -22,6 +23,16 @@ function DonorAccount() {
 
     const tokenData = sessionStorage.getItem('accesstoken')
     const accessToken = tokenData && JSON.parse(tokenData)
+
+    const activateAccountHandler = (username: string) => {
+        activateDonor(username, setShowLoading,setToastMessage, setShowToast, accessToken,navigate);
+        setRefresh(v4())
+    }
+
+    const deactivateAccountHandler = (username: string) => {
+        deactivateDonor(username, setShowLoading,setToastMessage, setShowToast, accessToken,navigate);
+        setRefresh(v4())
+    }
 
     
 
@@ -64,14 +75,10 @@ function DonorAccount() {
                                     <td>{donor.location} </td>
                                     <td>
                                         {donor.isActive ?
-                                            <ApproveButton onClick={() => deactivateDonor(donor.username, setShowLoading,
-                                                setToastMessage, setShowToast,
-                                                accessToken, navigate)} >
+                                            <ApproveButton onClick={() => deactivateAccountHandler(donor.username)} >
                                                 Deactivate
                                             </ApproveButton> :
-                                            <ApproveButton onClick={() => activateDonor(donor.username, setShowLoading,
-                                                setToastMessage, setShowToast, accessToken,
-                                                navigate)}>
+                                            <ApproveButton onClick={() => activateAccountHandler(donor.username)}>
                                                 Activate
                                             </ApproveButton>
                                         }
