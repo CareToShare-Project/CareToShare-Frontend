@@ -27,7 +27,6 @@ function MakeDonation() {
     const locationRef: any = useRef("");
     const descriptionRef: any = useRef("");
     const quantityRef : any = useRef("")
-    const deliveryDateRef : any = useRef("")
     const [imageUpload, setImageUpload] = useState<any>();
     const [imageUrl, setImageUrl] = useState("");
     const [showLoading, setShowLoading] = useState(false);
@@ -38,8 +37,6 @@ function MakeDonation() {
     const handleDeliveryMethodChange = (e :  React.ChangeEvent<HTMLInputElement>) => {
         setDeliveryMethod(e.target.value);
     };
-
-    console.log(deliveryMethod)
 
     const navigate = useNavigate();
 
@@ -52,7 +49,6 @@ function MakeDonation() {
     const campaignData = sessionStorage.getItem('campaign')
     const campaignDetails = campaignData && JSON.parse(campaignData)
 
-    console.log(campaignDetails)
 
     const totalDonationData = sessionStorage.getItem('totalDonations')
     const totalDonations = totalDonationData && JSON.parse(totalDonationData)
@@ -89,7 +85,6 @@ function MakeDonation() {
                            description: descriptionRef.current.value,
                            quantity: numberOfItems,
                            deliveryMethod: deliveryMethod,
-                           deliveryDate: deliveryDateRef.current.value,
                            location: campaignDetails.location,
                            itemPhoto : imageUrl
                         };
@@ -226,12 +221,6 @@ function MakeDonation() {
                         <FieldWrapper className="field">
                             <DonationInputLabel>Pickup location</DonationInputLabel>
                             <DonationInputField type="text" ref={locationRef} />
-                        </FieldWrapper>
-                    }
-                    {deliveryMethod === "Delivery" &&
-                        <FieldWrapper className="field">
-                            <DonationInputLabel>Delivery Date</DonationInputLabel>
-                            <DonationInputField type="date" ref={deliveryDateRef} />
                         </FieldWrapper>
                     }
                    

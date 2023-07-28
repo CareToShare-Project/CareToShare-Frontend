@@ -64,11 +64,7 @@ export const calculateUsageDuration = (dateString : string) => {
 
 // sentiment analysis function 
 export const calculateSentiment = (reviews: reviewsProp[]) => {
-    //setShowLoading(true)
     if (reviews.length === 0) {
-        // setShowLoading(false)
-        // setToastMessage("There are no reviews to analyze")
-        // setShowToast(true)
         return '-'
     }
     const analyzer = new Sentiment();

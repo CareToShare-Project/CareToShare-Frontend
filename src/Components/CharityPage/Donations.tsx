@@ -7,9 +7,11 @@ import { acceptDonation, getOrganisationDonations, receiveDonation, rejectDonati
 import { useNavigate } from 'react-router-dom';
 import { donationProps} from '../Shared_util/Constants/Types';
 import LoginToast from '../Shared_util/Toast/LoginToast';
-import {AiFillEye} from "react-icons/ai"
+import {AiFillEye, AiOutlineClose} from "react-icons/ai"
 import { Modal } from 'react-bootstrap';
 import { v4 } from "uuid"
+import { GiCheckMark } from 'react-icons/gi';
+import { FaRegHandshake } from 'react-icons/fa';
 
 
 
@@ -104,9 +106,10 @@ const Donations = () => {
                             <tr>
                                 <th>Donated By</th>
                                 <th>Contact</th>
-                                <th>Delivery Date</th>
                                 <th>Status</th>
                                 <th>View</th>
+                                <th style={{width: "150px"}}>Accept/Decline</th>
+                                <th>Receive</th>
                             </tr>
                         </thead>
                         <tbody className='table-body'>
@@ -116,7 +119,6 @@ const Donations = () => {
                                         <tr key={donation.donationId}>
                                             <td>{donation.donatedBy}</td>
                                             <td>{donation.contact}</td>
-                                            <td>{donation.deliveryDate ? donation.deliveryDate.toString().slice(0,10) : 'Not scheduled'}</td>
                                             <td>
                                                 {!donation.delivered && !donation.received && donation.donationStatus}
                                                 {donation.delivered && !donation.received && "Delivered"}
@@ -127,6 +129,28 @@ const Donations = () => {
                                                     <div onClick={()=> displayItems(donation)}>
                                                        <AiFillEye size={15} color='green' /> 
                                                     </div> : "No image"}
+                                            </td>
+                                            <td style={{display: "flex", gap: '10px'}}>
+                                                <button 
+                                                    style={{border:'0px', width: '25px', borderRadius: "5px"}}
+                                                    disabled= {donation.donationStatus !=="In Progress"}
+                                                    onClick={()=> acceptDonationHandler(donation.donationId)}>
+                                                    <GiCheckMark color='green' size={18}/>
+                                                </button>
+                                                <button 
+                                                    style={{border:'0px', width: '25px', borderRadius: "5px"}}
+                                                    disabled= {donation.donationStatus !=="In Progress"}
+                                                    onClick={()=> rejectDonationHandler(donation.donationId)}>
+                                                    <AiOutlineClose color="red" size={18}/>
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <button
+                                                    onClick={()=> receiveDonationHandler(donation.donationId)}
+                                                    disabled= {donation.received || !donation.delivered}
+                                                    style={{border:'0px', width: '22px', borderRadius: "5px" , padding: "7px"}}>
+                                                    <FaRegHandshake color="green" size={22}/>  
+                                                </button> 
                                             </td>
                                         </tr>
                                     )
@@ -224,30 +248,6 @@ const Donations = () => {
                                         {data?.delivered && !data?.received && "Delivered"}
                                         {data?.delivered && data?.received && "Received"}
                                     </div>
-                                </div>
-                                <div>          
-                                    {!data.delivered ?
-                                    <>
-                                        <DonateButton
-                                            disabled= {data.donationStatus !=="In Progress"}
-                                            style={{width: "45%"}}
-                                            onClick={()=>acceptDonationHandler(data.donationId)}>
-                                                    Accept
-                                        </DonateButton>
-                                        <DonateButton
-                                            disabled= {data.donationStatus !=="In Progress"}
-                                            style={{width: "45%"}}
-                                            onClick={()=>rejectDonationHandler(data.donationId)}>
-                                                    Decline
-                                        </DonateButton> 
-                                    </>: 
-                                        <DonateButton
-                                            disabled= {data.received}
-                                            style={{width: "60%"}}
-                                            onClick={()=>receiveDonationHandler(data.donationId)}>
-                                                    Receive
-                                        </DonateButton>
-                                    }
                                 </div>
                             </div>
                         </div>

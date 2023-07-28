@@ -81,7 +81,6 @@ const DonationProgress = () => {
                             <tr>
                                 {/* <th>Type</th> */}
                                 <th>Organisation</th>
-                                <th>Delivery Date</th>
                                 <th>Transaction Method</th>
                                 <th>Contact</th>
                                 <th>Location</th>
@@ -91,14 +90,14 @@ const DonationProgress = () => {
                         </thead>
                         <tbody className='table-body'>
                             {
-                                donations.map((donation: donationProps) => {
+                                donations.filter(item=> item.location?.toLowerCase().includes(query.toLowerCase()) || 
+                                                        item.donatedTo?.toLowerCase().includes(query.toLowerCase())).map((donation: donationProps) => {
                                     return (
                                         <tr key={donation.donationId}>
                                             {/* <td>{donation.donationType}</td> */}
                                             <td>
                                                 {donation.donatedTo}
                                             </td>
-                                            <td>{donation.deliveryDate?.toString().slice(0,10)}</td>
                                             <td>{donation.deliveryMethod}</td>
                                             <td>{donation.organisationContact}</td>
                                             <td>{donation.location}</td>
@@ -116,6 +115,11 @@ const DonationProgress = () => {
                             }
                         </tbody>
                     </Table>
+                    {donations.filter(item=> item.location?.toLowerCase().includes(query.toLowerCase()) || 
+                                                item.donatedTo?.toLowerCase().includes(query.toLowerCase())).length === 0 &&
+                                                     <NoOrganisationContainer>
+                                                        No donation match your search
+                                                    </NoOrganisationContainer>}
                     <Modal show={show} onHide={() => setShow(false)}>
                         <Modal.Body>
                             <div style={{width: '500px', height: '350px', display: 'flex' , gap: '20px'}}>

@@ -121,7 +121,7 @@ const RequestProgress = () => {
                             flexDirection: 'column', padding: '20px', gap: '30px', height: "500px", overflowY : "scroll"
                         }}>
                     <TableWrapper>
-                        <span>Donations: {donations.length}</span>
+                        <span>Donations: {donations.filter(item => item.donationStatus !== "Rejected").length}</span>
                         <Table responsive className='table' striped hover bordered>
                             <thead className='table-heading'>
                                     <tr>
