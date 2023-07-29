@@ -5,6 +5,7 @@ import '../Shared_Styles/General/Styles.css'
 import { DetailsWrapper, ReviewWrapper } from './DonorStyles';
 import { MdCall, MdEmail, MdLocationOn, MdVerified } from 'react-icons/md';
 import img from "../HomePage/images/image2.jpg"
+import { FaUserCircle } from 'react-icons/fa';
 
 
 const ProfileModal: React.FC<ProfileModalProps> = ({ show, setShow, details }) => {
@@ -54,7 +55,13 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ show, setShow, details }) =
                     <div>
                         {details?.reviews && details.reviews.map((item, index)=> {
                             return(
-                                <li key={index}>{item.review}</li>
+                                <div key={index}>
+                                    <span className='user'><FaUserCircle size={20}/>{' '}@{item.user}</span>
+                                    <span className='review'>
+                                        {item.review}
+                                    </span>
+                            
+                                </div>
                             )
                         })}
                         {details?.reviews.length === 0 && <div>No reviews available</div>}

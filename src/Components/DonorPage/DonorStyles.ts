@@ -388,18 +388,25 @@ export const ReviewWrapper = styled.div`
         display: flex;
         flex-direction: column;
 
-        li{
-            list-style-type: none;
+        div{
             height: max-content;
             margin-bottom: 10px;
             font-family: Roboto;
             font-size: 14px;
             border-bottom: 1px solid rgba(0,0,0,0.05);
-            cursor: pointer;
+            margin-bottom: 30px;
+            cursor: pointer; 
+                .user{
+                    color: #187278;
+                    font-weight: 700;
+                }
+    
+                .review{
+                    
+                }
 
-            &:hover{
-                background: rgba(0,0,0,0.2);
-            }
+            
+
         }
     }
 `
@@ -969,6 +976,59 @@ export const CampaignDetailsContainer = styled.div`
     
 `
 
+export const ModalContent = styled.div`
+    width: 500px;
+    height: 400px;
+    display: flex;
+    gap: 20px;
+
+    form{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        div{
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+
+            label{
+                font-size: 16px;
+                font-weight: bolder;
+                font-family: Roboto;
+                color: black;
+            }
+
+            select{
+                padding: 5px;
+            }
+
+            input{
+                padding: 5px;
+            }
+
+            textarea{
+                height: 170px;
+            }
+
+            button{
+                outline: 0;
+                border: 1px solid white;
+                border-radius: 5px;
+                transition: all 0.5s ease-in-out;
+                padding: 5px;
+                font-family: Poppins;
+                font-weight: 700;
+
+            &:hover{
+                border: 1px solid ${({theme})=> theme.background.primary};
+                background: white;
+                }
+            }
+        }
+    }
+`
+
 export const SupportCampaignButton = styled.button`
     width: 200px;
     outline: 0;
@@ -982,6 +1042,9 @@ export const SupportCampaignButton = styled.button`
         background: white;
     }
 `
+//width: '500px', height: '350px', display: 'flex' , gap: '20px'
+
+
 
 
 

@@ -864,6 +864,7 @@ export const deliverDonation = async (donationId: string, setShowLoading: React.
     setShowToast: React.Dispatch<React.SetStateAction<boolean>>,
     accessToken: string,
     navigate: any,
+    updatedField : any
 ) => {
     setShowLoading(true)
     try {
@@ -873,6 +874,7 @@ export const deliverDonation = async (donationId: string, setShowLoading: React.
                 'content-type': 'application/json',
                 'authorization': `Bearer ${accessToken}`
             },
+            body: JSON.stringify(updatedField)
 
         })
 
@@ -897,7 +899,6 @@ export const deliverDonation = async (donationId: string, setShowLoading: React.
             setShowToast(true)
         }
     } catch (error) {
-        console.log(error)
         setShowLoading(false)
     }
 }
@@ -941,7 +942,6 @@ export const receiveDonation = async (donationId: string, setShowLoading: React.
             setShowToast(true)
         }
     } catch (error) {
-        console.log(error)
         setShowLoading(false)
     }
 }
@@ -988,7 +988,6 @@ export const updateDonation = async (donationId: string, setShowLoading: React.D
             setShowToast(true)
         }
     } catch (error) {
-        console.log(error)
         setShowLoading(false)
     }
 }

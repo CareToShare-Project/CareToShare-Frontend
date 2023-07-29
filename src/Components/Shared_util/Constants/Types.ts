@@ -77,7 +77,9 @@ export interface donationProps {
     delivered: boolean,
     received: boolean,
     deliveryDate?: Date | undefined,
-    deliveryMethod : string,
+    deliveryMethod?: string,
+    deliveryDetails?: string,
+    deliveryMode?: string
 }
 
 export interface donationCardProps {
