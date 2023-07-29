@@ -217,6 +217,11 @@ export const NavigationContainer = styled.div`
     z-index: 300;
     position: relative;
 
+    img{
+        width: 100px;
+        height: 100px;
+    }
+
     .menu{
         display: none;
         @media (max-width: 450px){

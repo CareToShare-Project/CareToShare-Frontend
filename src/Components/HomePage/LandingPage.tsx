@@ -5,6 +5,7 @@ import { MdOutlineDeliveryDining, MdVerifiedUser } from 'react-icons/md';
 import { BiDonateHeart } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
 import { AiOutlineMenu } from 'react-icons/ai';
+import logo from "./images/logo.png"
 
 const LandingPage = () => {
     const navigate = useNavigate()
@@ -14,13 +15,13 @@ const LandingPage = () => {
         <PageWrapper className='home'>
             <ShadeContainer></ShadeContainer>
             <NavigationContainer>
-                <h3>Logo</h3>
+                <img src={logo} alt='logo' />
                 <div className={showMenu ? 'showMenu' : ''}>
                     <span>About</span>
                     <span onClick={() => navigate('login')}>Sign In</span>
                     <span onClick={() => navigate('login/createAccount')}>Sign Up</span>
                 </div>
-                <span className='menu' onClick={()=>setShowMenu(prev=>!prev)}><AiOutlineMenu size={25}/></span>
+                <span className='menu' onClick={() => setShowMenu(prev => !prev)}><AiOutlineMenu size={25} /></span>
             </NavigationContainer>
             <BodyContainer>
                 <h1>Empowering Change Through Giving</h1>

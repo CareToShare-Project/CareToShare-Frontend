@@ -8,6 +8,7 @@ import { SideBarProps } from "../Constants/Types";
 import { GiExitDoor } from "react-icons/gi"
 import { MdOutlineMenu } from "react-icons/md"
 import { useNavigate } from "react-router-dom";
+import logo from "../../HomePage/images/logo2.png"
 
 
 
@@ -57,7 +58,7 @@ const SideBar: React.FC<SideBarProps> = ({ features }) => {
                 {hideSideBar ? <MdOutlineMenu /> : ''}
             </MenuBar>
             <SideBarWrapper className={hideSideBar ? 'hide' : 'show'}>
-                <Title>CareToShare</Title>
+                <img src={logo} alt="logo"/>
                 <FeaturesWrapper>
                     {features.map((feature, key) => {
                         return (

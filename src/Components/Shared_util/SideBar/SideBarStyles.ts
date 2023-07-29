@@ -57,7 +57,13 @@ export const SideBarWrapper = styled.div`
     z-index: 100;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    
+    
+    img{
+        margin: 0 auto;
+        width: 150px;
+        height: 150px;
+    }
 
 
     @media (max-width: 650px){
@@ -151,10 +157,8 @@ export const LogoutWrapper = styled(EditProfileButton)`
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
     color: ${({theme})=> theme.color.secondary};
-    bottom: 20px;  
-    left: 25%;
+    margin: 0 auto;
     &:hover{
         width: 100px;
         color: white;
@@ -174,8 +178,7 @@ export const FeaturesWrapper = styled.ul`
     color: white;
     gap: 2px;
     display: grid;
-    position: absolute;
-    top: 20%;   
+   
 
 
     #active{
