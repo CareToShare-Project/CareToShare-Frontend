@@ -92,11 +92,6 @@ const Post = () => {
                 <PostFieldWrapper>
                     <label>Attach images *</label>
                     <div>
-                        <label className='upload-images' htmlFor='image'>
-                            <AiOutlineUpload size={20}/>
-                            UPLOAD
-                        </label>
-                        
                         <input type='file' id="image" onChange={(e)=>uploadMultipleImages(e,setImageUpload)} multiple/>
                     </div>
                 </PostFieldWrapper>

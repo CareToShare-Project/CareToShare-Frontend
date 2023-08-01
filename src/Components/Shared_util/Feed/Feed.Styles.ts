@@ -11,11 +11,17 @@ export const FeedPageContainer = styled.div`
 
 
 export const FeedWrapper = styled.div`
-    width: 95%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 30px;
     padding: 10px;
+    overflow-x: hidden;
+
+    @media (max-width: 630px){
+           width: 98%;
+           
+        }
 
     
     

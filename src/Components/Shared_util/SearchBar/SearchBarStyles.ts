@@ -7,6 +7,10 @@ export const SearchBarContainer = styled.div`
     gap: 2px;
     justify-content: center;
     padding: 0px 50px;
+
+    @media (max-width: 541px){
+        padding: 0px 10px;
+    }
     
        
     
@@ -46,5 +50,9 @@ export const SearchBox = styled.div`
             position: absolute;
             left: 10px;
             
+        }
+
+        @media (max-width: 541px){
+            width: 100%;
         }
 `

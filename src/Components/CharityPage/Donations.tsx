@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { DonateButton, NoOrganisationContainer, RightSideContentWrapper, TableWrapper } from '../DonorPage/DonorStyles';
+import { DonateButton, ModalContent, NoOrganisationContainer, RightSideContentWrapper, TableWrapper } from '../DonorPage/DonorStyles';
 import SearchBar from '../Shared_util/SearchBar/SearchBar';
 import Table from 'react-bootstrap/Table';
 import Spinner from 'react-bootstrap/Spinner'
@@ -170,9 +170,9 @@ const Donations = () => {
                 </TableWrapper>}
                 <Modal show={show} onHide={() => setShow(false)}>
                     <Modal.Body>
-                        <div style={{width: '500px', height: '350px', display: 'flex' , gap: '20px'}}>
+                        <ModalContent>
                             <img src={data?.itemPhoto} alt="item" style={{width: '50%', objectFit: "cover"}}/>
-                            <div style={{display: 'flex', width:"42%", flexDirection: 'column', gap: '20px', height: "350px", overflowY: "scroll", padding: '5px'}}>
+                            <div className="content">
                                 <div>
                                     <span style={{fontFamily: "Poppins", fontWeight: "700", color: '#56C0C8'}}>
                                         Donated By
@@ -250,7 +250,7 @@ const Donations = () => {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </ModalContent>
                     </Modal.Body>
                 </Modal>
         </RightSideContentWrapper>

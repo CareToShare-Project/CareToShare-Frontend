@@ -43,7 +43,9 @@ function EmailNotification() {
 
     return (
         <NotificationContainer>
-            <BackgroundSVG />
+            <div className='svg'>
+                <BackgroundSVG />
+            </div>
             <EmailNotificationLeftSection>
                 <h1>Verify your email</h1>
                 <div className='top'>
@@ -56,7 +58,7 @@ function EmailNotification() {
                 <div className="bottom">
                     <span className='link' onClick={ResendPasswordResetLink}>Resend Verification Link</span>
                     <span>Wrong email address? {' '}</span>
-                    <span className='link' onClick={() => navigate('/login')}>Back to signup</span>
+                    <span className='link' onClick={() => navigate('/login')}>Back to signIn</span>
                 </div>
 
             </EmailNotificationLeftSection>

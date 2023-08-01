@@ -37,6 +37,11 @@ export const ResetWrapper = styled.form`
     box-shadow: 0px 0px 4px 3px rgba(20, 107, 113, 0.2);
     border: 3px solid white;
     z-index: 100;
+
+    @media (max-width: 450px){
+            border-radius: 0px;
+            box-shadow: none;
+        }
     
 
     div{
@@ -58,6 +63,10 @@ export const Header = styled.header`
     font-weight: 600;
     color: ${({theme})=> theme.color.primary};
     width: 90%;
+
+    @media (max-width: 450px){
+            color: ${({theme})=> theme.background.primary};
+        }
 
 `
 
@@ -103,6 +112,13 @@ export const NotificationContainer = styled(ResetContainer)`
     justify-content: space-between;
     flex-direction: row-reverse;
     padding: 10px 100px;
+
+    .svg{
+        @media (max-width: 906px){
+            display: none;
+        }
+    }
+
     @media (max-width: 906px){
         flex-direction: column-reverse;
         justify-content: flex-end;
@@ -112,6 +128,10 @@ export const NotificationContainer = styled(ResetContainer)`
         text-align: center;
 
     }
+
+    @media (max-width: 450px){
+           gap: 20px;
+        }
 
 
 `
@@ -158,6 +178,12 @@ export const EmailNotificationRightSection = styled.div`
 
         @media (max-width: 906px){
             font-size: 200px;
+        }
+    }
+
+    img{
+        @media (max-width: 450px){
+            width: 90%;
         }
     }
 `

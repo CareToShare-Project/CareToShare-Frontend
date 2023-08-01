@@ -98,7 +98,7 @@ const RequestCard: React.FC<RequestCardProp> = ({ details }) => {
                     <span className='heading'>
                         {totalDonations} raised of {target}
                     </span>
-                    <span>
+                    <span className='progress'>
                         <ProgressBar now={progress} label={`${progress}%`}  variant='success'/>
                     </span>
                     

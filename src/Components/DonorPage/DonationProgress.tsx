@@ -101,7 +101,7 @@ const DonationProgress = () => {
                             <Modal.Body>
                                 <ModalContent>
                                     <img src={data?.itemPhoto} alt="item" style={{width: '50%', objectFit: "cover"}}/>
-                                    <div style={{display: 'flex', width:"42%", flexDirection: 'column', gap: '20px', height: "350px", overflowY: "scroll", padding: '5px'}}>
+                                    <div className='content' style={{display: 'flex', width:"42%", flexDirection: 'column', gap: '20px', height: "350px", overflowY: "scroll", padding: '5px'}}>
                                         <div>
                                             <span style={{fontFamily: "Poppins", fontWeight: "700", color: '#56C0C8'}}>
                                                 Description

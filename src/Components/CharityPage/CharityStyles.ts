@@ -26,6 +26,14 @@ export const PostWrapper = styled.div`
     box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);
     border: 3px solid white;
     margin: 20px;
+
+    @media (max-width: 480px){
+        width: 100%;
+        overflow-x: hidden;
+        height: 600px;
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
 `
 
 export const PostFieldWrapper = styled.div`
@@ -35,6 +43,11 @@ export const PostFieldWrapper = styled.div`
     align-items: flex-start;
     justify-content: space-between;
     gap: 40px;
+
+    @media (max-width: 480px){
+        flex-direction: column;
+        padding: 20px 10px;
+    }
 
     label{
         color: ${({theme}) => theme.background.primary};
@@ -53,13 +66,17 @@ export const PostFieldWrapper = styled.div`
         font-family: Roboto;
         font-weight: 500;
 
+        @media (max-width: 480px){
+            width: 100%;
+        }
+
         &:focus{
             border: 2px solid ${({theme})=> theme.color.hover2};
             outline: none;
         }
     }
     div{
-        input[type="file"] {
+        /* input[type="file"] {
             display: none;
         }
 
@@ -74,7 +91,7 @@ export const PostFieldWrapper = styled.div`
             width: 300px;
             text-align: center;
             cursor: pointer;
-        }
+        } */
     }
     
     

@@ -164,6 +164,8 @@ export const MainPageContainer = styled.div`
     align-items: center;
     gap: 15px;
     background: white;
+
+    
 `
 
 export const RightSideContent = styled.div`
@@ -190,6 +192,8 @@ export const RightSideContentWrapper = styled.div`
     @media (max-width: 700px){
         align-items: center;
         justify-content: center;
+        width: 100%;
+        padding: 5px;
     }
 
 
@@ -499,16 +503,30 @@ export const RefreshWrapper = styled.div`
 
 export const DonationFormContainer = styled.div`
     width: 100%;
+    height: 500px;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 30px 0px;
 
+    @media (max-width: 970px){
+             flex-direction: column;
+             overflow-x: hidden;
+             overflow-y: scroll;
+             align-items: flex-start;
+             padding: 10px 0px;
+            
+        }
+
     .campaignImage{
-        
         img{
             width: 500px;
             height: 500px;
+
+            @media (max-width: 630px){
+                    display: none;
+            }
+
         }
     }
 
@@ -520,8 +538,14 @@ export const DonationFormContainer = styled.div`
         box-shadow: 0px 0px 4px 3px rgba(20, 107, 113, 0.1);
         border: 1px solid rgba(86, 192, 200, 0.3);
 
+        @media (max-width: 970px){
+             width: 95%;
+             display: none;
+        }
+
         div{
             padding: 20px;
+            
             
             header{
                 font-size: 25px;
@@ -577,9 +601,10 @@ export const DonationForms = styled.form`
     padding: 30px 5px;
     gap: 2px;
 
-    @media (max-width: 930px){
-             width: 85%;
-             margin-left: 30px;
+    @media (max-width: 970px){
+             width: 95%;
+             min-width: 300px;
+             height: 550px;
         }
 
     div{
@@ -730,6 +755,10 @@ export const ReviewContainer = styled.div`
     align-items: center;
     padding-bottom: 30px;
 
+    @media (max-width: 450px){
+           width: 100%;
+        }
+
 
 `
 
@@ -842,6 +871,12 @@ export const FormsWrapper = styled.div`
     border-radius: 10px;
     box-shadow: 0px 0px 4px 3px rgba(20, 107, 113, 0.1);
     border: 1px solid rgba(86, 192, 200, 0.3);
+
+    @media (max-width: 450px){
+           flex-direction: column;
+           overflow-y: scroll;
+           overflow-x: hidden;
+        }
     
 `
 export const Wrapper = styled(RightSideContentWrapper)`
@@ -870,6 +905,11 @@ export const LeftPanel = styled.div`
     background: rgba(104, 211, 221, 0.3);
     position: relative;
 
+    @media (max-width: 450px){
+           background: none;
+           margin: 0 auto;
+        }
+
     span{
         color : ${({theme}) => theme.color.primary};
         font-size : 18px;
@@ -893,6 +933,10 @@ export const Row = styled.div`
 
 export const FieldContainer = styled(FieldWrapper)`
     width: 60%;
+
+    @media (max-width: 450px){
+           width: 100%;
+        }
 `
 
 export const Label = styled(InputLabel)`
@@ -905,6 +949,10 @@ export const Field = styled(InputField)`
     border: 2px solid ${({theme}) => theme.color.primary};
     height: 28px;
     font-family: Roboto;
+
+    @media (max-width: 450px){
+           width: 300px;
+        }
 `
 
 export const ProfilePhotoWrapper = styled.img`
@@ -922,6 +970,10 @@ export const UpdateBtn = styled(ConfirmButton)`
     border-radius: 5px;
     margin-left: 12px;
 
+    @media (max-width: 450px){
+           width: 80%;
+        }
+
 `
 
 export const ImageField = styled(Field)`
@@ -936,6 +988,14 @@ export const CampaignCardWrapper = styled.div`
     gap: 10px;
     border-radius: 10px;
     box-shadow: 0px 0px 4px 3px rgba(0, 0, 0, 0.3);
+
+    @media (max-width: 541px){
+           width: 100%;
+           height: max-content;
+           flex-direction: column;
+           overflow-y: scroll;
+           overflow-x: hidden;
+        }
 `
 export const CampaignImageContainer = styled(ImageWrapper)`
     height: 400px;
@@ -945,6 +1005,13 @@ export const CampaignImageContainer = styled(ImageWrapper)`
     border-right: 5px solid ${({theme})=> theme.background.primary};
     border-bottom: none;
     object-fit: cover;
+    
+    @media (max-width: 541px){
+        width: 100%;
+        border-bottom: 5px solid ${({theme})=> theme.background.primary};
+        border-right: none;
+    }
+
 `
 
 export const CampaignDetailsContainer = styled.div`
@@ -955,10 +1022,26 @@ export const CampaignDetailsContainer = styled.div`
     width: 70%;
     overflow-y: scroll;
     padding: 10px;
+    @media (max-width: 541px){
+        overflow-y:hidden;
+        width: 100%;
+        margin-top: 20px;
+        height: max-content;
+    }
 
     div{
         display: flex;
         flex-direction: column;
+
+        @media (max-width: 541px){
+            width: 100%;
+        }
+
+        .progress{
+            @media (max-width: 541px){
+                width: 250px;
+            }
+        }
         
         .heading{
             font-weight: 700;
@@ -981,6 +1064,29 @@ export const ModalContent = styled.div`
     height: 400px;
     display: flex;
     gap: 20px;
+
+    @media (max-width: 480px){
+             flex-direction: column;
+             height: 600px;
+
+             img{
+                width: 100%;
+             }
+        }
+       // style={{display: 'flex', width:"42%", flexDirection: 'column', gap: '20px', height: "350px", overflowY: "scroll", padding: '5px'}}
+    .content{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        height: 350px;
+        overflow-y: hidden;
+        padding: 5px;
+        @media (max-width: 480px){
+            width: 300px;
+            overflow-y: hidden;
+        }
+    }
+     
 
     form{
         width: 100%;
@@ -1037,10 +1143,15 @@ export const SupportCampaignButton = styled.button`
     transition: all 0.5s ease-in-out;
     padding: 5px;
 
+
     &:hover{
         border: 1px solid ${({theme})=> theme.background.primary};
         background: white;
     }
+
+    @media (max-width: 541px){
+                width: 250px;
+            }
 `
 //width: '500px', height: '350px', display: 'flex' , gap: '20px'
 
