@@ -16,6 +16,10 @@ export const LoginToastWrapper = styled.div`
         font-size: 16px;
         letter-spacing: 1.2px;
 
+        @media (max-width: 541px){
+           width: 100%;
+        }
+
         .toast-body{
             display: flex;
             justify-content: center;
