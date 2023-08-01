@@ -4,7 +4,7 @@ import { Modal } from 'react-bootstrap';
 import '../Shared_Styles/General/Styles.css'
 import { DetailsWrapper, ReviewWrapper } from './DonorStyles';
 import { MdCall, MdEmail, MdLocationOn, MdVerified } from 'react-icons/md';
-import img from "../HomePage/images/image2.jpg"
+//import img from "../HomePage/images/image2.jpg"
 import { FaUserCircle } from 'react-icons/fa';
 
 
