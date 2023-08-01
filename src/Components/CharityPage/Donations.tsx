@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { DonateButton, ModalContent, NoOrganisationContainer, RightSideContentWrapper, TableWrapper } from '../DonorPage/DonorStyles';
+import {ModalContent, NoOrganisationContainer, RightSideContentWrapper, TableWrapper } from '../DonorPage/DonorStyles';
 import SearchBar from '../Shared_util/SearchBar/SearchBar';
 import Table from 'react-bootstrap/Table';
 import Spinner from 'react-bootstrap/Spinner'

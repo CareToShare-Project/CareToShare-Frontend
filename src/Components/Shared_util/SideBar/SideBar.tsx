@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import {
     SideBarWrapper,
     FeaturesWrapper, LogoutWrapper,
-    MenuBar, SideBarContainer, Title
+    MenuBar, SideBarContainer
 } from "./SideBarStyles";
 import { SideBarProps } from "../Constants/Types";
 import { GiExitDoor } from "react-icons/gi"

@@ -3,7 +3,7 @@ import { ApproveDonationContainer, ApproveButton} from './Admin.Styles';
 import { Spinner, Table } from 'react-bootstrap';
 import { NoOrganisationContainer, TableWrapper } from '../DonorPage/DonorStyles';
 import {
-    getAllOrganisations, approveOrganisationRegistration,
+    getAllOrganisations,
     deactivateOrganisation,
     activateOrganisation
 } from '../Shared_util/Constants/Functions';

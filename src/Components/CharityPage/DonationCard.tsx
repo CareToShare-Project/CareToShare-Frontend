@@ -9,10 +9,11 @@ const DonationCard: React.FC<donationCardProps> = ({details, setShowLoading, set
 
     const userData = sessionStorage.getItem("userDetails");
     const userDetails = userData && JSON.parse(userData);
+    console.log(userDetails)
 
     const tokenData = sessionStorage.getItem("accesstoken");
     const accessToken = tokenData && JSON.parse(tokenData);
-
+    console.log(accessToken)
    
    
     return(

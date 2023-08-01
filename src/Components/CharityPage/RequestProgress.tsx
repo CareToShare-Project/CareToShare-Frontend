@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { DonateButton, NoOrganisationContainer, RightSideContentWrapper, TableWrapper } from '../DonorPage/DonorStyles';
+import {NoOrganisationContainer, RightSideContentWrapper, TableWrapper } from '../DonorPage/DonorStyles';
 import SearchBar from '../Shared_util/SearchBar/SearchBar';
 import Table from 'react-bootstrap/Table';
 import {closeCampaign, organisationRequest, calculateDaysLeft} from '../Shared_util/Constants/Functions';

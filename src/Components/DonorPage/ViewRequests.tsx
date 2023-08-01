@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import RequestCard from './RequestCard';
-import { RightSideContentWrapper, ViewFoundationContainer } from './DonorStyles';
+import { RightSideContentWrapper} from './DonorStyles';
 import SearchBar from '../Shared_util/SearchBar/SearchBar';
 import { NoOrganisationContainer as NoRequestContainer } from './DonorStyles';
 import { RequestCardProp } from '../Shared_util/Constants/Types';

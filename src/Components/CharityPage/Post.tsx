@@ -11,7 +11,6 @@ import { addPost } from '../Store/Post-Slice';
 import { useNavigate } from 'react-router-dom';
 import LoginToast from '../Shared_util/Toast/LoginToast';
 import { Spinner } from 'react-bootstrap';
-import {AiOutlineUpload} from "react-icons/ai"
 
 const Post = () => {
     const [imageUpload, setImageUpload] = useState<any>()

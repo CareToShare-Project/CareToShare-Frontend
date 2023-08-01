@@ -4,22 +4,14 @@ import { ApproveDonationContainer } from "./Admin.Styles"
 import { NoOrganisationContainer, TableWrapper } from "../DonorPage/DonorStyles"
 import SearchBar from "../Shared_util/SearchBar/SearchBar"
 import { Table } from "react-bootstrap"
-import { getAllOrganisations, verifyOrganisation, calculateUsageDuration, calculateSentiment} from "../Shared_util/Constants/Functions"
+import { getAllOrganisations, calculateUsageDuration, calculateSentiment} from "../Shared_util/Constants/Functions"
 import { OrganisationProps} from "../Shared_util/Constants/Types"
-import LoginToast from "../Shared_util/Toast/LoginToast"
-
-
-
-
-
 
 
 const Verification = () => {
     const [organisations, setOrganisation] = useState<OrganisationProps[]>([])
     const [refresh, setRefresh] = useState("")
     const [query, setQuery] = useState("")
-    const [showToast, setShowToast] = useState(false)
-    const [toastMessage, setToastMessage] = useState('')
     const navigate = useNavigate()
 
     const tokenData = sessionStorage.getItem('accesstoken')
@@ -71,11 +63,6 @@ const Verification = () => {
                                             item.location.toLowerCase().includes(query.toLowerCase()))
                             .length === 0 ? <NoOrganisationContainer>No Organisation Found</NoOrganisationContainer> : ""
                 }
-                <LoginToast
-                    showToast={showToast}
-                    setShowToast={setShowToast}
-                    toastMessage={toastMessage}
-                />
             </TableWrapper>
         </ApproveDonationContainer>
     )

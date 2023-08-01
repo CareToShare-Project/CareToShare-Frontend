@@ -27,7 +27,6 @@ import ApproveRequest from '../AdminPage/ApproveRequest';
 import Overview from '../AdminPage/Overview';
 import DonorAccount from '../AdminPage/DonorAccount';
 import Post from '../CharityPage/Post';
-import ViewDonation from '../CharityPage/ViewDonation';
 import RequestProgress from '../CharityPage/RequestProgress'
 import MakeRequest from '../CharityPage/MakeRequest';
 import Donations from '../CharityPage/Donations';
