@@ -750,10 +750,10 @@ export const UpdateDonationInputLabel = styled(InputLabel)`
 export const ReviewContainer = styled.div`
     width: 80%;
     display: flex;
-    /* height: 90vh; */
+    height: 100vh; 
     flex-direction: column;
     align-items: center;
-    padding-bottom: 30px;
+    padding: 80px 0px;
 
     @media (max-width: 450px){
            width: 100%;
@@ -788,11 +788,12 @@ export const MessageWrapper = styled.div`
 
 export const ReviewFormWrapper = styled.form`
     width: 80%;
-    height: 70%;
+    height: max-content;
+    margin-bottom: 10px;
     background: white;
     display: flex;
     flex-direction:column;
-    padding: 15px;
+    padding: 20px;
     align-items: center;
     justify-content: center;
     border-radius: 5px;

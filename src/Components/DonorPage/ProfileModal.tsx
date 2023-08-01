@@ -22,11 +22,11 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ show, setShow, details }) =
                 flexDirection: 'column', padding: '20px', gap: '30px', height: "500px", overflowY : "scroll"
             }}>
                 <div style={{ display: 'flex', flexDirection: 'row', width: "100%", alignItems: 'center', gap: '30px', justifyContent: 'flex-start' }}>
-                    {details?.photo ? 
+                    {/* {details?.photo ? 
                             <img src={details?.photo} alt='round' style={{ width: '120px', height: '120px', borderRadius: '50%', objectFit: "cover"}} />:
                             <img src={img} alt='round' style={{ width: '120px', height: '120px', borderRadius: '50%', objectFit: "cover"}} />
-                        }
-                    <DetailsWrapper style={{ padding: '0px', width: '60%' }}>
+                        } */}
+                    <DetailsWrapper style={{ padding: '0px', width: '100%' }}>
                         <span className='organizationName' style={{ fontSize: "18px" }}>
                             <span>{details?.organisationName}</span>
                             <span className='verified'>{details?.isVerified ? <MdVerified /> : ''}</span>
@@ -37,7 +37,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ show, setShow, details }) =
                         </span>
                         <span className='sub-details' style={{ fontSize: "14px" }}>
                             <MdEmail color='#56C0C8' className='icon' />
-                            {details?.email.slice(0,20)}
+                            {details?.email}
                         </span>
                         <span className='sub-details' style={{ fontSize: "14px" }}>
                             <MdCall color='#56C0C8' className='icon' />
