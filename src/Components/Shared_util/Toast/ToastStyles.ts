@@ -18,6 +18,7 @@ export const LoginToastWrapper = styled.div`
 
         @media (max-width: 541px){
            width: 100%;
+           left: 0%;
         }
 
         .toast-body{
